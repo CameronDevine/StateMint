@@ -27,7 +27,7 @@ The Python implamentation of State Model RnD was originally written to work with
 8. Click "Create a Lambda function".
 9. Select the Blank Function blueprint.
 10. Click on the dashed outline box and select "API Gateway" as the trigger.
-11. Give the API a name, I chose "StateModelRnD". Name the deployment stage, I chose "beta". Finally, chose Open for the security.
+11. Give the API the name "StateModelRnD". Name the deployment stage, I chose "beta". Finally, chose Open for the security.
 12. Name the Lambda function. I chose "StateModelRnD" again. Add a description if you wish, and select "Python 2.7" as the runtime.
 13. Select "Upload a .ZIP file" under lambda code, and upload the zip file you created in step 5.
 14. For the handler enter `StateModelLambda.handler`.
@@ -65,14 +65,15 @@ The Python implamentation of State Model RnD was originally written to work with
 19. Navigate to the AWS API Gateway console, and select the StateModelRnD API.
 20. Under Actions select Create Method. Then slect POST and click the checkmark.
 21. For Integration type choose Lambda Function. Check the Use Lambda Proxy integration box. Select the region your Lambda function was created in, and enter the name of your Lambda function. Click save.
-22. Click "Method Response" then "Add Response". Enter 400 as the status, then under 400 click "Add Header" and enter `Access-Control-Allow-Origin`. Then click "Add Response Model", and enter `application/json` as the content type and select Empty for the model.
-23. Select the "Any" method and click Actions, Delete Method.
-24. Click Actions, Enable CORS, and accept the default values.
-25. Click Actions, Deploy API, and select the stage name you entered in step 11.
-26. Click SDK Generation and select JavaScript as the platform, then click Generate SDK. Download this zip file to the same folder as the rest of your files and unzip it.
-27. Copy the `StateModelRnD.html` and `StateModelRnD.js` files into the `apiGateway-js-sdk` folder.
-28. Edit the `StateModelRnD.html` file to add your preferred styling.
-29. Upload the `StateModelRnD.html`, `StateModelRnD.js`, `apigClient.js` files and the `lib` directory to your webserver of choice.
+22. Click "Integration Request" and make sure that "Use Lambda Proxy integration" is checked.
+23. Click "Method Response" then "Add Response". Enter 400 as the status, then under 400 click "Add Header" and enter `Access-Control-Allow-Origin`. Then click "Add Response Model", and enter `application/json` as the content type and select Empty for the model.
+24. Select the "Any" method and click Actions, Delete Method.
+25. Click Actions, Enable CORS, and accept the default values.
+26. Click Actions, Deploy API, and select the stage name you entered in step 11.
+27. Click SDK Generation and select JavaScript as the platform, then click Generate SDK. Download this zip file to the same folder as the rest of your files and unzip it.
+28. Copy the `StateModelRnD.html` and `StateModelRnD.js` files into the `apiGateway-js-sdk` folder.
+29. Edit the `StateModelRnD.html` file to add your preferred styling.
+30. Upload the `StateModelRnD.html`, `StateModelRnD.js`, `apigClient.js` files and the `lib` directory to your webserver of choice.
 
 ## Credits
 
