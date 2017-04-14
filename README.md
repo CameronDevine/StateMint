@@ -1,21 +1,20 @@
-s
 # State Model RnD
 
 This library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality but was ported to allow it to be run using an AWS Lambda function, allowing anyone to run the code without having Python/sympy or Mathematica installed.
 
 ## Instalation
 
-State Model RnD can be run a python library on your computer or with the `StateModelLambda.py` file it can be deployed as an AWS Lambda function. the instructions for both instalations are below.
+State Model RnD can be run a python library on your computer or with the `StateModelLambda.py` file it can be deployed as an AWS Lambda function. the instructions for both installations are below.
 
-### Local Instalation
+### Local Installation
 StateModelRnD can be installed on a local machine using the steps below.
 
 1. Clone the git repository to a local directory.
 2. Make sure sympy is installed. The easiest way to do this is with `pip` using the command, `pip install sympy`.
 3. Move the `StateModelRnD.py` file to a location where `python` will be able to find it.
 
-### AWS Lambda Instalation
-The Python implamentation of State Model RnD was originally written to work with AWS Lambda. The following steps will allow you to integrate State Model RnD into your website.
+### AWS Lambda Installation
+The Python implementation of State Model RnD was originally written to work with AWS Lambda. The following steps will allow you to integrate State Model RnD into your website.
 
 1. Create an AWS account at [https://aws.amazon.com/](https://aws.amazon.com/ "Amazon AWS").
 2. Clone the git repository to a directory on your machine.
@@ -63,7 +62,7 @@ The Python implamentation of State Model RnD was originally written to work with
 }
 ~~~~
 19. Navigate to the AWS API Gateway console, and select the StateModelRnD API.
-20. Under Actions select Create Method. Then slect POST and click the checkmark.
+20. Under Actions select Create Method. Then select POST and click the checkmark.
 21. For Integration type choose Lambda Function. Check the Use Lambda Proxy integration box. Select the region your Lambda function was created in, and enter the name of your Lambda function. Click save.
 22. Click "Integration Request" and make sure that "Use Lambda Proxy integration" is checked.
 23. Click "Method Response" then "Add Response". Enter 400 as the status, then under 400 click "Add Header" and enter `Access-Control-Allow-Origin`. Then click "Add Response Model", and enter `application/json` as the content type and select Empty for the model.
