@@ -1,47 +1,46 @@
-var html = `
-<form id="input">
-Input Variables:
-<br><textarea rows="1" cols="40" id="InVars"></textarea><br>
-State Variable Elemental Equations:
-<br><textarea rows="3" cols="40" id="StVarElEqns"></textarea><br>
-Other Elemental Equations:
-<br><textarea rows="3" cols="40" id="OtherElEqns"></textarea><br>
-Constraints:
-<br><textarea rows="3" cols="40" id="Constraints"></textarea><br>
-Output Variables:
-<br><textarea rows="1" cols="40" id="OutputVars"></textarea><br>
-<button type="button" onclick="StateModel()">Go</button>
-</form>
-<form id="langform" style="display:none">
-<table>
-<td><input type="radio" name="langs" id="Equation" onclick="outlang('Equation')">Equation</input></td>
-<td><input type="radio" name="langs" id="Latex" onclick="outlang('LaTeX')">LaTeX</input></td>
-<td><div id="matlab_div">
-<input type="radio" name="langs" id="Matlab" onclick="outlang('Matlab')">MATLAB</input>
-</div></td>
-<td><input type="radio" name="langs" id="Mathematica" onclick="outlang('Mathematica')">Mathematica</input></td>
-<td><input type="radio" name="langs" id="Python" onclick="outlang('Python')">Python</input></td>
-</table>
-</form>
-<form id="form" style="display:none">
-<table>
-<td><input type="radio" name="eqsform" id="StateSpace" onclick="eqform('StateSpace')">\\(\\dot{x}=Ax+Bu\\)</input></td>
-<td><div name="nonstandard_div" style="display:none">
-<input type="radio" name="eqsform" id="StateSpaceN" onclick="eqform('StateSpaceN')">\\(\\dot{x}=Ax+Bu+E\\dot{u}\\)</input>
-</div></td>
-<td><div name="nonstandard_div" style="display:none">
-<input type="radio" name="eqsform" id="StateSpaceP" onclick="eqform('StateSpaceP')">\\(\\dot{x}=Ax'+B'u\\)</input>
-</div></td>
-<td><div id="tf_div">
-<input type="radio" name="eqsform" id="TF" onclick="eqform('TF')">\\(H(s)\\)</input>
-</div></td>
-<td><div id="nonlinear_div" style="display:none">
-<input type="radio" name="eqsform" id="eq" onclick="eqform('eq')">\\(f(x,u)\\)</input>
-</div></td>
-</table>
-</form>
-<div id="output"></div>
-`;
+var html = 
+'<form id="input">' +
+'Input Variables:' +
+'<br><textarea rows="1" cols="40" id="InVars"></textarea><br>' +
+'State Variable Elemental Equations:' +
+'<br><textarea rows="3" cols="40" id="StVarElEqns"></textarea><br>' +
+'Other Elemental Equations:' +
+'<br><textarea rows="3" cols="40" id="OtherElEqns"></textarea><br>' +
+'Constraints:' +
+'<br><textarea rows="3" cols="40" id="Constraints"></textarea><br>' +
+'Output Variables:' +
+'<br><textarea rows="1" cols="40" id="OutputVars"></textarea><br>' +
+'<button type="button" onclick="StateModel()">Go</button>' +
+'</form>' +
+'<form id="langform" style="display:none">' +
+'<table>' +
+'<td><input type="radio" name="langs" id="Equation" onclick="outlang(\'Equation\')">Equation</input></td>' +
+'<td><input type="radio" name="langs" id="Latex" onclick="outlang(\'LaTeX\')">LaTeX</input></td>' +
+'<td><div id="matlab_div">' +
+'<input type="radio" name="langs" id="Matlab" onclick="outlang(\'Matlab\')">MATLAB</input>' +
+'</div></td>' +
+'<td><input type="radio" name="langs" id="Mathematica" onclick="outlang(\'Mathematica\')">Mathematica</input></td>' +
+'<td><input type="radio" name="langs" id="Python" onclick="outlang(\'Python\')">Python</input></td>' +
+'</table>' +
+'</form>' +
+'<form id="form" style="display:none">' +
+'<table>' +
+'<td><input type="radio" name="eqsform" id="StateSpace" onclick="eqform(\'StateSpace\')">\\(\\dot{x}=Ax+Bu\\)</input></td>' +
+'<td><div name="nonstandard_div" style="display:none">' +
+'<input type="radio" name="eqsform" id="StateSpaceN" onclick="eqform(\'StateSpaceN\')">\\(\\dot{x}=Ax+Bu+E\\dot{u}\\)</input>' +
+'</div></td>' +
+'<td><div name="nonstandard_div" style="display:none">' +
+'<input type="radio" name="eqsform" id="StateSpaceP" onclick="eqform(\'StateSpaceP\')">\\(\\dot{x}=Ax\'+B\'u\\)</input>' +
+'</div></td>' +
+'<td><div id="tf_div">' +
+'<input type="radio" name="eqsform" id="TF" onclick="eqform(\'TF\')">\\(H(s)\\)</input>' +
+'</div></td>' +
+'<td><div id="nonlinear_div" style="display:none">' +
+'<input type="radio" name="eqsform" id="eq" onclick="eqform(\'eq\')">\\(f(x,u)\\)</input>' +
+'</div></td>' +
+'</table>' +
+'</form>' +
+'<div id="output"></div>';
 
 var data = {};
 var use_lang = "";
@@ -50,22 +49,22 @@ var last_form = "";
 function callback() {
 	console.log(data);
 	document.getElementById("output").innerHTML = "";
-	document.getElementById("matlab_div").style = "display:block";
-	document.getElementById("nonlinear_div").style = "display:none";
+	document.getElementById("matlab_div").style["display"] = "block";
+	document.getElementById("nonlinear_div").style["display"] = "none";
 	if (data.Nonlinear) {
 		console.log("nonlinear");
-		document.getElementById("matlab_div").style = "display:none";
-		document.getElementById("nonlinear_div").style = "display:block";
+		document.getElementById("matlab_div").style["display"] = "block";
+		document.getElementById("nonlinear_div").style["display"] = "block";
 	}
-	document.getElementsByName("nonstandard_div")[0].style = "display:none";
-	document.getElementsByName("nonstandard_div")[1].style = "display:none";
+	document.getElementsByName("nonstandard_div")[0].style["display"] = "none";
+	document.getElementsByName("nonstandard_div")[1].style["display"] = "none";
 	if (data.Nonstandard) {
 		console.log("nonstandard");
-		document.getElementsByName("nonstandard_div")[0].style = "display:block";
-		document.getElementsByName("nonstandard_div")[1].style = "display:block";
+		document.getElementsByName("nonstandard_div")[0].style["display"] = "block";
+		document.getElementsByName("nonstandard_div")[1].style["display"] = "block";
 	}
-	document.getElementById("langform").style = "display:block";
-	document.getElementById("form").style = "display:block";
+	document.getElementById("langform").style["display"] = "block";
+	document.getElementById("form").style["display"] = "block";
 	console.log(MathJax.Hub.Queue(["Typeset",MathJax.Hub,"form"]));
 	document.getElementById("Equation").checked = true;
 	outlang("Equation");
@@ -142,8 +141,8 @@ function outlang(type) {
 	}
 
 function set_forms(type) {
-	document.getElementById("tf_div").style = "display:none";
-	if (type == "Equation" || type == "LaTeX") {document.getElementById("tf_div").style = "display:block";}
+	document.getElementById("tf_div").style["display"] = "none";
+	if (type == "Equation" || type == "LaTeX") {document.getElementById("tf_div").style["display"] = "block";}
 	if (type != "Equation" && type != "LaTeX" && last_form == "TF") {
 		console.log(type != "Equation")
 		console.log(type != "LaTeX")
@@ -155,8 +154,8 @@ function set_forms(type) {
 
 function StateModel() {
 	console.log("submit");
-	document.getElementById("langform").style = "display:none";
-	document.getElementById("form").style = "display:none";
+	document.getElementById("langform").style["display"] = "none";
+	document.getElementById("form").style["display"] = "none";
 	var Client = apigClientFactory.newClient();
 	var params = {};
 	var body = {};
@@ -171,7 +170,7 @@ function StateModel() {
 	};
 	console.log(aditionalParams)
 	document.getElementById("output").innerHTML = '<img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif", alt="Loading">'
-	Client.stateModelRnDPost(params, body, aditionalParams).then(function(result) {
+	Client.stateModelRnD2Post(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
 		callback();
@@ -204,5 +203,6 @@ function loadExample(num) {
 }
 
 function StateModelHTML() {
+	console.log('Adding HTML')
 	document.getElementById("StateModelRnDcontainer").innerHTML = html;
 }

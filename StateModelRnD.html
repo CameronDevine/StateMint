@@ -15,13 +15,56 @@
 <script type="text/javascript" src="apigClient.js"></script>
 <script type="text/javascript" src="StateModelRnD.js"></script>
 </head>
-<body onload="StateModelHTML()">
+<body>
 <h1>State Model RnD</h1>
 <p>
 <a onclick="loadExample(1)" href="#">Example 1</a><br>
 <a onclick="loadExample(2)" href="#">Example 2</a><br>
 <a onclick="loadExample(3)" href="#">Example 3</a>
 </p>
-<div id="StateModelRnDcontainer"></div>
+
+<form id="input">
+Input Variables:
+<br><textarea rows="1" cols="40" id="InVars"></textarea><br>
+State Variable Elemental Equations:
+<br><textarea rows="3" cols="40" id="StVarElEqns"></textarea><br>
+Other Elemental Equations:
+<br><textarea rows="3" cols="40" id="OtherElEqns"></textarea><br>
+Constraints:
+<br><textarea rows="3" cols="40" id="Constraints"></textarea><br>
+Output Variables:
+<br><textarea rows="1" cols="40" id="OutputVars"></textarea><br>
+<button type="button" onclick="StateModel()">Go</button>
+</form>
+<form id="langform" style="display:none">
+<table>
+<td><input type="radio" name="langs" id="Equation" onclick="outlang('Equation')">Equation</input></td>
+<td><input type="radio" name="langs" id="Latex" onclick="outlang('LaTeX')">LaTeX</input></td>
+<td><div id="matlab_div">
+<input type="radio" name="langs" id="Matlab" onclick="outlang('Matlab')">MATLAB</input>
+</div></td>
+<td><input type="radio" name="langs" id="Mathematica" onclick="outlang('Mathematica')">Mathematica</input></td>
+<td><input type="radio" name="langs" id="Python" onclick="outlang('Python')">Python</input></td>
+</table>
+</form>
+<form id="form" style="display:none">
+<table>
+<td><input type="radio" name="eqsform" id="StateSpace" onclick="eqform('StateSpace')">\(\dot{x}=Ax+Bu\)</input></td>
+<td><div name="nonstandard_div" style="display:none">
+<input type="radio" name="eqsform" id="StateSpaceN" onclick="eqform('StateSpaceN')">\(\dot{x}=Ax+Bu+E\dot{u}\)</input>
+</div></td>
+<td><div name="nonstandard_div" style="display:none">
+<input type="radio" name="eqsform" id="StateSpaceP" onclick="eqform('StateSpaceP')">\(\dot{x}=Ax'+B'u\)</input>
+</div></td>
+<td><div id="tf_div">
+<input type="radio" name="eqsform" id="TF" onclick="eqform('TF')">\(H(s)\)</input>
+</div></td>
+<td><div id="nonlinear_div" style="display:none">
+<input type="radio" name="eqsform" id="eq" onclick="eqform('eq')">\(f(x,u)\)</input>
+</div></td>
+</table>
+</form>
+<div id="output"></div>
+
 </body>
 </html>
