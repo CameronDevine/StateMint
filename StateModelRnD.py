@@ -1,7 +1,11 @@
+# Import everything from the sympy library.
 from sympy import *
+# Import the copy library.
 import copy
 
+# Define the symbols t and s.
 t, s = symbols('t s')
+# Define a dummy variable named dummy.
 dummy = symbols('dummy')
 
 def condition_vec(string):
@@ -142,7 +146,13 @@ def make_vec(vars):
 def make_mat(eqs):
 	return Matrix([eqs]).T
 
+# The main find state space model function.
 def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
+	# InVars: A string of input variable seperated by spaces.
+	# StVarElEqns: A string of state variable elemental equations seperated by commas, using ' for derivative, and = for equality.
+	# OtherElEqns: A string of non-state elemental equations seperated by commas, using ' for derivative, and = for equality.
+	# Constrains: A string of constraint (continuity and compatability) equations seperated by commas.
+	# 
 	InVars = condition_vec(InVars)
 
 	OutputVars = condition_vec(OutputVars)
