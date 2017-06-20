@@ -170,7 +170,7 @@ function StateModel() {
 	};
 	console.log(aditionalParams)
 	document.getElementById("output").innerHTML = '<img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif", alt="Loading">'
-	Client.stateModelRnD2Post(params, body, aditionalParams).then(function(result) {
+	Client.stateModelRnDPost(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
 		callback();
@@ -186,7 +186,7 @@ function loadExample(num) {
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT";
 		document.getElementById("OtherElEqns").value = "fBS = BS * vBS, fBT = BT * vBT";
 		document.getElementById("Constraints").value = "fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW";
-		document.getElementById("OutputVars").value = "vMB vMW fKS fKT fBS fBT";
+		document.getElementById("OutputVars").value = "vMB, vMW, fKS, fKT, fBS, fBT";
 	} else if (num == 2) {
 		document.getElementById("InVars").value = "Fs";
 		document.getElementById("StVarElEqns").value = "vm' = Fm/m, FK1' = K1 * vK1";
@@ -194,7 +194,7 @@ function loadExample(num) {
 		document.getElementById("Constraints").value = "vK1 = vK2 - vB1, vB2 = vm, FK2 = Fs - FK1, FB1 = FK1, Fm = Fs - FB2";
 		document.getElementById("OutputVars").value = "vB1";
 	} else if (num == 3) {
-		document.getElementById("InVars").value = "Fp F0";
+		document.getElementById("InVars").value = "Fp, F0";
 		document.getElementById("StVarElEqns").value = "vm' = Fm / m";
 		document.getElementById("OtherElEqns").value = "Fd = cd * vd**2";
 		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd, vd = vm";
