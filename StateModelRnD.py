@@ -9,7 +9,7 @@ t, s = symbols('t s')
 dummy = symbols('dummy')
 
 def condition_vec(string):
-	string = string.split(' ')
+	string = string.replace(' ', '').split(',')
 	vec = []
 	for el in string:
 		vec.append(sympify(el + '(t)'))
