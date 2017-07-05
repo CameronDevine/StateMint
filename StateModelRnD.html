@@ -2,6 +2,7 @@
 <html>
 <head>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
 <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
 <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
@@ -14,6 +15,7 @@
 <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
 <script type="text/javascript" src="apigClient.js"></script>
 <script type="text/javascript" src="StateModelRnD.js"></script>
+<script src="piexif.js"></script>
 </head>
 <body>
 <h1>State Model RnD</h1>
@@ -22,7 +24,9 @@
 <a onclick="loadExample(2)" href="#">Example 2</a><br>
 <a onclick="loadExample(3)" href="#">Example 3</a>
 </p>
-
+Upload Data:<input type="file" id="dataFile" class="form" onchange="importData(event);" /><br>
+Add image:<input type="file" id="imFile" class="form" onchange="addImage(event);" /><br>
+<div id="imagediv"></div>
 <form id="input">
 Input Variables:
 <br><textarea rows="1" cols="40" id="InVars"></textarea><br>
@@ -36,6 +40,7 @@ Output Variables:
 <br><textarea rows="1" cols="40" id="OutputVars"></textarea><br>
 <button type="button" onclick="StateModel()">Go</button>
 </form>
+<button type="button" onclick="download();">Download</button>
 <form id="langform" style="display:none">
 <table>
 <td><input type="radio" name="langs" id="Equation" onclick="outlang('Equation')">Equation</input></td>

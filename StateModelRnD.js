@@ -45,6 +45,8 @@ var html =
 var data = {};
 var use_lang = "";
 var last_form = "";
+var jpeg = null;
+var Exif;
 
 function callback() {
 	console.log(data);
@@ -205,4 +207,95 @@ function loadExample(num) {
 function StateModelHTML() {
 	console.log('Adding HTML')
 	document.getElementById("StateModelRnDcontainer").innerHTML = html;
+}
+
+function download() {
+	if (jpeg == null) {
+		addBlank();
+		return;
+	}
+	var saveData = {
+	  	"InVars": document.getElementById("InVars").value,
+		"StVarElEqns": document.getElementById("StVarElEqns").value,
+		"OtherElEqns": document.getElementById("OtherElEqns").value,
+		"Constraints": document.getElementById("Constraints").value,
+		"OutputVars": document.getElementById("OutputVars").value
+	};
+	Exif.Exif['37510'] = JSON.stringify(saveData);
+	var exifBytes = piexif.dump(Exif);
+	var rnd = piexif.insert(exifBytes, jpeg);
+	var str = atob(rnd.split(",")[1]);
+	var data = [];
+	for (var p = 0; p < str.length; p++) {
+		data[p] = str.charCodeAt(p);
+	}
+	var ua = new Uint8Array(data);
+	var blob = new Blob([ua], {type: "image/jpeg"});
+	var url = window.URL.createObjectURL(blob);
+	var a = document.createElement('a');
+	a.setAttribute('href', url);
+	a.setAttribute('download', 'StateModelRnD.jpg');
+	a.click();
+}
+
+function insertImage() {
+	var image = new Image();
+	image.src = jpeg;
+	image.width = 200;
+	document.getElementById("imagediv").innerHTML = "";
+	var el = $("<div></div>").append(image);
+	$("#imagediv").prepend(el);
+}
+
+function addImage(event) {
+	var file = event.target.files[0];
+	if (!file.type.match('image/jpeg.*')) {
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		jpeg = e.target.result;
+		insertImage();
+		Exif = piexif.load(jpeg);
+	}
+	reader.readAsDataURL(file);
+}
+
+function addBlank() {
+	console.log('import blank white image and read its exif');
+	var canvas = document.createElement("canvas");
+	var context = canvas.getContext('2d');
+	convimg = new Image();
+	convimg.src = 'blank.jpg';
+	convimg.onload = function () {
+		context.drawImage(convimg, 100, 100);
+		jpeg = canvas.toDataURL("image/jpeg");
+		Exif = piexif.load(jpeg);
+		Exif.Exif['37500'] = 'blank';
+		download();
+	}
+}
+
+function importData(event) {
+	var file = event.target.files[0];
+	if (!file.type.match('image/jpeg.*')) {
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		jpeg = e.target.result;
+		Exif = piexif.load(jpeg);
+		console.log(Exif);
+		if (Exif.Exif['37500'] != 'blank') {
+			insertImage();
+		}
+		var loadData = JSON.parse(Exif.Exif['37510']);
+		document.getElementById("InVars").value = loadData.InVars;
+		document.getElementById("StVarElEqns").value = loadData.StVarElEqns;
+		document.getElementById("OtherElEqns").value = loadData.OtherElEqns;
+		document.getElementById("Constraints").value = loadData.Constraints;
+		document.getElementById("OutputVars").value = loadData.OutputVars;
+		StateModel();
+	}
+	reader.readAsDataURL(file);
 }
