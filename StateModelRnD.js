@@ -234,14 +234,14 @@ function download() {
 	var url = window.URL.createObjectURL(blob);
 	var a = document.createElement('a');
 	a.setAttribute('href', url);
-	a.setAttribute('download', 'StateModelRnD.jpg');
+	a.setAttribute('download', 'StateModelRnD.rnd');
 	a.click();
 }
 
 function insertImage() {
 	var image = new Image();
 	image.src = jpeg;
-	image.width = 200;
+	image.width = 500;
 	document.getElementById("imagediv").innerHTML = "";
 	var el = $("<div></div>").append(image);
 	$("#imagediv").prepend(el);
@@ -278,12 +278,16 @@ function addBlank() {
 
 function importData(event) {
 	var file = event.target.files[0];
-	if (!file.type.match('image/jpeg.*')) {
+	if (file.name.split(".").slice(-1)[0] != "rnd" && !file.type.match('image/jpeg.*')) {
+		console.log("incorrect image type");
 		return;
 	}
 	var reader = new FileReader();
 	reader.onload = function(e) {
 		jpeg = e.target.result;
+		if (jpeg.slice(0, 13) == "data:;base64,") {
+			jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
+		}
 		Exif = piexif.load(jpeg);
 		console.log(Exif);
 		if (Exif.Exif['37500'] != 'blank') {
