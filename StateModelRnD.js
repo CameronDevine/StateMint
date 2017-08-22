@@ -158,6 +158,18 @@ function loadExample(num) {
 		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd, vd = vm";
 		document.getElementById("OutputVars").value = "vm";
 	}
+	var canvas = document.createElement("canvas");
+	var context = canvas.getContext("2d");
+	var image = new Image();
+	image.onload = function() {
+		canvas.width = image.width;
+		canvas.height = image.height;
+		context.drawImage(image, 0, 0);
+		jpeg = canvas.toDataURL("image/jpeg");
+		insertImage();
+		Exif = piexif.load(jpeg);
+	}
+	image.src = "Example" + num + ".jpg";
 }
 
 function download() {
