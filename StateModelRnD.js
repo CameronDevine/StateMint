@@ -1,47 +1,3 @@
-var html = 
-'<form id="input">' +
-'Input Variables:' +
-'<br><textarea rows="1" cols="40" id="InVars"></textarea><br>' +
-'State Variable Elemental Equations:' +
-'<br><textarea rows="3" cols="40" id="StVarElEqns"></textarea><br>' +
-'Other Elemental Equations:' +
-'<br><textarea rows="3" cols="40" id="OtherElEqns"></textarea><br>' +
-'Constraints:' +
-'<br><textarea rows="3" cols="40" id="Constraints"></textarea><br>' +
-'Output Variables:' +
-'<br><textarea rows="1" cols="40" id="OutputVars"></textarea><br>' +
-'<button type="button" onclick="StateModel()">Go</button>' +
-'</form>' +
-'<form id="langform" style="display:none">' +
-'<table>' +
-'<td><input type="radio" name="langs" id="Equation" onclick="outlang(\'Equation\')">Equation</input></td>' +
-'<td><input type="radio" name="langs" id="Latex" onclick="outlang(\'LaTeX\')">LaTeX</input></td>' +
-'<td><div id="matlab_div">' +
-'<input type="radio" name="langs" id="Matlab" onclick="outlang(\'Matlab\')">MATLAB</input>' +
-'</div></td>' +
-'<td><input type="radio" name="langs" id="Mathematica" onclick="outlang(\'Mathematica\')">Mathematica</input></td>' +
-'<td><input type="radio" name="langs" id="Python" onclick="outlang(\'Python\')">Python</input></td>' +
-'</table>' +
-'</form>' +
-'<form id="form" style="display:none">' +
-'<table>' +
-'<td><input type="radio" name="eqsform" id="StateSpace" onclick="eqform(\'StateSpace\')">\\(\\dot{x}=Ax+Bu\\)</input></td>' +
-'<td><div name="nonstandard_div" style="display:none">' +
-'<input type="radio" name="eqsform" id="StateSpaceN" onclick="eqform(\'StateSpaceN\')">\\(\\dot{x}=Ax+Bu+E\\dot{u}\\)</input>' +
-'</div></td>' +
-'<td><div name="nonstandard_div" style="display:none">' +
-'<input type="radio" name="eqsform" id="StateSpaceP" onclick="eqform(\'StateSpaceP\')">\\(\\dot{x}=Ax\'+B\'u\\)</input>' +
-'</div></td>' +
-'<td><div id="tf_div">' +
-'<input type="radio" name="eqsform" id="TF" onclick="eqform(\'TF\')">\\(H(s)\\)</input>' +
-'</div></td>' +
-'<td><div id="nonlinear_div" style="display:none">' +
-'<input type="radio" name="eqsform" id="eq" onclick="eqform(\'eq\')">\\(f(x,u)\\)</input>' +
-'</div></td>' +
-'</table>' +
-'</form>' +
-'<div id="output"></div>';
-
 var data = {};
 var use_lang = "";
 var last_form = "";
@@ -202,11 +158,6 @@ function loadExample(num) {
 		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd, vd = vm";
 		document.getElementById("OutputVars").value = "vm";
 	}
-}
-
-function StateModelHTML() {
-	console.log('Adding HTML')
-	document.getElementById("StateModelRnDcontainer").innerHTML = html;
 }
 
 function download() {
