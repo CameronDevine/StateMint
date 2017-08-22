@@ -198,16 +198,32 @@ function insertImage() {
 	$("#imagediv").prepend(el);
 }
 
+function convert() {
+	var canvas = document.createElement("canvas");
+	var image = new Image();
+	image.onload = function() {
+		canvas.width = image.width;
+		canvas.height = image.height;
+		var context = canvas.getContext("2d");
+		context.drawImage(image, 0, 0);
+		jpeg = canvas.toDataURL("image/jpeg");
+		Exif = piexif.load(jpeg);
+	}
+	image.src = jpeg;
+}
+
 function addImage(event) {
 	var file = event.target.files[0];
-	if (!file.type.match('image/jpeg.*')) {
-		return;
-	}
 	var reader = new FileReader();
 	reader.onload = function(e) {
 		jpeg = e.target.result;
+		var type = jpeg.split(",").slice(0)[0]
 		insertImage();
-		Exif = piexif.load(jpeg);
+		if (type != "data:image/jpeg;base64" && type != "data:image/jpg;base64") {
+			convert();
+		} else {
+			Exif = piexif.load(jpeg);
+		}
 	}
 	reader.readAsDataURL(file);
 }
