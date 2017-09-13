@@ -1,0 +1,6 @@
+.btn-default.active, .btn-default:active {
+  background-color:#e0e0e0;
+  /*border-color:#dbdbdb;*/
+  background-image:url("../../assets/img/Calculate Button.png");
+}
+
