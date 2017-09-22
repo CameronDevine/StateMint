@@ -1,5 +1,6 @@
 import iam
 import Lambda
+import apig
 
 print "======== Installing StateModelRnD ========"
 
@@ -89,11 +90,19 @@ APIGRoleArn = iam.role(
 
 print "======== Getting the Lambda function set up ========"
 
-Lambda.function(
+LambdaArn = Lambda.function(
 	Name = 'StateModelRnDtest',
 	RoleArn = lambdaRoleArn,
 	Handler = 'StateModelLambda.handler',
 	Description = 'The Lambda function for StateModelRnD',
 	ZipLocation = '../python/StateModelRnD.zip')
+
+print "======== Getting API Gateway set up ========"
+
+apig.update(
+	Name = 'StateModelRnDtest',
+	Description = 'The StateModelRnD API',
+	LambdaArn = LambdaArn,
+	ResourceName = 'StateModelRnD')
 
 print "======== Complete ========"

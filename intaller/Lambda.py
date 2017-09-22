@@ -79,3 +79,5 @@ def function(
 			MemorySize = MemorySize,
 			Publish = True)
 		print 'Lambda function created'
+
+	return lambdaFunction['Configuration']['FunctionArn']
