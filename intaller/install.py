@@ -1,8 +1,11 @@
 import iam
+import Lambda
 
 print "======== Installing StateModelRnD ========"
 
-print "-------- Adding an IAM Rule for the Lambda function --------"
+print "======== Getting IAM set up ========"
+
+print "-------- Adding IAM Rule for the Lambda function --------"
 
 LambdaPolicyDocument = '''{
     "Version": "2012-10-17",
@@ -32,14 +35,14 @@ LambdaAssumeRolePolicyDocument = '''{
   ]
 }'''
 
-iam.role(
+lambdaRoleArn = iam.role(
 	RoleName = 'StateModelRnDLambda',
 	PolicyName = 'StateModelRnDLambda',
 	PolicyDocument = LambdaPolicyDocument,
 	AssumeRolePolicyDocument = LambdaAssumeRolePolicyDocument,
 	PolicyDescription = 'Allows write access to CloudWatch logs for the StateModelRnD Lambda function')
 
-print "-------- Adding an IAM Rule for the API Gateway --------"
+print "-------- Adding IAM Rule for API Gateway --------"
 
 APIGPolicyDocument = '''{
     "Version": "2012-10-17",
@@ -77,11 +80,20 @@ APIGAssumeRolePolicyDocument = '''{
   ]
 }'''
 
-iam.role(
+APIGRoleArn = iam.role(
 	RoleName = 'StateModelRnDAPIG',
 	PolicyName = 'StateModelRnDAPIG',
 	PolicyDocument = APIGPolicyDocument,
 	AssumeRolePolicyDocument = APIGAssumeRolePolicyDocument,
 	PolicyDescription = 'Allows write access to CloudWatch logs for the StateModelRnD API Gateway')
+
+print "======== Getting the Lambda function set up ========"
+
+Lambda.function(
+	Name = 'StateModelRnDtest',
+	RoleArn = lambdaRoleArn,
+	Handler = 'StateModelLambda.handler',
+	Description = 'The Lambda function for StateModelRnD',
+	ZipLocation = '../python/StateModelRnD.zip')
 
 print "======== Complete ========"

@@ -34,20 +34,21 @@ def role(
 	if policyArn == '':
 		print 'IAM Policy not found'
 		print 'Creating IAM Policy'
-		LambdaPolicy = iamResource.create_policy(
+		policy = iamResource.create_policy(
 			PolicyName = PolicyName,
 			PolicyDocument = PolicyDocument,
 			Description = PolicyDescription)
+		policyArn = policy.arn
 	else:
-		LambdaPolicy = iamResource.Policy(policyArn)
-		if LambdaPolicy.default_version.document == json.loads(PolicyDocument):
+		policy = iamResource.Policy(policyArn)
+		if policy.default_version.document == json.loads(PolicyDocument):
 			print 'Policy up to date'
 		else:
 			print 'Updating IAM Policy'
-			LambdaPolicy.create_version(
+			policy.create_version(
 				PolicyDocument = PolicyDocument,
 				SetAsDefault = True)
-			for version in LambdaPolicy.versions.all():
+			for version in policy.versions.all():
 				if not version.is_default_version:
 					version.delete()
 
@@ -62,7 +63,7 @@ def role(
 		else:
 			print 'Updating IAM Assume Role Policy'
 			role.AssumeRolePolicy().update(PolicyDocument = AssumeRolePolicyDocument)
-	except iamResource.meta.client.exceptions.NoSuchEntityException:
+	except iamClient.exceptions.NoSuchEntityException:
 		print 'IAM Role not found'
 		print 'Creating IAM Role'
 		role = iamResource.create_role(
@@ -80,4 +81,6 @@ def role(
 			policy.detach_role(RoleName = RoleName)
 	if not policyFound:
 		print 'Attaching IAM Policy'
-		role.attach_policy(PolicyArn = LambdaPolicy.arn)
+		role.attach_policy(PolicyArn = policyArn)
+
+	return role.arn
