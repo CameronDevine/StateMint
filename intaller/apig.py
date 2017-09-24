@@ -525,4 +525,17 @@ def update(
 			responseTemplates = {
 				'application/json': 'None'})
 
-	return {'modified': modified, 'apiId': apiId}
+	if modified:
+		resp = apigClient.get_deployments(restApiId = apiId)
+		maxDeployment = 0
+		for item in resp['items']:
+			maxDeployment = max(maxDeployment, int(item['description'][-1]))
+		DeploymentNumber = maxDeployment + 1
+		apigClient.create_deployment(
+			restApiId = apiId,
+			stageName = 'stage' + str(DeploymentNumber),
+			description = 'deployment' + str(DeploymentNumber),
+			cacheClusterEnabled = False)
+		return {'modified': modified, 'apiId': apiId, 'stageName': 'stage' + str(DeploymentNumber)}
+	else:
+		return {'modified': modified}

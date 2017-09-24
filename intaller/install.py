@@ -1,6 +1,7 @@
 import iam
 import Lambda
 import apig
+import sdk
 
 print "======== Installing StateModelRnD ========"
 
@@ -99,10 +100,17 @@ LambdaArn = Lambda.function(
 
 print "======== Getting API Gateway set up ========"
 
-apig.update(
+apigResp = apig.update(
 	Name = 'StateModelRnDtest',
 	Description = 'The StateModelRnD API',
 	LambdaArn = LambdaArn,
 	ResourceName = 'StateModelRnD')
+
+if apigResp['modified']:
+	print "======== Getting API SDK files ========"
+
+	sdk.download(
+		apiId = apigResp['apiId'],
+		stageName = apigResp['stageName'])
 
 print "======== Complete ========"
