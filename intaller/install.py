@@ -106,6 +106,11 @@ apigResp = apig.update(
 	LambdaArn = LambdaArn,
 	ResourceName = 'StateModelRnD')
 
+print "======== Getting Lambda invoke permissions set ========"
+
+Lambda.permission(
+	Name = 'StateModelRnDtest')
+
 if apigResp['modified']:
 	print "======== Getting API SDK files ========"
 

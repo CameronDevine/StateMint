@@ -1,5 +1,6 @@
 import boto3
 import os
+import uuid
 
 def function(
 	Name = None,
@@ -81,3 +82,18 @@ def function(
 		print 'Lambda function created'
 
 	return lambdaFunction['Configuration']['FunctionArn']
+
+def permission(
+	Name = None):
+
+	if Name is None:
+		raise ValueError('Name not set')
+
+	lambdaClient = boto3.client('lambda')
+
+	print 'Setting Lambda function invoke permissions'
+	lambdaClient.add_permission(
+		FunctionName = Name,
+		StatementId = uuid.uuid4().hex,
+		Action = 'lambda:InvokeFunction',
+		Principal = 'apigateway.amazonaws.com')
