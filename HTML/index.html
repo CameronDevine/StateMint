@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StateModelRND</title>
+<link rel="stylesheet" href="assets/pagination.css">
+<link rel="stylesheet" href="assets/cameron.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="assets/fonts/typicons.min.css">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/untitled-1.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+<script type="text/javascript" src="apiGateway-js-sdk/apigClient.js"></script>
+<script type="text/javascript" src="StateModelRnD.js"></script>
+<script src="piexif.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
+<script src="scroll.js"></script>
+</head>
+
+<body>
+<ul class="scrolling">
+        <li><a href="#page1" class="scrollLink smooth" id="page1button"></a></li>
+        <li><a href="#page2" class="scrollLink smooth" id="page2button"></a></li>
+        <li><a href="#page3" class="scrollLink smooth" id="page3button"></a></li>
+        <li><a href="#page4" class="scrollLink smooth" id="page4button"></a></li>
+</ul>
+<div class="page" id="page1">
+    <div class="highlight-clean" style="padding-top:20%;">
+        <div class="container">
+    <section class="intro">
+        <h1 class="text-center">StateModelRND</h1>
+        <p class="text-center">Enter system information and get the state equation matricies and the transfer function. The links below may also be used to load different example systems. </p>
+    </section>
+    <p class="text-center" style="color:rgb(60,104,255);"><strong>Show me an example &gt;</strong></p>
+    <div class="buttons" style="padding:0px;padding-top:34px;"><a class="btn btn-primary smooth" role="button" onclick="createNew()" style="width:208px;">create new model</a>
+        <button class="btn btn-default" type="button" style="width:208px;" onclick="openExisting()">Open Existing</button>
+    </div>
+</div>
+    </div>
+    <div class="social-icons" style="padding-top: 5%;">
+<a href="#page2" class="smooth"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
+    </div>
+</div>
+<div class="page" id="page2">
+    <section class="highlight-blue">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Upload a photo</h2>
+            <div class="row">
+                <div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;"><i align="center" class="material-icons" style="  font-size:80px;
+">photo</i>
+                    <input type="file" accept="image/*" />
+                </div>
+            </div>
+            <p class="text-center">Supported formats: .png .jpg </p>
+        </div>
+        <div class="buttons"><a class="btn btn-primary" role="button" href="#">Choose a photo</a></div>
+    </div>
+</section>
+    <div class="social-icons" style="padding-top: 5%4;">
+<a href="#page4"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+    </div>
+</div>
+<div class="page" id="page3" style="display: none;">
+    <section class="highlight-blue" style="margin-top:50px;">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Upload a file</h2>
+            <div class="row">
+                <div class="col-md-12"><i align="center" class="material-icons" style="  font-size:80px;
+">file_upload</i>
+                    <input type="file" class />
+                </div>
+            </div>
+            <p class="text-lowercase text-center">supported formats: .equation .py .matlab mathematica .latex    </p>
+        </div>
+        <div class="buttons"></div>
+    </div>
+</section>
+    <div data-aos="fade-up" class="social-icons" style="margin-top:250px;margin-bottom:450px;"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+</div>
+    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;"><img src="assets/img/visual 1.png" style="  margin-left:28px;
+" id ="page4"/>
+    <form method="post" style="margin-top:-200px;">
+        <h2 class="text-center">Type in the measurements</h2>
+        <div class="form-group has-success has-feedback">
+            <h4><strong>Input Variables:</strong> </h4>
+            <input type="text" name="Fs" placeholder="Fs" class="form-control" style="height:113px;" id="InVars" /><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-ok" style="margin-top:31px;"></i></div>
+        <div class="form-group has-error has-feedback">
+            <h4><strong>State Variable Elemental Equations:</strong> </h4>
+            <input type="text" name="email" placeholder="vm&#39; = Fm/m, FK1&#39; = K1 * vK1" class="form-control" style="margin-top:11px;height:275px;" id="StVarElEqns"/>
+            <h4><strong>Other Elemental Equations:</strong> </h4>
+            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:275px;" id="OtherElEqns"/>
+            <h4><strong>Constraints:</strong> </h4>
+            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:275px;" id="Constraints"/>
+            <h4><strong>Output Variables:</strong> </h4>
+            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:113px;" id="OutputVars"/><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-remove" style="margin-top:29px;"></i>
+            <p class="help-block">Please enter a correct email address.</p>
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="display:block;margin-left:auto;margin-right:auto;">
+                        <button class="btn btn-primary" type="button" style="  width:400px;
+  min-width:0px;
+" onclick="StateModel()"><i class="typcn typcn-equals"></i>Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+    <div data-aos="fade-up" class="social-icons" style="padding-top:195px;padding-bottom:440px;"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+    <section class="highlight-clean" id="page5">
+    <h1 align="center">Your Answer</h1>
+    <div class="container" style="padding-top:50px;">
+        <div class="intro">
+            <h3 class="text-center">Select a Language</h3></div>
+        <div class="buttons">
+            <button class="btn btn-default" type="button">Equation </button>
+            <button class="btn btn-default" type="button">latex </button>
+            <button class="btn btn-default" type="button">matlab </button>
+            <button class="btn btn-default" type="button">mathmatica </button>
+            <button class="btn btn-default" type="button">python </button>
+        </div>
+    </div>
+</section>
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="intro">
+                <h3 class="text-center">Select a Language</h3></div>
+            <div class="buttons">
+                <button class="btn btn-default" type="button">x = Ax = Bu</button>
+                <button class="btn btn-default" type="button" style="font-style:normal;">f (x,u)</button>
+            </div>
+        </div>
+    </div>
+    <div class="newsletter-subscribe" id="output">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="intro">
+                        <h2 class="text-center">A </h2></div>
+                    <form class="form-inline" method="get">
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" style="height:95px;width:1017px;">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="intro">
+                        <h2 class="text-center" style="margin-top:70px;">B </h2></div>
+                    <form class="form-inline" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="intro">
+            <h2 class="text-center" style="margin-top:71px;">C </h2></div>
+        <form class="form-inline" method="post">
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}0 &amp; \frac{1}{B_{1}}\end{matrix}\right]" style="height:95px;width:1017px;">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="intro">
+                    <h2 class="text-center" style="margin-top:70px;">D </h2></div>
+            </div>
+            <div class="col-md-12">
+                <form class="form-inline" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}0\end{matrix}\right]" style="height:95px;width:1017px;">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="intro"></div>
+            <div class="buttons"><a class="btn btn-primary" role="button" href="#" style="height:60px;">Start Over<i class="material-icons" onclick="startOver()">fast_rewind</i></a>
+                <button class="btn btn-default" type="button" style="height:60px;">Download<i class="material-icons">file_download</i> </button>
+            </div>
+        </div>
+    </div>
+    <div class="article-list">
+        <div class="container">
+            <div class="intro"></div>
+        </div>
+    </div>
+<!--    <script src="assets/js/jquery.min.js"></script> -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+    <script src="assets/js/Quill-Text-Editor.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</body>
+
+</html>

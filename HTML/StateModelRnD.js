@@ -6,27 +6,27 @@ var Exif;
 
 function callback() {
 	console.log(data);
-	document.getElementById("output").innerHTML = "";
-	document.getElementById("matlab_div").style["display"] = "block";
-	document.getElementById("nonlinear_div").style["display"] = "none";
-	if (data.Nonlinear) {
-		console.log("nonlinear");
-		document.getElementById("matlab_div").style["display"] = "block";
-		document.getElementById("nonlinear_div").style["display"] = "block";
-	}
-	document.getElementsByName("nonstandard_div")[0].style["display"] = "none";
-	document.getElementsByName("nonstandard_div")[1].style["display"] = "none";
-	if (data.Nonstandard) {
-		console.log("nonstandard");
-		document.getElementsByName("nonstandard_div")[0].style["display"] = "block";
-		document.getElementsByName("nonstandard_div")[1].style["display"] = "block";
-	}
-	document.getElementById("langform").style["display"] = "block";
-	document.getElementById("form").style["display"] = "block";
-	console.log(MathJax.Hub.Queue(["Typeset",MathJax.Hub,"form"]));
-	document.getElementById("Equation").checked = true;
+//	document.getElementById("output").innerHTML = "";
+//	document.getElementById("matlab_div").style["display"] = "block";
+//	document.getElementById("nonlinear_div").style["display"] = "none";
+//	if (data.Nonlinear) {
+//		console.log("nonlinear");
+//		document.getElementById("matlab_div").style["display"] = "block";
+//		document.getElementById("nonlinear_div").style["display"] = "block";
+//	}
+//	document.getElementsByName("nonstandard_div")[0].style["display"] = "none";
+//	document.getElementsByName("nonstandard_div")[1].style["display"] = "none";
+//	if (data.Nonstandard) {
+//		console.log("nonstandard");
+//		document.getElementsByName("nonstandard_div")[0].style["display"] = "block";
+//		document.getElementsByName("nonstandard_div")[1].style["display"] = "block";
+//	}
+//	document.getElementById("langform").style["display"] = "block";
+//	document.getElementById("form").style["display"] = "block";
+//	console.log(MathJax.Hub.Queue(["Typeset",MathJax.Hub,"form"]));
+//	document.getElementById("Equation").checked = true;
 	outlang("Equation");
-	document.getElementById("StateSpace").checked = true;
+//	document.getElementById("StateSpace").checked = true;
 	eqform("StateSpace");
 	}
 
@@ -85,6 +85,7 @@ function eqform(type) {
 }
 
 function output(html) {
+	console.log(html);
 	document.getElementById("output").innerHTML = html;
 	}
 
@@ -99,21 +100,21 @@ function outlang(type) {
 	}
 
 function set_forms(type) {
-	document.getElementById("tf_div").style["display"] = "none";
-	if (type == "Equation" || type == "LaTeX") {document.getElementById("tf_div").style["display"] = "block";}
+//	document.getElementById("tf_div").style["display"] = "none";
+//	if (type == "Equation" || type == "LaTeX") {document.getElementById("tf_div").style["display"] = "block";}
 	if (type != "Equation" && type != "LaTeX" && last_form == "TF") {
 		console.log(type != "Equation")
 		console.log(type != "LaTeX")
 		console.log(last_form == "TF")
-		document.getElementById("StateSpace").checked = true;
+//		document.getElementById("StateSpace").checked = true;
 		eqform("StateSpace");
 	}
 }
 
 function StateModel() {
 	console.log("submit");
-	document.getElementById("langform").style["display"] = "none";
-	document.getElementById("form").style["display"] = "none";
+//	document.getElementById("langform").style["display"] = "none";
+//	document.getElementById("form").style["display"] = "none";
 	var Client = apigClientFactory.newClient();
 	var params = {};
 	var body = {};
@@ -127,7 +128,7 @@ function StateModel() {
 		}
 	};
 	console.log(aditionalParams)
-	document.getElementById("output").innerHTML = '<img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif", alt="Loading">'
+//	document.getElementById("output").innerHTML = '<img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif", alt="Loading">'
 	Client.stateModelRnDPost(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
@@ -205,9 +206,9 @@ function insertImage() {
 	var image = new Image();
 	image.src = jpeg;
 	image.width = 500;
-	document.getElementById("imagediv").innerHTML = "";
-	var el = $("<div></div>").append(image);
-	$("#imagediv").prepend(el);
+//	document.getElementById("imagediv").innerHTML = "";
+//	var el = $("<div></div>").append(image);
+//	$("#imagediv").prepend(el);
 }
 
 function convert() {
