@@ -47,8 +47,8 @@
 <ul class="scrolling">
         <li><a href="#page1" class="scrollLink smooth" id="page1button"></a></li>
         <li><a href="#page2" class="scrollLink smooth" id="page2button"></a></li>
-        <li><a href="#page3" class="scrollLink smooth" id="page3button"></a></li>
-        <li><a href="#page4" class="scrollLink smooth" id="page4button"></a></li>
+        <li><a href="#page5" class="scrollLink smooth" id="page3button"></a></li>
+        <li><a href="#page6" class="scrollLink smooth" id="page4button"></a></li>
 </ul>
 <div class="page" id="page1">
     <div class="highlight-clean" style="padding-top:20%;">
@@ -57,14 +57,14 @@
         <h1 class="text-center">StateModelRND</h1>
         <p class="text-center">Enter system information and get the state equation matricies and the transfer function. The links below may also be used to load different example systems. </p>
     </section>
-    <p class="text-center" style="color:rgb(60,104,255);"><strong>Show me an example &gt;</strong></p>
-    <div class="buttons" style="padding:0px;padding-top:34px;"><a class="btn btn-primary smooth" role="button" onclick="createNew()" style="width:208px;">create new model</a>
+    <p class="text-center" style="color:rgb(60,104,255);"><a onclick="showExamples()"><strong>Show me an example &gt;</strong></a></p>
+    <div class="buttons" style="padding:0px;padding-top:34px;"><a class="btn btn-primary" role="button" onclick="createNew()" style="width:208px;">create new model</a>
         <button class="btn btn-default" type="button" style="width:208px;" onclick="openExisting()">Open Existing</button>
     </div>
 </div>
     </div>
     <div class="social-icons" style="padding-top: 5%;">
-<a href="#page2" class="smooth"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
+<a onclick="$('#page2button').click()"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page2">
@@ -84,7 +84,7 @@
     </div>
 </section>
     <div class="social-icons" style="padding-top: 5%4;">
-<a href="#page4"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+<a class="smooth" href="#page5"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page3" style="display: none;">
@@ -98,19 +98,19 @@
                     <input type="file" class />
                 </div>
             </div>
-            <p class="text-lowercase text-center">supported formats: .equation .py .matlab mathematica .latex    </p>
+            <p class="text-lowercase text-center">supported formats: .rnd</p>
         </div>
         <div class="buttons"></div>
     </div>
 </section>
-    <div data-aos="fade-up" class="social-icons" style="margin-top:250px;margin-bottom:450px;"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
-        <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
+    <div class="social-icons" style="padding-top: 5%4;"><a class="smooth" href="#page5"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>
 </div>
-    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;"><img src="assets/img/visual 1.png" style="  margin-left:28px;
-" id ="page4"/>
+<div class="page" id="page4" style="display: none;">
+Examples page goes here
+</div>
+    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img src="assets/img/visual 1.png" style="  margin-left:28px;
+"/>
     <form method="post" style="margin-top:-200px;">
         <h2 class="text-center">Type in the measurements</h2>
         <div class="form-group has-success has-feedback">
@@ -146,17 +146,17 @@
         <a href="#"></a>
         <a href="#"></a>
     </div>
-    <section class="highlight-clean" id="page5">
+    <section class="highlight-clean" id="page6">
     <h1 align="center">Your Answer</h1>
     <div class="container" style="padding-top:50px;">
         <div class="intro">
             <h3 class="text-center">Select a Language</h3></div>
-        <div class="buttons">
-            <button class="btn btn-default" type="button">Equation </button>
-            <button class="btn btn-default" type="button">latex </button>
-            <button class="btn btn-default" type="button">matlab </button>
-            <button class="btn btn-default" type="button">mathmatica </button>
-            <button class="btn btn-default" type="button">python </button>
+        <div class="buttons" id="langButtons">
+            <button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
+            <button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
+            <button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
+            <button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathmatica </button>
+            <button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
         </div>
     </div>
 </section>
@@ -164,9 +164,12 @@
         <div class="container">
             <div class="intro">
                 <h3 class="text-center">Select a Language</h3></div>
-            <div class="buttons">
-                <button class="btn btn-default" type="button">x = Ax = Bu</button>
-                <button class="btn btn-default" type="button" style="font-style:normal;">f (x,u)</button>
+            <div class="buttons" id="eqButtons">
+                <button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')">$$\dot{x}=Ax+Bu$$</button>
+                <button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
+				<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')">$$\dot{x}'=Ax'+B'u$$</button>
+				<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')">$$f(x,u)$$</button>
+				<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')">$$H(s)$$</button>
             </div>
         </div>
     </div>
@@ -231,7 +234,7 @@
     <div class="highlight-clean">
         <div class="container">
             <div class="intro"></div>
-            <div class="buttons"><a class="btn btn-primary" role="button" href="#" style="height:60px;">Start Over<i class="material-icons" onclick="startOver()">fast_rewind</i></a>
+            <div class="buttons"><a class="btn btn-primary" role="button" style="height:60px;" onclick="$('#page1button').click()">Start Over<i class="material-icons">fast_rewind</i></a>
                 <button class="btn btn-default" type="button" style="height:60px;">Download<i class="material-icons">file_download</i> </button>
             </div>
         </div>

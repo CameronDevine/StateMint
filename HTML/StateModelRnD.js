@@ -7,31 +7,30 @@ var Exif;
 function callback() {
 	console.log(data);
 //	document.getElementById("output").innerHTML = "";
-//	document.getElementById("matlab_div").style["display"] = "block";
-//	document.getElementById("nonlinear_div").style["display"] = "none";
-//	if (data.Nonlinear) {
-//		console.log("nonlinear");
-//		document.getElementById("matlab_div").style["display"] = "block";
-//		document.getElementById("nonlinear_div").style["display"] = "block";
-//	}
-//	document.getElementsByName("nonstandard_div")[0].style["display"] = "none";
-//	document.getElementsByName("nonstandard_div")[1].style["display"] = "none";
-//	if (data.Nonstandard) {
-//		console.log("nonstandard");
-//		document.getElementsByName("nonstandard_div")[0].style["display"] = "block";
-//		document.getElementsByName("nonstandard_div")[1].style["display"] = "block";
-//	}
-//	document.getElementById("langform").style["display"] = "block";
-//	document.getElementById("form").style["display"] = "block";
-//	console.log(MathJax.Hub.Queue(["Typeset",MathJax.Hub,"form"]));
-//	document.getElementById("Equation").checked = true;
+	$('#matlabButton').show();
+	$('#eq').hide();
+	if (data.Nonlinear) {
+		console.log("nonlinear");
+		$('#matlabButton').hide();
+		$('#eq').show();
+	}
+	$('#StateSpaceN').hide();
+	$('#StateSpaceP').hide();
+	if (data.Nonstandard) {
+		console.log("nonstandard");
+		$('#StateSpaceN').show();
+		$('#StateSpaceP').show();
+	}
 	outlang("Equation");
-//	document.getElementById("StateSpace").checked = true;
 	eqform("StateSpace");
 	}
 
 function eqform(type) {
 	last_form = type;
+	$('#eqButtons :button').removeClass('btn-primary');
+	$('#eqButtons :button').addClass('btn-default');
+	$('#' + type).removeClass('btn-default');
+	$('#' + type).addClass('btn-primary');
 	if (use_lang == "Equation") {
 		var codes = data.LaTeX;
 		if (type == "StateSpace") {
@@ -94,27 +93,28 @@ function typeset() {
 	}
 
 function outlang(type) {
+	$('#langButtons :button').removeClass('btn-primary');
+	$('#langButtons :button').addClass('btn-default');
+	$('#' + type.toLowerCase() + 'Button').removeClass('btn-default');
+	$('#' + type.toLowerCase() + 'Button').addClass('btn-primary');
 	use_lang = type;
 	set_forms(type);
 	eqform(last_form);
 	}
 
 function set_forms(type) {
-//	document.getElementById("tf_div").style["display"] = "none";
-//	if (type == "Equation" || type == "LaTeX") {document.getElementById("tf_div").style["display"] = "block";}
+	$('#TF').hide();
+	if (type == "Equation" || type == "LaTeX") {$('#TF').show();}
 	if (type != "Equation" && type != "LaTeX" && last_form == "TF") {
 		console.log(type != "Equation")
 		console.log(type != "LaTeX")
 		console.log(last_form == "TF")
-//		document.getElementById("StateSpace").checked = true;
 		eqform("StateSpace");
 	}
 }
 
 function StateModel() {
 	console.log("submit");
-//	document.getElementById("langform").style["display"] = "none";
-//	document.getElementById("form").style["display"] = "none";
 	var Client = apigClientFactory.newClient();
 	var params = {};
 	var body = {};
