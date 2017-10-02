@@ -75,12 +75,12 @@
             <div class="row">
                 <div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;"><i align="center" class="material-icons" style="  font-size:80px;
 ">photo</i>
-                    <input type="file" accept="image/*" />
+                    <input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
                 </div>
             </div>
             <p class="text-center">Supported formats: .png .jpg </p>
         </div>
-        <div class="buttons"><a class="btn btn-primary" role="button" href="#">Choose a photo</a></div>
+        <div class="buttons"><a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a></div>
     </div>
 </section>
     <div class="social-icons" style="padding-top: 5%4;">
@@ -108,9 +108,11 @@
 </div>
 <div class="page" id="page4" style="display: none;">
 Examples page goes here
+<a onclick="loadExample(1)">Example 1</a>
+<a onclick="loadExample(2)">Example 2</a>
+<a onclick="loadExample(3)">Example 3</a>
 </div>
-    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img src="assets/img/visual 1.png" style="  margin-left:28px;
-"/>
+    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img style="  margin-left:28px;display:none;" id="systemImage"/>
     <form method="post" style="margin-top:-200px;">
         <h2 class="text-center">Type in the measurements</h2>
         <div class="form-group has-success has-feedback">
@@ -235,7 +237,7 @@ Examples page goes here
         <div class="container">
             <div class="intro"></div>
             <div class="buttons"><a class="btn btn-primary" role="button" style="height:60px;" onclick="$('#page1button').click()">Start Over<i class="material-icons">fast_rewind</i></a>
-                <button class="btn btn-default" type="button" style="height:60px;">Download<i class="material-icons">file_download</i> </button>
+                <button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i> </button>
             </div>
         </div>
     </div>

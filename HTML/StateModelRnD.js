@@ -203,9 +203,12 @@ function download() {
 }
 
 function insertImage() {
-	var image = new Image();
-	image.src = jpeg;
-	image.width = 500;
+	$('#systemImage').show();
+	$('#systemImage').prop('src', jpeg);
+	$('#page3button').click();
+//	var image = new Image();
+//	image.src = jpeg;
+//	image.width = 500;
 //	document.getElementById("imagediv").innerHTML = "";
 //	var el = $("<div></div>").append(image);
 //	$("#imagediv").prepend(el);
