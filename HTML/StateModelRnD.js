@@ -23,6 +23,8 @@ function callback() {
 	}
 	outlang("Equation");
 	eqform("StateSpace");
+	$('#page4button').click();
+	setTimeout($('#LoadingPage').hide, 200);
 	}
 
 function eqform(type) {
@@ -34,7 +36,12 @@ function eqform(type) {
 	if (use_lang == "Equation") {
 		var codes = data.LaTeX;
 		if (type == "StateSpace") {
-			output("<p>$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$</p><p>$$y=" + codes.C + "x+" + codes.D + "u$$</p>");
+			$('#output .row').hide();
+			$('#output .row').slice(0,2).show();
+			$('#output .row .form-control').eq(0).prop('placeholder', "$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$");
+			$('#output .row .form-control').eq(1).prop('placeholder', "$$y=" + codes.C + "x+" + codes.D + "u$$");
+			$('#output').show();
+//			output("<p>$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$</p><p>$$y=" + codes.C + "x+" + codes.D + "u$$</p>");
 		} else if (type == "StateSpaceN") {
 			output("<p>$$\\dot{x}=" + codes.A + "x+" + codes.B + "u+" + codes.E + "\\dot{u}$$</p><p>$$y=" + codes.C + "x+" + codes.D + "u+" + codes.F + "\\dot{u}$$</p>");
 		} else if (type == "StateSpaceP") {
@@ -89,7 +96,8 @@ function output(html) {
 	}
 
 function typeset() {
-	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"output"]);
+//	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"output"]);
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 	}
 
 function outlang(type) {
@@ -128,7 +136,8 @@ function StateModel() {
 		}
 	};
 	console.log(aditionalParams)
-//	document.getElementById("output").innerHTML = '<img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif", alt="Loading">'
+	$('#LoadingPage').show();
+	$('#LoadingPageLink').click();
 	Client.stateModelRnDPost(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
@@ -167,6 +176,7 @@ function loadExample(num) {
 		canvas.height = image.height;
 		context.drawImage(image, 0, 0);
 		jpeg = canvas.toDataURL("image/jpeg");
+		$('#exampleImage').prop('src', jpeg);
 		insertImage();
 		Exif = piexif.load(jpeg);
 	}
@@ -205,7 +215,6 @@ function download() {
 function insertImage() {
 	$('#systemImage').show();
 	$('#systemImage').prop('src', jpeg);
-	$('#page3button').click();
 //	var image = new Image();
 //	image.src = jpeg;
 //	image.width = 500;
