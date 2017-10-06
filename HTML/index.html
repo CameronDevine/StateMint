@@ -88,22 +88,22 @@
     </div>
 </div>
 <div class="page" id="page3" style="display: none;">
-    <section class="highlight-blue" style="margin-top:50px;">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Upload a file</h2>
-            <div class="row">
-                <div class="col-md-12"><i align="center" class="material-icons" style="  font-size:80px;
-">file_upload</i>
-                    <input type="file" onchange="importData(event)" accept=".rnd"/>
+      <div class="highlight-blue" style="margin-top:155px;">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Upload a file</h2>
+                <div class="row">
+                    <div class="col-md-12"><i class="material-icons" style="padding-left:39%;padding-right:57%;width:460px;font-size:80px;">file_upload</i></div>
                 </div>
             </div>
-            <p class="text-lowercase text-center">supported formats: .rnd</p>
+            <input type="file" onchange="importData(event)" accept=".rnd" style="display:none;" id="fileUploadLink"/>
+            <div class="buttons"><a class="btn btn-primary" role="button" onlick="$('#fileUploadLink').click()">Choose a file</a></div>
+            <div style="padding-top:9px;">
+                <p class="text-center">supported formats: .rnd</p>
+            </div>
         </div>
-        <div class="buttons"></div>
-    </div>
-</section>
-    <div class="social-icons" style="padding-top: 5%4;"><a class="smooth" href="#page5"><i class="material-icons">keyboard_arrow_down</i></a>
+</div>
+<div class="social-icons" style="padding-top: 5%4;"><a class="smooth" href="#page5"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page4" style="display: none;">
