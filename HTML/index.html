@@ -107,25 +107,38 @@
     </div>
 </div>
 <div class="page" id="page4" style="display: none;">
-Examples page goes here
-<br>
-<a onclick="loadExample(1)">Example 1</a>
-<br>
-<a onclick="loadExample(2)">Example 2</a>
-<br>
-<a onclick="loadExample(3)">Example 3</a>
-<br>
-<img id="exampleImage">
-<br>
-<a onclick="$('#page3button').click()">Continue</a>
+<div class="highlight-clean" style="padding-top:375px;padding-bottom: 365px">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Examples </h2>
+                <p class="text-center">Enter Systems information and get the state equation matricies and the transfer function function. The links below may also be used to load diffferent examle systems.</p>
+            </div>
+            <div class="buttons"><a class="btn btn-primary" role="button" onclick="loadExample(1)">Example 1</a><a class="btn btn-primary" role="button" onclick="loadExample(2)">Example 2</a><a class="btn btn-primary" role="button" onclick="loadExample(3)">Example 3</a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img2 id="exampleImage" style="width:80%;padding:154px;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img id="exampleImage" style="width:75%;padding-top:140px;" />
+            </div>
+        </div>
+    </div>
+    <div class="social-icons"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
 </div>
     <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img style="  margin-left:28px;display:none;" id="systemImage"/>
     <form method="post" style="margin-top:-200px;">
         <h2 class="text-center">Type in the measurements</h2>
-        <div class="form-group has-success has-feedback">
+        <div>
             <h4><strong>Input Variables:</strong> </h4>
             <input type="text" name="Fs" placeholder="vS" class="form-control" style="height:113px;" id="InVars" /><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-ok" style="margin-top:31px;"></i></div>
-        <div class="form-group has-error has-feedback">
+        <div>
             <h4><strong>State Variable Elemental Equations:</strong> </h4>
             <input type="text" name="email" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" style="margin-top:11px;height:275px;" id="StVarElEqns"/>
             <h4><strong>Other Elemental Equations:</strong> </h4>
@@ -134,7 +147,7 @@ Examples page goes here
             <input type="text" name="email" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" style="margin-top:20px;height:275px;" id="Constraints"/>
             <h4><strong>Output Variables:</strong> </h4>
             <input type="text" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" style="margin-top:20px;height:113px;" id="OutputVars"/><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-remove" style="margin-top:29px;"></i>
-            <p class="help-block">Please enter a correct email address.</p>
+            <p class="help-block">Type in your measurements.</p>
         </div>
         <div class="form-group"></div>
         <div class="form-group">
