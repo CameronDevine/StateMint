@@ -24,7 +24,10 @@ function callback() {
 	outlang("Equation");
 	eqform("StateSpace");
 	$('#page4button').click();
-	setTimeout($('#LoadingPage').hide, 200);
+	setTimeout(function () {
+		$('#LoadingPage').hide();
+		$('#page4button').click();
+		}, 500)
 	}
 
 function eqform(type) {
