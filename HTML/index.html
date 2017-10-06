@@ -124,16 +124,16 @@ Examples page goes here
         <h2 class="text-center">Type in the measurements</h2>
         <div class="form-group has-success has-feedback">
             <h4><strong>Input Variables:</strong> </h4>
-            <input type="text" name="Fs" placeholder="Fs" class="form-control" style="height:113px;" id="InVars" /><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-ok" style="margin-top:31px;"></i></div>
+            <input type="text" name="Fs" placeholder="vS" class="form-control" style="height:113px;" id="InVars" /><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-ok" style="margin-top:31px;"></i></div>
         <div class="form-group has-error has-feedback">
             <h4><strong>State Variable Elemental Equations:</strong> </h4>
-            <input type="text" name="email" placeholder="vm&#39; = Fm/m, FK1&#39; = K1 * vK1" class="form-control" style="margin-top:11px;height:275px;" id="StVarElEqns"/>
+            <input type="text" name="email" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" style="margin-top:11px;height:275px;" id="StVarElEqns"/>
             <h4><strong>Other Elemental Equations:</strong> </h4>
-            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:275px;" id="OtherElEqns"/>
+            <input type="text" name="email" placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" style="margin-top:20px;height:275px;" id="OtherElEqns"/>
             <h4><strong>Constraints:</strong> </h4>
-            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:275px;" id="Constraints"/>
+            <input type="text" name="email" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" style="margin-top:20px;height:275px;" id="Constraints"/>
             <h4><strong>Output Variables:</strong> </h4>
-            <input type="text" name="email" placeholder="Email" class="form-control" style="margin-top:20px;height:113px;" id="OutputVars"/><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-remove" style="margin-top:29px;"></i>
+            <input type="text" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" style="margin-top:20px;height:113px;" id="OutputVars"/><i aria-hidden="true" class="form-control-feedback glyphicon glyphicon-remove" style="margin-top:29px;"></i>
             <p class="help-block">Please enter a correct email address.</p>
         </div>
         <div class="form-group"></div>
