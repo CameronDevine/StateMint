@@ -216,7 +216,7 @@ function download() {
 }
 
 function insertImage() {
-	$('#systemImage').show();
+	//$('#systemImage').show();
 	$('#systemImage').prop('src', jpeg);
 //	var image = new Image();
 //	image.src = jpeg;
