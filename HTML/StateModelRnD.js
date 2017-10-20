@@ -30,6 +30,15 @@ function callback() {
 		}, 500)
 	}
 
+function output(names, equations) {
+	$('#output .newsletter-subscribe').hide().slice(0, names.length).show();
+	for (i = 0; i < names.length; i++) {
+		$('#output h3').eq(i).html(names[i]);
+		$('#output strong').eq(i).html(equations[i]);
+	}
+	$('#output').show();
+}
+
 function eqform(type) {
 	last_form = type;
 	$('#eqButtons :button').removeClass('btn-primary');
@@ -39,68 +48,78 @@ function eqform(type) {
 	if (use_lang == "Equation") {
 		var codes = data.LaTeX;
 		if (type == "StateSpace") {
-			$('#output .row').hide();
-			$('#output .row').slice(0,2).show();
-			$('#output .row .form-control').eq(0).prop('placeholder', "$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$");
-			$('#output .row .form-control').eq(1).prop('placeholder', "$$y=" + codes.C + "x+" + codes.D + "u$$");
-			$('#output').show();
-//			output("<p>$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$</p><p>$$y=" + codes.C + "x+" + codes.D + "u$$</p>");
+			output(["State", "Output"], [
+				"$$\\dot{x}=" + codes.A + "x+" + codes.B + "u$$",
+				"$$y=" + codes.C + "x+" + codes.D + "u$$"]);
 		} else if (type == "StateSpaceN") {
-			output("<p>$$\\dot{x}=" + codes.A + "x+" + codes.B + "u+" + codes.E + "\\dot{u}$$</p><p>$$y=" + codes.C + "x+" + codes.D + "u+" + codes.F + "\\dot{u}$$</p>");
+			output(["State", "Output"], [
+				"$$\\dot{x}=" + codes.A + "x+" + codes.B + "u+" + codes.E + "\\dot{u}$$",
+				"$$y=" + codes.C + "x+" + codes.D + "u+" + codes.F + "\\dot{u}$$"]);
 		} else if (type == "StateSpaceP") {
-			output("<p>$$\\dot{x}'=" + codes.A + "x'+" + codes.Bp + "u$$</p><p>$$y=" + codes.C + "x'+" + codes.Dp + "u$$</p>");
+			output(["State", "Output"], [
+				"$$\\dot{x}'=" + codes.A + "x'+" + codes.Bp + "u$$",
+				"$$y=" + codes.C + "x'+" + codes.Dp + "u$$"]);
 		} else if (type == "TF") {
-			output("<p>$$H(s)=" + codes.TF + "$$</p>");
+			output(["Transfer Function"], [
+				"$$H(s)=" + codes.TF + "$$"]);
 		} else if (type == "eq") {
-			output("<p>$$\\dot{x}=f(x,u)=" + codes.StateEq + "$$</p><p>$$y=h(x,u)=" + codes.OutEq + "$$</p>");
+			output(["State", "Output"], [
+				"$$\\dot{x}=f(x,u)=" + codes.StateEq + "$$",
+				"$$y=h(x,u)=" + codes.OutEq + "$$"]);
 		}
 		typeset();
 	} else if (use_lang == "Mathematica") {
 		var codes = data.Mathematica;
 		if (type == "StateSpace") {
-			output("<p>{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + "}</p>");
+			output(['State Equation Matricies'], [
+				"{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + "}"]);
 		} else if (type == "StateSpaceN") {
-			output("<p>{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + ",e->" + codes.E + ",f->" + codes.F + "}</p>");
+			output(['State Equation Matricies'], [
+				"{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + ",e->" + codes.E + ",f->" + codes.F + "}"]);
 		} else if (type == "StateSpaceP") {
-			output("<p>{a->" + codes.A + ",bp->" + codes.Bp + ",c->" + codes.C + ",dp->" + codes.Dp + "}</p>");
+			output(['State Equation Matricies'], [
+				"{a->" + codes.A + ",bp->" + codes.Bp + ",c->" + codes.C + ",dp->" + codes.Dp + "}"]);
 		} else if (type == "eq") {
-			output("<p>f(x,u): " + codes.StateEq + "</p><p>h(x,u): " + codes.OutEq + "</p>");
+			output(['State Equation', 'Output Equation'],
+				[codes.StateEq, codes.OutEq]);
 		}
 	} else if (use_lang == "LaTeX") {
 		var codes = data.LaTeX;
 		if (type == "StateSpace") {
-			output("<p><table><tr><td>A </td><td>" + codes.A + "</td></tr><tr><td>B </td><td>" + codes.B + "</td></tr><tr><td>C </td><td>" + codes.C + "</td></tr><tr><td>D </td><td>" + codes.D + "</td></tr></table></p>");
+			output(['A', 'B', 'C', 'D'],
+				[codes.A, codes.B, codes.C, codes.D]);
 		} else if (type == "StateSpaceN") {
-			output("<p><table><tr><td>A </td><td>" + codes.A + "</td></tr><tr><td>B </td><td>" + codes.B + "</td></tr><tr><td>C </td><td>" + codes.C + "</td></tr><tr><td>D </td><td>" + codes.D + "</td></tr><tr><td>E </td><td>" + codes.E + "</td></tr><tr><td>F </td><td>" + codes.F + "</td></tr></table></p>");
+			output(['A', 'B', 'C', 'D', 'E', 'F'],
+				[codes.A, codes.B, codes.C, codes.D, codes.E, codes.F]);
 		} else if (type == "StateSpaceP") {
-			output("<p><table><tr><td>A </td><td>" + codes.A + "</td></tr><tr><td>B' </td><td>" + codes.Bp + "</td></tr><tr><td>C </td><td>" + codes.C + "</td></tr><tr><td>D' </td><td>" + codes.Dp + "</td></tr></table></p>");
+			output(['A', 'B\'', 'C', 'D\''],
+				[codes.A, codes.Bp, codes.C, codes.Dp]);
 		} else if (type == "TF") {
-			output("<p>" + codes.TF + "</p>");
+			output(['Transfer Function'], [codes.TF]);
 		} else if (type == "eq") {
-			output("<p><table><tr><td>State Equation </td><td>" + codes.StateEq + "</td></tr><tr><td>Output Equation </td><td>" + codes.OutEq + "</td></tr></table></p>");
+			output(['State Equation', 'Output Equation'],
+				[codes.StateEq, codes.OutEq]);
 		}
 	} else {
 		var codes = data[use_lang];
 		if (type == "StateSpace") {
-			output("<p>A=" + codes.A + "</p><p>B=" + codes.B + "</p><p>C=" + codes.C + "</p><p>D=" + codes.D + "</p>");
+			output(['A', 'B', 'C', 'D'],
+				[codes.A, codes.B, codes.C, codes.D]);
 		} else if (type == "StateSpaceN") {
-			output("<p>A=" + codes.A + "</p><p>B=" + codes.B + "</p><p>C=" + codes.C + "</p><p>D=" + codes.D + "</p><p>E=" + codes.E + "</p><p>F=" + codes.F + "</p>");
+			output(['A', 'B', 'C', 'D', 'E', 'F'],
+				[codes.A, codes.B, codes.C, codes.D, codes.E, codes.F]);
 		} else if (type == "StateSpaceP") {
-			output("<p>A=" + codes.A + "</p><p>Bp=" + codes.Bp + "</p><p>C=" + codes.C + "</p><p>Dp=" + codes.Dp + "</p>");
+			output(['A', 'B\'', 'C', 'D\''],
+				[codes.A, codes.Bp, codes.C, codes.Dp]);
 		} else if (type == "eq") {
-			output("<p>f=" + codes.StateEq + "</p><p>h=" + codes.OutEq + "</p>");
+			output(['State Equation', 'Output Equation'],
+				[codes.StateEq, codes.OutEq]);
 		}
 	}
 }
 
-function output(html) {
-	console.log(html);
-	document.getElementById("output").innerHTML = html;
-	}
-
 function typeset() {
-//	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"output"]);
-	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"output"]);
 	}
 
 function outlang(type) {

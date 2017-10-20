@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+   <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/Social-Icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/untitled-1.css">
@@ -198,93 +198,138 @@
             </div>
         </div>
     </div>
-    <div class="newsletter-subscribe" id="output" style="display:none;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center">A </h2></div>
-                    <form class="form-inline" method="get">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center" style="margin-top:70px;">B </h2></div>
-                    <form class="form-inline" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center" style="margin-top:70px;">C </h2></div>
-                    <form class="form-inline" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center" style="margin-top:70px;">D </h2></div>
-                    <form class="form-inline" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center" style="margin-top:70px;">E </h2></div>
-                    <form class="form-inline" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="intro">
-                        <h2 class="text-center" style="margin-top:70px;">F </h2></div>
-                    <form class="form-inline" method="post">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="email" readonly="" placeholder="\left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]" style="height:95px;width:1017px;">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit" style="margin-top:16px;font-weight:normal;margin-left:-419px;">COPY </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="container" id="output" style="display:none;">
+        <div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+		<div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" text="
+	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+		<div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" text="
+	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+		<div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" text="
+	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+		<div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" text="
+	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+		<div class="newsletter-subscribe">
+		    <div class="container">
+		        <div class="intro">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
+		            </div>
+		        </div>
+		        <form class="form-inline" method="post">
+		            <div class="form-group">
+		                <div>
+		                    <input type="email" name="text" text="
+	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
+		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <button class="btn btn-primary" type="submit">Copy </button>
+		            </div>
+		        </form>
+		    </div>
+		</div>
     </div>
     <div class="highlight-clean">
         <div class="container">
@@ -299,7 +344,7 @@
             <div class="intro"></div>
         </div>
     </div>
-<!--    <script src="assets/js/jquery.min.js"></script> -->
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
     <script src="assets/js/Quill-Text-Editor.js"></script>

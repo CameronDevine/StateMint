@@ -9,7 +9,7 @@ function pagination() {
 	} else if ($('#page5').position().top <= scrolPos) {
 		$('li').removeClass('activeDot');
 		$('li').eq(2).addClass('activeDot');
-		if ($('#page6').position().top - $('#systemImage').height() <= scrolPos) {
+		if ($('#LoadingPage').position().top - $('#systemImage').height() <= scrolPos) {
 			$('#systemImage').hide();
 		} else {
 			$('#systemImage').show();
