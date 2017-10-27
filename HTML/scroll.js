@@ -9,7 +9,12 @@ function pagination() {
 	} else if ($('#page5').position().top <= scrolPos) {
 		$('li').removeClass('activeDot');
 		$('li').eq(2).addClass('activeDot');
-		if ($('#LoadingPage').position().top - $('#systemImage').height() <= scrolPos) {
+		if ($('#LoadingPage').is(":visible")) {
+			nextPage = $('#LoadingPage').position().top;
+		} else {
+			nextPage = $('#page6').position().top;
+		}
+		if (nextPage - $('#systemImage').height() <= scrolPos) {
 			$('#systemImage').hide();
 		} else {
 			$('#systemImage').show();

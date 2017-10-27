@@ -4,6 +4,7 @@
 		transform: translateY(-50%);
 		right: 30px;
 		list-style: none;
+		z-index: 1000;
 }
 
 li {

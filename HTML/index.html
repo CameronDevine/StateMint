@@ -51,7 +51,7 @@
         <li><a href="#page6" class="scrollLink smooth" id="page4button"></a></li>
 </ul>
 <div class="page" id="page1">
-    <div class="highlight-clean" style="padding-top:20%;">
+    <div class="highlight-clean" style="padding-top:15%;">
         <div class="container">
     <section class="intro">
         <h1 class="text-center">StateModelRND</h1>
@@ -63,11 +63,12 @@
     </div>
 </div>
     </div>
-    <div class="social-icons" style="padding-top: 5%;">
-<a onclick="$('#page2button').click()"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
+    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+<a onclick="$('#page2button').click()" style="display: inline-block;"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page2">
+	<div style="height: 15%"></div>
     <section class="highlight-blue">
     <div class="container">
         <div class="intro">
@@ -83,12 +84,13 @@
         <div class="buttons"><a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a></div>
     </div>
 </section>
-    <div class="social-icons" style="padding-top: 5%4;">
-<a class="smooth" href="#page5"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page3" style="display: none;">
-      <div class="highlight-blue" style="margin-top:155px;">
+		<div style="height: 15%"></div>
+      <div class="highlight-blue">
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Upload a file</h2>
@@ -103,28 +105,23 @@
             </div>
         </div>
 </div>
-<div class="social-icons" style="padding-top: 5%4;"><a class="smooth" href="#page5"><i class="material-icons">keyboard_arrow_down</i></a>
+<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;"><a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>
 </div>
 <div class="page" id="page4" style="display: none;">
-<div class="highlight-clean" style="padding-top:375px;padding-bottom: 365px">
+<div class="highlight-clean">
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Examples </h2>
                 <p class="text-center">Enter Systems information and get the state equation matricies and the transfer function function. The links below may also be used to load diffferent examle systems.</p>
             </div>
-            <div class="buttons"><a class="btn btn-primary" role="button" onclick="loadExample(1)">Example 1</a><a class="btn btn-primary" role="button" onclick="loadExample(2)">Example 2</a><a class="btn btn-primary" role="button" onclick="loadExample(3)">Example 3</a></div>
+            <div class="buttons" style="overflow-x: auto; white-space: nowrap;"><a class="btn btn-primary" role="button" onclick="loadExample(1)" onmouseover="loadExample(1)">Example 1</a><a class="btn btn-primary" role="button" onclick="loadExample(2)" onmouseover="loadExample(2)">Example 2</a><a class="btn btn-primary" role="button" onclick="loadExample(3)" onmouseover="loadExample(3)">Example 3</a></div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <img id="exampleImage" style="width:75%;padding-top:140px;" />
-            </div>
-        </div>
+		<div style="height: 30vh">
+                <img id="exampleImage" height="100%" style="margin: auto; padding-top: 5%;"/>
+		</div>
     </div>
-    <div class="social-icons"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
-        <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
+    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;"><a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>
 </div>
     <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img style="position:fixed;top:10px;left:28px;display:none;" id="systemImage"/>
