@@ -35,6 +35,7 @@ function output(names, equations) {
 	for (i = 0; i < names.length; i++) {
 		$('#output h4').eq(i).html(names[i]);
 		$('#output strong').eq(i).html(equations[i]);
+		$('#output textarea').eq(i).val(equations[i]);
 	}
 	$('#output').show();
 }
@@ -316,4 +317,11 @@ function importData(event) {
 		StateModel();
 	}
 	reader.readAsDataURL(file);
+}
+
+function copyEq(num) {
+	$('#output textarea').eq(num).show();
+	$('#output textarea').eq(num).select();
+	document.execCommand('Copy');
+	$('#output textarea').eq(num).hide()
 }
