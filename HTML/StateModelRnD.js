@@ -31,9 +31,9 @@ function callback() {
 	}
 
 function output(names, equations) {
-	$('#output .newsletter-subscribe').hide().slice(0, names.length).show();
+	$('#output .buttons').hide().slice(0, names.length).show();
 	for (i = 0; i < names.length; i++) {
-		$('#output h3').eq(i).html(names[i]);
+		$('#output h4').eq(i).html(names[i]);
 		$('#output strong').eq(i).html(equations[i]);
 	}
 	$('#output').show();

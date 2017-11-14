@@ -124,8 +124,8 @@
     <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;"><a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
     </div>
 </div>
-    <section class="contact-clean" style="background-color:rgb(254,255,255);height:113;" id="page5"><img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
-    <form method="post" style="margin-top:-200px;">
+    <section class="contact-clean" style="background-color:rgb(254,255,255);padding-top:0;padding-bottom:0;" id="page5"><img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
+    <form method="post">
         <h2 class="text-center">Type in the measurements</h2>
         <div>
             <h4><strong>Input Variables:</strong> </h4>
@@ -155,11 +155,7 @@
         </div>
     </form>
 </section>
-    <div data-aos="fade-up" class="social-icons" style="padding-top:195px;padding-bottom:440px;"><a href="#"><i class="material-icons">keyboard_arrow_down</i></a>
-        <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
-    </div>
+    <div class="social-icons" style="padding-top:0;padding-bottom:0;"><a class="smooth" href="#page6"><i class="material-icons">keyboard_arrow_down</i></a></div>
 <div class="page" id="LoadingPage" style="display:none">
 <a href="#LoadingPage" class="smooth" id="LoadingPageLink"></a>
 		  <div class="row">
@@ -168,12 +164,12 @@
         </div>
     </div>
 	</div>
-    <section class="highlight-clean" id="page6">
+    <section class="highlight-clean" id="page6" style="padding-top:1em;padding-bottom:0;min-height:100vh">
     <h1 align="center">Your Answer</h1>
-    <div class="container" style="padding-top:50px;">
+    <div class="container">
         <div class="intro">
             <h3 class="text-center">Select a Language</h3></div>
-        <div class="buttons" id="langButtons">
+        <div class="buttons" id="langButtons" style="overflow-x: auto; white-space: nowrap;">
             <button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
             <button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
             <button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
@@ -181,12 +177,10 @@
             <button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
         </div>
     </div>
-</section>
-    <div class="highlight-clean">
         <div class="container">
             <div class="intro">
-                <h3 class="text-center">Select a Language</h3></div>
-            <div class="buttons" id="eqButtons">
+                <h3 class="text-center">Select a Format</h3></div>
+            <div class="buttons" id="eqButtons" style="overflow-x: auto; white-space: nowrap;">
                 <button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')">$$\dot{x}=Ax+Bu$$</button>
                 <button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
 				<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')">$$\dot{x}'=Ax'+B'u$$</button>
@@ -194,140 +188,38 @@
 				<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')">$$H(s)$$</button>
             </div>
         </div>
-    </div>
-    <div class="container" id="output" style="display:none;">
-        <div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+    <div class="container" id="output" style="display:none;margin-top:3em;">
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-		<div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" text="
-	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-		<div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" text="
-	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-		<div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" text="
-	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-		<div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" text="
-	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-		<div class="newsletter-subscribe">
-		    <div class="container">
-		        <div class="intro">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h3 style="padding-left:0;margin-left:37%;">A </h3></div>
-		            </div>
-		        </div>
-		        <form class="form-inline" method="post">
-		            <div class="form-group">
-		                <div>
-		                    <input type="email" name="text" text="
-	\left[\begin{matrix}- \frac{B_{2}}{m} & 0\\0 & - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]" class="form-control" />
-		                    <p style="margin-top:-33px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong> </p>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <button class="btn btn-primary" type="submit">Copy </button>
-		            </div>
-		        </form>
-		    </div>
+		<div class="buttons">
+			<h4>State</h4>
+			<div style="display:inline-block;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<button class="btn btn-primary">Copy</button>
 		</div>
-    </div>
+	</div>
     <div class="highlight-clean">
         <div class="container">
             <div class="intro"></div>
@@ -336,11 +228,7 @@
             </div>
         </div>
     </div>
-    <div class="article-list">
-        <div class="container">
-            <div class="intro"></div>
-        </div>
-    </div>
+</section>
     <!-- <script src="assets/js/jquery.min.js"></script> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
