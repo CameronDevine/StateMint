@@ -99,7 +99,7 @@
                 </div>
             </div>
             <input type="file" onchange="importData(event)" accept=".rnd" style="display:none;" id="fileUploadLink"/>
-            <div class="buttons"><a class="btn btn-primary" role="button" onlick="$('#fileUploadLink').click()">Choose a file</a></div>
+            <div class="buttons"><a class="btn btn-primary" role="button" onclick="$('#fileUploadLink').click()">Choose a file</a></div>
             <div style="padding-top:9px;">
                 <p class="text-center">supported formats: .rnd</p>
             </div>
@@ -221,6 +221,14 @@
 			<button class="btn btn-primary" onclick="copyEq(5)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
+	</div>
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="buttons"><a class="btn btn-primary" role="button" style="height:60px;" onclick="$('#page1button').click()">Start Over<i class="material-icons">fast_rewind</i></a>
+                <button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i> </button>
+            </div>
+        </div>
+    </div>
 </section>
     <!-- <script src="assets/js/jquery.min.js"></script> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

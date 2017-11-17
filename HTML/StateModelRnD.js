@@ -272,6 +272,7 @@ function addImage(event) {
 		} else {
 			Exif = piexif.load(jpeg);
 		}
+		$('#page3button').click();
 	}
 	reader.readAsDataURL(file);
 }
