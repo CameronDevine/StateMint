@@ -326,3 +326,10 @@ function copyEq(num) {
 	document.execCommand('Copy');
 	$('#output textarea').eq(num).hide()
 }
+
+function restart() {
+	$('#page1button').click();
+	setTimeout(function() {
+		window.location.reload();
+		}, 400);
+}
