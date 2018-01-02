@@ -2,7 +2,7 @@ import boto3
 import os
 import uuid
 
-def function(
+def function(session,
 	Name = None,
 	RoleArn = None,
 	Handler = None,
@@ -20,7 +20,7 @@ def function(
 	if ZipLocation is None:
 		raise ValueError('ZipLocation not set')
 
-	lambdaClient = boto3.client('lambda')
+	lambdaClient = session.client('lambda')
 
 	print 'Finding Lambda function'
 	try:

@@ -1,6 +1,6 @@
 import boto3
 
-def update(
+def update(session,
 	Name = None,
 	ResourceName = None,
 	LambdaArn = None,
@@ -13,12 +13,11 @@ def update(
 	if LambdaArn is None:
 		raise ValueError('LambdaArn not set')
 
-	session = boto3.session.Session()
 	region = session.region_name
 
 	modified = False
 
-	apigClient = boto3.client('apigateway')
+	apigClient = session.client('apigateway')
 
 	print 'Finding API'
 	resp = apigClient.get_rest_apis()

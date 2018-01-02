@@ -1,7 +1,7 @@
 import boto3
 import json
 
-def role(
+def role(session,
 	RoleName = None,
 	PolicyName = None,
 	PolicyDocument = None,
@@ -17,8 +17,8 @@ def role(
 	if AssumeRolePolicyDocument is None:
 		raise ValueError('AssumeRolePolicyDocument not set')
 
-	iamResource = boto3.resource('iam')
-	iamClient = boto3.client('iam')
+	iamResource = session.resource('iam')
+	iamClient = session.client('iam')
 
 	print 'Finding IAM Policy'
 	policies = iamClient.list_policies(MaxItems = 500)

@@ -2,7 +2,7 @@ import boto3
 import StringIO
 import zipfile
 
-def download(
+def download(session,
 	apiId = None,
 	stageName = None):
 
@@ -11,7 +11,7 @@ def download(
 	if stageName is None:
 		raise ValueError('stageName not set')
 
-	apigClient = boto3.client('apigateway')
+	apigClient = session.client('apigateway')
 
 	print 'Downloading API Gateway SDK'
 	resp = apigClient.get_sdk(

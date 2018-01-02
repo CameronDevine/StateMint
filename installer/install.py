@@ -3,6 +3,15 @@ import Lambda
 import apig
 import sdk
 
+import sys
+
+try:
+	profile_name = sys.argv[1]
+except IndexError:
+	profile_name = None
+
+session = boto3.session.Session(profile_name = profile_name)
+
 print "======== Installing StateModelRnD ========"
 
 print "======== Getting IAM set up ========"
@@ -37,7 +46,7 @@ LambdaAssumeRolePolicyDocument = '''{
   ]
 }'''
 
-lambdaRoleArn = iam.role(
+lambdaRoleArn = iam.role(session,
 	RoleName = 'StateModelRnDLambda',
 	PolicyName = 'StateModelRnDLambda',
 	PolicyDocument = LambdaPolicyDocument,
@@ -82,7 +91,7 @@ APIGAssumeRolePolicyDocument = '''{
   ]
 }'''
 
-APIGRoleArn = iam.role(
+APIGRoleArn = iam.role(session,
 	RoleName = 'StateModelRnDAPIG',
 	PolicyName = 'StateModelRnDAPIG',
 	PolicyDocument = APIGPolicyDocument,
@@ -91,7 +100,7 @@ APIGRoleArn = iam.role(
 
 print "======== Getting the Lambda function set up ========"
 
-LambdaArn = Lambda.function(
+LambdaArn = Lambda.function(session,
 	Name = 'StateModelRnDtest',
 	RoleArn = lambdaRoleArn,
 	Handler = 'StateModelLambda.handler',
@@ -100,7 +109,7 @@ LambdaArn = Lambda.function(
 
 print "======== Getting API Gateway set up ========"
 
-apigResp = apig.update(
+apigResp = apig.update(session,
 	Name = 'StateModelRnDtest',
 	Description = 'The StateModelRnD API',
 	LambdaArn = LambdaArn,
@@ -109,7 +118,7 @@ apigResp = apig.update(
 if apigResp['modified']:
 	print "======== Getting API SDK files ========"
 
-	sdk.download(
+	sdk.download(session,
 		apiId = apigResp['apiId'],
 		stageName = apigResp['stageName'])
 
