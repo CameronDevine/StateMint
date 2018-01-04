@@ -3,6 +3,8 @@ import Lambda
 import apig
 import sdk
 
+import boto3
+
 import sys
 
 try:
