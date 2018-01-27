@@ -129,15 +129,15 @@
         <h2 class="text-center">Type in the measurements</h2>
         <div>
             <h4><strong>Input Variables:</strong> </h4>
-            <input type="text" name="Fs" placeholder="vS" class="form-control" id="InVars"/>
+            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars"/>
             <h4><strong>State Variable Elemental Equations:</strong> </h4>
-			<textarea placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" id="StVarElEqns"></textarea>
+			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" id="StVarElEqns"></textarea>
             <h4><strong>Other Elemental Equations:</strong> </h4>
-			<textarea placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" id="OtherElEqns"></textarea>
+			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" id="OtherElEqns"></textarea>
             <h4><strong>Constraints:</strong> </h4>
-			<textarea placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" id="Constraints"></textarea>
+			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" id="Constraints"></textarea>
             <h4><strong>Output Variables:</strong> </h4>
-            <input type="text" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" id="OutputVars"/>
+            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" id="OutputVars"/>
             <p class="help-block">Type in your measurements.</p>
                         <button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;"><i class="typcn typcn-equals"></i>Calculate</button>
         </div>
