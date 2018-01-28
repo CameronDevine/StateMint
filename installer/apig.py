@@ -523,18 +523,16 @@ def update(session,
 				'method.response.header.Access-Control-Allow-Headers': "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"},
 			responseTemplates = {
 				'application/json': 'None'})
-
+	
+	resp = apigClient.get_deployments(restApiId = apiId)
+	DeploymentNumber = 0
+	for item in resp['items']:
+		DeploymentNumber = max(DeploymentNumber, int(item['description'][-1]))
 	if modified:
-		resp = apigClient.get_deployments(restApiId = apiId)
-		maxDeployment = 0
-		for item in resp['items']:
-			maxDeployment = max(maxDeployment, int(item['description'][-1]))
-		DeploymentNumber = maxDeployment + 1
+		DeploymentNumber += 1
 		apigClient.create_deployment(
 			restApiId = apiId,
 			stageName = 'stage' + str(DeploymentNumber),
 			description = 'deployment' + str(DeploymentNumber),
 			cacheClusterEnabled = False)
-		return {'modified': modified, 'apiId': apiId, 'stageName': 'stage' + str(DeploymentNumber)}
-	else:
-		return {'modified': modified}
+	return {'modified': modified, 'apiId': apiId, 'stageName': 'stage' + str(DeploymentNumber)}
