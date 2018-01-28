@@ -165,47 +165,48 @@
             <div class="intro">
                 <h3 class="text-center">Select a Format</h3></div>
             <div class="buttons" id="eqButtons" style="overflow-x: auto; white-space: nowrap;">
-                <button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')">$$\dot{x}=Ax+Bu$$</button>
-                <button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
-				<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')">$$\dot{x}'=Ax'+B'u$$</button>
-				<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')">$$f(x,u)$$</button>
-				<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')">$$H(s)$$</button>
+                <button class="btn btn-default" type="button" id="vector" onclick="eqform('vector')" style="height:75px">$$x$$</button>
+                <button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')" style="height:75px">$$\dot{x}=Ax+Bu$$</button>
+                <button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')" style="height:75px">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
+				<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')" style="height:75px">$$\dot{x}'=Ax'+B'u$$</button>
+				<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')" style="height:75px">$$f(x,u)$$</button>
+				<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')" style="height:75px">$$H(s)$$</button>
             </div>
         </div>
     <div class="container" id="output" style="display:none;margin-top:3em;">
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(0)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(1)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(2)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(3)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(4)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>
 		<div class="buttons">
 			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:5px;min-height:45px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
+			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
 			<button class="btn btn-primary" onclick="copyEq(5)" style="display:inline-block;vertical-align:middle;">Copy</button>
 			<textarea style="display:none"></textarea>
 		</div>

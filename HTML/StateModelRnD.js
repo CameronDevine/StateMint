@@ -3,26 +3,31 @@ var use_lang = "";
 var last_form = "";
 var jpeg = null;
 var Exif;
+var default_form = 'StateSpace';
 
 function callback() {
 	console.log(data);
-//	document.getElementById("output").innerHTML = "";
 	$('#matlabButton').show();
 	$('#eq').hide();
+	default_form = 'StateSpace';
 	if (data.Nonlinear) {
 		console.log("nonlinear");
 		$('#matlabButton').hide();
 		$('#eq').show();
+		default_form = 'StateSpace';
 	}
 	$('#StateSpaceN').hide();
 	$('#StateSpaceP').hide();
+	$('#StateSpace').show();
 	if (data.Nonstandard) {
 		console.log("nonstandard");
 		$('#StateSpaceN').show();
 		$('#StateSpaceP').show();
+		$('#StateSpace').hide();
+		default_form = 'StateSpaceN';
 	}
 	outlang("Equation");
-	eqform("StateSpace");
+	eqform(default_form);
 	$('#page4button').click();
 	setTimeout(function () {
 		$('#LoadingPage').hide();
@@ -67,6 +72,8 @@ function eqform(type) {
 			output(["State", "Output"], [
 				"$$\\dot{x}=f(x,u)=" + codes.StateEq + "$$",
 				"$$y=h(x,u)=" + codes.OutEq + "$$"]);
+		} else if (type == "vector") {
+			output(["State Vector"], ["$$x=" + codes.StateVec + "$$"]);
 		}
 		typeset();
 	} else if (use_lang == "Mathematica") {
@@ -100,6 +107,8 @@ function eqform(type) {
 		} else if (type == "eq") {
 			output(['State Equation', 'Output Equation'],
 				[codes.StateEq, codes.OutEq]);
+		} else if (type == "vector") {
+			output(['x'], [codes.StateVec]);
 		}
 	} else {
 		var codes = data[use_lang];
@@ -135,12 +144,13 @@ function outlang(type) {
 
 function set_forms(type) {
 	$('#TF').hide();
-	if (type == "Equation" || type == "LaTeX") {$('#TF').show();}
-	if (type != "Equation" && type != "LaTeX" && last_form == "TF") {
-		console.log(type != "Equation")
-		console.log(type != "LaTeX")
-		console.log(last_form == "TF")
-		eqform("StateSpace");
+	$('#vector').hide();
+	if (type == "Equation" || type == "LaTeX") {
+		$('#TF').show();
+		$('#vector').show();
+	}
+	if (type != "Equation" && type != "LaTeX" && (last_form == "TF" || last_form == "vector")) {
+		eqform(default_form);
 	}
 }
 
@@ -150,12 +160,12 @@ function StateModel() {
 	var params = {};
 	var body = {};
 	var aditionalParams = {
-			"queryParams": {
-	  				"InVars": document.getElementById("InVars").value,
-					"StVarElEqns": document.getElementById("StVarElEqns").value,
-					"OtherElEqns": document.getElementById("OtherElEqns").value,
-					"Constraints": document.getElementById("Constraints").value,
-					"OutputVars": document.getElementById("OutputVars").value
+		"queryParams": {
+	  			"InVars": document.getElementById("InVars").value,
+				"StVarElEqns": document.getElementById("StVarElEqns").value,
+				"OtherElEqns": document.getElementById("OtherElEqns").value,
+				"Constraints": document.getElementById("Constraints").value,
+				"OutputVars": document.getElementById("OutputVars").value
 		}
 	};
 	console.log(aditionalParams)
@@ -236,14 +246,7 @@ function download() {
 }
 
 function insertImage() {
-	//$('#systemImage').show();
 	$('#systemImage').prop('src', jpeg);
-//	var image = new Image();
-//	image.src = jpeg;
-//	image.width = 500;
-//	document.getElementById("imagediv").innerHTML = "";
-//	var el = $("<div></div>").append(image);
-//	$("#imagediv").prepend(el);
 }
 
 function convert() {
