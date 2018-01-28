@@ -73,7 +73,10 @@ function eqform(type) {
 				"$$\\dot{x}=f(x,u)=" + codes.StateEq + "$$",
 				"$$y=h(x,u)=" + codes.OutEq + "$$"]);
 		} else if (type == "vector") {
-			output(["State Vector"], ["$$x=" + codes.StateVec + "$$"]);
+			output(["State Vector", "Input Vector", "Output Vector"], [
+				"$$x=" + codes.StateVec + "$$",
+				"$$u=" + codes.InputVec + "$$",
+				"$$y=" + codes.OutputVec + "$$"]);
 		}
 		typeset();
 	} else if (use_lang == "Mathematica") {
@@ -108,7 +111,8 @@ function eqform(type) {
 			output(['State Equation', 'Output Equation'],
 				[codes.StateEq, codes.OutEq]);
 		} else if (type == "vector") {
-			output(['x'], [codes.StateVec]);
+			output(["State Vector", "Input Vector", "Output Vector"],
+				[codes.StateVec, codes.InputVec, codes.OutputVec]);
 		}
 	} else {
 		var codes = data[use_lang];
