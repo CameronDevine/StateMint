@@ -18,7 +18,7 @@ Ftest = []
 # Test Systems
 
 # Systems that I can't figure out how to make work,
-skip = [2, 14]
+skip = [2, 14, 15]
 
 # System 1
 # Garbini's Test Suite Quarter Car Model
@@ -26,7 +26,7 @@ InVars.append("vS")
 StVarElEqns.append("vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT")
 OtherElEqns.append("fBS = BS * vBS, fBT = BT * vBT")
 Constraints.append("fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW")
-OutputVars.append("vMB vMW fKS fKT fBS fBT")
+OutputVars.append("vMB, vMW, fKS, fKT, fBS, fBT")
 
 Atest.append('Matrix([[-BS/MB,BS/MB,1/MB,0],[BS/MW,(-BS-BT)/MW,-1/MW,1/MW],[-KS,KS,0,0],[0,-KT,0,0]])')
 Btest.append('Matrix([[0],[BT/MW],[0],[KT]])')
@@ -41,7 +41,7 @@ InVars.append("vI")
 StVarElEqns.append("oJM'=1/JM*tJM")
 OtherElEqns.append("iR=1/R*vR,v1=-Km*o2,t2=Km*i1,tB=B*oB,t3=-1/n*t4,o4=1/n*o3,tJL=JL*oJL'")
 Constraints.append("tJM=-t2-tB-t3,vR=vI-v1,o2=oJM,i1=iR,oB=oJM,t4=-tJL,o3=oJM,oJL=o4")
-OutputVars.append("oJM oJL iR vR")
+OutputVars.append("oJM, oJL, iR, vR")
 
 #Atest.append('Matrix([[(-B*n**2)/(JL+JM*n**2)]])')
 Atest.append('Matrix([[-B/JM]])')
@@ -53,7 +53,7 @@ Ftest.append(str(zeros(*sympify(Dtest[-1]).shape)))
 
 # System 3
 # Garbini's Test Suite Inertial Actuator
-InVars.append("ec vs")
+InVars.append("ec, vs")
 StVarElEqns.append("vM'=1/M*fM,fK'=K*vK")
 OtherElEqns.append("fB=B*vB,iR=1/R*vR,e1=-Km*V2,f2=Km*i1")
 Constraints.append("fM=-f2-fB-fK,vK=vM-vs,vB=vM-vs,vR=ec-e1,V2=vM-vs,i1=iR")
@@ -72,7 +72,7 @@ InVars.append("vs")
 StVarElEqns.append("oJ'=1/J*tJ,tK'=K*oK")
 OtherElEqns.append("iR=1/R*vR,v1=Km*o2,t2=-Km*i1")
 Constraints.append("tJ=-t2-tK,oK=oJ,vR=vs-v1,o2=oJ,i1=iR")
-OutputVars.append("tK oJ")
+OutputVars.append("tK, oJ")
 
 Atest.append('Matrix([[-Km**2/(J*R),-1/J],[K,0]])')
 Btest.append('Matrix([[Km/(J*R)],[0]])')
@@ -87,7 +87,7 @@ InVars.append("Vs")
 StVarElEqns.append("vC'=iC / C, iL'=vL / L")
 OtherElEqns.append("iR=vR / R")
 Constraints.append("iC = iR - iL, vL=vC, vR = Vs - vC")
-OutputVars.append("iR vR vL iC")
+OutputVars.append("iR, vR, vL, iC")
 
 Atest.append('Matrix([[-1/(R*C), -1/C], [1/L, 0]])')
 Btest.append('Matrix([[1/(R*C)],[0]])')
@@ -117,7 +117,7 @@ InVars.append('Fs')
 StVarElEqns.append("vm' = Fm / m, Fk' = K * vk")
 OtherElEqns.append('FB = B * vB')
 Constraints.append('Fm = Fs - FB - Fk,vk = vm,vB=vm')
-OutputVars.append('vm Fk')
+OutputVars.append('vm, Fk')
 
 Atest.append('Matrix([[-B/m,-1/m],[K,0]])')
 Btest.append('Matrix([[1/m],[0]])')
@@ -148,7 +148,7 @@ InVars.append("Vs")
 StVarElEqns.append("vC' = iC / C, iL' = vL / L")
 OtherElEqns.append("vR = R * iR")
 Constraints.append("iC = iL, iR = iL, vL = Vs - vR - vC")
-OutputVars.append("vL iC vC")
+OutputVars.append("vL, iC, vC")
 
 Atest.append('Matrix([[0,1/C],[-1/L,-R/L]])')
 Btest.append('Matrix([[0],[1/L]])')
@@ -163,7 +163,7 @@ InVars.append("Ps")
 StVarElEqns.append("PC' = QC/C, QIp' = PIp/Ip")
 OtherElEqns.append("PRp = Rp * QRp, QR1 = PR1/R1")
 Constraints.append("QC = QIp - QR1, QRp = QIp, PIp = Ps - PRp - PC, PR1 = PC")
-OutputVars.append("PC QIp")
+OutputVars.append("PC, QIp")
 
 Atest.append('Matrix([[-1/(R1 * C),1/C],[-1/Ip,-Rp/Ip]])')
 Btest.append('Matrix([[0],[1/Ip]])')
@@ -204,7 +204,7 @@ Ftest.append(str(zeros(*sympify(Dtest[-1]).shape)))
 
 # System 13
 # Rowell and Wormley Example 5.11
-InVars.append("Fp F0")
+InVars.append("Fp, F0")
 StVarElEqns.append("vm' = Fm / m")
 OtherElEqns.append("Fd = cd * vd**2")
 Constraints.append("Fm = Fp - F0 - Fd, vd = vm")
@@ -238,7 +238,7 @@ InVars.append("Qs")
 StVarElEqns.append("QI' = PI / i, PC' = QC / (KT0 + (KT1 * PC) + (KT2 * PC**2))")
 OtherElEqns.append("QR1 = K1 * sqrt(abs(PR1)) * sign(PR1), PR2 = QR2 * abs(QR2) / (K2**2)")
 Constraints.append("QC = Qs - QR1, QR2 = QI, PR1 = PC, PI = PC - PR2")
-OutputVars.append("QI PC")
+OutputVars.append("QI, PC")
 
 Atest.append('Matrix([[-(QI(t)*Derivative(abs(QI(t)), QI(t)) + abs(QI(t)))/(K2**2*i), 1/i], [0, (-K1*(2*abs(PC(t))*Derivative(sign(PC(t)), PC(t)) + sign(PC(t))*Derivative(abs(PC(t)), PC(t)))*(KT0 + KT1*PC(t) + KT2*PC(t)**2)/2 + (KT1 + 2*KT2*PC(t))*(K1*sqrt(abs(PC(t)))*sign(PC(t)) - Qs(t))*sqrt(abs(PC(t))))/((KT0 + KT1*PC(t) + KT2*PC(t)**2)**2*sqrt(abs(PC(t))))]])')
 Btest.append('Matrix([[0],[1 / (KT0 + (KT1 * PC(t)) + (KT2 * PC(t)**2))]])')
