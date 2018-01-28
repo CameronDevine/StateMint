@@ -3,23 +3,23 @@ from sympy import latex, octave_code, mathematica_code, zeros, Function
 from StateModelRnD import find as StateModelFind
 import json
 
-nocode = {'LaTeX': [], 'Matlab': ['StateVec', 'OutputVec', 'TF', 'OutEq', 'StateEq'], 'Mathematica': ['StateVec', 'OutputVec', 'TF'], 'Python': ['StateVec', 'OutputVec', 'TF']}
+nocode = {'LaTeX': [], 'Matlab': ['StateVec', 'OutputVec', 'TF', 'OutEq', 'StateEq', 'InputVec'], 'Mathematica': ['StateVec', 'OutputVec', 'TF', 'InputVec'], 'Python': ['StateVec', 'OutputVec', 'TF', 'InputVec']}
 
 converter = {'LaTeX': latex, 'Matlab': octave_code, 'Mathematica': (lambda x: mathematica_code(x.tolist())), 'Python': (lambda x: str(x.tolist()))}
 
 def handler(event, context):
 	try:
 		data = event["queryStringParameters"]
-		print data
+		#print data
 		model = StateModelFind(data["InVars"], data["StVarElEqns"], data["OtherElEqns"], data["Constraints"], data["OutputVars"])
-		print "Model Created"
+		#print "Model Created"
 		body = {'LaTeX': {}, 'Matlab': {}, 'Mathematica': {}, 'Python': {}}
 		for key in model:
 			for lang in body:
 				if key not in nocode[lang]:
 					body[lang][key] = converter[lang](model[key])
 
-		print "Output Converted"
+		#print "Output Converted"
 
 		body['Nonstandard'] = False
 		if model['E'] != zeros(*model['E'].shape):
@@ -32,7 +32,7 @@ def handler(event, context):
 			body['Nonlinear'] = True
 			del body['Matlab']
 
-		print "Alerts Found"
+		#print "Alerts Found"
 
 		return {'statusCode': 200, 'headers': {'Access-Control-Allow-Origin': '*'}, 'body': json.dumps(body)}
 

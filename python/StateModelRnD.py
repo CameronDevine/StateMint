@@ -163,7 +163,7 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	Constraints = condition_subs(Constraints)
 
-	print "Symbolic Expressions Created"
+	#print "Symbolic Expressions Created"
 
 	StVars = get_st_vars(StVarElEqns)
 
@@ -171,7 +171,7 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	SecVars = get_sec_vars(Constraints)
 
-	print "Variable Collected"
+	#print "Variable Collected"
 
 	func_subs = get_func_subs(StVars, InVars, PriVars, SecVars)
 
@@ -185,7 +185,7 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	SecVars = sub_list_list(SecVars, func_subs)
 
-	print "Functions Created"
+	#print "Functions Created"
 
 	Constraints = sub_sub(Constraints, func_subs)
 
@@ -201,7 +201,7 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	OutputEqsFinal = sub_list_list(sub_list_list(sub_list_list(OutputVars, Constraints), E3), state_eq_subs(StateEqsFinal, StVars))
 
-	print "Equations Solved"
+	#print "Equations Solved"
 
 	A = make_matrix(StateEqsFinal, StVars)
 	B = make_matrix(StateEqsFinal, InVars)
@@ -213,14 +213,15 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	Bp = A * E + B
 	Dp = C * E + D
 
-	print "Matricies Created"
+	#print "Matricies Created"
 
 	TF = make_mat(make_tf(A, Bp, C, Dp, F))
 
-	print "Transfer Function Found"
+	#print "Transfer Function Found"
 
 	StVec = make_vec(StVars)
 	OutVec = make_vec(OutputVars)
+	InVec = make_vec(InVars)
 	
 	StateEqsFinalMat = make_mat(StateEqsFinal)
 	OutputEqsFinalMat = make_mat(OutputEqsFinal)
@@ -233,4 +234,4 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 				pprint(simplify(eq))
 			print "--------------------------------"
 
-	return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat}
+	return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat, 'InputVec': InVec}
