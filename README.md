@@ -1,5 +1,7 @@
 # State Model RnD
 
+[![Build Status](https://travis-ci.org/CameronDevine/StateModelRnD.svg?branch=master)](https://travis-ci.org/CameronDevine/StateModelRnD)
+
 This library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality but was ported to allow it to be run using an AWS Lambda function, allowing anyone to run the code without having Python/sympy or Mathematica installed.
 
 ## Installation
