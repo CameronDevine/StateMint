@@ -4,5 +4,6 @@ python:
 install:
   - pip install sympy
 script:
+  - ls
   - cd python
   - python TestModules.py
