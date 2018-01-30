@@ -345,7 +345,6 @@ class TestStateModelRnD(unittest.TestCase):
 		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
 		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
 
-	@unittest.expectedFailure
 	def testSystem15(self):
 		'''Rowell and Wormley Example 5.13'''
 		InVars = "Qs"
