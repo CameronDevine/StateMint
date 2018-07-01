@@ -1,8 +1,34 @@
 from sympy import *
 import StateModelRnD
-import unittest
+import unittest	
 
-class TestStateModelRnD(unittest.TestCase):	
+class TestStateModelRnD(unittest.TestCase):
+
+	def assertMatrixEqual(self, name, test, true):
+		if test is not Matrix:
+			test = sympify(test)
+		if true is not Matrix:
+			true = sympify(true)
+		self.assertEqual(
+			simplify(test - true),
+			zeros(*true.shape),
+			'Bad {} matrix,\n{}\nNot equal to,\n{}'.format(
+				name,
+				pretty(test, use_unicode = False),
+				pretty(true, use_unicode = False)))
+
+	def assertEquationEqual(self, name, test, true):
+		if test is not Matrix:
+			test = sympify(test)
+		if true is not Matrix:
+			true = sympify(true)
+		self.assertEqual(
+			simplify(test - true),
+			zeros(*true.shape),
+			'Bad {} equation,\n{}\nNot equal to,\n{}'.format(
+				name,
+				pretty(test, use_unicode = False),
+				pretty(true, use_unicode = False)))
 
 	def testSystem1(self):
 		'''Garbini's Test Suite Quarter Car Model'''
@@ -22,14 +48,13 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
-	@unittest.expectedFailure
 	def testSystem2(self):
 		'''Garbini's Test Suite DC Motor/Pulley'''
 		InVars = "vI"
@@ -38,9 +63,8 @@ class TestStateModelRnD(unittest.TestCase):
 		Constraints = "tJM=-t2-tB-t3,vR=vI-v1,o2=oJM,i1=iR,oB=oJM,t4=-tJL,o3=oJM,oJL=o4"
 		OutputVars = "oJM, oJL, iR, vR"
 
-		#Atest = 'Matrix([[(-B*n**2)/(JL+JM*n**2)]])'
-		Atest = 'Matrix([[-B/JM]])'
-		Btest = 'Matrix([[0]])'
+		Atest = 'Matrix([[-(n**2*Km**2+n**2*R*B)/(R*n**2*JM+JL*R)]])'
+		Btest = 'Matrix([[(-n**2*Km)/(R*n**2*JM+R*JL)]])'
 		Ctest = 'Matrix([[1],[1/n],[Km/R],[Km]])'
 		Dtest = 'Matrix([[0],[0],[1/R],[1]])'
 		Etest = str(zeros(*sympify(Btest).shape))
@@ -48,12 +72,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem3(self):
 		'''Garbini's Test Suite Inertial Actuator'''
@@ -72,12 +96,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem4(self):
 		'''Garbini's Test Suite ME 471 Problem'''
@@ -96,12 +120,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem5(self):
 		'''Rowell and Wormley Example 5.1'''
@@ -120,12 +144,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem6(self):
 		'''Rowell and Wormley Example 5.2'''
@@ -144,12 +168,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem7(self):
 		'''Rowell and Wormley Example 5.3'''
@@ -168,12 +192,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem8(self):
 		'''Rowell and Wormley Example 5.4'''
@@ -193,12 +217,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem9(self):
 		'''Rowell and Wormley Example 5.5'''
@@ -217,12 +241,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem10(self):
 		'''Rowell and Wormley Example 5.6'''
@@ -241,12 +265,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem11(self):
 		'''Rowell and Wormley Example 5.7'''
@@ -289,12 +313,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem13(self):
 		'''Rowell and Wormley Example 5.11'''
@@ -313,37 +337,36 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
-	@unittest.expectedFailure
 	def testSystem14(self):
 		'''Rowell and Wormley Example 5.12'''
 		InVars = "Ts"
 		StVarElEqns = "wj' = Tj / J, TK' = m*g*l*cos(theta)*wK"
 		OtherElEqns = "TB = B * wB"
-		Constraints = "TK = -Tj - TB + Ts, wB = wj, wK = wj"
+		Constraints = "Tj = -TK - TB + Ts, wB = wj, wK = wj"
 		OutputVars = "TK"
 
 		Atest = 'Matrix([[-B / J, -1 / J],[m*g*l*cos(theta), 0]])'
 		Btest = 'Matrix([[1/J],[0]])'
-		Ctest = 'Matrix([[0],[1]])'
+		Ctest = 'Matrix([[0, 1]])'
 		Dtest = 'Matrix([[0]])'
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertMatrixEqual('A', sys['A'], Atest)
+		self.assertMatrixEqual('B', sys['B'], Btest)
+		self.assertMatrixEqual('C', sys['C'], Ctest)
+		self.assertMatrixEqual('D', sys['D'], Dtest)
+		self.assertMatrixEqual('E', sys['E'], Etest)
+		self.assertMatrixEqual('F', sys['F'], Ftest)
 
 	def testSystem15(self):
 		'''Rowell and Wormley Example 5.13'''
@@ -353,21 +376,13 @@ class TestStateModelRnD(unittest.TestCase):
 		Constraints = "QC = Qs - QR1, QR2 = QI, PR1 = PC, PI = PC - PR2"
 		OutputVars = "QI, PC"
 
-		Atest = 'Matrix([[-(QI(t)*Derivative(abs(QI(t)), QI(t)) + abs(QI(t)))/(K2**2*i), 1/i], [0, (-K1*(2*abs(PC(t))*Derivative(sign(PC(t)), PC(t)) + sign(PC(t))*Derivative(abs(PC(t)), PC(t)))*(KT0 + KT1*PC(t) + KT2*PC(t)**2)/2 + (KT1 + 2*KT2*PC(t))*(K1*sqrt(abs(PC(t)))*sign(PC(t)) - Qs(t))*sqrt(abs(PC(t))))/((KT0 + KT1*PC(t) + KT2*PC(t)**2)**2*sqrt(abs(PC(t))))]])'
-		Btest = 'Matrix([[0],[1 / (KT0 + (KT1 * PC(t)) + (KT2 * PC(t)**2))]])'
-		Ctest = 'eye(2)'
-		Dtest = str(zeros(*sympify(Btest).shape))
-		Etest = str(zeros(*sympify(Btest).shape))
-		Ftest = str(zeros(*sympify(Dtest).shape))
+		StateTest = 'Matrix([[(1/i)*(PC(t)-(1/K2**2)*QI(t)*abs(QI(t)))],[1/(KT0+KT1*PC(t)+KT2*PC(t)**2)*(Qs(t)-K1*sqrt(abs(PC(t)))*sign(PC(t)))]])'
+		OutputTest = 'Matrix([[QI(t)],[PC(t)]])'
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertEquationEqual('State', sys['StateEq'], StateTest)
+		self.assertEquationEqual('Output', sys['OutEq'], OutputTest)
 
 if __name__ == '__main__':
 	unittest.main()

@@ -1,150 +1,33 @@
 # Import everything from the sympy library.
 from sympy import *
-# Import the copy library.
-import copy
+
+p = False
 
 # Define the symbols t and s.
 t, s = symbols('t s')
 # Define a dummy variable named dummy.
 dummy = symbols('dummy')
 
-def condition_vec(string):
-	string = string.replace(' ', '').split(',')
-	vec = []
-	for el in string:
-		vec.append(sympify(el + '(t)'))
-	return vec
+def sympify_vec(string):
+	return [sympify(el + '(t)') for el in string.split(',')]
 
-def condition_eq(string):
+def sympify_eqs(string):
 	if len(string) == 0:
 		return []
-	else:
-		string = string.replace("'", "(t).diff(t)").split(',')
-		eqs = []
-		for el in string:
-			eqs.append(sympify('Eq(' + el.replace('=', ',') + ')'))
-		return eqs
-
-def condition_subs(string):
-	string = string.replace("'", "(t).diff(t)").split(',')
-	subs = []
-	for el in string:
-		eqn = sympify('Eq(' + el.replace('=', ',') + ')')
-		subs.append([eqn.lhs, eqn.rhs])
-	return subs
-
-def sub_list_list(eqs, subs):
-	eqr = []
-	for eq in eqs:
-		eqt = eq
-		for sub in subs:
-			eqt = eqt.subs(sub[0], sub[1])
-		eqr.append(eqt)
-	return eqr
-
-def eq_to_sub(eqs):
-	subs = []
-	for eq in eqs:
-		subs.append([eq.lhs, eq.rhs])
-	return subs
-
-def get_st_vars(eqns):
-	vars = []
-	for eqn in eqns:
-		vars.append(integrate(eqn.lhs, t))
-	return vars
-
-def get_pri_vars(eqns):
-	vars = []
-	for eqn in eqns:
-		vars.append(eqn.lhs)
-	return vars
-
-def get_sec_vars(subs):
-	vars = []
-	for sub in subs:
-		vars.append(sub[0])
-	return vars
-
-def get_func_subs(func1, func2, var1, var2):
-	subs = []
-	for f in func1:
-		subs.append([sympify(str(f).replace('(t)', '')), f])
-	for f in func2:
-		subs.append([sympify(str(f).replace('(t)', '')), f])
-	for var in var1:
-		subs.append([var, sympify(str(var) + '(t)')])
-	for var in var2:
-		subs.append([var, sympify(str(var) + '(t)')])
-	return subs
-
-def sub_sub(subs1, subs2):
-	subs = []
-	for sub1 in subs1:
-		sub = sub1
-		for sub2 in subs2:
-			sub[0] = sub[0].subs(sub2[0], sub2[1])
-			sub[1] = sub[1].subs(sub2[0], sub2[1])
-		subs.append(sub)
-	return subs
-
-def sub_sub_to(subs):
-	subs_r = []
-	for i in range(len(subs)):
-		sub = copy.deepcopy(subs)[i]
-		for j in range(len(subs)):
-			if i != j:
-				sub[1] = sub[1].subs(subs[j][0], subs[j][1])
-		subs_r.append(sub)
-	return subs_r
-
-def get_rhs(eqs):
-	f = []
-	for eq in eqs:
-		f.append(eq.rhs)
-	return f
+	return [sympify('Eq(' + el.replace('=', ',') + ')') for el in string.replace('\'', '(t).diff(t)').split(',')]
 
 def make_matrix(eqs, vars, D = False):
-	n = len(eqs)
-	m = len(vars)
-	M = zeros(n,m)
-	for i in range(n):
-		for j in range(m):
+	M = zeros(len(eqs), len(vars))
+	for i in range(len(eqs)):
+		for j in range(len(vars)):
 			if D:
 				M[i,j] = simplify(diff(eqs[i].subs(vars[j].diff(t), dummy), dummy))
 			else:
 				M[i,j] = simplify(diff(eqs[i], vars[j]))
 	return M
 
-def make_tf(A, Bp, C, Dp, F):
-	return C * (s * eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s
-
-def solve_state(eqs, vars):
-	eqr = []
-	for i in range(len(vars)):
-		eqr.append(simplify(solve(eqs[i].doit(), vars[i].diff(t))[0]))
-	return eqr
-
-def state_eq_subs(eqs, vars):
-	subs = []
-	for i in range(len(vars)):
-		subs.append([vars[i].diff(t), eqs[i]])
-	return subs 
-
-def sub_solve(subs):
-	rsubs = []
-	for sub in subs:
-		eq = solve(Eq(sub[0], sub[1]), sub[0])[0]
-		rsubs.append([sub[0], eq])
-	return rsubs
-
 def make_vec(vars):
-	for i in range(len(vars)):
-		vars[i] = sympify(str(vars[i]).replace('(t)', ''))
-	return Matrix([vars]).T
-
-def make_mat(eqs):
-	return Matrix([eqs]).T
+	return [sympify(str(v).replace('(t)', '')) for v in vars]
 
 # The main find state space model function.
 def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
@@ -153,53 +36,98 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	# OtherElEqns: A string of non-state elemental equations seperated by commas, using ' for derivative, and = for equality.
 	# Constrains: A string of constraint (continuity and compatability) equations seperated by commas.
 	# 
-	InVars = condition_vec(InVars)
+	InVars = sympify_vec(InVars)
+	if p: print 'InVars:\n', InVars
 
-	OutputVars = condition_vec(OutputVars)
+	OutputVars = sympify_vec(OutputVars)
+	if p: print 'OutputVars:\n', OutputVars
 
-	StVarElEqns = condition_eq(StVarElEqns)
+	StVarElEqns = sympify_eqs(StVarElEqns)
+	if p: print 'StVarElEqns:\n', StVarElEqns
 
-	OtherElEqns = condition_eq(OtherElEqns)
+	OtherElEqns = sympify_eqs(OtherElEqns)
+	if p: print 'OtherElEqns:\n', OtherElEqns
 
-	Constraints = condition_subs(Constraints)
+	Constraints = sympify_eqs(Constraints)
+	if p: print 'Constraints:\n', Constraints
 
 	#print "Symbolic Expressions Created"
 
-	StVars = get_st_vars(StVarElEqns)
+	StVars = [integrate(eq.lhs, t) for eq in StVarElEqns]
+	if p: print 'StVars:\n', StVars
 
-	PriVars = get_pri_vars(OtherElEqns)
+	PriVars = [eq.lhs for eq in OtherElEqns]
+	if p: print 'PriVars:\n', PriVars
 
-	SecVars = get_sec_vars(Constraints)
+	SecVars = [eq.lhs for eq in Constraints]
+	if p: print 'SecVars:\n', SecVars
 
 	#print "Variable Collected"
 
-	func_subs = get_func_subs(StVars, InVars, PriVars, SecVars)
+	func_subs = dict([(sympify(str(var).replace('(t)', '')), var) if '(t)' in str(var) else (var, sympify(str(var) + '(t)')) for var in InVars + StVars + PriVars + SecVars])
+	if p: print 'func_subs:\n', func_subs
 
-	StVarElEqns = sub_list_list(StVarElEqns, func_subs)
+	StVarElEqns = [eq.subs(func_subs) for eq in StVarElEqns]
+	if p: print 'StVarElEqns:\n', StVarElEqns
 
-	OtherElEqns = sub_list_list(OtherElEqns, func_subs)
+	OtherElEqns = [eq.subs(func_subs) for eq in OtherElEqns]
+	if p: print 'OtherElEqns:\n', OtherElEqns
 
-	StVars = sub_list_list(StVars, func_subs)
+	StVars = [eq.subs(func_subs) for eq in StVars]
+	if p: print 'StVars:\n', StVars
 
-	PriVars = sub_list_list(PriVars, func_subs)
+	PriVars = [eq.subs(func_subs) for eq in PriVars]
+	if p: print 'PriVars:\n', PriVars
 
-	SecVars = sub_list_list(SecVars, func_subs)
+	SecVars = [eq.subs(func_subs) for eq in SecVars]
+	if p: print 'SecVars:\n', SecVars
 
 	#print "Functions Created"
 
-	Constraints = sub_sub(Constraints, func_subs)
+	Constraints = [eq.subs(func_subs) for eq in Constraints]
+	if p: print 'Constraints:\n', Constraints
 
-	St2 = sub_list_list(StVarElEqns, Constraints)
+	DConstraints_sub = dict(
+		[(const.lhs, const.rhs) for const in Constraints]
+		+[(const.lhs.diff(t), const.rhs.diff(t)) for const in Constraints if const.lhs.diff(t) != 0])
+	if p: print 'DConstraints_sub:\n', DConstraints_sub
 
-	Co2 = sub_list_list(OtherElEqns, Constraints)
+	St2 = [Eq(eq.lhs, eq.rhs.subs(DConstraints_sub)) for eq in StVarElEqns]
+	if p: print 'St2:\n', St2
 
-	E3 = sub_solve(sub_sub_to(eq_to_sub(Co2)))
+	Co2 = [eq.subs(DConstraints_sub) for eq in OtherElEqns]
+	if p: print 'Co2:\n', Co2
 
-	StateEquation = sub_list_list(St2, E3)
+	E3 = {}
+	for eq1 in Co2:
+		eq = eq1.copy()
+		for eq2 in Co2:
+			if eq1 != eq2:
+				eq = eq.subs(eq2.lhs, eq2.rhs)
+		E3[eq.lhs] = solve(eq, eq.lhs)[0]
+	if p: print 'E3:\n', E3
 
-	StateEqsFinal = solve_state(StateEquation, StVars)
+	StateEquation = St2
+	_StateEquation = None
+	while StateEquation != _StateEquation:
+		_StateEquation = StateEquation
+		StateEquation = [eq.subs(E3) for eq in StateEquation]
+	if p: print 'StateEquation:\n', StateEquation
 
-	OutputEqsFinal = sub_list_list(sub_list_list(sub_list_list(OutputVars, Constraints), E3), state_eq_subs(StateEqsFinal, StVars))
+	StateEqsFinal = [simplify(solve(eq.doit(), st.diff(t))[0]) for (eq, st) in zip(StateEquation, StVars)]
+	if p: print 'StateEqsFinal:\n', StateEqsFinal
+
+	OutputSubs = dict([(st.diff(t), eq) for (eq, st) in zip(StateEqsFinal, StVars)])
+	OutputSubs.update(DConstraints_sub)
+	OutputSubs.update(E3)
+	if p: print 'OutputSubs:\n', OutputSubs
+
+	OutputEqsFinal = OutputVars
+	_OutputEqsFinal = None
+	while OutputEqsFinal != _OutputEqsFinal:
+		_OutputEqsFinal = OutputEqsFinal
+		OutputEqsFinal = [eq.subs(OutputSubs) for eq in OutputEqsFinal]
+	if p: print 'OutputEqsFinal:\n', OutputEqsFinal
 
 	#print "Equations Solved"
 
@@ -207,15 +135,15 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	B = make_matrix(StateEqsFinal, InVars)
 	C = make_matrix(OutputEqsFinal, StVars)
 	D = make_matrix(OutputEqsFinal, InVars)
-	E = make_matrix(StateEqsFinal, InVars, D = True)
-	F = make_matrix(OutputEqsFinal, InVars, D = True)
+	E = make_matrix(StateEqsFinal, InVars, True)
+	F = make_matrix(OutputEqsFinal, InVars, True)
 
 	Bp = A * E + B
 	Dp = C * E + D
 
 	#print "Matricies Created"
 
-	TF = make_mat(make_tf(A, Bp, C, Dp, F))
+	TF = Matrix([C * (s * eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s]).T
 
 	#print "Transfer Function Found"
 
@@ -223,15 +151,15 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	OutVec = make_vec(OutputVars)
 	InVec = make_vec(InVars)
 	
-	StateEqsFinalMat = make_mat(StateEqsFinal)
-	OutputEqsFinalMat = make_mat(OutputEqsFinal)
-
-	to_print = []
-	if len(to_print) != 0:
-		print
-		for var in to_print:
-			for eq in var:
-				pprint(simplify(eq))
-			print "--------------------------------"
+	StateEqsFinalMat = Matrix([StateEqsFinal]).T
+	OutputEqsFinalMat = Matrix([OutputEqsFinal]).T
 
 	return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat, 'InputVec': InVec}
+
+if __name__ == '__main__':
+	find(
+		"vS",
+		"vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT",
+		"fBS = BS * vBS, fBT = BT * vBT",
+		"fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW",
+		"vMB, vMW, fKS, fKT, fBS, fBT")
