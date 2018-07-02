@@ -1,0 +1,33 @@
+import setuptools
+
+setuptools.setup(
+	name="StateModelRnD",
+	version="0.0.0",
+	author="Cameron Devine",
+	author_email="camdev@uw.edu",
+	description="A library for finding State Space models of dynamic systems.",
+	long_description="This library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality.",
+	long_description_content_type="text/markdown",
+	url="https://github.com/CameronDevine/StateModelRnD",
+	packages=setuptools.find_packages(),
+	python_requires=">=2.7",
+	install_requires=("sympy",),
+	classifiers=(
+		"Development Status :: 4 - Beta",
+		"Framework :: Jupyter",
+		"Intended Audience :: Education",
+		"Intended Audience :: Science/Research",
+		"License :: OSI Approved :: BSD License",
+		"Programming Language :: Python :: 2",
+		"Programming Language :: Python :: 2.7",
+		"Programming Language :: Python :: 3",
+		"Programming Language :: Python :: 3.0",
+		"Programming Language :: Python :: 3.1",
+		"Programming Language :: Python :: 3.2",
+		"Programming Language :: Python :: 3.3",
+		"Programming Language :: Python :: 3.4",
+		"Programming Language :: Python :: 3.5",
+		"Programming Language :: Python :: 3.6",
+		"Operating System :: OS Independent",
+	),
+)
