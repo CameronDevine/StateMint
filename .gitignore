@@ -2,3 +2,6 @@
 apiGateway-js-sdk
 *.rnd
 *.zip
+*.egg-info
+build
+dist
