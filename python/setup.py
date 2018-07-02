@@ -11,7 +11,7 @@ setuptools.setup(
 	url="https://github.com/CameronDevine/StateModelRnD",
 	packages=setuptools.find_packages(),
 	python_requires=">=2.7",
-	install_requires=("sympy",),
+	install_requires=("sympy>=7.3",),
 	classifiers=(
 		"Development Status :: 4 - Beta",
 		"Framework :: Jupyter",
