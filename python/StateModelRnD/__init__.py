@@ -1,7 +1,7 @@
 # Import everything from the sympy library.
 from sympy import *
 
-p = False
+init_printing()
 
 # Define the symbols t and s.
 t, s = symbols('t s')
@@ -46,7 +46,7 @@ class output:
 	InputVec = None
 
 # The main find state space model function.
-def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
+def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	# InVars: A string of input variable seperated by spaces.
 	# StVarElEqns: A string of state variable elemental equations seperated by commas, using ' for derivative, and = for equality.
 	# OtherElEqns: A string of non-state elemental equations seperated by commas, using ' for derivative, and = for equality.
