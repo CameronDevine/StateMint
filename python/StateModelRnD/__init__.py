@@ -29,6 +29,22 @@ def make_matrix(eqs, vars, D = False):
 def make_vec(vars):
 	return [sympify(str(v).replace('(t)', '')) for v in vars]
 
+class output:
+	A = None
+	B = None
+	C = None
+	D = None
+	E = None
+	F = None
+	Bp = None
+	Dp = None
+	TF = None
+	StateVec = None
+	OutputVec = None
+	StateEq = None
+	OutEq = None
+	InputVec = None
+
 # The main find state space model function.
 def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	# InVars: A string of input variable seperated by spaces.
@@ -131,4 +147,21 @@ def find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	StateEqsFinalMat = Matrix([StateEqsFinal]).T
 	OutputEqsFinalMat = Matrix([OutputEqsFinal]).T
 
-	return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat, 'InputVec': InVec}
+	result = output()
+	result.A = A
+	result.B = B
+	result.C = C
+	result.D = D
+	result.E = E
+	result.F = F
+	result.Bp = Bp
+	result.Dp = Dp
+	result.TF = TF
+	result.StateVec = StVec
+	result.OutputVec = OutVec
+	result.StateEq = StateEqsFinalMat
+	result.OutEq = OutputEqsFinalMat
+	result.InputVec = InVec
+
+	#return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat, 'InputVec': InVec}
+	return result

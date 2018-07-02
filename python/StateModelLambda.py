@@ -11,7 +11,7 @@ def handler(event, context):
 	try:
 		data = event["queryStringParameters"]
 		#print data
-		model = StateModelFind(data["InVars"], data["StVarElEqns"], data["OtherElEqns"], data["Constraints"], data["OutputVars"])
+		model = vars(StateModelFind(data["InVars"], data["StVarElEqns"], data["OtherElEqns"], data["Constraints"], data["OutputVars"]))
 		#print "Model Created"
 		body = {'LaTeX': {}, 'Matlab': {}, 'Mathematica': {}, 'Python': {}}
 		for key in model:

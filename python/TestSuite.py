@@ -48,12 +48,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem2(self):
 		'''Garbini's Test Suite DC Motor/Pulley'''
@@ -72,12 +72,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem3(self):
 		'''Garbini's Test Suite Inertial Actuator'''
@@ -96,12 +96,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem4(self):
 		'''Garbini's Test Suite ME 471 Problem'''
@@ -120,12 +120,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem5(self):
 		'''Rowell and Wormley Example 5.1'''
@@ -144,12 +144,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem6(self):
 		'''Rowell and Wormley Example 5.2'''
@@ -168,12 +168,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem7(self):
 		'''Rowell and Wormley Example 5.3'''
@@ -192,12 +192,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem8(self):
 		'''Rowell and Wormley Example 5.4'''
@@ -217,12 +217,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem9(self):
 		'''Rowell and Wormley Example 5.5'''
@@ -241,12 +241,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem10(self):
 		'''Rowell and Wormley Example 5.6'''
@@ -265,12 +265,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem11(self):
 		'''Rowell and Wormley Example 5.7'''
@@ -289,12 +289,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEqual(simplify(sys['A'] - sympify(Atest)), zeros(*sys['A'].shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys['A'], Atest))
-		self.assertEqual(simplify(sys['B'] - sympify(Btest)), zeros(*sys['B'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['B'], Btest))
-		self.assertEqual(simplify(sys['C'] - sympify(Ctest)), zeros(*sys['C'].shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys['C'], Ctest))
-		self.assertEqual(simplify(sys['D'] - sympify(Dtest)), zeros(*sys['D'].shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys['D'], Dtest))
-		self.assertEqual(simplify(sys['E'] - sympify(Etest)), zeros(*sys['E'].shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys['E'], Etest))
-		self.assertEqual(simplify(sys['F'] - sympify(Ftest)), zeros(*sys['F'].shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys['F'], Etest))
+		self.assertEqual(simplify(sys.A - sympify(Atest)), zeros(*sys.A.shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys.A, Atest))
+		self.assertEqual(simplify(sys.B - sympify(Btest)), zeros(*sys.B.shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys.B, Btest))
+		self.assertEqual(simplify(sys.C - sympify(Ctest)), zeros(*sys.C.shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys.C, Ctest))
+		self.assertEqual(simplify(sys.D - sympify(Dtest)), zeros(*sys.D.shape), 'Bad D matrix,\n{}\nNot equal to,\n{}'.format(sys.D, Dtest))
+		self.assertEqual(simplify(sys.E - sympify(Etest)), zeros(*sys.E.shape), 'Bad E matrix,\n{}\nNot equal to,\n{}'.format(sys.E, Etest))
+		self.assertEqual(simplify(sys.F - sympify(Ftest)), zeros(*sys.F.shape), 'Bad F matrix,\n{}\nNot equal to,\n{}'.format(sys.F, Etest))
 
 	def testSystem12(self):
 		'''Rowell and Wormley Example 5.9'''
@@ -313,12 +313,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem13(self):
 		'''Rowell and Wormley Example 5.11'''
@@ -337,12 +337,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem14(self):
 		'''Rowell and Wormley Example 5.12'''
@@ -361,12 +361,12 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertMatrixEqual('A', sys['A'], Atest)
-		self.assertMatrixEqual('B', sys['B'], Btest)
-		self.assertMatrixEqual('C', sys['C'], Ctest)
-		self.assertMatrixEqual('D', sys['D'], Dtest)
-		self.assertMatrixEqual('E', sys['E'], Etest)
-		self.assertMatrixEqual('F', sys['F'], Ftest)
+		self.assertMatrixEqual('A', sys.A, Atest)
+		self.assertMatrixEqual('B', sys.B, Btest)
+		self.assertMatrixEqual('C', sys.C, Ctest)
+		self.assertMatrixEqual('D', sys.D, Dtest)
+		self.assertMatrixEqual('E', sys.E, Etest)
+		self.assertMatrixEqual('F', sys.F, Ftest)
 
 	def testSystem15(self):
 		'''Rowell and Wormley Example 5.13'''
@@ -381,8 +381,8 @@ class TestStateModelRnD(unittest.TestCase):
 
 		sys = StateModelRnD.find(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
-		self.assertEquationEqual('State', sys['StateEq'], StateTest)
-		self.assertEquationEqual('Output', sys['OutEq'], OutputTest)
+		self.assertEquationEqual('State', sys.StateEq, StateTest)
+		self.assertEquationEqual('Output', sys.OutEq, OutputTest)
 
 if __name__ == '__main__':
 	unittest.main()
