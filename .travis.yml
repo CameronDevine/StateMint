@@ -9,30 +9,20 @@ python:
   - "3.6-dev"
   - "3.7-dev"
 env:
-  - SV=""
-  - SV="==1.1.1"
-  - SV="==1.1"
-  - SV="==1.0"
-  - SV="==0.7.6.1"
-  - SV="==0.7.6"
-  - SV="==0.7.5"
-  - SV="==0.7.4.1"
-  - SV="==0.7.4"
-  - SV="==0.7.3"
-  - SV="==0.7.2"
-  - SV="==0.7.1"
-  - SV="==0.7.0"
-  - SV="==0.6.6"
-  - SV="==0.6.5"
-  - SV="==0.6.4"
-  - SV="==0.6.3"
-  - SV="==0.6.2"
-  - SV="==0.6.1"
-  - SV="==0.6.0"
-  - SV="==0.5.15"
-  - SV="==0.5.13-hg"
+  - SYMPYVERSION=""
+  - SYMPYVERSION="==1.1"
+  - SYMPYVERSION="==1.0"
+  - SYMPYVERSION="==0.7.6.1"
+  - SYMPYVERSION="==0.7.6"
+  - SYMPYVERSION="==0.7.5"
+  - SYMPYVERSION="==0.7.4.1"
+  - SYMPYVERSION="==0.7.4"
+matrix:
+  include:
+    - python: "2.7"
+      env: SYMPYVERSION="==0.7.3"
 install:
-  - pip install sympy$SV
+  - pip install sympy$SYMPYVERSION
 script:
   - cd python
   - python TestSuite.py
