@@ -5,3 +5,4 @@ apiGateway-js-sdk
 *.egg-info
 build
 dist
+.ipynb_checkpoints
