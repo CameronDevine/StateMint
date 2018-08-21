@@ -35,7 +35,7 @@ Steps 6 and 7 can be repeated after running `git pull` to update the Lambda func
 
 ### Manual AWS Lambda Installation
 
-The AWS Lambda function can also be installed manually. Instructions on how to do this are located in the `MANUAL_INSTALL.md` file.
+The AWS Lambda function can also be installed manually. Instructions on how to do this are located in the [`MANUAL_INSTALL.md`](MANUAL_INSTALL.md) file.
 
 ## Credits
 
