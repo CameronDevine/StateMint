@@ -1,5 +1,7 @@
 from sympy import *
 import StateModelRnD
+import StateModelRnD.to_numpy
+import numpy as np
 import unittest	
 
 class TestStateModelRnD(unittest.TestCase):
@@ -552,6 +554,80 @@ class TestStateModelRnD(unittest.TestCase):
 
 		self.assertEquationEqual('State', sys.StateEq, StateTest)
 		self.assertEquationEqual('Output', sys.OutEq, OutputTest)
+
+class TestToArray(unittest.TestCase):
+
+	def testMatrix1(self):
+		matrix = sympify('Matrix([[-BS/MB,BS/MB,1/MB,0],[BS/MW,(-BS-BT)/MW,-1/MW,1/MW],[-KS,KS,0,0],[0,-KT,0,0]])')
+		values = {
+			'BS': 10,
+			'MB': 5,
+			'MW': 2,
+			'BT': 15,
+			'KS': 30,
+			'KT': 20}
+		array = StateModelRnD.to_numpy.array(matrix, values)
+		test = np.array([
+			[-2, 2, 0.2, 0],
+			[5, -12.5, -0.5, 0.5],
+			[-30, 30, 0, 0],
+			[0, -20, 0, 0]])
+		self.assertEqual(matrix.shape, array.shape)
+		self.assertTrue(isinstance(array, np.ndarray))
+		self.assertTrue(np.all(array == test), 'Array\n{}\nIs not the correct matrix:\n{}'.format(array, test))
+
+	def testMatrix2(self):
+		matrix = sympify('Matrix([[0],[BT/MW],[0],[KT]])')
+		values = {
+			'MW': 2,
+			'BT': 15,
+			'KT': 20}
+		array = StateModelRnD.to_numpy.array(matrix, values)
+		test = np.array([
+			[0],
+			[7.5],
+			[0],
+			[20]])
+		self.assertEqual(matrix.shape, array.shape)
+		self.assertTrue(isinstance(array, np.ndarray))
+		self.assertTrue(np.all(array == test), 'Array\n{}\nIs not the correct matrix:\n{}'.format(array, test))
+
+class TestToMatrix(unittest.TestCase):
+
+	def testMatrix1(self):
+		matrix = sympify('Matrix([[-BS/MB,BS/MB,1/MB,0],[BS/MW,(-BS-BT)/MW,-1/MW,1/MW],[-KS,KS,0,0],[0,-KT,0,0]])')
+		values = {
+			'BS': 10,
+			'MB': 5,
+			'MW': 2,
+			'BT': 15,
+			'KS': 30,
+			'KT': 20}
+		array = StateModelRnD.to_numpy.matrix(matrix, values)
+		test = np.matrix([
+			[-2, 2, 0.2, 0],
+			[5, -12.5, -0.5, 0.5],
+			[-30, 30, 0, 0],
+			[0, -20, 0, 0]])
+		self.assertEqual(matrix.shape, array.shape)
+		self.assertTrue(isinstance(array, np.matrix))
+		self.assertTrue(np.all(array == test), 'Matrix\n{}\nIs not the correct matrix:\n{}'.format(array, test))
+
+	def testMatrix2(self):
+		matrix = sympify('Matrix([[0],[BT/MW],[0],[KT]])')
+		values = {
+			'MW': 2,
+			'BT': 15,
+			'KT': 20}
+		array = StateModelRnD.to_numpy.matrix(matrix, values)
+		test = np.matrix([
+			[0],
+			[7.5],
+			[0],
+			[20]])
+		self.assertEqual(matrix.shape, array.shape)
+		self.assertTrue(isinstance(array, np.ndarray))
+		self.assertTrue(np.all(array == test), 'Matrix\n{}\nIs not the correct matrix:\n{}'.format(array, test))
 
 if __name__ == '__main__':
 	unittest.main()
