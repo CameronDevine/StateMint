@@ -6,6 +6,18 @@
 Welcome to StateModelRnD's documentation!
 =========================================
 
+his library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality but was ported to allow it to be run using an AWS Lambda function, allowing anyone to run the code without having Python/sympy or Mathematica installed.
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Documentation
+=============
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -14,10 +26,3 @@ Welcome to StateModelRnD's documentation!
 	:members:
 .. automodule:: StateModelRnD.to_numpy
 	:members:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
