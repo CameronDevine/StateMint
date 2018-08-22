@@ -6,3 +6,5 @@ apiGateway-js-sdk
 build
 dist
 .ipynb_checkpoints
+html
+doctrees

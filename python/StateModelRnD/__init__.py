@@ -1,11 +1,6 @@
-# Import everything from the sympy library.
 from sympy import *
 
-init_printing()
-
-# Define the symbols t and s.
 t, s = symbols('t s')
-# Define a dummy variable named dummy.
 dummy = symbols('dummy')
 
 def sympify_vec(string):
@@ -30,28 +25,87 @@ def make_vec(vars):
 	return [sympify(str(v).replace('(t)', '')) for v in vars]
 
 class output:
+	'''
+	This class is a container in which the output from :meth:`StateModelRnD.Solve` is placed. This allows
+	The results of the solution to be easily accessed as members of the class.
+	'''
 	A = None
+	'''
+	The state matrix, :math:`A`, in equations such as, :math:`\dot{x}=Ax+Bu`.
+	'''
 	B = None
+	'''
+	The input matrix, :math:`B`, in equations such as, :math:`\dot{x}=Ax+Bu`.
+	'''
 	C = None
+	'''
+	The output matrix, :math:`C`, in equations such as, :math:`y=Cx+Du`.
+	'''
 	D = None
+	'''
+	The feedthrough matrix, :math:`D`, in equations such as, :math:`y=Cx+Du`.
+	'''
 	E = None
+	'''
+	The time derivative input matrix, :math:`E`, in equations such as, :math:`\dot{x}=Ax+Bu+E\dot{u}`.
+	'''
 	F = None
+	'''
+	The time derivative feedthrough matrix, :math:`F`, in equations such as, :math:`y=Cx+Du+F\dot{u}`.
+	'''
 	Bp = None
+	'''
+	The input matrix, :math:`B'`, in equations such as, :math:`\dot{x}'=Ax'+B'u`, where the time derivative of the input has been removed by modifying the state vector.
+	'''
 	Dp = None
+	'''
+	The feedthrough matrix, :math:`D'`, in equations such as, :math:`y=Ax'+D'u`, where the time derivative of the input has been removed by modifying the state vector.
+	'''
 	TF = None
+	'''
+	The transfer function of the system.
+	'''
 	StateVec = None
+	'''
+	The symbolic state vector :math:`x`.
+	'''
 	OutputVec = None
+	'''
+	The symbolic output vector :math:`y`.
+	'''
 	StateEq = None
+	'''
+	The full state equation, :math:`\dot{x}=f(x,y)`.
+	'''
 	OutEq = None
+	'''
+	The full output equation, :math:`y=h(x,u)`.
+	'''
 	InputVec = None
+	'''
+	The symbolic input vector :math:`u`.
+	'''
 
-# The main find state space model function.
 def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
-	# InVars: A string of input variable seperated by spaces.
-	# StVarElEqns: A string of state variable elemental equations seperated by commas, using ' for derivative, and = for equality.
-	# OtherElEqns: A string of non-state elemental equations seperated by commas, using ' for derivative, and = for equality.
-	# Constrains: A string of constraint (continuity and compatability) equations seperated by commas.
-	# 
+	'''
+	This function takes the input and output variables, along with the state, elemental, and constrain equations
+	as derived using the method in Rowell and Wormley. It returns a state space model, along with a transfer function
+	and the state and ouput equations.
+
+	:param InVars: A string with the input variables seperated by commas
+	:param StVarElEqns: A string of the state variable elemental equations with the state variables on the left hand side and with each equation seperated by commas
+	:param OtherElEqns: A string of the other elemental equations with the primary varible on the left hand side and seperated by commas
+	:param Constraints: A string of the constraint equations seperated by commas and with the secondary variables on the left hand side
+	:param OutputVars: A string of the output variables seperated by commas
+	:type InVars: str
+	:type StVarElEqns: str
+	:type OtherElEqns: str
+	:type Constraints: str
+	:type OutputVars: str
+	:returns: The model of the system in multiple forms
+	:rtype: :meth:`StateModelRnD.output`
+	'''
+
 	InVars = sympify_vec(InVars)
 
 	OutputVars = sympify_vec(OutputVars)
@@ -62,15 +116,11 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	Constraints = sympify_eqs(Constraints)
 
-	#print "Symbolic Expressions Created"
-
 	StVars = [integrate(eq.lhs, t) for eq in StVarElEqns]
 
 	PriVars = [eq.lhs for eq in OtherElEqns]
 
 	SecVars = [eq.lhs for eq in Constraints]
-
-	#print "Variable Collected"
 
 	func_subs = dict([(sympify(str(var).replace('(t)', '')), var) if '(t)' in str(var) else (var, sympify(str(var) + '(t)')) for var in InVars + StVars + PriVars + SecVars])
 
@@ -83,8 +133,6 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	PriVars = [eq.subs(func_subs) for eq in PriVars]
 
 	SecVars = [eq.subs(func_subs) for eq in SecVars]
-
-	#print "Functions Created"
 
 	Constraints = [eq.subs(func_subs) for eq in Constraints]
 
@@ -122,8 +170,6 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 		_OutputEqsFinal = OutputEqsFinal
 		OutputEqsFinal = [eq.subs(OutputSubs) for eq in OutputEqsFinal]
 
-	#print "Equations Solved"
-
 	A = make_matrix(StateEqsFinal, StVars)
 	B = make_matrix(StateEqsFinal, InVars)
 	C = make_matrix(OutputEqsFinal, StVars)
@@ -134,11 +180,7 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	Bp = A * E + B
 	Dp = C * E + D
 
-	#print "Matricies Created"
-
 	TF = Matrix([C * (s * eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s]).T
-
-	#print "Transfer Function Found"
 
 	StVec = make_vec(StVars)
 	OutVec = make_vec(OutputVars)
@@ -163,5 +205,4 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	result.OutEq = OutputEqsFinalMat
 	result.InputVec = InVec
 
-	#return {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'Bp': Bp, 'Dp': Dp, 'TF': TF, 'StateVec': StVec, 'OutputVec': OutVec, 'StateEq': StateEqsFinalMat, 'OutEq': OutputEqsFinalMat, 'InputVec': InVec}
 	return result

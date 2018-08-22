@@ -1,4 +1,4 @@
-.PHONEY: all build upload clean
+.PHONY: all build upload clean doc
 
 all: build upload clean
 
@@ -12,3 +12,6 @@ clean:
 	rm -r *.egg-info
 	rm -r dist
 	rm -r build
+
+doc:
+	sphinx-build -M html doc/ doc/build/
