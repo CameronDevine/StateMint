@@ -1,4 +1,4 @@
-.PHONY: all build upload clean doc
+.PHONY: all build upload clean docs
 
 all: build upload clean
 
