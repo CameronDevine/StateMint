@@ -13,5 +13,5 @@ clean:
 	rm -r dist
 	rm -r build
 
-doc:
-	sphinx-build -M html doc/ doc/build/
+docs:
+	sphinx-build -M html docs/ docs/build/
