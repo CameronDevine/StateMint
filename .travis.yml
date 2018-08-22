@@ -11,6 +11,7 @@ python:
 env:
   - SYMPYVERSION=""
   - SYMPYVERSION="==1.2"
+  - SYMPYVERSION="==1.1.1"
   - SYMPYVERSION="==1.1"
   - SYMPYVERSION="==1.0"
   - SYMPYVERSION="==0.7.6.1"
