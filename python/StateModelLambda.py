@@ -11,7 +11,13 @@ def handler(event, context):
 	try:
 		data = event["queryStringParameters"]
 		#print data
-		model = vars(StateModel(data["InVars"], data["StVarElEqns"], data["OtherElEqns"], data["Constraints"], data["OutputVars"]))
+		model = vars(
+			StateModel(
+				data["InVars"].split(','),
+				data["StVarElEqns"].split(','),
+				data["OtherElEqns"].split(','),
+				data["Constraints"].split(','),
+				data["OutputVars"].split(',')))
 		#print "Model Created"
 		body = {'LaTeX': {}, 'Matlab': {}, 'Mathematica': {}, 'Python': {}}
 		for key in model:

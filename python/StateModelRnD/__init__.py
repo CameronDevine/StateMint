@@ -3,13 +3,13 @@ from sympy import *
 t, s = symbols('t s')
 dummy = symbols('dummy')
 
-def sympify_vec(string):
-	return [sympify(el + '(t)') for el in string.split(',')]
+def sympify_vec(data):
+	return [sympify(el + '(t)') for el in data]
 
-def sympify_eqs(string):
-	if len(string) == 0:
+def sympify_eqs(data):
+	if len(data) == 0:
 		return []
-	return [sympify('Eq(' + el.replace('=', ',') + ')') for el in string.replace('\'', '(t).diff(t)').split(',')]
+	return [sympify('Eq(' + el.replace("'", "(t).diff(t)").replace('=', ',') + ')') for el in data]
 
 def make_matrix(eqs, vars, D = False):
 	M = zeros(len(eqs), len(vars))
@@ -92,16 +92,16 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	as derived using the method in Rowell and Wormley. It returns a state space model, along with a transfer function
 	and the state and ouput equations.
 
-	:param InVars: A string with the input variables seperated by commas
-	:param StVarElEqns: A string of the state variable elemental equations with the state variables on the left hand side and with each equation seperated by commas
-	:param OtherElEqns: A string of the other elemental equations with the primary varible on the left hand side and seperated by commas
-	:param Constraints: A string of the constraint equations seperated by commas and with the secondary variables on the left hand side
-	:param OutputVars: A string of the output variables seperated by commas
-	:type InVars: str
-	:type StVarElEqns: str
-	:type OtherElEqns: str
-	:type Constraints: str
-	:type OutputVars: str
+	:param InVars: A lost with the input variables
+	:param StVarElEqns: A list of the state variable elemental equations with the state variables on the left hand side
+	:param OtherElEqns: A list of the other elemental equations with the primary varible on the left hand side
+	:param Constraints: A list of the constraint equations with the secondary variables on the left hand side
+	:param OutputVars: A list of the output variables
+	:type InVars: list
+	:type StVarElEqns: list
+	:type OtherElEqns: list
+	:type Constraints: list
+	:type OutputVars: list
 	:returns: The model of the system in multiple forms
 	:rtype: :meth:`StateModelRnD.output`
 	'''
