@@ -10,6 +10,7 @@ python:
   - "3.7-dev"
 env:
   - SYMPYVERSION=""
+  - SYMPYVERSION="==1.2"
   - SYMPYVERSION="==1.1"
   - SYMPYVERSION="==1.0"
   - SYMPYVERSION="==0.7.6.1"
@@ -21,6 +22,11 @@ matrix:
   include:
     - python: "2.7"
       env: SYMPYVERSION="==0.7.3"
+  exclude:
+    - python: "3.3"
+      env: SYMPYVERSION="==1.2"
+    - python: "3.3"
+      env: SYMPYVERSION=""
 install:
   - pip install sympy$SYMPYVERSION
 script:
