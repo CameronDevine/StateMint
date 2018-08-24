@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: A web application to find State Space models given the elemental and constraint equations.
+Resources:
+  LmabdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: StateModelRnDdev
+      Handler: StateModelLambda.handler
+      Runtime: python2.7
+      CodeUri: lambda.zip
+      Description: The Lambda function for StateModelRnD.
+      MemorySize: 768
+      Timeout: 10
+      #Role: 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Events:
+        Solve:
+          Type: Api
+          Properties:
+            Path: /StateModelRnD
+            Method: post
+            RestApiId: !Ref API
+  API:
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      Name: StateModelRnDdev
+      StageName: stage1
+      DefinitionUri: api.json
