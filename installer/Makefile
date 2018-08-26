@@ -35,13 +35,14 @@ sdk:
 	ApiId=$$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4)
 	echo $$ApiId
 	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4) --stage-name Stage2 --sdk-type javascript ../HTML/sdk.zip
-	cd ../HTML; unzip sdk.zip
+	cd ../HTML; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
 
 clean:
 	rm -rf lambda
 	rm -f lambda.zip
 	rm -f package.yml
 	rm -f api.yml
+	rm -rf ../HTML/apiGateway-js-sdk
 	for line in $$(aws s3 ls); do \
 		if [ "$$line" == "statemodelrnd" ]; then \
 			aws s3 rb s3://statemodelrnd --force; \
