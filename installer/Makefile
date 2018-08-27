@@ -22,10 +22,14 @@ package:
 	if [ "$$found" == "false" ]; then \
 		aws s3 mb s3://statemodelrnd; \
 	fi
-	$(shell \
+	echo "$(shell \
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
 		export region=`aws configure get region`; \
-		envsubst '$$account $$region' < api-template.yml > api.yml)
+		envsubst '$$account $$region' < api-template.yml > api.yml)"
+	echo "$(shell \
+		export swagger=`uuidgen`; \
+		envsubst < StateModelRnD-template.yml > StateModelRnD.yml; \
+		aws s3 cp api.yml s3://statemodelrnd/$$swagger)"
 	aws cloudformation package --template-file StateModelRnD.yml --s3-bucket statemodelrnd --output-template-file package.yml
 
 deploy:

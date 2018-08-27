@@ -12,22 +12,17 @@ Resources:
       Description: The Lambda function for StateModelRnD.
       MemorySize: 768
       Timeout: 10
-      Events:
-        API:
-          Type: Api
-          Properties:
-            Path: /StateModelRnD
-            Method: post
   API:
     Type: 'AWS::Serverless::Api'
     Properties:
       Name: StateModelRnDdev
       StageName: Stage2
-      DefinitionUri: api.yml
-      Variables:
-        LambdaFunctionName: !Ref LambdaFunction
-        Region: !Sub ${AWS::Region}
-        AccountId: !Sub ${AWS::AccountId}
+      Cors: "'*'"
+      DefinitionBody:
+        'Fn::Transform':
+          Name: 'AWS::Include'
+          Parameters:
+            Location: s3://statemodelrnd/${swagger}
 Outputs:
   ApiId:
     Value: !Ref API
