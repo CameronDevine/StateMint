@@ -2,7 +2,7 @@ SHELL := bash
 .PHONY: all zip package deploy sdk clean remove
 
 all:
-	zip package deploy
+	zip package deploy sdk
 
 zip:
 	mkdir -p lambda
@@ -26,18 +26,12 @@ package:
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
 		export region=`aws configure get region`; \
 		envsubst '$$account $$region' < api-template.yml > api.yml)"
-	echo "$(shell \
-		export swagger=`uuidgen`; \
-		envsubst < StateModelRnD-template.yml > StateModelRnD.yml; \
-		aws s3 cp api.yml s3://statemodelrnd/$$swagger)"
 	aws cloudformation package --template-file StateModelRnD.yml --s3-bucket statemodelrnd --output-template-file package.yml
 
 deploy:
 	aws cloudformation deploy --stack-name statemodelrnd --template-file package.yml --capabilities CAPABILITY_IAM
 
 sdk:
-	ApiId=$$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4)
-	echo $$ApiId
 	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4) --stage-name Stage2 --sdk-type javascript ../HTML/sdk.zip
 	cd ../HTML; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
 

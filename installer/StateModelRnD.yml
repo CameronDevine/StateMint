@@ -17,12 +17,7 @@ Resources:
     Properties:
       Name: StateModelRnDdev
       StageName: Stage2
-      Cors: "'*'"
-      DefinitionBody:
-        'Fn::Transform':
-          Name: 'AWS::Include'
-          Parameters:
-            Location: s3://statemodelrnd/${swagger}
+      DefinitionUri: api.yml
 Outputs:
   ApiId:
     Value: !Ref API
