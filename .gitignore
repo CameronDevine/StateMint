@@ -8,3 +8,7 @@ dist
 .ipynb_checkpoints
 html
 doctrees
+StateModelRnD.yml
+lambda
+package.yml
+api.yml
