@@ -1,8 +1,7 @@
 SHELL := bash
-.PHONY: all zip package deploy sdk clean remove
+.PHONY: zip package deploy sdk clean remove
 
-all:
-	zip package deploy sdk
+all: zip package deploy sdk
 
 zip:
 	mkdir -p lambda
