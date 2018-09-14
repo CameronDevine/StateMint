@@ -12,6 +12,13 @@ Resources:
       Description: The Lambda function for StateModelRnD.
       MemorySize: 768
       Timeout: 10
+      Events:
+        Http:
+          Type: Api
+          Properties:
+            Path: /StateModelRnD
+            Method: post
+            RestApiId: !Ref API
   API:
     Type: 'AWS::Serverless::Api'
     Properties:
