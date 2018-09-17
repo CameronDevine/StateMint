@@ -1,230 +1,554 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StateModelRND</title>
-<link rel="stylesheet" href="assets/pagination.css">
-<link rel="stylesheet" href="assets/cameron.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
-    <link rel="stylesheet" href="assets/fonts/typicons.min.css">
-    <link rel="stylesheet" href="assets/css/Article-List.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
-    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
-    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-    <link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-    <link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
-   <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="assets/css/Social-Icons.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/untitled-1.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/url-template/url-template.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
-<script type="text/javascript" src="apiGateway-js-sdk/apigClient.js"></script>
-<script type="text/javascript" src="StateModelRnD.js"></script>
-<script src="piexif.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
-<script src="scroll.js"></script>
-</head>
-
-<body>
-<ul class="scrolling">
-        <li><a href="#page1" class="scrollLink smooth" id="page1button"></a></li>
-        <li><a href="#page2" class="scrollLink smooth" id="page2button"></a></li>
-        <li><a href="#page5" class="scrollLink smooth" id="page3button"></a></li>
-        <li><a href="#page6" class="scrollLink smooth" id="page4button"></a></li>
-</ul>
-<div class="page" id="page1">
-    <div class="highlight-clean" style="padding-top:15%;">
-        <div class="container">
-    <section class="intro">
-        <h1 class="text-center">StateModelRND</h1>
-        <p class="text-center">Enter system information and get the state equation matricies and the transfer function. The links below may also be used to load different example systems. </p>
-    </section>
-    <p class="text-center" style="color:rgb(60,104,255);"><a onclick="showExamples()"><strong>Show me an example &gt;</strong></a></p>
-    <div class="buttons" style="padding:0px;padding-top:34px;"><a class="btn btn-primary" role="button" onclick="createNew()" style="width:208px;">create new model</a>
-        <button class="btn btn-default" type="button" style="width:208px;" onclick="openExisting()">Open Existing</button>
-    </div>
-</div>
-    </div>
-    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
-<a onclick="$('#page2button').click()" style="display: inline-block;"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
-    </div>
-</div>
-<div class="page" id="page2">
-	<div style="height: 15%"></div>
-    <section class="highlight-blue">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Upload a photo</h2>
-            <div class="row">
-                <div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;"><i align="center" class="material-icons" style="  font-size:80px;
-">photo</i>
-                    <input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
-                </div>
-            </div>
-            <p class="text-center">Supported formats: .png .jpg </p>
-        </div>
-        <div class="buttons"><a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a></div>
-    </div>
-</section>
-    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
-<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
-    </div>
-</div>
-<div class="page" id="page3" style="display: none;">
-		<div style="height: 15%"></div>
-      <div class="highlight-blue">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Upload a file</h2>
-                <div class="row">
-                    <div class="col-md-12"><i class="material-icons" style="padding-left:39%;padding-right:57%;width:460px;font-size:80px;">file_upload</i></div>
-                </div>
-            </div>
-            <input type="file" onchange="importData(event)" accept=".rnd" style="display:none;" id="fileUploadLink"/>
-            <div class="buttons"><a class="btn btn-primary" role="button" onclick="$('#fileUploadLink').click()">Choose a file</a></div>
-            <div style="padding-top:9px;">
-                <p class="text-center">supported formats: .rnd</p>
-            </div>
-        </div>
-</div>
-<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;"><a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
-    </div>
-</div>
-<div class="page" id="page4" style="display: none;">
-<div class="highlight-clean">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Examples </h2>
-                <p class="text-center">Enter Systems information and get the state equation matricies and the transfer function function. The links below may also be used to load diffferent examle systems.</p>
-            </div>
-            <div class="buttons" style="overflow-x: auto; white-space: nowrap;"><a class="btn btn-primary" role="button" onclick="loadExample(1)" onmouseover="loadExample(1)">Example 1</a><a class="btn btn-primary" role="button" onclick="loadExample(2)" onmouseover="loadExample(2)">Example 2</a><a class="btn btn-primary" role="button" onclick="loadExample(3)" onmouseover="loadExample(3)">Example 3</a></div>
-        </div>
-		<div style="height: 30vh">
-                <img id="exampleImage" height="100%" style="margin: auto; padding-top: 5%;"/>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>StateModelRND</title>
+		<link rel="stylesheet" href="assets/pagination.css">
+		<link rel="stylesheet" href="assets/cameron.css">
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/fonts/material-icons.min.css">
+		<link rel="stylesheet" href="assets/fonts/typicons.min.css">
+		<link rel="stylesheet" href="assets/css/Article-List.css">
+		<link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+		<link rel="stylesheet" href="assets/css/Footer-Basic.css">
+		<link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
+		<link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+		<link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+		<link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+		<link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
+		<link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+		<link rel="stylesheet" href="assets/css/Social-Icons.css">
+		<link rel="stylesheet" href="assets/css/styles.css">
+		<link rel="stylesheet" href="assets/css/untitled-1.css">
+		<link rel="stylesheet" href="assets/css/untitled.css">
+		<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+		<script type="text/javascript" src="apiGateway-js-sdk/apigClient.js"></script>
+		<script type="text/javascript" src="StateModelRnD.js"></script>
+		<script src="piexif.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
+		<script src="scroll.js"></script>
+	</head>
+	<body>
+		<ul class="scrolling">
+			<li><a href="#page1" class="scrollLink smooth" id="page1button"></a></li>
+			<li><a href="#page2" class="scrollLink smooth" id="page2button"></a></li>
+			<li><a href="#page5" class="scrollLink smooth" id="page3button"></a></li>
+			<li><a href="#page6" class="scrollLink smooth" id="page4button"></a></li>
+		</ul>
+		<div class="page" id="page1">
+			<div class="highlight-clean" style="padding-top:15%;">
+				<div class="container">
+					<section class="intro">
+						<h1 class="text-center">StateModelRND</h1>
+						<p class="text-center">Enter system information and get the state equation matricies and the transfer function. The links below may also be used to load different example systems.</p>
+					</section>
+					<p class="text-center" style="color:rgb(60,104,255);"><a onclick="showExamples()"><strong>Show me an example &gt;</strong></a></p>
+					<div class="buttons" style="padding:0px;padding-top:34px;">
+						<a class="btn btn-primary" role="button" onclick="createNew()" style="width:208px;">create new model</a>
+						<button class="btn btn-default" type="button" style="width:208px;" onclick="openExisting()">Open Existing</button>
+					</div>
+				</div>
+			</div>
+			<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+				<a onclick="$('#page2button').click()" style="display: inline-block;"><i class="material-icons" style="color:rgb(3,3,3);">keyboard_arrow_down</i></a>
+			</div>
 		</div>
-    </div>
-    <div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;"><a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
-    </div>
-</div>
-    <section class="contact-clean" style="background-color:rgb(254,255,255);padding-top:0;padding-bottom:0;" id="page5"><img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
-    <form method="post">
-        <h2 class="text-center">Enter system equations</h2>
-        <div>
-            <h4><strong>Input Variables:</strong> </h4>
-            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars"/>
-            <h4><strong>State Variable Elemental Equations:</strong> </h4>
-			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" id="StVarElEqns"></textarea>
-            <h4><strong>Other Elemental Equations:</strong> </h4>
-			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" id="OtherElEqns"></textarea>
-            <h4><strong>Constraints:</strong> </h4>
-			<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" id="Constraints"></textarea>
-            <h4><strong>Output Variables:</strong> </h4>
-            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" id="OutputVars"/>
-            <p class="help-block">Enter your equations</p>
-                        <button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;"><i class="typcn typcn-equals"></i>Calculate</button>
-        </div>
-    </form>
-</section>
-    <div class="social-icons" style="padding-top:0;padding-bottom:0;"><a class="smooth" href="#page6"><i class="material-icons">keyboard_arrow_down</i></a></div>
-<div class="page" id="LoadingPage" style="display:none">
-	<a href="#LoadingPage" class="smooth" id="LoadingPageLink"></a>
-	<div style="display:inline-block;width:100vw;height:100vh;"><img src="assets/img/hex-loader2.gif" style="height:80vh;margin-top:10vh;margin-left:auto;margin-right:auto;" /></div>
-</div>
-    <section class="highlight-clean" id="page6" style="padding-top:1em;padding-bottom:0;min-height:100vh">
-    <h1 align="center">Your Answer</h1>
-    <div class="container">
-        <div class="intro">
-            <h3 class="text-center">Select a Language</h3></div>
-        <div class="buttons" id="langButtons" style="overflow-x: auto; white-space: nowrap;">
-            <button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
-            <button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
-            <button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
-            <button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathmatica </button>
-            <button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
-        </div>
-    </div>
-        <div class="container">
-            <div class="intro">
-                <h3 class="text-center">Select a Format</h3></div>
-            <div class="buttons" id="eqButtons" style="overflow-x: auto; white-space: nowrap;">
-                <button class="btn btn-default" type="button" id="vector" onclick="eqform('vector')" style="height:75px">$$x$$</button>
-                <button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')" style="height:75px">$$\dot{x}=Ax+Bu$$</button>
-                <button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')" style="height:75px">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
-				<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')" style="height:75px">$$\dot{x}'=Ax'+B'u$$</button>
-				<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')" style="height:75px">$$f(x,u)$$</button>
-				<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')" style="height:75px">$$H(s)$$</button>
-            </div>
-        </div>
-    <div class="container" id="output" style="display:none;margin-top:3em;">
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(0)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
+		<div class="page" id="page2">
+			<div style="height: 15%"></div>
+				<section class="highlight-blue">
+					<div class="container">
+						<div class="intro">
+							<h2 class="text-center">Upload a photo</h2>
+								<div class="row">
+									<div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;">
+										<i align="center" class="material-icons" style="  font-size:80px;">photo</i>
+										<input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
+									</div>
+								</div>
+								<p class="text-center">Supported formats: .png .jpg </p>
+							</div>
+							<div class="buttons">
+								<a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a>
+							</div>
+						</div>
+					</section>
+					<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+						<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+				</div>
+			</div>
+			<div class="page" id="page3" style="display: none;">
+				<div style="height: 15%"></div>
+					<div class="highlight-blue">
+						<div class="container">
+							<div class="intro">
+								<h2 class="text-center">Upload a file</h2>
+								<div class="row">
+									<div class="col-md-12"><i class="material-icons" style="padding-left:39%;padding-right:57%;width:460px;font-size:80px;">file_upload</i></div>
+								</div>
+							</div>
+							<input type="file" onchange="importData(event)" accept=".rnd" style="display:none;" id="fileUploadLink"/>
+							<div class="buttons">
+								<a class="btn btn-primary" role="button" onclick="$('#fileUploadLink').click()">Choose a file</a>
+							</div>
+							<div style="padding-top:9px;">
+								<p class="text-center">supported formats: .rnd</p>
+							</div>
+						</div>
+					</div>
+				<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+					<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
+				</div>
+			</div>
+			<div class="page" id="page4" style="display: none;">
+				<div class="highlight-clean">
+					<div class="container">
+						<div class="intro">
+							<h2 class="text-center">Examples </h2>
+							<p class="text-center">Enter Systems information and get the state equation matricies and the transfer function function. The links below may also be used to load diffferent examle systems.</p>
+						</div>
+						<div class="buttons" style="overflow-x: auto; white-space: nowrap;">
+							<a class="btn btn-primary" role="button" onclick="loadExample(1)" onmouseover="loadExample(1)">Example 1</a>
+							<a class="btn btn-primary" role="button" onclick="loadExample(2)" onmouseover="loadExample(2)">Example 2</a>
+							<a class="btn btn-primary" role="button" onclick="loadExample(3)" onmouseover="loadExample(3)">Example 3</a>
+						</div>
+					</div>
+					<div style="height: 30vh">
+						<img id="exampleImage" height="100%" style="margin: auto; padding-top: 5%;"/>
+					</div>
+				</div>
+				<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+					<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons">keyboard_arrow_down</i></a>
+				</div>
+			</div>
+			<section class="contact-clean" style="background-color:rgb(254,255,255);padding-top:0;padding-bottom:0;" id="page5">
+				<img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
+				<form method="post">
+					<h2 class="text-center">Enter system equations</h2>
+					<div>
+						<h4><strong>Input Variables:</strong> </h4>
+						<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars"/>
+						<h4><strong>State Variable Elemental Equations:</strong> </h4>
+						<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" id="StVarElEqns"></textarea>
+						<h4><strong>Other Elemental Equations:</strong> </h4>
+						<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" id="OtherElEqns"></textarea>
+						<h4><strong>Constraints:</strong> </h4>
+						<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" id="Constraints"></textarea>
+						<h4><strong>Output Variables:</strong> </h4>
+						<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" id="OutputVars"/>
+						<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help.</p>
+						<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;"><i class="typcn typcn-equals"></i>Calculate</button>
+					</div>
+				</form>
+			</section>
+			<div class="social-icons" style="padding-top:0;padding-bottom:0;">
+				<a class="smooth" href="#page6"><i class="material-icons">keyboard_arrow_down</i></a>
+			</div>
+			<div class="page" id="LoadingPage" style="display:none">
+				<a href="#LoadingPage" class="smooth" id="LoadingPageLink"></a>
+				<div style="display:inline-block;width:100vw;height:100vh;">
+					<img src="assets/img/hex-loader2.gif" style="height:80vh;margin-top:10vh;margin-left:auto;margin-right:auto;" />
+				</div>
+			</div>
+			<section class="highlight-clean" id="page6" style="padding-top:1em;padding-bottom:0;min-height:100vh">
+				<h1 align="center">Your Answer</h1>
+				<div class="container">
+					<div class="intro">
+						<h3 class="text-center">Select a Language</h3>
+					</div>
+					<div class="buttons" id="langButtons" style="overflow-x: auto; white-space: nowrap;">
+						<button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
+						<button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
+						<button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
+						<button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathmatica </button>
+						<button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
+					</div>
+				</div>
+				<div class="container">
+					<div class="intro">
+						<h3 class="text-center">Select a Format</h3>
+					</div>
+					<div class="buttons" id="eqButtons" style="overflow-x: auto; white-space: nowrap;">
+						<button class="btn btn-default" type="button" id="vector" onclick="eqform('vector')" style="height:75px">$$x$$</button>
+						<button class="btn btn-default" type="button" id="StateSpace" onclick="eqform('StateSpace')" style="height:75px">$$\dot{x}=Ax+Bu$$</button>
+						<button class="btn btn-default" type="button" id="StateSpaceN" onclick="eqform('StateSpaceN')" style="height:75px">$$\dot{x}=Ax+Bu+E\dot{u}$$</button>
+						<button class="btn btn-default" type="button" id="StateSpaceP" onclick="eqform('StateSpaceP')" style="height:75px">$$\dot{x}'=Ax'+B'u$$</button>
+						<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')" style="height:75px">$$f(x,u)$$</button>
+						<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')" style="height:75px">$$H(s)$$</button>
+					</div>
+				</div>
+				<div class="container" id="output" style="display:none;margin-top:3em;">
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(0)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(1)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(2)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(3)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(4)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+					<div class="buttons">
+						<h4></h4>
+						<div style="display:inline-block;vertical-align:middle;">
+							<p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong></strong></p>
+						</div>
+						<button class="btn btn-primary" onclick="copyEq(5)" style="display:inline-block;vertical-align:middle;">Copy</button>
+						<textarea style="display:none"></textarea>
+					</div>
+				</div>
+				<div class="highlight-clean">
+					<div class="container">
+						<div class="buttons">
+							<a class="btn btn-primary" role="button" style="height:60px;" onclick="restart()">Start Over<i class="material-icons">fast_rewind</i></a>
+							<button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i></button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="modal fade" id="commandRef" tabindex="-1" role="dialog" aria-labelledby="commandRefTitle" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="commandRefTitle">Command Reference</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body" id="refAccordion">
+							<div class="card">
+								<div class="card-header" id="algebraHeading">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#algebraRef" aria-expanded="false" aria-controls="algebraRef">
+											Basics
+										</button>
+									</h5>
+								</div>
+								<div id="algebraRef" class="collapse" aria-labelledby="algebraHeading" data-parent="#refAccordion">
+									<div class="card-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td scope="row">a+b</td>
+													<td>The sum of a and b</td>
+												</tr>
+												<tr>
+													<td scope="row">a-b</td>
+													<td>Subtract b from a</td>
+												</tr>
+												<tr>
+													<td scope="row">a*b</td>
+													<td>Multiply a and b</td>
+												</tr>
+												<tr>
+													<td scope="row">a/b</td>
+													<td>Divide a by b</td>
+												</tr>
+												<tr>
+													<td scope="row">a'</td>
+													<td>The time derivative of a</td>
+												</tr>
+												<tr>
+													<td scope="row">t</td>
+													<td>The variable denoting time</td>
+												</tr>
+												<tr>
+													<td scope="row">a**b</td>
+													<td>Raise a to the b power</td>
+												</tr>
+												<tr>
+													<td scope="row">sqrt(a)</td>
+													<td>The square root of a</td>
+												</tr>
+												<tr>
+													<td scope="row">(a+b)*c</td>
+													<td>Denote modifications to order of opperations with parenthesis</td>
+												</tr>
+												<tr>
+													<td scope="row">exp(a)</td>
+													<td>The natural number e raised to the power a</td>
+												</tr>
+												<tr>
+													<td scope="row">log(a)</td>
+													<td>The natural logrithm of a</td>
+												</tr>
+												<tr>
+													<td scope="row">log(a, b)</td>
+													<td>The logrithm of a in base b</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="trigHeading">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#trigRef" aria-expanded="false" aria-controls="trigRef">
+											Triginometry
+										</button>
+									</h5>
+								</div>
+								<div id="trigRef" class="collapse" aria-labelledby="trigHeading" data-parent="#refAccordion">
+									<div class="card-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td scope="row">cos(a)</td>
+													<td>The cosine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">sin(a)</td>
+													<td>The sine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">tan(a)</td>
+													<td>The tangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">cot(a)</td>
+													<td>The cotangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">sec(a)</td>
+													<td>The secant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">csc(a)</td>
+													<td>The cosecant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">sinc(a)</td>
+													<td>The unnormalized cardinal sine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">asin(a)</td>
+													<td>The inverse sine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acos(a)</td>
+													<td>The inverse cosine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">atan(a)</td>
+													<td>The inverse tangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acot(a)</td>
+													<td>The inverse cotangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">asec(a)</td>
+													<td>The inverse secant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acsc(a)</td>
+													<td>The inverse cosecant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">atan2(a, b)</td>
+													<td>The inverse tangent of a divided by b</td>
+												</tr>
+												<tr>
+													<td scope="row">sinh(a)</td>
+													<td>The hyperbolic sine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">cosh(a)</td>
+													<td>The hyperbolic cosine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">tanh(a)</td>
+													<td>The hyperbolic tangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">coth(a)</td>
+													<td>The hyperbolic cotangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">sech(a)</td>
+													<td>The hyperbolic secant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">csch(a)</td>
+													<td>The hyperbolic cosecant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">asinh(a)</td>
+													<td>The inverse hyperbolic sine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acosh(a)</td>
+													<td>The inverse hyperbolic cosine of a</td>
+												</tr>
+												<tr>
+													<td scope="row">atanh(a)</td>
+													<td>The inverse hyperbolic tangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acoth(a)</td>
+													<td>The inverse hyperbolic cotangent of a</td>
+												</tr>
+												<tr>
+													<td scope="row">asech(a)</td>
+													<td>The inverse hyperbolic secant of a</td>
+												</tr>
+												<tr>
+													<td scope="row">acsch(a)</td>
+													<td>The inverse hyperbolic cosecant of a</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="complexHeading">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#complexRef" aria-expanded="false" aria-controls="complexRef">
+											Complex
+										</button>
+									</h5>
+								</div>
+								<div id="complexRef" class="collapse" aria-labelledby="complexHeading" data-parent="#refAccordion">
+									<div class="card-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td scope="row">I</td>
+													<td>The imaginary number defined as sqrt(-1)</td>
+												</tr>
+												<tr>
+													<td scope="row">re(a)</td>
+													<td>The real part of a</td>
+												</tr>
+												<tr>
+													<td scope="row">im(a)</td>
+													<td>The imaginary part of a</td>
+												</tr>
+												<tr>
+													<td scope="row">Abs(a)</td>
+													<td>The absolute value of a</td>
+												</tr>
+												<tr>
+													<td scope="row">arg(a)</td>
+													<td>The argument (angle) of a</td>
+												</tr>
+												<tr>
+													<td scope="row">conjugate(a)</td>
+													<td>The complex conjugate of a</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="advancedHeading">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#advancedRef" aria-expanded="false" aria-controls="advancedRef">
+											Advanced
+										</button>
+									</h5>
+								</div>
+								<div id="advancedRef" class="collapse" aria-labelledby="advancedHeading" data-parent="#refAccordion">
+									<div class="card-body">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">Command</th>
+													<th scope="col">Usage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td scope="row">ceiling(a)</td>
+													<td>The value of a rounded up to the nearest integer</td>
+												</tr>
+												<tr>
+													<td scope="row">floor(a)</td>
+													<td>The value of a rounded down to the nearest integer</td>
+												</tr>
+												<tr>
+													<td scope="row">sign(a)</td>
+													<td>The sign function of a</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(1)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
-		</div>
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(2)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
-		</div>
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(3)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
-		</div>
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(4)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
-		</div>
-		<div class="buttons">
-			<h4>State</h4>
-			<div style="display:inline-block;vertical-align:middle;"><p style="background-color:#eff1f4;border:none;border-radius:3px;padding:12px;margin:0;"><strong>\left[\begin{matrix}- \frac{B_{2}}{m} &amp; 0\\0 &amp; - \frac{K_{1} K_{2}}{B_{1} \left(K_{1} + K_{2}\right)}\end{matrix}\right]</strong></p></div>
-			<button class="btn btn-primary" onclick="copyEq(5)" style="display:inline-block;vertical-align:middle;">Copy</button>
-			<textarea style="display:none"></textarea>
-		</div>
-	</div>
-    <div class="highlight-clean">
-        <div class="container">
-            <div class="buttons"><a class="btn btn-primary" role="button" style="height:60px;" onclick="restart()">Start Over<i class="material-icons">fast_rewind</i></a>
-                <button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i> </button>
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- <script src="assets/js/jquery.min.js"></script> -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <!-- <script src="assets/js/Quill-Text-Editor.js"></script> -->
-    <script src="assets/js/bs-animation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-</body>
-
+		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+		<script src="assets/js/bs-animation.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+	</body>
 </html>
