@@ -385,9 +385,26 @@ function openClick(data) {
 	}
 }
 
+function share() {
+	url = window.location.href + '?' + encodeURIComponent(JSON.stringify(getData()));
+	$('#shareArea').val(url);
+	$('#shareArea').show();
+	$('#shareArea').select();
+	document.execCommand('Copy');
+	$('#shareArea').hide();
+}
+
+function loadFromURL() {
+	if (window.location.search.length > 0) {
+		addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
+		StateModel();
+	}
+}
+
 $(document).ready(function() {
 	console.log('ready');
 	list_saved();
+	loadFromURL();
 	$('#saved').click(function() {
 		openClick({
 			name: $(event.target).closest('tr').find('strong').html(),
