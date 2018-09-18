@@ -392,6 +392,24 @@ function share() {
 	$('#shareArea').select();
 	document.execCommand('Copy');
 	$('#shareArea').hide();
+	$.notify({
+		message: 'Link copied to clipboard'
+	},{
+		allow_dismiss: false,
+		placement: {
+			from: 'top',
+			align: 'left'},
+		delay: 1500,
+		onShow: function() {
+			this.css({
+				'width':'auto',
+				'height':'auto',
+				'background': '#e6e7ea',
+				'color': 'inherit',
+				'border-color': '#e6e7ea',
+				'box-shadow': '0 0 10px #b5b5b5'});
+		}
+	});
 }
 
 function loadFromURL() {
