@@ -185,7 +185,7 @@ function StateModel() {
 	});
 }
 
-function loadExample(num) {
+function loadExample(num, scroll) {
 	if (num == 1) {
 		document.getElementById("InVars").value = "vS";
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT";
@@ -218,6 +218,9 @@ function loadExample(num) {
 		Exif = piexif.load(jpeg);
 	}
 	image.src = "Example" + num + ".jpg";
+	if (scroll) {
+		$('#page3button').click();
+	}
 }
 
 function getData() {
@@ -303,6 +306,14 @@ function addBlank(callback) {
 	}
 }
 
+function addEquations(data) {
+		document.getElementById("InVars").value = data.InVars;
+		document.getElementById("StVarElEqns").value = data.StVarElEqns;
+		document.getElementById("OtherElEqns").value = data.OtherElEqns;
+		document.getElementById("Constraints").value = data.Constraints;
+		document.getElementById("OutputVars").value = data.OutputVars;
+}
+
 function importData(event) {
 	var file = event.target.files[0];
 	if (file.name.split(".").slice(-1)[0] != "rnd" && !file.type.match('image/jpeg.*')) {
@@ -321,11 +332,7 @@ function importData(event) {
 			insertImage();
 		}
 		var loadData = JSON.parse(Exif.Exif['37510']);
-		document.getElementById("InVars").value = loadData.InVars;
-		document.getElementById("StVarElEqns").value = loadData.StVarElEqns;
-		document.getElementById("OtherElEqns").value = loadData.OtherElEqns;
-		document.getElementById("Constraints").value = loadData.Constraints;
-		document.getElementById("OutputVars").value = loadData.OutputVars;
+		addEquations(loadData);
 		StateModel();
 	}
 	reader.readAsDataURL(file);
@@ -346,23 +353,43 @@ function restart() {
 }
 
 function list_saved() {
-	return Cookies.get();
+	template = '<tr><td style="vertical-align:middle"><h4><strong>{}</strong></h4></td><td style="vertical-align:middle;width:40px"><i class="typcn typcn-folder-open" style="font-size:36px"></i></td><td style="vertical-align:middle;width:40px"><i class="typcn typcn-trash" style="font-size:36px"></i></td></tr>\n';
+	names = Object.keys(Cookies.get());
+	html = "";
+	if (names.length > 0) {
+		$('#saved').closest('.col-sm-6').show();
+		$('#fileUploadLink').parent().addClass('col-sm-6');
+		for (i in names) {
+			html += template.replace('{}', names[i]);
+		}
+		$('#saved tbody').html(html);
+	} else {
+		$('#saved').closest('.col-sm-6').hide()
+		$('#fileUploadLink').parent().removeClass('col-sm-6');
+	}
 }
 
 function save() {
-	data = getData();
-	data['image'] = jpeg;
-	Cookies.set($('#saveName').val(), data, {expires: 365 * 10});
+	Cookies.set($('#saveName').val(), getData(), {expires: 365 * 10});
+	list_saved();
 }
 
-function remove(key) {
-	Cookies.remove(key);
+function openClick(data) {
+	if (!data.open) {
+		Cookies.remove(data.name);
+		list_saved()
+	} else {
+		system = JSON.parse(Cookies.get(data.name));
+		addEquations(system);
+		StateModel();
+	}
 }
 
 $(document).ready(function() {
 	console.log('ready');
+	list_saved();
 	$('#saved').click(function() {
-		console.log({
+		openClick({
 			name: $(event.target).closest('tr').find('strong').html(),
 			open: Array.from($(event.target).prop('classList')).indexOf('typcn-trash') != 1});
 	});
