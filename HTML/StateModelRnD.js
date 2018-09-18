@@ -220,18 +220,22 @@ function loadExample(num) {
 	image.src = "Example" + num + ".jpg";
 }
 
-function download() {
-	if (jpeg == null) {
-		addBlank();
-		return;
-	}
-	var saveData = {
+function getData() {
+	return {
 	  	"InVars": document.getElementById("InVars").value,
 		"StVarElEqns": document.getElementById("StVarElEqns").value,
 		"OtherElEqns": document.getElementById("OtherElEqns").value,
 		"Constraints": document.getElementById("Constraints").value,
 		"OutputVars": document.getElementById("OutputVars").value
 	};
+}
+
+function download() {
+	if (jpeg == null) {
+		addBlank(download);
+		return;
+	}
+	var saveData = getData();
 	Exif.Exif['37510'] = JSON.stringify(saveData);
 	var exifBytes = piexif.dump(Exif);
 	var rnd = piexif.insert(exifBytes, jpeg);
@@ -284,7 +288,7 @@ function addImage(event) {
 	reader.readAsDataURL(file);
 }
 
-function addBlank() {
+function addBlank(callback) {
 	console.log('import blank white image and read its exif');
 	var canvas = document.createElement("canvas");
 	var context = canvas.getContext('2d');
@@ -295,7 +299,7 @@ function addBlank() {
 		jpeg = canvas.toDataURL("image/jpeg");
 		Exif = piexif.load(jpeg);
 		Exif.Exif['37500'] = 'blank';
-		download();
+		callback();
 	}
 }
 
@@ -340,3 +344,26 @@ function restart() {
 		window.location.reload();
 		}, 400);
 }
+
+function list_saved() {
+	return Cookies.get();
+}
+
+function save() {
+	data = getData();
+	data['image'] = jpeg;
+	Cookies.set($('#saveName').val(), data, {expires: 365 * 10});
+}
+
+function remove(key) {
+	Cookies.remove(key);
+}
+
+$(document).ready(function() {
+	console.log('ready');
+	$('#saved').click(function() {
+		console.log({
+			name: $(event.target).closest('tr').find('strong').html(),
+			open: Array.from($(event.target).prop('classList')).indexOf('typcn-trash') != 1});
+	});
+})
