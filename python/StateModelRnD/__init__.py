@@ -199,10 +199,10 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	result.Bp = Bp
 	result.Dp = Dp
 	result.TF = TF
-	result.StateVec = StVec
-	result.OutputVec = OutVec
+	result.StateVec = Matrix(StVec)
+	result.OutputVec = Matrix(OutVec)
 	result.StateEq = StateEqsFinalMat
 	result.OutEq = OutputEqsFinalMat
-	result.InputVec = InVec
+	result.InputVec = Matrix(InVec)
 
 	return result
