@@ -1,0 +1,32 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "http://orcid.org/0000-0002-6579-111X",
+      "@type": "Person",
+      "email": "camdev@uw.edu",
+      "name": "Cameron Devine",
+      "affiliation": "University of Washington"
+    },{
+      "@type": "Person",
+      "email": "garbini@uw.edu",
+      "name": "Joseph L. Garbini",
+      "affiliation": "University of Washington"
+    },{
+      "@id": "http://orcid.org/0000-0002-5091-5175",
+      "@type": "Person",
+      "email": "rpicone@stmartin.edu ",
+      "name": "Rico A. R. Picone",
+      "affiliation": [
+        "Saint Martin's University",
+        "University of Washington"]
+    }
+  ],
+  "codeRepository": "https://github.com/CameronDevine/StateModelRnD",
+  "description": "This library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality but was ported to allow it to be run using an AWS Lambda function, allowing anyone to run the code without having Python/sympy or Mathematica installed.",
+  "keywords": "algebra, system dynamics, calculator, computer algebra system, symbolic math",
+  "license": "BSD",
+  "title": "StateModelRnD",
+  "version": "v0.4.1"
+}
