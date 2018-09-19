@@ -1,11 +1,14 @@
 SHELL := bash
 .PHONY: zip package deploy sdk clean remove
 
-all: zip package deploy sdk
+all: depends zip package deploy sdk
+
+depends:
+	mkdir -p lambda
+	pip install --upgrade sympy mpmath -t lambda/	
 
 zip:
 	mkdir -p lambda
-	pip install --upgrade sympy mpmath -t lambda/
 	cp -r ../python/StateModelRnD lambda/
 	cp ../python/StateModelLambda.py lambda/
 	cd lambda; zip -r ../lambda.zip *
