@@ -205,19 +205,18 @@ function loadExample(num, scroll) {
 		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd,\nvd = vm";
 		document.getElementById("OutputVars").value = "vm";
 	}
-	var canvas = document.createElement("canvas");
-	var context = canvas.getContext("2d");
-	var image = new Image();
-	image.onload = function() {
-		canvas.width = image.width;
-		canvas.height = image.height;
-		context.drawImage(image, 0, 0);
-		jpeg = canvas.toDataURL("image/jpeg");
-		$('#exampleImage').prop('src', jpeg);
-		insertImage();
-		Exif = piexif.load(jpeg);
-	}
-	image.src = "Example" + num + ".jpg";
+	$('#exampleImage').prop('src', 'example' + num + '.svg');
+	insertImage('example' + num + '.svg')
+	fetch('example' + num + '.jpg').then(function(resp) {
+		resp.blob().then(function(blob) {
+			reader = new FileReader();
+			reader.onloadend = function() {
+				jpeg = reader.result;
+				Exif = piexif.load(jpeg);
+			}
+			reader.readAsDataURL(blob);
+		});
+	});
 	if (scroll) {
 		$('#page3button').click();
 	}
@@ -256,8 +255,8 @@ function download() {
 	a.click();
 }
 
-function insertImage() {
-	$('#systemImage').prop('src', jpeg);
+function insertImage(image) {
+	$('#systemImage').prop('src', image);
 }
 
 function convert() {
@@ -280,7 +279,7 @@ function addImage(event) {
 	reader.onload = function(e) {
 		jpeg = e.target.result;
 		var type = jpeg.split(",").slice(0)[0]
-		insertImage();
+		insertImage(jpeg);
 		if (type != "data:image/jpeg;base64" && type != "data:image/jpg;base64") {
 			convert();
 		} else {
@@ -329,7 +328,7 @@ function importData(event) {
 		Exif = piexif.load(jpeg);
 		console.log(Exif);
 		if (Exif.Exif['37500'] != 'blank') {
-			insertImage();
+			insertImage(jpeg);
 		}
 		var loadData = JSON.parse(Exif.Exif['37510']);
 		addEquations(loadData);
