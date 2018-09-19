@@ -165,11 +165,11 @@ function StateModel() {
 	var body = {};
 	var aditionalParams = {
 		"queryParams": {
-	  			"InVars": document.getElementById("InVars").value,
-				"StVarElEqns": document.getElementById("StVarElEqns").value,
-				"OtherElEqns": document.getElementById("OtherElEqns").value,
-				"Constraints": document.getElementById("Constraints").value,
-				"OutputVars": document.getElementById("OutputVars").value
+	  		"InVars": document.getElementById("InVars").value,
+			"StVarElEqns": document.getElementById("StVarElEqns").value,
+			"OtherElEqns": document.getElementById("OtherElEqns").value,
+			"Constraints": document.getElementById("Constraints").value,
+			"OutputVars": document.getElementById("OutputVars").value
 		}
 	};
 	console.log(aditionalParams)
