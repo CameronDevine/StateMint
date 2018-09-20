@@ -380,6 +380,7 @@ function openClick(data) {
 	} else {
 		system = JSON.parse(Cookies.get(data.name));
 		addEquations(system);
+		$('#saveName').val(data.name);
 		StateModel();
 	}
 }

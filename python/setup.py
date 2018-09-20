@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
 	name="StateModelRnD",
-	version="0.4.1",
+	version="0.4.2",
 	author="Cameron Devine",
 	author_email="camdev@uw.edu",
 	description="A library for finding State Space models of dynamical systems.",
