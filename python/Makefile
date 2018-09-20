@@ -9,9 +9,11 @@ upload:
 	twine upload dist/*
 
 clean:
-	rm -r *.egg-info
-	rm -r dist
-	rm -r build
+	rm -rf *.egg-info
+	rm -rf dist
+	rm -rf build
+	rm -rf docs/html
+	rm -rf docs/doctrees
 
 docs:
-	sphinx-build -M html docs/ docs/build/
+	sphinx-build -M html docs/ docs/
