@@ -17,3 +17,5 @@ HTML/Makefile
 *.pdf
 jose-logo.png
 latex.template
+apa.csl
+compile

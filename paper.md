@@ -15,9 +15,9 @@ authors:
     orcid: 0000-0002-5091-5175
     affiliation: "2, 1"
 affiliations:
-  - name: University of Washington
+  - name: University of Washington, Department of Mechanical Engineering
     index: 1
-  - name: Saint Martin's University
+  - name: Saint Martin's University, Department of Mechanical Engineering
     index: 2
 date: 26 September 2018
 bibliography: paper.bib
@@ -25,35 +25,45 @@ bibliography: paper.bib
 
 # Summary
 
-When solving for the differential equation describing a dynamic system the algebra required can become complex and tedious.
-This algebra is one of the areas where students commonly struggle when learning system dynamics, however it is not necessary for curating a conceptual understanding of the topic.
-Since this process is relatively easy to automate a solver was written in python.
-To allow convenient access without the need to install software locally a web interface was designed and built.
-Using this tool students can focus on the important aspects of system dynamics without wading through unnecessary algebra.
+When finding the differential equation of a dynamic system the elemental and constrain equations must be found.
+This step requires an understanding of the physical phenomena and how the elements are connected to determine the elemental equations, and constrain equations respectively.
+The ensuing algebra to combine these equations can be tedious and error prone.
+This algebra is one of the areas where students commonly struggle when learning system dynamics.
+Because students solve many problems to learn the process this can greatly affect a students further interest and perceived skill with system dynamics.
+However performing this algebra is not a necessary component of a strong understanding of system dynamics.
 
-# Statement of Need
+Because symbolic math libraries already exist, writing software to automatically perform this algebra is relatively trivial task.
+This was originally written in Mathematica because of its advanced symbolic math capabilities.
+Since the powerful symbolic math library, SymPy [@meurer2017], is available for Python, it was chosen for an open source implementation of this software.
+This implementation is especially useful because it can be run as an Amazon AWS Lambda function.
+This allowed a web interface to be created which allows students to use the software without the need to install specialized software on their computers.
 
-When creating the differential equation for a dynamic system one must first find the elemental and constraint equations for the system.
-This can be quickly and easily accomplished.
-However, the ensuing algebra can be tedious and error prone.
-Once learned, there is little benefit from doing this algebra by hand.
-For students, this is especially true as they solve many homework problems to practice their skills.
-A computer algebra system can be used to automate this task and allow students to focus on the important aspects of constructing a dynamic system model.
+# Mathematica Package
+
+The Mathematica package for solving the state model algebra has two algorithms included.
+The first is a set of functions which primarily use the `Eliminate` function to remove all unneeded variables.
+The primary function takes a list of the equations and the input and output equations and returns the state equation.
+This equation can then be linearized using the `linearizeState` function.
+The second is a function which roughly replicates the algebra which would be performed by hand.
+When using this function the equations provided must be in the form defined by Rowell and Wormley [@rowell1997].
+Once the operation is complete the state equation matrices, transfer function, and state equation are returned.
+A tutorial on how to use this package is included.
 
 # Python Package
 
-To find the differential equation from the elemental and constraint equations a Python package was written to perform this algebra using SymPy [@meurer2017].
-As input, this package takes the elemental equations of the state variables, the other elemental equations, the constraint equations, the list of input variables, and the list of output variables in the form defined by Rowell and Wormley [@rowell1997].
-Once calculations are completed the output includes the state space equation, state and output equations, and transfer function.
-This information is more thoroughly documented using [readthedocs.io](https://statemodelrnd.readthedocs.io/en/latest/).
-This package works for both linear and nonlinear models.
+The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
+This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
+Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
+This code is documented using [readthedocs.io](https://statemodelrnd.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
 # Web Interface
 
 To allow those without programming experience to use this code a web interface was designed and [implemented](http://statemodelrnd.camerondevine.me/).
-This interface has text boxes for equations to be entered into and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
+This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
+Examples and documentation are built in to make learning how to use the interface as painless as possible.
 There is also the ability to share, download, and save the system models for later use or modification.
 This interface is designed to run on Amazon AWS serverless resources to simplify upkeep and keep costs low.
+An automated installer is also included.
 
 # Acknowledgments
 
