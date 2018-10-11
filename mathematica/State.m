@@ -163,7 +163,7 @@ StVarElEqnsLoT=StVarElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
 OtherPriVarsLoT=OtherPriVarsLo/.Map[#->Apply[#,{t}]&,{SecVars,OtherPriVarsLo}//Flatten];
 OtherElEqnsLoT=OtherElEqnsLo/.Map[#->Apply[#,{t}]&,Map[Part[#,1]&,OtherElEqnsLo]];
 OtherElEqnsLoT=OtherElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
-OtherElEqnsLoT=Map[StringReplace[ToString[#,InputForm],"["<>ToString[t]<>"]]"->"]["<>ToString[t]<>"]"]&,OtherElEqnsLoT]//ToExpression;
+(* OtherElEqnsLoT=Map[StringReplace[ToString[#,InputForm],"["<>ToString[t]<>"]]"->"]["<>ToString[t]<>"]"]&,OtherElEqnsLoT]//ToExpression; *)
 ConstraintsLoT=ConstraintsLo/.Map[#->Apply[#,{t}]&,{StVarsLo,SecVars,OtherPriVarsLo,InVarsLo}//Flatten];
 
 (*  Substitute cut-set and tie-set equations (along with any necessary derivatives) into all elemental equations. Solve for the Other primary variables,in terms of state variables  *)
