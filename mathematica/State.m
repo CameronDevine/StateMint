@@ -144,7 +144,7 @@ State[InVarsLo_,
 	ConstraintsLo_,
 	OutputVarsLo_] :=Module[{i, j, St2,E3, Co2,StateEquation,StateEqsFinal,OutputEqsFinal, 
 StVarsLo,StVarsLoT,OtherPriVarsLo,OtherPriVarsLoT,OtherElEqnsLoT,SecVars,SecVarsT,OutputVarsLoT,
-ConstraintsLoT,StVarElEqnsLoT,InVarsLoT,t,
+ConstraintsLoT,StVarElEqnsLoT,InVarsLoT,
 nSt,nIn,nOut,aa,bb,cc,dd,ee,ff, bbp, ddp,TT},
 
 (* Find lists of state, other primary,  secondary, input, and output variables *)
