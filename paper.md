@@ -1,5 +1,5 @@
 ---
-title: 'State Model RnD: An Algebra Solver for Dynamic Systems'
+title: 'StateMint: An Application for Determining Symbolic Dynamic System Models using Linear Graphs Methods'
 tags:
   - system dynamics
   - calculator
@@ -25,7 +25,7 @@ bibliography: paper.bib
 
 # Summary
 
-When finding the differential equation of a dynamic system the elemental and constrain equations must be found.
+When finding the differential equation of a dynamic system the elemental and constraint equations must be found.
 This step requires an understanding of the physical phenomena and how the elements are connected to determine the elemental equations, and constrain equations respectively.
 The ensuing algebra to combine these equations can be tedious and error prone.
 This algebra is one of the areas where students commonly struggle when learning system dynamics.
