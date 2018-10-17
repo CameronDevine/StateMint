@@ -1,5 +1,5 @@
 ---
-title: 'StateMint: An Application for Determining Symbolic Dynamic System Models using Linear Graphs Methods'
+title: 'StateMint: An Application for Determining Symbolic Dynamic System Models using Linear Graph Methods'
 tags:
   - system dynamics
   - calculator
@@ -25,18 +25,26 @@ bibliography: paper.bib
 
 # Summary
 
-When finding the differential equation of a dynamic system the elemental and constraint equations must be found.
-This step requires an understanding of the physical phenomena and how the elements are connected to determine the elemental equations, and constrain equations respectively.
-The ensuing algebra to combine these equations can be tedious and error prone.
-This algebra is one of the areas where students commonly struggle when learning system dynamics.
-Because students solve many problems to learn the process this can greatly affect a students further interest and perceived skill with system dynamics.
-However performing this algebra is not a necessary component of a strong understanding of system dynamics.
+When determining the differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
+An understanding of the physical phenomena is necessary to determine these equations.
+The next step is to eliminate non state variables from the equations until the minimal set of differential equations remains.
+This step is where students most often make a mistake.
+When learning system dynamics students work many problems as a part of their coursework.
+A reoccuring mistake can greatly effect a students percieved skill in this subject area.
+However, this algebra is not a necessary component of a strong understanding of system dynamics.
 
-Because symbolic math libraries already exist, writing software to automatically perform this algebra is relatively trivial task.
-This was originally written in Mathematica because of its advanced symbolic math capabilities.
-Since the powerful symbolic math library, SymPy [@meurer2017], is available for Python, it was chosen for an open source implementation of this software.
-This implementation is especially useful because it can be run as an Amazon AWS Lambda function.
-This allowed a web interface to be created which allows students to use the software without the need to install specialized software on their computers.
+To aid students in their learning process a program was written to symbolically determine the differential equations using the elemental and constraint equations as input.
+This program allows students to focus on the process of creating a dynamic system model without worrying about algabraic mistakes.
+This frees the student to work on the aspects of system dynamics which are new and unique.
+
+Because symbolic math libraries already exist, writing this software is a relatively trivial task.
+This was originally done in Mathematica because of its advanced symbolic math capabilities.
+However, this required students to purchase and install mathematica.
+Because of the size and cost of Mathematica a more ecanomical solution was desired.
+To solve this problem the Python programming language along with SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
+This provides the same functionality without the cost barrier and with a smaller installed size.
+The Python implementation also allows this code to be run as an Amazon AWS Lambda function.
+With the Lambda function a website can be designed to allow this software to be used by any device with an internet connection and web browser.
 
 # Mathematica Package
 
