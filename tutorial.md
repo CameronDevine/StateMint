@@ -23,7 +23,7 @@ The purpose of this tutorial is to give the necessary background information on 
 | System Type   | Element            | Elemental Equation
 | ------------- | ------------------ | ------------------
 | Translational | Mass               | ![F=m\frac{dv}{dt}](http://latex.codecogs.com/svg.latex?F%3Dm%5Cfrac%7Bdv%7D%7Bdt%7D)
-| Rotational    | Inertia            | ![T=J\frac{d\Omega}{dt}](http://latex.codecogs.com/svg.latex?T%3DJ%5Cfrac%7Bd%5COmega%7D%7Bdt%7D)
+| Rotational    | Inertia            | ![\tau=J\frac{d\Omega}{dt}](http://latex.codecogs.com/svg.latex?%5Ctau%3DJ%5Cfrac%7Bd%5COmega%7D%7Bdt%7D)
 | Electrical    | Capacitor          | ![i=C\frac{dv}{dt}](http://latex.codecogs.com/svg.latex?i%3DC%5Cfrac%7Bdv%7D%7Bdt%7D)
 | Fluid         | Fluid Capacitor    | ![Q=C_f\frac{dP}{dt}](http://latex.codecogs.com/svg.latex?Q%3DC_f%5Cfrac%7BdP%7D%7Bdt%7D)
 | Thermal       | Thermal Capictance | ![q=C_t\frac{dT}{dt}](http://latex.codecogs.com/svg.latex?q%3DC_t%5Cfrac%7BdT%7D%7Bdt%7D)
@@ -33,7 +33,7 @@ The purpose of this tutorial is to give the necessary background information on 
 | System Type   | Element          | Elemental Equation
 | ------------- | ---------------- | ------------------
 | Translational | Spring           | ![v=\frac{1}{K}\frac{dF}{dt}](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BK%7D%5Cfrac%7BdF%7D%7Bdt%7D)
-| Rotational    | Torsional Spring | ![\Omega=\frac{1}{k_r}\frac{dT}{dt}](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7Bk_r%7D%5Cfrac%7BdT%7D%7Bdt%7D)
+| Rotational    | Torsional Spring | ![\Omega=\frac{1}{k_r}\frac{d\tau}{dt}](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7Bk_r%7D%5Cfrac%7Bd%5Ctau%7D%7Bdt%7D)
 | Electrical    | Inductor         | ![v=L\frac{di}{dt}](http://latex.codecogs.com/svg.latex?v%3DL%5Cfrac%7Bdi%7D%7Bdt%7D)
 | Fluid         | Inertance        | ![P=I_f\frac{dQ}{dt}](http://latex.codecogs.com/svg.latex?P%3DI_f%5Cfrac%7BdQ%7D%7Bdt%7D)
 
@@ -42,7 +42,7 @@ The purpose of this tutorial is to give the necessary background information on 
 | System Type   | Element            | Elemental Equation
 | ------------- | ------------------ | ------------------
 | Translational | Damper             | ![v=\frac{1}{B}F](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BB%7DF)
-| Rotational    | Rotational Damper  | ![\Omega=\frac{1}{B_r}T](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7BB_r%7DT)
+| Rotational    | Rotational Damper  | ![\Omega=\frac{1}{B_r}\tau](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7BB_r%7D%5Ctau)
 | Electrical    | Resistor           | ![v=Ri](http://latex.codecogs.com/svg.latex?v%3DRi)
 | Fluid         | Fluid Resistance   | ![P=R_fQ](http://latex.codecogs.com/svg.latex?P%3DR_fQ)
 | Thermal       | Thermal Resistance | ![T=R_tq](http://latex.codecogs.com/svg.latex?T%3DR_tq)
