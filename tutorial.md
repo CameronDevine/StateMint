@@ -131,14 +131,58 @@ Finally to complete the normal tree the motor resistance is added.
 
 ### Primary Variables
 
+![V_s](http://latex.codecogs.com/svg.latex?V_s),
+![v_R](http://latex.codecogs.com/svg.latex?v_R),
+![i_L](http://latex.codecogs.com/svg.latex?i_L),
+![v_1](http://latex.codecogs.com/svg.latex?v_1),
+![\tau_2](http://latex.codecogs.com/svg.latex?%5Ctau_2),
+![\tau_k](http://latex.codecogs.com/svg.latex?%5Ctau_k),
+![\Omega_3](http://latex.codecogs.com/svg.latex?%5COmega_3),
+![P_4](http://latex.codecogs.com/svg.latex?P_4),
+![Q_R](http://latex.codecogs.com/svg.latex?Q_R)
+
+### Secondary Variables
+
+![i_s](http://latex.codecogs.com/svg.latex?i_s),
+![i_R](http://latex.codecogs.com/svg.latex?i_R),
+![v_L](http://latex.codecogs.com/svg.latex?v_L),
+![i_1](http://latex.codecogs.com/svg.latex?i_1),
+![\Omega_2](http://latex.codecogs.com/svg.latex?%5COmega_2),
+![\Omega_k](http://latex.codecogs.com/svg.latex?%5COmega_k),
+![Q_4](http://latex.codecogs.com/svg.latex?Q_4),
+![P_R](http://latex.codecogs.com/svg.latex?P_R)
+
 ### State Variables
 
+![i_L](http://latex.codecogs.com/svg.latex?i_L),
+![\tau_k](http://latex.codecogs.com/svg.latex?%5Ctau_k)
+
 ### Elemental Equations
+
+* ![v_R=Ri_R](http://latex.codecogs.com/svg.latex?v_R%3DRi_R)
+* ![\frac{di_L}{dt}=\frac{v_L}{L}](http://latex.codecogs.com/svg.latex?%5Cfrac%7Bdi_L%7D%7Bdt%7D%3D%5Cfrac%7Bv_L%7D%7BL%7D)
+* ![v_1=\frac{\Omega_2}{K_v}](http://latex.codecogs.com/svg.latex?v_1%3D%5Cfrac%7B%5COmega_2%7D%7BK_v%7D)
+* ![\tau_2=\frac{i_1}{-K_v}](http://latex.codecogs.com/svg.latex?%5Ctau_2%3D%5Cfrac%7Bi_1%7D%7B-K_v%7D)
+* ![\frac{d\tau_k}{dt}=k_t\Omega_k](http://latex.codecogs.com/svg.latex?%5Cfrac%7Bd%5Ctau_k%7D%7Bdt%7D%3Dk_t%5COmega_k)
+* ![\Omega_3=\frac{Q_4}{-D}](http://latex.codecogs.com/svg.latex?%5COmega_3%3D%5Cfrac%7BQ_4%7D%7B-D%7D)
+* ![P_4=\frac{\tau_3}{D}](http://latex.codecogs.com/svg.latex?P_4%3D%5Cfrac%7B%5Ctau_3%7D%7BD%7D)
+* ![Q_R=\frac{P_R}{R_f}](http://latex.codecogs.com/svg.latex?Q_R%3D%5Cfrac%7BP_R%7D%7BR_f%7D)
 
 ### Continuity Equations
 
 ![Normal Tree](.images/tutorial8.svg)
 
+* ![i_R=i_L](http://latex.codecogs.com/svg.latex?i_R%3Di_L)
+* ![i_s=i_L](http://latex.codecogs.com/svg.latex?i_s%3Di_L)
+* ![i_1=i_l](http://latex.codecogs.com/svg.latex?i_1%3Di_l)
+* ![\tau_3=-\tau_k-\tau_2](http://latex.codecogs.com/svg.latex?%5Ctau_3%3D-%5Ctau_k-%5Ctau_2)
+* ![Q_4=Q_R](http://latex.codecogs.com/svg.latex?Q_4%3DQ_R)
+
 ### Compatibility Equations
+
+* ![v_L=V_s-v_R-v_1](http://latex.codecogs.com/svg.latex?v_L%3DV_s-v_R-v_1)
+* ![\Omega_2=\Omega_3](http://latex.codecogs.com/svg.latex?%5COmega_2%3D%5COmega_3)
+* ![\Omega_k=\Omega_3](http://latex.codecogs.com/svg.latex?%5COmega_k%3D%5COmega_3)
+* ![P_R=P_4](http://latex.codecogs.com/svg.latex?P_R%3DP_4)
 
 ## Using the Software
