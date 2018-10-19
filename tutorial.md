@@ -97,17 +97,37 @@ Do this for each normal tree link.
 
 ## Example
 
-To show how this process works, example 5.9 in Rowell and Wormley will be worked out in detail here.
+To show how this process works, we will work through the following example.
 
-![Example 5.9](.images/Example5-9.jpg)
+![Example System](.images/tutorial1.svg)
+
+This system is a voltage source which drives a motor with the given resistance and inductance.
+This motor in turn drives a pump through a driveshaft with the given stiffness.
+Finall the pump pushes water through a curved pipe of known resistance.
 
 ### Linear Graph
 
-![Linear Graph](.images/tutorial1.svg)
+This system can be distilled into the linear graph below.
+
+![Linear Graph](.images/tutorial2.svg)
 
 ### Normal Tree
 
-![Normal Tree](.images/tutorial2.svg)
+To create the normal tree, first the voltage source is selected.
+
+![Normal Tree](.images/tutorial3.svg)
+
+To avoid selecting the torsional spring both sides of the gyrator added to the normal tree.
+
+![Normal Tree](.images/tutorial5.svg)
+
+Since one side of the transformer must be added to the normal tree, the left side is added.
+
+![Normal Tree](.images/tutorial6.svg)
+
+Finally to complete the normal tree the motor resistance is added.
+
+![Normal Tree](.images/tutorial7.svg)
 
 ### Primary Variables
 
@@ -116,6 +136,8 @@ To show how this process works, example 5.9 in Rowell and Wormley will be worked
 ### Elemental Equations
 
 ### Continuity Equations
+
+![Normal Tree](.images/tutorial8.svg)
 
 ### Compatibility Equations
 
