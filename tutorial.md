@@ -6,7 +6,14 @@ The purpose of this tutorial is to give the necessary background information on 
 
 ## Background Information
 
+This method of finding a differential equation of a dynamic system works with multiple energy domains and any combination of these domains.
+
 ### System Types
+
+In each energy domain a through and an accros variable is defined.
+Through variables are chosen as those whose value remains constant through a given element.
+Accross variables are those whose value is relative and changes through an element.
+A list of system types and their through and accross variables can be found below.
 
 | System Type   | Accross                  | Through        |
 | ------------- | ------------------------ | -------------- |
@@ -18,7 +25,12 @@ The purpose of this tutorial is to give the necessary background information on 
 
 ### Elemental Equations
 
+In each energy domain there are multiple different elements which are used to model a system.
+Accross energy domains these elements can be grouped into three distinct types.
+
 #### A Type Elements
+
+A type elements are energy storage elements which relates the rate of change of the accross variable to the through variable of the element.
 
 | System Type   | Element            | Elemental Equation
 | ------------- | ------------------ | ------------------
@@ -30,6 +42,8 @@ The purpose of this tutorial is to give the necessary background information on 
 
 #### T Type Elements
 
+T type elements are energy storage elements which relate the rate of change of the through variable to the accross variable of the element.
+
 | System Type   | Element          | Elemental Equation
 | ------------- | ---------------- | ------------------
 | Translational | Spring           | ![v=\frac{1}{K}\frac{dF}{dt}](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BK%7D%5Cfrac%7BdF%7D%7Bdt%7D)
@@ -39,6 +53,8 @@ The purpose of this tutorial is to give the necessary background information on 
 
 #### D Type Elements
 
+D type elements are strictly dissapative with a linear relationship between through and accross variables.
+
 | System Type   | Element            | Elemental Equation
 | ------------- | ------------------ | ------------------
 | Translational | Damper             | ![v=\frac{1}{B}F](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BB%7DF)
@@ -47,11 +63,37 @@ The purpose of this tutorial is to give the necessary background information on 
 | Fluid         | Fluid Resistance   | ![P=R_fQ](http://latex.codecogs.com/svg.latex?P%3DR_fQ)
 | Thermal       | Thermal Resistance | ![T=R_tq](http://latex.codecogs.com/svg.latex?T%3DR_tq)
 
+#### Transformers
+
+![\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
+
+| Element                | TF
+| ---------------------- | ---
+| Rack & Pinion          | ![r](http://latex.codecogs.com/svg.latex?r)
+| Gear train             | ![-r_2/r_1](http://latex.codecogs.com/svg.latex?-r_2/r_1)
+| DC Motor               | ![1/Kv](http://latex.codecogs.com/svg.latex?1/Kv)
+| Lever                  | ![-l_1/l_2](http://latex.codecogs.com/svg.latex?-l_1/l_2)
+| Belt Drive             | ![r_2/r_1](http://latex.codecogs.com/svg.latex?r_2/r_1)
+| Electrical transformer | ![N_1/N_2](http://latex.codecogs.com/svg.latex?N_1/N_2)
+| Fluid Transformer      | ![A_2/A_1](http://latex.codecogs.com/svg.latex?A_2/A_1)
+
+#### Gyrators
+
+![\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D0%26GY%5C%5C-1/GY%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
+
+| Element           | GY
+| ----------------- | ---
+| Hydrolic Ram      | ![-1/A](http://latex.codecogs.com/svg.latex?-1/A)
+| Displacement Pump | ![-1/D](http://latex.codecogs.com/svg.latex?-1/D)
+
 ### Linear Graph
 
-Add each element of the system to the linear graph.
-A type elements always connect to the ground.
-Arrows point in the direction of decreasing across variable.
+Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
+Each node represents an independent accross variable value.
+Branches are created for each element in the system.
+In non electrical systems A type elements always connect to a ground node.
+Arrows on branches point in the direction of decreasing accross variable.
+Arrows on transformers and gyrators always point towards ground.
 
 ### Normal Tree
 
@@ -160,10 +202,10 @@ Finally to complete the normal tree the motor resistance is added.
 ### Elemental Equations
 
 * ![v_R=Ri_R](http://latex.codecogs.com/svg.latex?v_R%3DRi_R)
-* ![\frac{di_L}{dt}=\frac{v_L}{L}](http://latex.codecogs.com/svg.latex?%5Cfrac%7Bdi_L%7D%7Bdt%7D%3D%5Cfrac%7Bv_L%7D%7BL%7D)
+* ![i_L'=\frac{v_L}{L}](http://latex.codecogs.com/svg.latex?i_L%27%3D%5Cfrac%7Bv_L%7D%7BL%7D)
 * ![v_1=\frac{\Omega_2}{K_v}](http://latex.codecogs.com/svg.latex?v_1%3D%5Cfrac%7B%5COmega_2%7D%7BK_v%7D)
 * ![\tau_2=\frac{i_1}{-K_v}](http://latex.codecogs.com/svg.latex?%5Ctau_2%3D%5Cfrac%7Bi_1%7D%7B-K_v%7D)
-* ![\frac{d\tau_k}{dt}=k_t\Omega_k](http://latex.codecogs.com/svg.latex?%5Cfrac%7Bd%5Ctau_k%7D%7Bdt%7D%3Dk_t%5COmega_k)
+* ![\tau_k'=k_t\Omega_k](http://latex.codecogs.com/svg.latex?%5Ctau_k%27%3Dk_t%5COmega_k)
 * ![\Omega_3=\frac{Q_4}{-D}](http://latex.codecogs.com/svg.latex?%5COmega_3%3D%5Cfrac%7BQ_4%7D%7B-D%7D)
 * ![P_4=\frac{\tau_3}{D}](http://latex.codecogs.com/svg.latex?P_4%3D%5Cfrac%7B%5Ctau_3%7D%7BD%7D)
 * ![Q_R=\frac{P_R}{R_f}](http://latex.codecogs.com/svg.latex?Q_R%3D%5Cfrac%7BP_R%7D%7BR_f%7D)
@@ -173,7 +215,6 @@ Finally to complete the normal tree the motor resistance is added.
 ![Normal Tree](.images/tutorial8.svg)
 
 * ![i_R=i_L](http://latex.codecogs.com/svg.latex?i_R%3Di_L)
-* ![i_s=i_L](http://latex.codecogs.com/svg.latex?i_s%3Di_L)
 * ![i_1=i_l](http://latex.codecogs.com/svg.latex?i_1%3Di_l)
 * ![\tau_3=-\tau_k-\tau_2](http://latex.codecogs.com/svg.latex?%5Ctau_3%3D-%5Ctau_k-%5Ctau_2)
 * ![Q_4=Q_R](http://latex.codecogs.com/svg.latex?Q_4%3DQ_R)
