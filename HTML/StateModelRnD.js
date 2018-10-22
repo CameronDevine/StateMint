@@ -416,6 +416,9 @@ function loadFromURL() {
 	if (window.location.search.length > 0) {
 		addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
 		StateModel();
+		$(window).load(function() {
+			$('#LoadingPageLink').click();
+		});
 	}
 }
 
