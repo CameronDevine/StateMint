@@ -83,7 +83,7 @@ D type elements are strictly dissapative with a linear relationship between thro
 
 | Element           | GY
 | ----------------- | ---
-| Hydraulic Ram      | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A)
+| Hydraulic Ram     | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A)
 | Displacement Pump | ![$-1/D$](http://latex.codecogs.com/svg.latex?-1/D)
 
 ### Linear Graph
