@@ -135,7 +135,7 @@ The state variables of the system are,
 ### Elemental Equations
 
 ![$B-S$](http://latex.codecogs.com/svg.latex?B-S) elemental equations should be written with the primary variable on the left hand side.
-Here ![$B$](http://latex.codecogs.com/svg.latex?B) is the number of branches in the normal tree and ![$S$](http://latex.codecogs.com/svg.latex?S) is the number of sources.
+Here ![$B$](http://latex.codecogs.com/svg.latex?B) is the number of branches in the linear graph and ![$S$](http://latex.codecogs.com/svg.latex?S) is the number of sources.
 
 ### Continuity Equations
 
@@ -170,25 +170,29 @@ To create the normal tree, first the voltage source is selected.
 
 ![Normal Tree](.images/tutorial3.svg)
 
-To avoid selecting the torsional spring both sides of the gyrator added to the normal tree.
+To avoid selecting T type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
 
-![Normal Tree](.images/tutorial5.svg)
+![Normal Tree](.images/tutorial4.svg)
 
-Since one side of the transformer must be added to the normal tree, the left side is added.
+Also adding both sides of the gyrator means that adding the torsional spring would cause a loop to be created.
 
 ![Normal Tree](.images/tutorial6.svg)
 
-Finally to complete the normal tree the motor resistance is added.
+Next a the motor resistance is added.
 
 ![Normal Tree](.images/tutorial7.svg)
+
+Finally to complete the normal tree the motor inductance must be added.
+
+![Normal Tree](.images/tutorial8.svg)
 
 ### Primary Variables
 
 ![$V_s$](http://latex.codecogs.com/svg.latex?V_s),
 ![$v_R$](http://latex.codecogs.com/svg.latex?v_R),
-![$i_L$](http://latex.codecogs.com/svg.latex?i_L),
-![$v_1$](http://latex.codecogs.com/svg.latex?v_1),
-![$\tau_2$](http://latex.codecogs.com/svg.latex?%5Ctau_2),
+![$v_L$](http://latex.codecogs.com/svg.latex?v_L),
+![$i_1$](http://latex.codecogs.com/svg.latex?i_1),
+![$\Omega_2$](http://latex.codecogs.com/svg.latex?%5COmega_2),
 ![$\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k),
 ![$\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_3),
 ![$P_4$](http://latex.codecogs.com/svg.latex?P_4),
@@ -198,24 +202,24 @@ Finally to complete the normal tree the motor resistance is added.
 
 ![$i_s$](http://latex.codecogs.com/svg.latex?i_s),
 ![$i_R$](http://latex.codecogs.com/svg.latex?i_R),
-![$v_L$](http://latex.codecogs.com/svg.latex?v_L),
-![$i_1$](http://latex.codecogs.com/svg.latex?i_1),
-![$\Omega_2$](http://latex.codecogs.com/svg.latex?%5COmega_2),
+![$i_L$](http://latex.codecogs.com/svg.latex?i_L),
+![$v_1$](http://latex.codecogs.com/svg.latex?v_1),
+![$\tau_2$](http://latex.codecogs.com/svg.latex?%5Ctau_2),
 ![$\Omega_k$](http://latex.codecogs.com/svg.latex?%5COmega_k),
+![$\tau_3$](http://latex.codecogs.com/svg.latex?%5Ctau_3),
 ![$Q_4$](http://latex.codecogs.com/svg.latex?Q_4),
 ![$P_R$](http://latex.codecogs.com/svg.latex?P_R)
 
 ### State Variables
 
-![$i_L$](http://latex.codecogs.com/svg.latex?i_L),
 ![$\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k)
 
 ### Elemental Equations
 
 * ![$v_R=Ri_R$](http://latex.codecogs.com/svg.latex?v_R%3DRi_R)
-* ![$i_L'=\frac{v_L}{L}$](http://latex.codecogs.com/svg.latex?i_L%27%3D%5Cfrac%7Bv_L%7D%7BL%7D)
-* ![$v_1=\frac{\Omega_2}{K_v}$](http://latex.codecogs.com/svg.latex?v_1%3D%5Cfrac%7B%5COmega_2%7D%7BK_v%7D)
-* ![$\tau_2=\frac{i_1}{-K_v}$](http://latex.codecogs.com/svg.latex?%5Ctau_2%3D%5Cfrac%7Bi_1%7D%7B-K_v%7D)
+* ![$i_L'=\frac{v_L}{L}$](http://latex.codecogs.com/svg.latex?i_L%27%3D%5Cfrac%7Bv_L%7D%7BL%7D) ![$v_L=Li_L'$](http://latex.codecogs.com/svg.latex?v_L%3DLi_L%27)
+* ![$i_1=-K_v\tau_2$](http://latex.codecogs.com/svg.latex?i_1%3D-K_v%5Ctau_2)
+* ![$\Omega_2=K_vv_1$](http://latex.codecogs.com/svg.latex?%5COmega_2%3DK_vv_1)
 * ![$\tau_k'=k_t\Omega_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k%27%3Dk_t%5COmega_k)
 * ![$\Omega_3=\frac{Q_4}{-D}$](http://latex.codecogs.com/svg.latex?%5COmega_3%3D%5Cfrac%7BQ_4%7D%7B-D%7D)
 * ![$P_4=\frac{\tau_3}{D}$](http://latex.codecogs.com/svg.latex?P_4%3D%5Cfrac%7B%5Ctau_3%7D%7BD%7D)
@@ -223,18 +227,18 @@ Finally to complete the normal tree the motor resistance is added.
 
 ### Continuity Equations
 
-![Normal Tree](.images/tutorial8.svg)
+![Normal Tree](.images/tutorial9.svg)
 
-* ![$i_R=i_L$](http://latex.codecogs.com/svg.latex?i_R%3Di_L)
-* ![$i_1=i_l$](http://latex.codecogs.com/svg.latex?i_1%3Di_l)
-* ![$\tau_3=-\tau_k-\tau_2$](http://latex.codecogs.com/svg.latex?%5Ctau_3%3D-%5Ctau_k-%5Ctau_2)
+* ![$i_L=i_1$](http://latex.codecogs.com/svg.latex?i_L%3Di_1)
+* ![$i_R=i_1$](http://latex.codecogs.com/svg.latex?i_R%3Di_1)
+* ![$\tau_2=-\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_2%3D-%5Ctau_k)
+* ![$\tau_3=\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_3%3D%5Ctau_k)
 * ![$Q_4=Q_R$](http://latex.codecogs.com/svg.latex?Q_4%3DQ_R)
 
 ### Compatibility Equations
 
-* ![$v_L=V_s-v_R-v_1$](http://latex.codecogs.com/svg.latex?v_L%3DV_s-v_R-v_1)
-* ![$\Omega_2=\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_2%3D%5COmega_3)
-* ![$\Omega_k=\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_k%3D%5COmega_3)
+* ![$v_1=V_s-v_R-v_L$](http://latex.codecogs.com/svg.latex?v_1%3DV_s-v_R-v_L)
+* ![$\Omega_k=\Omega_2-\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_k%3D%5COmega_2-%5COmega_3)
 * ![$P_R=P_4$](http://latex.codecogs.com/svg.latex?P_R%3DP_4)
 
 ## Using the Software
