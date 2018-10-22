@@ -53,7 +53,7 @@ T type elements are energy storage elements which relate the rate of change of t
 
 #### D Type Elements
 
-D type elements are strictly dissapative with a linear relationship between through and across variables.
+D type elements are strictly dissipative with a linear relationship between through and across variables.
 
 | System Type   | Element            | Elemental Equation
 | ------------- | ------------------ | ------------------
@@ -65,7 +65,7 @@ D type elements are strictly dissapative with a linear relationship between thro
 
 #### Transformers
 
-In dynamic systems energy can flow between multiple domians.
+In dynamic systems energy can flow between multiple domains.
 Transformers are one tool used to model this by relating the through and across variables to each other,
 
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
@@ -111,7 +111,7 @@ An example of a linear graph appears in the Example section of this tutorial.
 
 In order to find the primary and secondary variables a normal tree can be constructed.
 This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) branches from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
-If multiple ground nodes are pesent in the linear graph they should be counted as a single node.
+If multiple ground nodes are present in the linear graph they should be counted as a single node.
 Since the normal tree must be a tree structure no loops may be created when constructing the normal tree.
 To construct the normal tree select branches in the following order.
 
@@ -121,7 +121,7 @@ To construct the normal tree select branches in the following order.
 4. D type elements
 5. T type elements
 
-For transforerms one branch must be selected, and for gyrators both or neither branches can be selected.
+For transformers one branch must be selected, and for gyrators both or neither branches can be selected.
 The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
 
 ### Primary Variables
@@ -250,7 +250,7 @@ To determine the continuity equations the following contours can be drawn.
 
 ![Normal Tree](.images/tutorial9.svg)
 
-Uisng these contours the equations below were constructed.
+Using these contours the equations below were constructed.
 
 * ![$i_L=i_1$](http://latex.codecogs.com/svg.latex?i_L%3Di_1)
 * ![$i_R=i_1$](http://latex.codecogs.com/svg.latex?i_R%3Di_1)
@@ -284,4 +284,4 @@ An example continuing this tutorial is [provided](https://github.com/CameronDevi
 ### Mathematica
 
 Finally, the Mathematica package can be used.
-An example using mathematica is also [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/mathematica/Example.nb)
+An example using mathematica is also [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/mathematica/Example.nb).
