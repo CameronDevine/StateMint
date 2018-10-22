@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The purpose of this tutorial is to give the necessary background information on how to use the StateModelRnD software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the method of Rowell and Wormley.
+The purpose of this tutorial is to give the necessary background information on how to use the StateModelRnD software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
 
 ## Background Information
 
@@ -65,10 +65,16 @@ D type elements are strictly dissapative with a linear relationship between thro
 
 #### Transformers
 
+In dynamic systems energy can flow between multiple domians.
+Transformers are one tool used to model this by relating the through and across variables to each other,
+
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
 
-| Element                | TF
-| ---------------------- | ---
+Here ![$TF$](http://latex.codecogs.com/svg.latex?TF) can be used in many different applications.
+A few of these are listed below,
+
+| Element                | ![$TF$](http://latex.codecogs.com/svg.latex?TF)
+| ---------------------- | ----
 | Rack & Pinion          | ![$r$](http://latex.codecogs.com/svg.latex?r)
 | Gear train             | ![$-r_2/r_1$](http://latex.codecogs.com/svg.latex?-r_2/r_1)
 | DC Motor               | ![$1/Kv$](http://latex.codecogs.com/svg.latex?1/Kv)
@@ -79,10 +85,15 @@ D type elements are strictly dissapative with a linear relationship between thro
 
 #### Gyrators
 
+Gyrators are another tool used to model energy flow between domains.
+This model relates across variables in one domain to through variables in the other,
+
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D0%26GY%5C%5C-1/GY%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
 
-| Element           | GY
-| ----------------- | ---
+The following elements can be modeled as gyrators,
+
+| Element           | ![$GY$](http://latex.codecogs.com/svg.latex?GY)
+| ----------------- | ----
 | Hydraulic Ram     | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A)
 | Displacement Pump | ![$-1/D$](http://latex.codecogs.com/svg.latex?-1/D)
 
@@ -188,6 +199,8 @@ Finally to complete the normal tree the motor inductance must be added.
 
 ### Primary Variables
 
+The following are primary variables determined using the logic above.
+
 ![$V_s$](http://latex.codecogs.com/svg.latex?V_s),
 ![$v_R$](http://latex.codecogs.com/svg.latex?v_R),
 ![$v_L$](http://latex.codecogs.com/svg.latex?v_L),
@@ -199,6 +212,8 @@ Finally to complete the normal tree the motor inductance must be added.
 ![$Q_R$](http://latex.codecogs.com/svg.latex?Q_R)
 
 ### Secondary Variables
+
+Given the primary variables above the following are easily determined to be secondary variables.
 
 ![$i_s$](http://latex.codecogs.com/svg.latex?i_s),
 ![$i_R$](http://latex.codecogs.com/svg.latex?i_R),
@@ -212,12 +227,16 @@ Finally to complete the normal tree the motor inductance must be added.
 
 ### State Variables
 
+From the requirements the following can be found to be the only state variable.
+
 ![$\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k)
 
 ### Elemental Equations
 
+Based on the list of elemental equations the following list of elemental equations can be generated.
+
 * ![$v_R=Ri_R$](http://latex.codecogs.com/svg.latex?v_R%3DRi_R)
-* ![$i_L'=\frac{v_L}{L}$](http://latex.codecogs.com/svg.latex?i_L%27%3D%5Cfrac%7Bv_L%7D%7BL%7D) ![$v_L=Li_L'$](http://latex.codecogs.com/svg.latex?v_L%3DLi_L%27)
+* ![$v_L=Li_L'$](http://latex.codecogs.com/svg.latex?v_L%3DLi_L%27)
 * ![$i_1=-K_v\tau_2$](http://latex.codecogs.com/svg.latex?i_1%3D-K_v%5Ctau_2)
 * ![$\Omega_2=K_vv_1$](http://latex.codecogs.com/svg.latex?%5COmega_2%3DK_vv_1)
 * ![$\tau_k'=k_t\Omega_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k%27%3Dk_t%5COmega_k)
@@ -227,7 +246,11 @@ Finally to complete the normal tree the motor inductance must be added.
 
 ### Continuity Equations
 
+To determine the continuity equations the following contours can be drawn.
+
 ![Normal Tree](.images/tutorial9.svg)
+
+Uisng these contours the equations below were constructed.
 
 * ![$i_L=i_1$](http://latex.codecogs.com/svg.latex?i_L%3Di_1)
 * ![$i_R=i_1$](http://latex.codecogs.com/svg.latex?i_R%3Di_1)
@@ -237,8 +260,28 @@ Finally to complete the normal tree the motor inductance must be added.
 
 ### Compatibility Equations
 
+By adding each link into the normal tree the equations below were generated.
+
 * ![$v_1=V_s-v_R-v_L$](http://latex.codecogs.com/svg.latex?v_1%3DV_s-v_R-v_L)
 * ![$\Omega_k=\Omega_2-\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_k%3D%5COmega_2-%5COmega_3)
 * ![$P_R=P_4$](http://latex.codecogs.com/svg.latex?P_R%3DP_4)
 
 ## Using the Software
+
+Given these equations the state equation could be found by hand, or one of the following tools could be used.
+
+### Web Interface
+
+The web interface is by far the easiest method to perform this algebra,
+[statemodelrnd.camerondevine.me](http://statemodelrnd.camerondevine.me/?%7B%22InVars%22%3A%22Vs%22%2C%22StVarElEqns%22%3A%22tk'%20%3D%20kt%20*%20wk%22%2C%22OtherElEqns%22%3A%22vR%20%3D%20R%20*%20iR%2C%5CnvL%20%3D%20L%20*%20iL'%2C%5Cni1%20%3D%20-Kv%20*%20t2%2C%5Cnw2%20%3D%20Kv%20*%20v1%2C%5Cnw3%20%3D%20Q4%20%2F%20-D%2C%5CnP4%20%3D%20t3%20%2F%20D%2C%5CnQR%20%3D%20PR%20%2F%20Rf%22%2C%22Constraints%22%3A%22iL%20%3D%20i1%2C%5CniR%20%3D%20i1%2C%5Cnt2%20%3D%20-tk%2C%5Cnt3%20%3D%20tk%2C%5CnQ4%20%3D%20QR%2C%5Cnv1%20%3D%20Vs%20-%20vR%20-%20vL%2C%5Cnwk%20%3D%20w2%20-%20w3%2C%5CnPR%20%3D%20P4%22%2C%22OutputVars%22%3A%22QR%22%7D).
+This interface allow the equations to be entered and the result found without the need to install software.
+
+### Python
+
+The Python implementation of this software can also be used.
+An example continuing this tutorial is [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/python/Example.ipynb).
+
+### Mathematica
+
+Finally, the Mathematica package can be used.
+An example using mathematica is also [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/mathematica/Example.nb)
