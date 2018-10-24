@@ -7,7 +7,7 @@
 		z-index: 1000;
 }
 
-li {
+.scrolling li {
 	position: relative;
 	margin: 20px 0;
 	background: #1e6add;
@@ -20,7 +20,7 @@ li {
 	border-color: #fff;
 }
 
-li:hover {
+.scrolling li:hover {
 	transform: scale(1.5);
 }
 

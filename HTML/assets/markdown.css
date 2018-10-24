@@ -1,0 +1,21 @@
+.markdown p {
+	text-align: left;
+	font-weight: normal;
+}
+
+.markdown img {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.markdown table, th, td {
+	border: 1px solid black;
+}
+
+.markdown th, td {
+	padding: 6px !important;
+}
+
+.markdown td {
+	font-weight: normal;
+}

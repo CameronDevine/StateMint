@@ -4,6 +4,7 @@ var last_form = "";
 var jpeg = null;
 var Exif;
 var default_form = 'StateSpace';
+var tutorial_loaded = false;
 
 function callback() {
 	console.log(data);
@@ -416,6 +417,26 @@ function loadFromURL() {
 	if (window.location.search.length > 0) {
 		addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
 		StateModel();
+		$(window).load(function() {
+			$('#LoadingPageLink').click();
+		});
+	}
+}
+
+function tutorial() {
+	if (!tutorial_loaded) {
+		fetch('tutorial/tutorial.md').then(function(resp) {
+			resp.text().then(function(data) {
+				body = $('#tutorialRef').find('.modal-body')
+				body.html(window.markdownit().render(
+					data.split('\\\\').join('\\\\\\\\')));
+				body.find('a').each(function() {
+					$(this).attr('target', '_blank');
+				});
+				MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'tutorialRef']);
+				tutorial_loaded = true;
+			});
+		});
 	}
 }
 
@@ -428,4 +449,9 @@ $(document).ready(function() {
 			name: $(event.target).closest('tr').find('strong').html(),
 			open: Array.from($(event.target).prop('classList')).indexOf('typcn-trash') != 1});
 	});
-})
+	MathJax.Hub.Config({
+		tex2jax: {
+			inlineMath: [['$', '$']]
+		}
+	});
+});

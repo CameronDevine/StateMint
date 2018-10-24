@@ -10,6 +10,7 @@
 		<link rel="icon" href="favicon.gif" type="image/gif"/>
 		<link rel="stylesheet" href="assets/pagination.css">
 		<link rel="stylesheet" href="assets/cameron.css">
+		<link rel="stylesheet" href="assets/markdown.css">
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/fonts/material-icons.min.css">
 		<link rel="stylesheet" href="assets/fonts/typicons.min.css">
@@ -41,6 +42,7 @@
 		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
 		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
 		<script type="text/javascript" src="apiGateway-js-sdk/apigClient.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"></script>
 		<script type="text/javascript" src="StateModelRnD.js"></script>
 		<script src="piexif.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
@@ -60,7 +62,7 @@
 				<div class="container">
 					<section class="intro">
 						<h1 class="text-center">StateModelRND</h1>
-						<p class="text-center">Enter system information and get the state equation matricies and the transfer function. The links below may also be used to load different example systems.</p>
+						<p class="text-center">This tool automatically determines a state equation given the elemental and constraint equtions describing a system. The input equations can be derived using linear graph methods.</p>
 					</section>
 					<p class="text-center" style="color:rgb(60,104,255);"><a onclick="showExamples()"><strong>Show me an example &gt;</strong></a></p>
 					<div class="buttons" style="padding:0px;padding-top:34px;">
@@ -140,7 +142,7 @@
 				<div class="container">
 					<div class="intro">
 						<h2 class="text-center">Examples </h2>
-						<p class="text-center">Enter Systems information and get the state equation matricies and the transfer function function. The links below may also be used to load diffferent examle systems.</p>
+						<p class="text-center">The following examples show the syntax used to enter equations and the general opperation of this tool. A <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()"><strong>tutorial</strong></a> on how to create these equations is also available.</p>
 					</div>
 					<div class="buttons" style="overflow-x: auto; white-space: nowrap;">
 						<a class="btn btn-primary" role="button" onclick="loadExample(1, true)" onmouseover="loadExample(1, false)">Example 1</a>
@@ -601,6 +603,27 @@
 							<div class="buttons" style="text-align:right">
 								<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">Save</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="tutorialRef" tabindex="-1" role="dialog" aria-labelledby="tutorialRefTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="tutorialRefTitle"><strong>Tutorial</strong></h4>
+					</div>
+					<div class="modal-body markdown">
+					</div>
+					<div class="modal-footer">
+						<div class="highlight-clean" style="padding:0">
+							<div class="buttons" style="text-align:right">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>
