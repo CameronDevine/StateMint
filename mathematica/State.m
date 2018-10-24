@@ -160,6 +160,7 @@ OutputVarsLoT=Map[Apply[#,{t}]&,OutputVarsLo];
 (* Transform input variables, state and other primary elemental equations, and constraints into functions of time *)
 StVarElEqnsLoT=StVarElEqnsLo/.Map[#->Apply[#,{t}]&,Map[Part[#,1]&,StVarElEqnsLo]];
 StVarElEqnsLoT=StVarElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
+StVarElEqnsLoT=Map[Part[#,1]==(Part[#,2]/.Map[#->Apply[#,{t}]&,StVarsLo])&,StVarElEqnsLoT];
 OtherPriVarsLoT=OtherPriVarsLo/.Map[#->Apply[#,{t}]&,{SecVars,OtherPriVarsLo}//Flatten];
 OtherElEqnsLoT=OtherElEqnsLo/.Map[#->Apply[#,{t}]&,Map[Part[#,1]&,OtherElEqnsLo]];
 OtherElEqnsLoT=OtherElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
