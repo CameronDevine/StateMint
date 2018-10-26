@@ -149,23 +149,18 @@ nSt,nIn,nOut,aa,bb,cc,dd,ee,ff, bbp, ddp,TT},
 
 (* Find lists of state, other primary,  secondary, input, and output variables *)
 StVarsLo=Map[Part[#,1]&,Map[Part[#,1]&,StVarElEqnsLo]];
-StVarsLoT=StVarsLo/.Map[#->Apply[#,{t}]&,StVarsLo];
+StVarsLoT=StVarsLo/.Flatten[{Map[#' -> #'[t] &, StVarsLo], Map[# -> #[t] &, StVarsLo]}];
 OtherPriVarsLo=Map[Part[#,1]&,OtherElEqnsLo];
-OtherPriVarsLoT=OtherPriVarsLo/.Map[#->Apply[#,{t}]&,OtherPriVarsLo];
+OtherPriVarsLoT=OtherPriVarsLo/.Flatten[{Map[#' -> #'[t] &, OtherPriVarsLo], Map[# -> #[t] &, OtherPriVarsLo]}];
 SecVars=Map[Part[#,1]&,ConstraintsLo];
-SecVarsT=SecVars/.Map[#->Apply[#,{t}]&,SecVars];
-InVarsLoT=Map[Apply[#,{t}]&,InVarsLo];
-OutputVarsLoT=Map[Apply[#,{t}]&,OutputVarsLo];
+SecVarsT=SecVars/.Flatten[{Map[#' -> #'[t] &, SecVars], Map[# -> #[t] &, SecVars]}];
+InVarsLoT=InVarsLo/.Flatten[{Map[#' -> #'[t] &, InVarsLo], Map[# -> #[t] &, InVarsLo]}];
+OutputVarsLoT=OutputVarsLo/.Flatten[{Map[#' -> #'[t] &, OutputVarsLo], Map[# -> #[t] &, OutputVarsLo]}];
 
 (* Transform input variables, state and other primary elemental equations, and constraints into functions of time *)
-StVarElEqnsLoT=StVarElEqnsLo/.Map[#->Apply[#,{t}]&,Map[Part[#,1]&,StVarElEqnsLo]];
-StVarElEqnsLoT=StVarElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
-StVarElEqnsLoT=Map[Part[#,1]==(Part[#,2]/.Map[#->Apply[#,{t}]&,StVarsLo])&,StVarElEqnsLoT];
-OtherPriVarsLoT=OtherPriVarsLo/.Map[#->Apply[#,{t}]&,{SecVars,OtherPriVarsLo}//Flatten];
-OtherElEqnsLoT=OtherElEqnsLo/.Map[#->Apply[#,{t}]&,Map[Part[#,1]&,OtherElEqnsLo]];
-OtherElEqnsLoT=OtherElEqnsLoT/.Map[#->Apply[#,{t}]&,SecVars];
-(* OtherElEqnsLoT=Map[StringReplace[ToString[#,InputForm],"["<>ToString[t]<>"]]"->"]["<>ToString[t]<>"]"]&,OtherElEqnsLoT]//ToExpression; *)
-ConstraintsLoT=ConstraintsLo/.Map[#->Apply[#,{t}]&,{StVarsLo,SecVars,OtherPriVarsLo,InVarsLo}//Flatten];
+StVarElEqnsLoT=StVarElEqnsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
+OtherElEqnsLoT=OtherElEqnsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
+ConstraintsLoT=ConstraintsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
 
 (*  Substitute cut-set and tie-set equations (along with any necessary derivatives) into all elemental equations. Solve for the Other primary variables,in terms of state variables  *)
 St2=StVarElEqnsLoT/.Flatten[{ConstraintsLoT,D[ConstraintsLoT,t]}];
