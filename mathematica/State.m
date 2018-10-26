@@ -165,7 +165,6 @@ ConstraintsLoT=ConstraintsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVars
 (*  Substitute cut-set and tie-set equations (along with any necessary derivatives) into all elemental equations. Solve for the Other primary variables,in terms of state variables  *)
 St2=StVarElEqnsLoT/.Flatten[{ConstraintsLoT,D[ConstraintsLoT,t]}];
 Co2=OtherElEqnsLoT/.Flatten[{ConstraintsLoT,D[ConstraintsLoT,t]}];
-OtherPriVarsLoT=OtherPriVarsLoT;
 E3=Solve[Flatten[{Co2,D[Co2,t]}],Flatten[{OtherPriVarsLoT,D[OtherPriVarsLoT,t]}]][[1]]//
 Simplify;
 
