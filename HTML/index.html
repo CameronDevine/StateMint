@@ -163,17 +163,17 @@
 			<form method="post">
 				<h2 class="text-center">Enter system equations</h2>
 				<div>
-					<h4><strong>Input Variables:</strong> </h4>
-					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars"/>
+					<h4><strong>Input Variables:</strong></h4>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of input variables."/>
 					<h4><strong>State Variable Elemental Equations:</strong> </h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB, vMW' = 1/MW * fMW, fKS' = KS * vKS, fKT' = KT * vKT" class="form-control" id="StVarElEqns"></textarea>
-					<h4><strong>Other Elemental Equations:</strong> </h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS, fBT = BT * vBT" class="form-control" id="OtherElEqns"></textarea>
-					<h4><strong>Constraints:</strong> </h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS, fMW = fKT + fBT - fKS - fBS, vKS = vMW - vMB, vKT = vS - vMW, vBS = vMW - vMB, vBT = vS - vMW" class="form-control" id="Constraints"></textarea>
-					<h4><strong>Output Variables:</strong> </h4>
-					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB, vMW, fKS, fKT, fBS, fBT" class="form-control" id="OutputVars"/>
-					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help.</p>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of state variable elemental equations. If you don't understand, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
+					<h4><strong>Other Elemental Equations:</strong></h4>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of non-state variable elemental equations. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
+					<h4><strong>Constraints:</strong></h4>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="A comma seperated list of continuity and compatibility equations. Feel free to put each equation on a new line."></textarea>
+					<h4><strong>Output Variables:</strong></h4>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
+					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
 					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;"><i class="typcn typcn-equals"></i>Calculate</button>
 				</div>
 			</form>

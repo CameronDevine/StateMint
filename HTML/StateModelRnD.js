@@ -449,6 +449,7 @@ $(document).ready(function() {
 			name: $(event.target).closest('tr').find('strong').html(),
 			open: Array.from($(event.target).prop('classList')).indexOf('typcn-trash') != 1});
 	});
+	$('[data-toggle="tooltip"]').tooltip({delay: {hide: 1500}});
 	MathJax.Hub.Config({
 		tex2jax: {
 			inlineMath: [['$', '$']]
