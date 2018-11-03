@@ -1,5 +1,18 @@
 .PHONY: version tutorial
 
+define prog
+from urllib import quote
+with open('web/HTML/tutorial/tutorial.md') as f: text = f.read()
+chunks = text.split('$$')
+chunks = ['![$${}$$](http://latex.codecogs.com/svg.latex?{})'.format(eqn, quote(eqn)) if i % 2 == 1 else chunks[i].replace('](tutorial/', '](HTML/tutorial/') for i, eqn in enumerate(chunks)]
+with open('tutorial.md', 'w') as f: f.write(''.join(chunks))
+endef
+export prog
+
+tutorial:
+	echo $$prog
+	python -c "import os;exec(os.environ['prog'])"
+
 version:
 	if [ "$(old)" ] && [ "$(new)" ] && [ "$(message)" ]; then \
 		echo "$(old)->$(new)"; \
@@ -22,16 +35,3 @@ version:
 		echo "please supply old and new version numbers along with a release message:"; \
 		echo "make version old=<old version> new=<new version> message=<release message>"; \
 	fi;
-
-define prog
-from urllib import quote
-with open('web/HTML/tutorial/tutorial.md') as f: text = f.read()
-chunks = text.split('$$')
-chunks = ['![$${}$$](http://latex.codecogs.com/svg.latex?{})'.format(eqn, quote(eqn)) if i % 2 == 1 else chunks[i].replace('](tutorial/', '](HTML/tutorial/') for i, eqn in enumerate(chunks)]
-with open('tutorial.md', 'w') as f: f.write(''.join(chunks))
-endef
-export prog
-
-tutorial:
-	echo $$prog
-	python -c "import os;exec(os.environ['prog'])"
