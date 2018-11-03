@@ -206,9 +206,9 @@ function loadExample(num, scroll) {
 		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd,\nvd = vm";
 		document.getElementById("OutputVars").value = "vm";
 	}
-	$('#exampleImage').prop('src', 'example' + num + '.svg');
-	insertImage('example' + num + '.svg')
-	fetch('example' + num + '.jpg').then(function(resp) {
+	$('#exampleImage').prop('src', 'examples/example' + num + '.svg');
+	insertImage('examples/example' + num + '.svg')
+	fetch('examples/example' + num + '.jpg').then(function(resp) {
 		resp.blob().then(function(blob) {
 			reader = new FileReader();
 			reader.onloadend = function() {
@@ -296,7 +296,7 @@ function addBlank(callback) {
 	var canvas = document.createElement("canvas");
 	var context = canvas.getContext('2d');
 	convimg = new Image();
-	convimg.src = 'blank.jpg';
+	convimg.src = 'assets/img/blank.jpg';
 	convimg.onload = function () {
 		context.drawImage(convimg, 100, 100);
 		jpeg = canvas.toDataURL("image/jpeg");

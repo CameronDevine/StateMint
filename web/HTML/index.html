@@ -4,30 +4,21 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>StateModelRND</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-		<link rel="icon" href="favicon.png" type="image/png"/>
-		<link rel="icon" href="favicon.gif" type="image/gif"/>
-		<link rel="stylesheet" href="assets/pagination.css">
-		<link rel="stylesheet" href="assets/page.css">
-		<link rel="stylesheet" href="assets/markdown.css">
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/fonts/material-icons.min.css">
-		<link rel="stylesheet" href="assets/fonts/typicons.min.css">
-		<link rel="stylesheet" href="assets/css/Article-List.css">
+		<link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon"/>
+		<link rel="icon" href="assets/favicon/favicon.png" type="image/png"/>
+		<link rel="icon" href="assets/favicon/favicon.gif" type="image/gif"/>
+		<link rel="stylesheet" href="assets/css/pagination.css">
+		<link rel="stylesheet" href="assets/css/page.css">
+		<link rel="stylesheet" href="assets/css/markdown.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-		<link rel="stylesheet" href="assets/css/Footer-Basic.css">
-		<link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
 		<link rel="stylesheet" href="assets/css/Highlight-Blue.css">
 		<link rel="stylesheet" href="assets/css/Highlight-Clean.css">
 		<link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-		<link rel="stylesheet" href="assets/css/Newsletter-Subscription-Form.css">
-		<link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
 		<link rel="stylesheet" href="assets/css/Social-Icons.css">
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/untitled-1.css">
-		<link rel="stylesheet" href="assets/css/untitled.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
 		<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
@@ -43,12 +34,13 @@
 		<script type="text/javascript" src="apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
 		<script type="text/javascript" src="apiGateway-js-sdk/apigClient.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"></script>
-		<script type="text/javascript" src="StateModelRnD.js"></script>
-		<script src="piexif.js"></script>
+		<script type="text/javascript" src="assets/js/StateModelRnD.js"></script>
+		<script src="assets/js/piexif.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
-		<script src="scroll.js"></script>
+		<script src="assets/js/scroll.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 		<script src="assets/js/bootstrap-notify.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<ul class="scrolling">
@@ -174,7 +166,10 @@
 					<h4><strong>Output Variables:</strong></h4>
 					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
 					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
-					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;"><i class="typcn typcn-equals"></i>Calculate</button>
+					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;">
+						<svg style="fill:white;transform:translate(0,2pt)" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M18 7h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2zM18 14h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z"/></svg>
+						Calculate
+					</button>
 				</div>
 			</form>
 		</section>
@@ -630,9 +625,5 @@
 				</div>
 			</div>
 		</div>
-		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-		<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-		<script src="assets/js/bs-animation.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
 	</body>
 </html>
