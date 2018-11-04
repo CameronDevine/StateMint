@@ -1,30 +1,5 @@
 #!/usr/bin/env bash
 
-# Check if pandoc and pandoc-citeproc are installed
-
-missing=""
-
-if [ ! "$(which pandoc)" ]; then
-	missing="$missing pandoc";
-fi;
-
-if [ ! "$(which pandoc-citeproc)" ]; then
-	missing="$missing pandoc-citeproc";
-fi;
-
-if [ ! "$(which xelatex)" ]; then
-	missing="$missing xelatex";
-fi;
-
-if [ "$missing" ]; then
-	if [ $(echo "$missing" | wc -w) -eq 2 ]; then
-		echo "Please install $(echo $missing | sed 's/ / and /').";
-	else
-		echo "Please install $(echo $missing | sed 's/ /, /g' | sed 's/\(.*\) /\1 and /').";
-	fi;
-	exit 1;
-fi;
-
 # Help text
 
 description="A bash script for compiling JOSS and JOSE papers locally";
@@ -35,7 +10,7 @@ doc="compile [-j <journal>] [-d <doi>] [-v <volume>] [-i <issue>] [-p <page>]
 Compile a markdown FILE to a JOSS or JOSE paper.
 
 Options:
-  -j JOURNAL    The journal the paper is being compiled for, either joss or jose, defaults to joss.
+  -j JOURNAL      The journal the paper is being compiled for, either joss or jose, defaults to joss.
   -d DOI          The DOI of the submitted paper, defaults to an empty string.
   -v VOLUME       The journal volume the paper was published in, defaults to an empty string.
   -i ISSUE        The journal issue the paper was published in, defaults to an empty string.
@@ -107,6 +82,31 @@ if [ ! "$paper" ]; then
 	echo "FILE not specified."
 	echo;
 	echo "$doc"
+	exit 1;
+fi;
+
+# Check if pandoc and pandoc-citeproc are installed
+
+missing=""
+
+if [ ! "$(which pandoc)" ]; then
+	missing="$missing pandoc";
+fi;
+
+if [ ! "$(which pandoc-citeproc)" ]; then
+	missing="$missing pandoc-citeproc";
+fi;
+
+if [ ! "$(which xelatex)" ]; then
+	missing="$missing xelatex";
+fi;
+
+if [ "$missing" ]; then
+	if [ $(echo "$missing" | wc -w) -eq 2 ]; then
+		echo "Please install $(echo $missing | sed 's/ / and /').";
+	else
+		echo "Please install $(echo $missing | sed 's/ /, /g' | sed 's/\(.*\) /\1 and /').";
+	fi;
 	exit 1;
 fi;
 
