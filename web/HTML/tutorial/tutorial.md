@@ -284,9 +284,9 @@ An example continuing this tutorial is [provided](https://github.com/CameronDevi
 ### Mathematica
 
 Finally, the Mathematica package can be used.
-An example using mathematica is also [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/mathematica/Example.nb).
+An example using Mathematica is also [provided](https://github.com/CameronDevine/StateModelRnD/blob/master/mathematica/Example.nb).
 
 ## Further reading
 
 To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's univeristy taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
+Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.

@@ -54,7 +54,7 @@
 				<div class="container">
 					<section class="intro">
 						<h1 class="text-center">StateModelRND</h1>
-						<p class="text-center">This tool automatically determines a state equation given the elemental and constraint equtions describing a system. The input equations can be derived using linear graph methods.</p>
+						<p class="text-center">This tool symbolically determines the differential equation of a dynamic system given its elemental and constrain equations. These equations can be derived using linear graph methods.</p>
 					</section>
 					<p class="text-center" style="color:rgb(60,104,255);"><a onclick="showExamples()"><strong>Show me an example &gt;</strong></a></p>
 					<div class="buttons" style="padding:0px;padding-top:34px;">
@@ -134,7 +134,7 @@
 				<div class="container">
 					<div class="intro">
 						<h2 class="text-center">Examples </h2>
-						<p class="text-center">The following examples show the syntax used to enter equations and the general opperation of this tool. A <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()"><strong>tutorial</strong></a> on how to create these equations is also available.</p>
+						<p class="text-center">These examples show the <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#commandRef" onclick="tutorial()"><strong>syntax</strong></a> and operation of this tool. A <a style="color:rgb(60,104,255);" data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()"><strong>tutorial</strong></a> is also available.</p>
 					</div>
 					<div class="buttons" style="overflow-x: auto; white-space: nowrap;">
 						<a class="btn btn-primary" role="button" onclick="loadExample(1, true)" onmouseover="loadExample(1, false)">Example 1</a>
@@ -158,11 +158,11 @@
 					<h4><strong>Input Variables:</strong></h4>
 					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of input variables."/>
 					<h4><strong>State Variable Elemental Equations:</strong> </h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of state variable elemental equations. If you don't understand, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of state variable elemental equations with the primary variable on the left hand side. If you don't understand this, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
 					<h4><strong>Other Elemental Equations:</strong></h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of non-state variable elemental equations. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of non-state variable elemental equations with the primary variable on the left hand side. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
 					<h4><strong>Constraints:</strong></h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="A comma seperated list of continuity and compatibility equations. Feel free to put each equation on a new line."></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="A comma seperated list of continuity and compatibility equations with the secondary variable on the left hand side. Why not put each equation on its own line?"></textarea>
 					<h4><strong>Output Variables:</strong></h4>
 					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
 					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
@@ -183,7 +183,7 @@
 			</div>
 		</div>
 		<section class="highlight-clean" id="page6" style="padding-top:1em;padding-bottom:0;min-height:100vh">
-			<h1 align="center">Your Answer</h1>
+			<h1 align="center">Result</h1>
 			<div class="container">
 				<div class="intro">
 					<h3 class="text-center">Select a Language</h3>
@@ -192,7 +192,7 @@
 					<button class="btn btn-default" type="button" id="equationButton" onclick="outlang('Equation')">Equation </button>
 					<button class="btn btn-default" type="button" id="latexButton" onclick="outlang('LaTeX')">latex </button>
 					<button class="btn btn-default" type="button" id="matlabButton" onclick="outlang('Matlab')">matlab </button>
-					<button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathmatica </button>
+					<button class="btn btn-default" type="button" id="mathematicaButton" onclick="outlang('Mathematica')">mathematica </button>
 					<button class="btn btn-default" type="button" id="pythonButton" onclick="outlang('Python')">python </button>
 				</div>
 			</div>
@@ -334,7 +334,7 @@
 												</tr>
 												<tr>
 													<td scope="row"><samp>(a+b)*c</samp></td>
-													<td>Denote modifications to order of opperations with parenthesis</td>
+													<td>Denote modifications to order of operations with parenthesis</td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>exp(a)</td>
@@ -342,11 +342,11 @@
 												</tr>
 												<tr>
 													<td scope="row"><samp>log(a)</td>
-													<td>The natural logrithm of <samp>a</td>
+													<td>The natural logarithm of <samp>a</td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>log(a, b)</samp></td>
-													<td>The logrithm of <samp>a</samp> in base <samp>b</samp></td>
+													<td>The logarithm of <samp>a</samp> in base <samp>b</samp></td>
 												</tr>
 											</tbody>
 										</table>
@@ -357,7 +357,7 @@
 								<div class="panel-heading" role="tab" id="trigHeading">
 									<h4 class="panel-title">
 										<a role="button" data-toggle="collapse" data-parent="#refAccordion" href="#trigRef" aria-expanded="false" aria-controls="trigRef">
-											Triginometry
+											Trigonometry
 										</a>
 									</h4>
 								</div>
