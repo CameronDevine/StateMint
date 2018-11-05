@@ -1,109 +1,121 @@
-from sympy import *
+'''
+This package provides a function to symbolically determine the differential equation describing the dynamics of a system. As inputs the `Solve` function takes the elemental and constraint equations of a system. These equations must be in the forms specified by Rowell and Wormley in "System Dynamics: An Introduction". A `tutorial <https://github.com/CameronDevine/StateModelRnD/blob/master/tutorial.md>`_ is available which covers how to prepare equations for use with this code. There is also an `example <https://github.com/CameronDevine/StateModelRnD/blob/master/python/Example.ipynb>`_ which covers the details of how to use this code. Convenience functions to convert the symbolic matrices to Numpy objects are also included.
 
-t, s = symbols('t s')
-dummy = symbols('dummy')
+This code can be installed by running `pip install StateModelRnD`, or one of the other interfaces can be used. Available are a Mathematica package, and a web `interface <http://statemodelrnd.camerondevine.me/>`_.
+'''
+
+import sympy
+
+t, s = sympy.symbols('t s')
+dummy = sympy.symbols('dummy')
 
 def sympify_vec(data):
-	return [sympify(el + '(t)') for el in data]
+	return [sympy.sympify(el + '(t)') for el in data]
 
 def sympify_eqs(data):
 	if len(data) == 0:
 		return []
-	return [sympify('Eq(' + el.replace("'", "(t).diff(t)").replace('=', ',') + ')') for el in data]
+	return [sympy.sympify('Eq(' + el.replace("'", "(t).diff(t)").replace('=', ',') + ')') for el in data]
 
 def make_matrix(eqs, vars, D = False):
-	M = zeros(len(eqs), len(vars))
+	M = sympy.zeros(len(eqs), len(vars))
 	for i in range(len(eqs)):
 		for j in range(len(vars)):
 			if D:
-				M[i,j] = simplify(diff(eqs[i].subs(vars[j].diff(t), dummy), dummy))
+				M[i,j] = sympy.simplify(sympy.diff(eqs[i].subs(vars[j].diff(t), dummy), dummy))
 			else:
-				M[i,j] = simplify(diff(eqs[i], vars[j]))
+				M[i,j] = sympy.simplify(sympy.diff(eqs[i], vars[j]))
 	return M
 
 def make_vec(vars):
-	return [sympify(str(v).replace('(t)', '')) for v in vars]
+	return [sympy.sympify(str(v).replace('(t)', '')) for v in vars]
 
 class output:
+	'''A container for the resulting differential equation.
+
+	This class is a container in which the output from `StateModelRnD.Solve` is placed. This allows the results of the solution to be easily accessed as members of the class.
 	'''
-	This class is a container in which the output from :meth:`StateModelRnD.Solve` is placed. This allows
-	The results of the solution to be easily accessed as members of the class.
-	'''
+
 	A = None
+	'''sympy.Matrix: The state matrix, :math:`A`.
+
+	This matrix is found in state space formulations of dynamic systems such as, :math:`\dot{x}=Ax+Bu`.
 	'''
-	The state matrix, :math:`A`, in equations such as, :math:`\dot{x}=Ax+Bu`.
-	'''
+
 	B = None
+	'''sympy.Matrix: The input matrix, :math:`B`.
+
+	This matrix is found in state space formulations of dynamics systems such as, :math:`\dot{x}=Ax+Bu`.
 	'''
-	The input matrix, :math:`B`, in equations such as, :math:`\dot{x}=Ax+Bu`.
-	'''
+
 	C = None
+	'''sympy.Matrix: The output matrix, :math:`C`.
+
+	This matrix is found in a linear output equation of the form, :math:`y=Cx+Du`.
 	'''
-	The output matrix, :math:`C`, in equations such as, :math:`y=Cx+Du`.
-	'''
+
 	D = None
+	'''sympy.Matrix: The feedthrough matrix, :math:`D`.
+
+	This matrix is found in a linear output equation of the form, :math:`y=Cx+Du`.
 	'''
-	The feedthrough matrix, :math:`D`, in equations such as, :math:`y=Cx+Du`.
-	'''
+
 	E = None
+	'''sympy.Matrix: The time derivative input matrix, :math:`E`.
+
+	This matrix is found state space formulations of dynamic systems such as, :math:`\dot{x}=Ax+Bu+E\dot{u}`.
 	'''
-	The time derivative input matrix, :math:`E`, in equations such as, :math:`\dot{x}=Ax+Bu+E\dot{u}`.
-	'''
+
 	F = None
+	'''sympy.Matrix: The time derivative feedthrough matrix, :math:`F`.
+
+	This matrix is found in linear output equations of the form, :math:`y=Cx+Du+F\dot{u}`.
 	'''
-	The time derivative feedthrough matrix, :math:`F`, in equations such as, :math:`y=Cx+Du+F\dot{u}`.
-	'''
+
 	Bp = None
+	'''sympy.Matrix: The input matrix, :math:`B'`.
+
+	This matrix is found in equations such as, :math:`\dot{x}'=Ax'+B'u`, where the time derivative of the input has been removed by modifying the state vector.
 	'''
-	The input matrix, :math:`B'`, in equations such as, :math:`\dot{x}'=Ax'+B'u`, where the time derivative of the input has been removed by modifying the state vector.
-	'''
+
 	Dp = None
+	'''sympy.Matrix: The feedthrough matrix, :math:`D'`.
+
+	This matrix is found in equations such as, :math:`y=Ax'+D'u`, where the time derivative of the input has been removed by modifying the state vector.
 	'''
-	The feedthrough matrix, :math:`D'`, in equations such as, :math:`y=Ax'+D'u`, where the time derivative of the input has been removed by modifying the state vector.
-	'''
+
 	TF = None
-	'''
-	The transfer function of the system.
-	'''
+	'''sympy.Matrix: The transfer function of the system.'''
+
 	StateVec = None
-	'''
-	The symbolic state vector :math:`x`.
-	'''
+	'''sympy.Matrix: The symbolic state vector :math:`x`.'''
+
 	OutputVec = None
-	'''
-	The symbolic output vector :math:`y`.
-	'''
+	'''sympy.Matrix: The symbolic output vector :math:`y`.'''
+
 	StateEq = None
-	'''
-	The full state equation, :math:`\dot{x}=f(x,y)`.
-	'''
+	'''sympy.Matrix: The full state equation, :math:`\dot{x}=f(x,y)`.'''
+
 	OutEq = None
-	'''
-	The full output equation, :math:`y=h(x,u)`.
-	'''
+	'''sympy.Matrix: The full output equation, :math:`y=h(x,u)`.'''
+
 	InputVec = None
-	'''
-	The symbolic input vector :math:`u`.
-	'''
+	'''sympy.Matrix: The symbolic input vector :math:`u`.'''
 
 def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
-	'''
-	This function takes the input and output variables, along with the state, elemental, and constrain equations
-	as derived using the method in Rowell and Wormley. It returns a state space model, along with a transfer function
-	and the state and ouput equations.
+	'''Find the differential equations of a dynamic system from elemental and constraint equations.
 
-	:param InVars: A lost with the input variables
-	:param StVarElEqns: A list of the state variable elemental equations with the state variables on the left hand side
-	:param OtherElEqns: A list of the other elemental equations with the primary varible on the left hand side
-	:param Constraints: A list of the constraint equations with the secondary variables on the left hand side
-	:param OutputVars: A list of the output variables
-	:type InVars: list
-	:type StVarElEqns: list
-	:type OtherElEqns: list
-	:type Constraints: list
-	:type OutputVars: list
-	:returns: The model of the system in multiple forms
-	:rtype: :meth:`StateModelRnD.output`
+	This function takes the input and output variables, along with the state, elemental, and constrain equations. It returns a state space model, along with a transfer function and the state and output equations.
+
+	Args:
+		InVars (list of str): A list of the system's input variables.
+		StVarElEqns (list of str): A list of state variable elemental equations with the primary variables on the left hand side.
+		OtherElEqns (list of str): A list of non state variable elemental equations with the primary variables on the left hand side.
+		Constraints (list of str): A list of constraint (compatibility and continuity) equations with the secondary variables on the left hand side.
+		OutputVars (list of str): A list of the system's output variables.
+
+	Returns:
+		output: The symbolically determined differential equation describing the system.
 	'''
 
 	InVars = sympify_vec(InVars)
@@ -116,13 +128,13 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 
 	Constraints = sympify_eqs(Constraints)
 
-	StVars = [integrate(eq.lhs, t) for eq in StVarElEqns]
+	StVars = [sympy.integrate(eq.lhs, t) for eq in StVarElEqns]
 
 	PriVars = [eq.lhs for eq in OtherElEqns]
 
 	SecVars = [eq.lhs for eq in Constraints]
 
-	func_subs = dict([(sympify(str(var).replace('(t)', '')), var) if '(t)' in str(var) else (var, sympify(str(var) + '(t)')) for var in InVars + StVars + PriVars + SecVars])
+	func_subs = dict([(sympy.sympify(str(var).replace('(t)', '')), var) if '(t)' in str(var) else (var, sympy.sympify(str(var) + '(t)')) for var in InVars + StVars + PriVars + SecVars])
 
 	StVarElEqns = [eq.subs(func_subs) for eq in StVarElEqns]
 
@@ -140,7 +152,7 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 		[(const.lhs, const.rhs) for const in Constraints]
 		+[(const.lhs.diff(t), const.rhs.diff(t)) for const in Constraints if const.lhs.diff(t) != 0])
 
-	St2 = [Eq(eq.lhs, eq.rhs.subs(DConstraints_sub)) for eq in StVarElEqns]
+	St2 = [sympy.Eq(eq.lhs, eq.rhs.subs(DConstraints_sub)) for eq in StVarElEqns]
 
 	Co2 = [eq.subs(DConstraints_sub) for eq in OtherElEqns]
 
@@ -150,7 +162,7 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 		for eq2 in Co2:
 			if eq1 != eq2:
 				eq = eq.subs(eq2.lhs, eq2.rhs)
-		E3[eq.lhs] = solve(eq, eq.lhs)[0]
+		E3[eq.lhs] = sympy.solve(eq, eq.lhs)[0]
 
 	StateEquation = St2
 	_StateEquation = None
@@ -158,7 +170,7 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 		_StateEquation = StateEquation
 		StateEquation = [eq.subs(E3) for eq in StateEquation]
 
-	StateEqsFinal = [simplify(solve(eq.doit(), st.diff(t))[0]) for (eq, st) in zip(StateEquation, StVars)]
+	StateEqsFinal = [sympy.simplify(sympy.solve(eq.doit(), st.diff(t))[0]) for (eq, st) in zip(StateEquation, StVars)]
 
 	OutputSubs = dict([(st.diff(t), eq) for (eq, st) in zip(StateEqsFinal, StVars)])
 	OutputSubs.update(DConstraints_sub)
@@ -180,14 +192,14 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	Bp = A * E + B
 	Dp = C * E + D
 
-	TF = Matrix([C * (s * eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s]).T
+	TF = sympy.Matrix([C * (s * sympy.eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s]).T
 
 	StVec = make_vec(StVars)
 	OutVec = make_vec(OutputVars)
 	InVec = make_vec(InVars)
 	
-	StateEqsFinalMat = Matrix([StateEqsFinal]).T
-	OutputEqsFinalMat = Matrix([OutputEqsFinal]).T
+	StateEqsFinalMat = sympy.Matrix([StateEqsFinal]).T
+	OutputEqsFinalMat = sympy.Matrix([OutputEqsFinal]).T
 
 	result = output()
 	result.A = A
@@ -199,10 +211,10 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	result.Bp = Bp
 	result.Dp = Dp
 	result.TF = TF
-	result.StateVec = Matrix(StVec)
-	result.OutputVec = Matrix(OutVec)
+	result.StateVec = sympy.Matrix(StVec)
+	result.OutputVec = sympy.Matrix(OutVec)
 	result.StateEq = StateEqsFinalMat
 	result.OutEq = OutputEqsFinalMat
-	result.InputVec = Matrix(InVec)
+	result.InputVec = sympy.Matrix(InVec)
 
 	return result

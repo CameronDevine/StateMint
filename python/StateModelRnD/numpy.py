@@ -1,6 +1,5 @@
-'''Convert symbolic matricies to numpy matricies.
-
-This module provides convienience functions for turning symbolic matracies into numpy matricies for simulation and analysis.
+'''
+This module provides convenience functions for turning symbolic matrices into Numpy matrices for simulation and analysis.
 '''
 
 import numpy as np
@@ -13,7 +12,7 @@ def array(data, values = {}):
 
 	Args:
 		data (sympy.Matrix): The symbolic matrix to convert to a Numpy array.
-		values (dict of str: float): The values to replace each symbolic variable with in a dictionary with the key as a string of the variable name, and the value as the number to replace it with
+		values (dict of str: float, optional): The values to replace each symbolic variable with in a dictionary with the key as a string of the variable name, and the value as the number to replace it with
 
 	Returns:
 		numpy.ndarray: A Numpy array of the matrix using the values given
@@ -33,7 +32,7 @@ def matrix(data, values = {}):
 
 	Args:
 		data (sympy.Matrix): The symbolic matrix to convert to a Numpy matrix.
-		values (dict of str: float): The values to replace each symbolic variable with in a dictionary with the key as a string of the variable name, and the value as the number to replace it with
+		values (dict of str: float, optional): The values to replace each symbolic variable with in a dictionary with the key as a string of the variable name, and the value as the number to replace it with
 
 	Returns:
 		numpy.matrix: A Numpy matrix using the values given
