@@ -1,0 +1,5 @@
+*.zip
+api.yml
+package.yml
+lambda/*
+!lambda/StateModelLambda.py

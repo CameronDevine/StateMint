@@ -1,19 +1,16 @@
 SHELL := bash
-.PHONY: zip package deploy sdk clean remove
+.PHONY: zip package deploy sdk clean remove check
 
 all: depends zip package deploy sdk
 
 depends:
-	mkdir -p lambda
-	pip install --upgrade sympy mpmath -t lambda/	
+	pip install --upgrade sympy mpmath -t aws/lambda/
+	cp -r ../python/StateModelRnD aws/lambda/
 
 zip:
-	mkdir -p lambda
-	cp -r ../python/StateModelRnD lambda/
-	cp ../python/StateModelLambda.py lambda/
-	cd lambda; zip -r ../lambda.zip *
+	cd aws/lambda; zip -r ../lambda.zip *
 
-package:
+package: check
 	found="false"; \
 	for line in $$(aws s3 ls); do \
 		if [ "$$line" == "statemodelrnd" ]; then \
@@ -27,22 +24,22 @@ package:
 	echo "$(shell \
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
 		export region=`aws configure get region`; \
-		envsubst '$$account $$region' < api-template.yml > api.yml)"
-	aws cloudformation package --template-file StateModelRnD.yml --s3-bucket statemodelrnd --output-template-file package.yml
+		envsubst '$$account $$region' < aws/api-template.yml > aws/api.yml)"
+	aws cloudformation package --template-file aws/StateModelRnD.yml --s3-bucket statemodelrnd --output-template-file aws/package.yml
 
-deploy:
-	aws cloudformation deploy --stack-name statemodelrnd --template-file package.yml --capabilities CAPABILITY_IAM
+deploy: check
+	aws cloudformation deploy --stack-name statemodelrnd --template-file aws/package.yml --capabilities CAPABILITY_IAM
 
-sdk:
-	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4) --stage-name Stage2 --sdk-type javascript ../HTML/sdk.zip
-	cd ../HTML; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
+sdk: check
+	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name statemodelrnd | grep OutputValue | cut -d '"' -f 4) --stage-name Stage2 --sdk-type javascript HTML/assets/sdk.zip
+	cd HTML/assets/; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
 
-clean:
-	rm -rf lambda
-	rm -f lambda.zip
-	rm -f package.yml
-	rm -f api.yml
-	rm -rf ../HTML/apiGateway-js-sdk
+clean: check
+	cd aws/lambda; ls | grep -v StateModelLambda.py | xargs rm -r
+	rm -f aws/lambda.zip
+	rm -f aws/package.yml
+	rm -f aws/api.yml
+	rm -rf HTML/assets/apiGateway-js-sdk
 	for line in $$(aws s3 ls); do \
 		if [ "$$line" == "statemodelrnd" ]; then \
 			aws s3 rb s3://statemodelrnd --force; \
@@ -50,5 +47,13 @@ clean:
 		fi; \
 	done
 
-remove:
+remove: check
 	aws cloudformation delete-stack --stack-name statemodelrnd
+
+check:
+	if [ $$(which aws) == "" ]; then \
+		pip install awscli; \
+	fi
+	if ! aws sts get-caller-identity; then \
+		aws configure; \
+	fi
