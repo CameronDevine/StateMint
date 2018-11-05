@@ -1,6 +1,7 @@
-.PHONY: all build upload clean docs
+.PHONY: build upload clean docs
 
-all: build upload clean
+docs:
+	sphinx-build docs/ docs/build
 
 build:
 	python setup.py sdist bdist_wheel
@@ -14,6 +15,3 @@ clean:
 	rm -rf build
 	rm -rf docs/html
 	rm -rf docs/doctrees
-
-docs:
-	sphinx-build -M html docs/ docs/
