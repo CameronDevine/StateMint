@@ -7,5 +7,5 @@ StateModelRnD
 
 .. automodule:: StateModelRnD
 	:members:
-.. automodule:: StateModelRnD.numpy
+.. automodule:: StateModelRnD.to_numpy
 	:members:
