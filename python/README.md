@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/StateModelRnD.svg)](https://pypi.org/project/StateModelRnD/)
 [![Documentation Status](https://readthedocs.org/projects/statemodelrnd/badge/?version=latest)](https://statemodelrnd.readthedocs.io/en/latest/?badge=latest)
 
-The StateModelRnD Python package is an implementation based on [SymPy](www.sympy.org) which allows this code to easily combined with simulation and analysis code, or integrated into other systems.
+The StateModelRnD Python package is an implementation based on [SymPy](http://www.sympy.org) which allows this code to easily combined with simulation and analysis code, or integrated into other systems.
 The package provides a `Solve` function which takes the input variables, state variable elemental equations, non-state variable elemental equations, constraint equations, and output variables and returns a Python object with multiple forms of the solution.
 These outputs can be further analyzed with SymPy or converted to Numpy objects for easy simulation or numerical analysis.
 The full documentation for the code is available on [readthedocs.io](https://statemodelrnd.readthedocs.io/en/latest/).
