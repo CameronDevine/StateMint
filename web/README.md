@@ -5,7 +5,7 @@ This interface allows students and other to take advantage of this tool without 
 
 ### Usage
 
-This interface uses the Python StateModelRnD package in an AWS Lambda function to perform the symbolic mathematics.
+This interface uses the Python StateModelRnD [package](../python/README.md) in an AWS Lambda function to perform the symbolic mathematics.
 Equations can be entered in text boxes on the webpage, then the Lambda function is used to find the result which can be displayed in multiple forms for copying into Python, Mathematica, Matlab or LaTeX.
 These systems can also be saved or downloaded for later modification or use.
 
