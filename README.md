@@ -23,7 +23,7 @@ An [example](python/Example.ipynb) of how to use the Python package is also prov
 
 A [web interface](web) is also available which uses the Python package as a backend.
 This package allows anyone to use this tool without the need to install any software.
-An example of this interface is running at [statemodelrnd.camerondevine.me].
+An example of this interface is running at [statemodelrnd.camerondevine.me](statemodelrnd.camerondevine.me).
 
 ## Credits
 
