@@ -2,7 +2,7 @@ from sympy import *
 import StateModelRnD
 import StateModelRnD.to_numpy
 import numpy as np
-import unittest	
+import unittest
 
 class TestStateModelRnD(unittest.TestCase):
 
