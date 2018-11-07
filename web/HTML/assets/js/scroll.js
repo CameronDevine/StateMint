@@ -2,7 +2,7 @@ var page2id = 'page2';
 
 function pagination() {
 	var scrolPos = $(document).scrollTop();
-	if ($('#page6').position().top <= scrolPos) {
+	if ($('#page6').position().top <= scrolPos && $('#page6').is(':visible')) {
 		$('li').removeClass('activeDot');
 		$('li').eq(3).addClass('activeDot');
 		$('#systemImage').hide();

@@ -29,12 +29,17 @@ function callback() {
 	}
 	outlang("Equation");
 	eqform(default_form);
-	$('#page4button').click();
-	setTimeout(function () {
-		$('#LoadingPage').hide();
+	$('#page6button').show();
+	$('#page6li').show();
+	$('#page6').show();
+	setTimeout(function() {
 		$('#page4button').click();
-		}, 500)
-	}
+		setTimeout(function () {
+			$('#LoadingPage').hide();
+			$('#page4button').click();
+		}, 500);
+	}, 200);
+}
 
 function output(names, equations) {
 	$('#output .buttons').hide().slice(0, names.length).show();
@@ -347,9 +352,11 @@ function copyEq(num) {
 
 function restart() {
 	$('#page1button').click();
-	setTimeout(function() {
-		window.location.reload();
-		}, 400);
+	scrolPos = $(document).scrollTop();
+	while ($(document).scrollTop() != scrolPos) {
+		scrolPos = $(document).scrollTop();
+	}
+	window.location.reload();
 }
 
 function list_saved() {
