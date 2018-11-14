@@ -17,14 +17,17 @@ N.b. for the output equations, use the function outEquations instead.
 N.b. to linearize the returned state equations, use the function linearizeState.";
 
 stateEquations[inVars_List,stateVars_List,equations_List] :=
-Module[{allVars,elimVars,stateEqs},
+Module[{allVars,elimVars,stateEqs,equationsToSolve},
+
+(* Join with derivatives of equations in order to handle non-standard state equations *)
+equationsToSolve = joinWDer[equations,t];
 
 (* Extract variables to eliminate *)
-allVars = equations//extractFunctions;
-elimVars = allVars//Complement[#,joinWDer[inVars~Join~stateVars,t]]&;
+allVars = equationsToSolve//extractFunctions;
+elimVars = allVars//Complement[#,joinWDer[stateVars~Join~inVars,t]]&;
 
 (* Eliminate non state and input variables and place in standard form *)
-stateEqs = equations//Eliminate[#,elimVars]&//Solve[#,D[stateVars,t]]&//Collect[#,stateVars]&;
+stateEqs = equationsToSolve//Eliminate[#,elimVars]&//Solve[#,D[stateVars,t]]&//Collect[#,stateVars]&;
 stateVars//D[#,t]&//ReplaceAll[#,stateEqs]&//Flatten//Return;
 ];
 
@@ -46,18 +49,22 @@ N.b. for the state equations, use the function stateEquations instead.
 N.b. to linearize the returned output equations, use the function linearizeOutput.";
 
 outEquations[inVars_List,stateVars_List,outExps_List,equations_List]:=
-Module[{allVars,elimVars,outEqs,outEqsRaw,yOut,stateEqsID,sansStateEqsID},
+Module[{allVars,elimVars,outEqs,outEqsRaw,yOut,stateEqsID,sansStateEqsID,equationsToSolve},
+
+(* Join with derivatives of equations in order to handle non-standard state equations *)
+equationsToSolve = joinWDer[equations,t];
 
 (* Extract variables to eliminate *)
-allVars = equations//extractFunctions;
+allVars = equationsToSolve//extractFunctions;
 elimVars = allVars//Complement[#,joinWDer[inVars~Join~stateVars,t]]&;
 
-(* Solve for output expressions in terms of state and input variables*)
-stateEqsID=equations//Position[#,x_'[y_],{0,Infinity}]&//Transpose//First//{#}&//Transpose;
+(* Toss the equations with derivatives *)
+stateEqsID=equations//Position[#,x_'[y_],{0,Infinity}]&//{#}[[All,1]]&//Transpose;
 sansStateEqsID=equations//Delete[#,stateEqsID]&;
+
+(* Solve for output expressions in terms of state and input variables*)
 yOut=Table[y[i],{i,1,Length[outExps]}];
 outEqsRaw=Thread[yOut==outExps];
-
 outEqs=(outEqsRaw~Join~sansStateEqsID)//
 	Eliminate[#,elimVars]&//
 		Solve[#,yOut]&//
@@ -73,17 +80,20 @@ linearizeState::usage =
 	stateVarsOP_List, (* operating point for state variables *)
 	equations_List (* rhs of nonlinear (or linear) state equation *)
 ]
-Returns an array containing the A and B matrices {A,B} of the input state equation
+Returns an array containing the A, B, and if applicable E matrices {A,B,E} of the input state equation
 linearized about the input and state operating point.";
 
 linearizeState[inVars_List,inVarsOP_List,stateVars_List,stateVarsOP_List,equations_List]:=
-Module[{a,b,stateVarsOPRules,inVarsOPRules,OPRules},
+Module[{a,b,e,stateVarsOPRules,inVarsOPRules,OPRules},
 stateVarsOPRules=Thread[stateVars->stateVarsOP];
 inVarsOPRules=Thread[inVars->inVarsOP];
 OPRules=stateVarsOPRules~Join~inVarsOPRules;
 a=equations//D[#,{stateVars}]&//ReplaceAll[#,OPRules]&; (* Jacobian wrt x *)
 b=equations//D[#,{inVars}]&//ReplaceAll[#,OPRules]&;(* Jacobian wrt u *)
-{a,b}//Return;
+e=equations//D[#,{D[inVars,t]}]&// (* Jacobian wrt u' *)
+	ReplaceAll[#,(# -> 0)&/@D[inVars,t]]&// (* u OP a constant so u' OP is 0 *)
+		ReplaceAll[#,OPRules]&; (* apply OP *)
+{a,b,e}//Return;
 ]
 
 linearizeOutput::usage =
@@ -94,17 +104,20 @@ linearizeOutput::usage =
 	stateVarsOP_List, (* operating point for state variables *)
 	equations_List (* rhs of nonlinear (or linear) output equation *)
 ]
-Returns an array containing the C and D matrices {C,D} of the output equation
+Returns an array containing the C, D, and if applicable F matrices {C,D,F} of the output equation
 linearized about the input and state operating point.";
 
 linearizeOutput[inVars_List,inVarsOP_List,stateVars_List,stateVarsOP_List,equations_List]:=
-Module[{c,d,stateVarsOPRules,inVarsOPRules,OPRules},
+Module[{c,d,f,stateVarsOPRules,inVarsOPRules,OPRules},
 stateVarsOPRules=Thread[stateVars->stateVarsOP];
 inVarsOPRules=Thread[inVars->inVarsOP];
 OPRules=stateVarsOPRules~Join~inVarsOPRules;
 c=equations//D[#,{stateVars}]&//ReplaceAll[#,OPRules]&; (* Jacobian wrt x *)
 d=equations//D[#,{inVars}]&//ReplaceAll[#,OPRules]&;(* Jacobian wrt u *)
-{c,d}//Return;
+f=equations//D[#,{D[inVars,t]}]&// (* Jacobian wrt u' *)
+	ReplaceAll[#,(# -> 0)&/@D[inVars,t]]&// (* u OP a constant so u' OP is 0 *)
+		ReplaceAll[#,OPRules]&; (* apply OP *)
+{c,d,f}//Return;
 ]
 
 extractFunctions::usage =
@@ -122,7 +135,7 @@ joinWDer::usage =
 ]
 Returns input list joined with its derivative, e.g. {vC1[t],vc2[t],vC1'[t],vC2'[t]}.";
 
-joinWDer[list_List,t_Symbol]:=list~Join~D[list,t];
+joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list));
 
 
 State::usage =
