@@ -2,6 +2,7 @@
 
 BeginPackage["State`"];
 
+
 stateEquations::usage =
 "stateEquations[
 	inVars_List,    (* input variable names, e.g. vS[t] *)
@@ -31,6 +32,7 @@ stateEqs = equationsToSolve//Eliminate[#,elimVars]&//Solve[#,D[stateVars,t]]&//C
 stateVars//D[#,t]&//ReplaceAll[#,stateEqs]&//Flatten//Return;
 ];
 
+
 outEquations::usage =
 "outEquations[
 	inVars_List,    (* input variable names, e.g. vS[t] *)
@@ -56,10 +58,13 @@ equationsToSolve = joinWDer[equations,t];
 
 (* Extract variables to eliminate *)
 allVars = equationsToSolve//extractFunctions;
-elimVars = allVars//Complement[#,joinWDer[inVars~Join~stateVars,t]]&;
+elimVars = allVars//Complement[#,stateVars~Join~joinWDer[inVars,t]]&;
 
 (* Toss the equations with derivatives *)
-stateEqsID=equations//Position[#,x_'[y_],{0,Infinity}]&//{#}[[All,1]]&//Transpose;
+stateEqsID=equations//
+	Position[#,x_'[y_],{0,Infinity}]&// (* dependent energy storage elements' elemental equations are also discarded, which seems not to matter *)
+		{#}[[All,1]]&//
+			Transpose;
 sansStateEqsID=equations//Delete[#,stateEqsID]&;
 
 (* Solve for output expressions in terms of state and input variables*)
@@ -72,18 +77,25 @@ outEqs=(outEqsRaw~Join~sansStateEqsID)//
 yOut/.outEqs//Flatten//Return;
 ]
 
+
 linearizeState::usage =
 "linearizeState[
 	inVars_List, (* input variables *)
-	inVarsOP_List, (* operating point for input variables *)
 	stateVars_List, (* state variables *)
-	stateVarsOP_List, (* operating point for state variables *)
-	equations_List (* rhs of nonlinear (or linear) state equation *)
+	equations_List, (* rhs of nonlinear (or linear) state equation *)
+	inVarsOP_List: default: zeros, (* operating point for input variables *)
+	stateVarsOP_List: default: zeros (* operating point for state variables *)
 ]
 Returns an array containing the A, B, and if applicable E matrices {A,B,E} of the input state equation
 linearized about the input and state operating point.";
 
-linearizeState[inVars_List,inVarsOP_List,stateVars_List,stateVarsOP_List,equations_List]:=
+linearizeState[
+	inVars_List,
+	stateVars_List,
+	equations_List,
+	inVarsOP_List:ConstantArray[0,Dimensions[inVars]],
+	stateVarsOP_List:ConstantArray[0,Dimensions[stateVars]]
+]:=
 Module[{a,b,e,stateVarsOPRules,inVarsOPRules,OPRules},
 stateVarsOPRules=Thread[stateVars->stateVarsOP];
 inVarsOPRules=Thread[inVars->inVarsOP];
@@ -96,18 +108,25 @@ e=equations//D[#,{D[inVars,t]}]&// (* Jacobian wrt u' *)
 {a,b,e}//Return;
 ]
 
+
 linearizeOutput::usage =
 "linearizeOutput[
 	inVars_List, (* input variables *)
-	inVarsOP_List, (* operating point for input variables *)
 	stateVars_List, (* state variables *)
-	stateVarsOP_List, (* operating point for state variables *)
-	equations_List (* rhs of nonlinear (or linear) output equation *)
+	equations_List, (* rhs of nonlinear (or linear) output equation *)
+	inVarsOP_List: default: zeros, (* operating point for input variables *)
+	stateVarsOP_List: default: zeros (* operating point for state variables *)
 ]
 Returns an array containing the C, D, and if applicable F matrices {C,D,F} of the output equation
 linearized about the input and state operating point.";
 
-linearizeOutput[inVars_List,inVarsOP_List,stateVars_List,stateVarsOP_List,equations_List]:=
+linearizeOutput[
+	inVars_List,
+	stateVars_List,
+	equations_List,
+	inVarsOP_List:ConstantArray[0,Dimensions[inVars]],
+	stateVarsOP_List:ConstantArray[0,Dimensions[stateVars]]
+]:=
 Module[{c,d,f,stateVarsOPRules,inVarsOPRules,OPRules},
 stateVarsOPRules=Thread[stateVars->stateVarsOP];
 inVarsOPRules=Thread[inVars->inVarsOP];
@@ -120,13 +139,19 @@ f=equations//D[#,{D[inVars,t]}]&// (* Jacobian wrt u' *)
 {c,d,f}//Return;
 ]
 
+
+Begin["`Private`"];
+(* private functions for internal package use *)
+
+
 extractFunctions::usage =
 "extractFunctions[
 	exp_ (* expression that contains function variables, e.g. vC1'[t]==1/C1*iC1[t] *)
 ]
 Returns a list of function variables, e.g. iC1[t].";
 
-extractFunctions[exp_]:=exp//Cases[#,x_[y_]:>x[y],{0,Infinity}]&//DeleteDuplicates;
+extractFunctions[exp_,var_:t]:=exp//Cases[#,x_[var]:>x[var],{0,Infinity}]&//DeleteDuplicates;
+
 
 joinWDer::usage =
 "joinWDer[
@@ -136,121 +161,3 @@ joinWDer::usage =
 Returns input list joined with its derivative, e.g. {vC1[t],vc2[t],vC1'[t],vC2'[t]}.";
 
 joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list));
-
-
-State::usage =
-"State[
-	InVars,         (* input variable names.  e.g.  vS   *)
-	StVarElEqns,    (* state equations for state variable.  e.g.  vM' == 1/M fM   *)
-	OtherElEqns,    (* other elemental equations. 
-                                          e.g. v1 \[Equal] Km o2, or tJm = Jm oJm'   *)
-	Constraints,    (* constraint expressions.  e.g.  fM \[Rule] fD - f4   *)
-	OutputVars      (* output variables.  e.g.  fM   *)
-]
-Computes the state equations, StEqn. 
-Also, gives the a, b, c, d, e, f matricies and transfer functions, TfM, for a linear state model.
-StateVers=1.4 (legacy ... see stateEquations)";
-
-State[InVarsLo_,
-	StVarElEqnsLo_,
-	OtherElEqnsLo_,
-	ConstraintsLo_,
-	OutputVarsLo_] :=Module[{i, j, St2,E3, Co2,StateEquation,StateEqsFinal,OutputEqsFinal, 
-StVarsLo,StVarsLoT,OtherPriVarsLo,OtherPriVarsLoT,OtherElEqnsLoT,SecVars,SecVarsT,OutputVarsLoT,
-ConstraintsLoT,StVarElEqnsLoT,InVarsLoT,
-nSt,nIn,nOut,aa,bb,cc,dd,ee,ff, bbp, ddp,TT},
-
-(* Find lists of state, other primary,  secondary, input, and output variables *)
-StVarsLo=Map[Part[#,1]&,Map[Part[#,1]&,StVarElEqnsLo]];
-StVarsLoT=StVarsLo/.Flatten[{Map[#' -> #'[t] &, StVarsLo], Map[# -> #[t] &, StVarsLo]}];
-OtherPriVarsLo=Map[Part[#,1]&,OtherElEqnsLo];
-OtherPriVarsLoT=OtherPriVarsLo/.Flatten[{Map[#' -> #'[t] &, OtherPriVarsLo], Map[# -> #[t] &, OtherPriVarsLo]}];
-SecVars=Map[Part[#,1]&,ConstraintsLo];
-SecVarsT=SecVars/.Flatten[{Map[#' -> #'[t] &, SecVars], Map[# -> #[t] &, SecVars]}];
-InVarsLoT=InVarsLo/.Flatten[{Map[#' -> #'[t] &, InVarsLo], Map[# -> #[t] &, InVarsLo]}];
-OutputVarsLoT=OutputVarsLo/.Flatten[{Map[#' -> #'[t] &, OutputVarsLo], Map[# -> #[t] &, OutputVarsLo]}];
-
-(* Transform input variables, state and other primary elemental equations, and constraints into functions of time *)
-StVarElEqnsLoT=StVarElEqnsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
-OtherElEqnsLoT=OtherElEqnsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
-ConstraintsLoT=ConstraintsLo/.Flatten[{Map[#' -> #'[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten],Map[# -> #[t] &, {StVarsLo,OtherPriVarsLo,SecVars,InVarsLo}//Flatten]}];
-
-(*  Substitute cut-set and tie-set equations (along with any necessary derivatives) into all elemental equations. Solve for the Other primary variables,in terms of state variables  *)
-St2=StVarElEqnsLoT/.Flatten[{ConstraintsLoT,D[ConstraintsLoT,t]}];
-Co2=OtherElEqnsLoT/.Flatten[{ConstraintsLoT,D[ConstraintsLoT,t]}];
-E3=Solve[Flatten[{Co2,D[Co2,t]}],Flatten[{OtherPriVarsLoT,D[OtherPriVarsLoT,t]}]][[1]]//
-Simplify;
-
-(*  Eliminate the non-state variables in the state equations  *)
-
-StateEquation=St2/.E3//
-Solve[#,D[StVarsLoT,t]][[1]]& //
-Simplify;
-StateEqsFinal=D[StVarsLoT,t]/.StateEquation;
-OutputEqsFinal=OutputVarsLoT/.ConstraintsLoT/.E3/.StateEquation//Simplify;
-
-(*  Extract the state matricies: a, b, c, d, e, and f  *)
-
-nSt=Length[StVarsLoT];
-nIn=Length[InVarsLoT];
-nOut=Length[OutputEqsFinal];
-Clear[ aa,bb,cc,dd];
-aa=Table[0,{nSt},{nSt}];
-For[i=1,i<=nSt,i++,
-For[j=1, j<=nSt,j++,
-aa[[i,j]]=D[ StateEqsFinal[[i]],StVarsLoT[[j]] ];
-];
-];
-bb=Table[0,{nSt},{nIn}];
-For[i=1,i<=nSt,i++,
-For[j=1, j<=nIn,j++,
-bb[[i,j]]=D[ StateEqsFinal[[i]],InVarsLoT[[j]] ];
-];
-];
-cc=Table[0,{nOut},{nSt}];
-For[i=1,i<=nOut,i++,
-For[j=1, j<=nSt,j++,
-cc[[i,j]]=D[ OutputEqsFinal[[i]],StVarsLoT[[j]] ];
-];
-];
-dd=Table[0,{nOut},{nIn}];
-For[i=1,i<=nOut,i++,
-For[j=1, j<=nIn,j++,
-dd[[i,j]]=D[ OutputEqsFinal[[i]],InVarsLoT[[j]] ];
-];
-];
-ee=Table[0,{nSt},{nIn}];
-For[i=1,i<=nSt,i++,
-For[j=1, j<=nIn,j++,
-ee[[i,j]]=D[ StateEqsFinal[[i]],D[InVarsLoT,t][[j]] ];
-];
-];
-ff=Table[0,{nOut},{nIn}];
-For[i=1,i<=nOut,i++,
-For[j=1, j<=nIn,j++,
-ff[[i,j]]=D[ OutputEqsFinal[[i]],D[InVarsLoT,t][[j]] ];
-];
-];
-
-(* Compute the transfer function matrix, 
-	accounting for possible nonstandard state model *)
-bbp=(aa.ee+bb);
-ddp=(cc.ee+dd);
-TT=cc.Inverse[s IdentityMatrix[nSt]-aa].bbp+ddp+ff s//Simplify;
-a=aa;
-b=bb;
-c=cc;
-d=dd;
-e=ee;
-f=ff;
-TfM=TT;
-StVars=StVarsLoT;
-StEqn=StateEqsFinal;
-StateVers=1.3;
-{a,b,c,d,e,f,TfM,StEqn,StateVers}
-(* 
-a=OutputEqsFinal;
-{a}*)
-];
-
-EndPackage[];
