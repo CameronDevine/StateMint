@@ -2,12 +2,17 @@
 
 BeginPackage["State`"];
 
+Unprotect["State`*"];
+ClearAll["State`*"];
+ClearAll["State`Private`*"];
+
 
 stateEquations::usage =
 "stateEquations[
 	inVars_List,    (* input variable names, e.g. vS[t] *)
-	stateVars_List, (* state variable names, e.g. vC1[t] *)
-	equations_List  (* first-order ode and algebraic eqs, e.g. vC1'[t]==1/C1*iC1[t] *)
+	primaryVars_List, (* primary variable names, e.g. vC1[t] *)
+	elementalEquations_List,  (* elemental equations *)
+	constraintEquations_List  (* constraint equations, i.e. continuity and compatibility equations *)
 ]
 Returns the rhs of the state equations as a list.
 N.b. can handle some nonlinear systems.
@@ -15,20 +20,48 @@ N.b. a common mistake is to place the prime after the argument, but it should ap
 N.b. another common mistake is to use the assignment operator '=' instead of the boolean equals '==' in equations.
 N.b. the arrangement of the equations (i.e. lhs/rhs) is immaterial.
 N.b. for the output equations, use the function outEquations instead.
-N.b. to linearize the returned state equations, use the function linearizeState.";
+N.b. to linearize the returned state equations, use the function linearizeState.
+N.b. use functions of time for variables, e.g. vC[t].";
 
-stateEquations[inVars_List,stateVars_List,equations_List] :=
-Module[{allVars,elimVars,stateEqs,equationsToSolve},
+stateEquations[inVars_List,primaryVars_List,elementalEquations_List,constraintEquations_List] :=
+Module[{allVars,secondaryVars,primaryVarsSans,stateVars,primaryVarsEliminate,primarySol,secondarySol,elementalEqsSansStatePrimary,stateEqs,stateElEqs,equationsToSolve},
+
+(* Identify state and secondary and other variables *)
+primaryVarsSans = primaryVars// (* technically inVars are primary, but not helpful here *)
+	Complement[#,inVars]&//
+		SortBy[#,Position[primaryVars,#]&]&;
+allVars = constraintEquations//extractFunctions; (* all have to show up and no derivative to deal with *)
+stateVars = extractStateVariables[elementalEquations,primaryVars];
+secondaryVars = Complement[allVars,primaryVars~Join~inVars]; (* also sans inVars *)
+primaryVarsEliminate = (* primary variables to eliminate *)
+	primaryVarsSans//Complement[#,stateVars]&;
+	
+(* Identify non-state and state elemental equations *)
+stateElEqs = elementalEquations// (* state elemental equations *)
+	Cases[#,x_ /; (AllTrue[D[stateVars,t],FreeQ[x,#]&])]&// (* non-state *)
+		Complement[elementalEquations,#]&; (* state! *)
+
+(* Solve for secondary variables in terms of primary variables using constraints *)
+secondarySol = Solve[constraintEquations,secondaryVars]//Flatten;
+
+(* Eliminate secondary variables from non-state elemental equations *)
+elementalEqsSansStatePrimary = elementalEquations//
+	Complement[#,stateElEqs]&//
+		ReplaceAll[#,joinWDer[secondarySol,t]]&//Flatten;
 
 (* Join with derivatives of equations in order to handle non-standard state equations *)
-equationsToSolve = joinWDer[equations,t];
+equationsToSolve = joinWDer[elementalEqsSansStatePrimary,t];
 
-(* Extract variables to eliminate *)
-allVars = equationsToSolve//extractFunctions;
-elimVars = allVars//Complement[#,joinWDer[stateVars~Join~inVars,t]]&;
+(* Solve non-state elemental equations for non-state primary variables *)
+primarySol = equationsToSolve //
+	Solve[#,joinWDer[primaryVarsEliminate,t]]&//Flatten;
 
 (* Eliminate non state and input variables and place in standard form *)
-stateEqs = equationsToSolve//Eliminate[#,elimVars]&//Solve[#,D[stateVars,t]]&//Collect[#,stateVars]&;
+stateEqs = stateElEqs//
+	ReplaceAll[#,secondarySol]&//
+		ReplaceAll[#,primarySol]&//
+			Solve[#,D[stateVars,t]]&//
+				Collect[#,stateVars]&;
 stateVars//D[#,t]&//ReplaceAll[#,stateEqs]&//Flatten//Return;
 ];
 
@@ -50,7 +83,7 @@ N.b. the arrangement of the equations (i.e. lhs/rhs) is immaterial.
 N.b. for the state equations, use the function stateEquations instead.
 N.b. to linearize the returned output equations, use the function linearizeOutput.";
 
-outEquations[inVars_List,stateVars_List,outExps_List,equations_List]:=
+outEquations[inVars_List,primaryVars_List,outExps_List,equations_List]:=
 Module[{allVars,elimVars,outEqs,outEqsRaw,yOut,stateEqsID,sansStateEqsID,equationsToSolve},
 
 (* Join with derivatives of equations in order to handle non-standard state equations *)
@@ -58,7 +91,7 @@ equationsToSolve = joinWDer[equations,t];
 
 (* Extract variables to eliminate *)
 allVars = equationsToSolve//extractFunctions;
-elimVars = allVars//Complement[#,stateVars~Join~joinWDer[inVars,t]]&;
+elimVars = allVars//Complement[#,primaryVars~Join~joinWDer[inVars,t]]&;
 
 (* Toss the equations with derivatives *)
 stateEqsID=equations//
@@ -73,7 +106,7 @@ outEqsRaw=Thread[yOut==outExps];
 outEqs=(outEqsRaw~Join~sansStateEqsID)//
 	Eliminate[#,elimVars]&//
 		Solve[#,yOut]&//
-			Collect[#,stateVars]&;
+			Collect[#,primaryVars]&;
 yOut/.outEqs//Flatten//Return;
 ]
 
@@ -140,6 +173,20 @@ f=equations//D[#,{D[inVars,t]}]&// (* Jacobian wrt u' *)
 ]
 
 
+extractStateVariables::usage =
+"extractStateVariables[
+	equations_List, (* list that contains state and other equations, e.g. {vC1'[t]==1/C1*iC1[t],iC1[t] == iR1[t]} *)
+	primaryVars_List (* list of primary variables *)
+]
+Returns a list of state variables, e.g. iC1[t].";
+
+extractStateVariables[equations_List,primaryVars_List]:=
+	equations//
+		Cases[#,x_'[t]:>x[t],{0,Infinity}]&//
+			Intersection[primaryVars,#]&//
+				SortBy[#,Position[primaryVars,#]&]&;
+
+
 Begin["`Private`"];
 (* private functions for internal package use *)
 
@@ -160,4 +207,9 @@ joinWDer::usage =
 ]
 Returns input list joined with its derivative, e.g. {vC1[t],vc2[t],vC1'[t],vC2'[t]}.";
 
-joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list));
+joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list))//Flatten;
+
+
+(*Protect["State`*"];*)
+End[]
+EndPackage[]
