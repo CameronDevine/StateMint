@@ -24,7 +24,7 @@ N.b. to linearize the returned state equations, use the function linearizeState.
 N.b. use functions of time for variables, e.g. vC[t].";
 
 stateEquations[inVars_List,primaryVars_List,elementalEquations_List,constraintEquations_List] :=
-Module[{allVars,secondaryVars,primaryVarsSans,stateVars,primaryVarsEliminate,primarySol,secondarySol,elementalEqsSansStatePrimary,stateEqs,stateElEqs,equationsToSolve},
+Module[{eqs,rhs,allVars,secondaryVars,primaryVarsSans,stateVars,primaryVarsEliminate,primarySol,secondarySol,elementalEqsSansStatePrimary,stateEqs,stateElEqs,equationsToSolve},
 
 (* Identify state and secondary and other variables *)
 primaryVarsSans = primaryVars// (* technically inVars are primary, but not helpful here *)
@@ -62,7 +62,9 @@ stateEqs = stateElEqs//
 		ReplaceAll[#,primarySol]&//
 			Solve[#,D[stateVars,t]]&//
 				Collect[#,stateVars]&;
-stateVars//D[#,t]&//ReplaceAll[#,stateEqs]&//Flatten//Return;
+rhs = stateVars//D[#,t]&//ReplaceAll[#,stateEqs]&//Flatten;
+eqs = rhs//Thread[D[stateVars,t]==#]&;
+{"state variables" -> stateVars,"RHS" -> rhs,"state equations" -> eqs}//Return;
 ];
 
 
