@@ -219,4 +219,6 @@ The output looks something like the following.
 
 ## Getting started
 
-There are example notebooks that show applications. Open the notebooks in Mathematica and run them. They work without fully installing the package.
+The example notebook `Example.nb` shows an application. Open it in Mathematica and run them. It works without fully installing the package.
+
+An extensive example of a hydroelectric power generation system can be found [here](http://ricopic.one/dynamic_systems/source/microhydroelectric.nb).
