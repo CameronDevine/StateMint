@@ -1,10 +1,10 @@
 (* ::Package:: *)
 
-BeginPackage["State`"];
+BeginPackage["Statum`"];
 
-Unprotect["State`*"];
-ClearAll["State`*"];
-ClearAll["State`Private`*"];
+Unprotect["Statum`*"];
+ClearAll["Statum`*"];
+ClearAll["Statum`Private`*"];
 
 
 stateEquations::usage =
@@ -14,7 +14,12 @@ stateEquations::usage =
 	elementalEquations_List,  (* elemental equations *)
 	constraintEquations_List  (* constraint equations, i.e. continuity and compatibility equations *)
 ]
-Returns the rhs of the state equations as a list.
+Returns the following list of replacement rules.
+{
+	\"state variables\" -> stateVars,  (* a list of state variables in the order of the state equations *) 
+	\"RHS\" -> rhs, 				   (* the right-hand sides of the state equations *)
+	\"state equations\" -> eqs 		(* the full state equations *)
+}
 N.b. can handle some nonlinear systems.
 N.b. a common mistake is to place the prime after the argument, but it should appear before, e.g. vC2'[t].
 N.b. another common mistake is to use the assignment operator '=' instead of the boolean equals '==' in equations.
@@ -212,6 +217,6 @@ Returns input list joined with its derivative, e.g. {vC1[t],vc2[t],vC1'[t],vC2'[
 joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list))//Flatten;
 
 
-(*Protect["State`*"];*)
+(*Protect["Statum`*"];*)
 End[]
 EndPackage[]
