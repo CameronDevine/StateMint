@@ -330,6 +330,8 @@ function importData(event) {
 		jpeg = e.target.result;
 		if (jpeg.slice(0, 13) == "data:;base64,") {
 			jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
+		} else if (jpeg.slice(0, 37) == "data:application/octet-stream;base64,") {
+			jpeg = "data:image/jpeg;base64," + jpeg.substring(37);
 		}
 		Exif = piexif.load(jpeg);
 		console.log(Exif);
