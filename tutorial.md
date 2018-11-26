@@ -163,7 +163,7 @@ Do this for each normal tree link.
 
 To show how this process works, we will work through the following example.
 
-![Example System](HTML/tutorial/tutorial1.svg)
+![Example System](web/HTML/tutorial/tutorial1.svg)
 
 This system is a voltage source which drives a motor with the given resistance and inductance.
 This motor in turn drives a pump through a drive shaft with the given stiffness.
@@ -173,29 +173,29 @@ Finally the pump pushes water through a curved pipe of known resistance.
 
 This system can be distilled into the linear graph below.
 
-![Linear Graph](HTML/tutorial/tutorial2.svg)
+![Linear Graph](web/HTML/tutorial/tutorial2.svg)
 
 ### Normal Tree
 
 To create the normal tree, first the voltage source is selected.
 
-![Normal Tree](HTML/tutorial/tutorial3.svg)
+![Normal Tree](web/HTML/tutorial/tutorial3.svg)
 
 To avoid selecting T type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
 
-![Normal Tree](HTML/tutorial/tutorial4.svg)
+![Normal Tree](web/HTML/tutorial/tutorial4.svg)
 
 Also adding both sides of the gyrator means that adding the torsional spring would cause a loop to be created.
 
-![Normal Tree](HTML/tutorial/tutorial6.svg)
+![Normal Tree](web/HTML/tutorial/tutorial6.svg)
 
 Next a the motor resistance is added.
 
-![Normal Tree](HTML/tutorial/tutorial7.svg)
+![Normal Tree](web/HTML/tutorial/tutorial7.svg)
 
 Finally to complete the normal tree the motor inductance must be added.
 
-![Normal Tree](HTML/tutorial/tutorial8.svg)
+![Normal Tree](web/HTML/tutorial/tutorial8.svg)
 
 ### Primary Variables
 
@@ -248,7 +248,7 @@ Based on the list of elemental equations the following list of elemental equatio
 
 To determine the continuity equations the following contours can be drawn.
 
-![Normal Tree](HTML/tutorial/tutorial9.svg)
+![Normal Tree](web/HTML/tutorial/tutorial9.svg)
 
 Using these contours the equations below were constructed.
 

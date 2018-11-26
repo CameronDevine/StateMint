@@ -4,13 +4,12 @@ define prog
 from urllib import quote
 with open('web/HTML/tutorial/tutorial.md') as f: text = f.read()
 chunks = text.split('$$')
-chunks = ['![$${}$$](http://latex.codecogs.com/svg.latex?{})'.format(eqn, quote(eqn)) if i % 2 == 1 else chunks[i].replace('](tutorial/', '](HTML/tutorial/') for i, eqn in enumerate(chunks)]
+chunks = ['![$${}$$](http://latex.codecogs.com/svg.latex?{})'.format(eqn, quote(eqn)) if i % 2 == 1 else chunks[i].replace('](tutorial/', '](web/HTML/tutorial/') for i, eqn in enumerate(chunks)]
 with open('tutorial.md', 'w') as f: f.write(''.join(chunks))
 endef
 export prog
 
 tutorial:
-	echo $$prog
 	python -c "import os;exec(os.environ['prog'])"
 
 version:
