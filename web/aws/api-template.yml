@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "0.4.2"
+  version: "1.0.0"
   title: "Statum"
 basePath: "/Stage"
 schemes:

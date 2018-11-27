@@ -23,11 +23,6 @@ project = u'Statum'
 copyright = u'2018, Cameron Devine'
 author = u'Cameron Devine'
 
-# The short X.Y version
-#version = u''
-# The full version, including alpha/beta/rc tags
-#release = u'0.4.2'
-
 
 # -- General configuration ---------------------------------------------------
 
