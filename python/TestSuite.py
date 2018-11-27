@@ -1,10 +1,10 @@
 from sympy import *
-import StateModelRnD
-import StateModelRnD.to_numpy
+import Statum
+import Statum.to_numpy
 import numpy as np
 import unittest
 
-class TestStateModelRnD(unittest.TestCase):
+class TestStatum(unittest.TestCase):
 
 	def assertMatrixEqual(self, name, test, true):
 		if test is not Matrix:
@@ -67,7 +67,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -112,7 +112,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -151,7 +151,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -188,7 +188,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -223,7 +223,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -253,7 +253,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -286,7 +286,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -319,7 +319,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -353,7 +353,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -388,7 +388,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -420,7 +420,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertEqual(simplify(sys.A - sympify(Atest)), zeros(*sys.A.shape), 'Bad A matrix,\n{}\nNot equal to,\n{}'.format(sys.A, Atest))
 		self.assertEqual(simplify(sys.B - sympify(Btest)), zeros(*sys.B.shape), 'Bad B matrix,\n{}\nNot equal to,\n{}'.format(sys.B, Btest))
@@ -456,7 +456,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = 'Matrix([[0],[K1/(K1+K2)]])'
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -487,7 +487,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -519,7 +519,7 @@ class TestStateModelRnD(unittest.TestCase):
 		Etest = str(zeros(*sympify(Btest).shape))
 		Ftest = str(zeros(*sympify(Dtest).shape))
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertMatrixEqual('A', sys.A, Atest)
 		self.assertMatrixEqual('B', sys.B, Btest)
@@ -550,7 +550,7 @@ class TestStateModelRnD(unittest.TestCase):
 		StateTest = 'Matrix([[(1/i)*(PC(t)-(1/K2**2)*QI(t)*abs(QI(t)))],[1/(KT0+KT1*PC(t)+KT2*PC(t)**2)*(Qs(t)-K1*sqrt(abs(PC(t)))*sign(PC(t)))]])'
 		OutputTest = 'Matrix([[QI(t)],[PC(t)]])'
 
-		sys = StateModelRnD.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
+		sys = Statum.Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars)
 
 		self.assertEquationEqual('State', sys.StateEq, StateTest)
 		self.assertEquationEqual('Output', sys.OutEq, OutputTest)
@@ -566,7 +566,7 @@ class TestToArray(unittest.TestCase):
 			'BT': 15,
 			'KS': 30,
 			'KT': 20}
-		array = StateModelRnD.to_numpy.array(matrix, values)
+		array = Statum.to_numpy.array(matrix, values)
 		test = np.array([
 			[-2, 2, 0.2, 0],
 			[5, -12.5, -0.5, 0.5],
@@ -582,7 +582,7 @@ class TestToArray(unittest.TestCase):
 			'MW': 2,
 			'BT': 15,
 			'KT': 20}
-		array = StateModelRnD.to_numpy.array(matrix, values)
+		array = Statum.to_numpy.array(matrix, values)
 		test = np.array([
 			[0],
 			[7.5],
@@ -603,7 +603,7 @@ class TestToMatrix(unittest.TestCase):
 			'BT': 15,
 			'KS': 30,
 			'KT': 20}
-		array = StateModelRnD.to_numpy.matrix(matrix, values)
+		array = Statum.to_numpy.matrix(matrix, values)
 		test = np.matrix([
 			[-2, 2, 0.2, 0],
 			[5, -12.5, -0.5, 0.5],
@@ -619,7 +619,7 @@ class TestToMatrix(unittest.TestCase):
 			'MW': 2,
 			'BT': 15,
 			'KT': 20}
-		array = StateModelRnD.to_numpy.matrix(matrix, values)
+		array = Statum.to_numpy.matrix(matrix, values)
 		test = np.matrix([
 			[0],
 			[7.5],

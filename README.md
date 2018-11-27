@@ -1,10 +1,10 @@
-# State Model RnD
+# Statum
 
-[![PyPI](https://img.shields.io/pypi/v/StateModelRnD.svg)](https://pypi.org/project/StateModelRnD/)
-[![License](https://img.shields.io/github/license/CameronDevine/StateModelRnD.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/Statum-Py.svg)](https://pypi.org/project/Statum-Py/)
+[![License](https://img.shields.io/github/license/CameronDevine/Statum.svg)](LICENSE)
 [![Code of Conduct](https://img.shields.io/badge/contributor%20covenant-v1.4-blue.svg)](CODE_OF_CONDUCT.md)
 
-StateModelRnD is a set of tools to symbolically determine the differential equation describing the dynamics of a system.
+Statum is a set of tools to symbolically determine the differential equation describing the dynamics of a system.
 As inputs these tools take the elemental and constraint equations of a system.
 A [tutorial](tutorial.md) is available which covers how to prepare equations for use with these tools.
 
@@ -23,7 +23,7 @@ An [example](python/Example.ipynb) of how to use the Python package is also prov
 
 A [web interface](web) is also available which uses the Python package as a backend.
 This package allows anyone to use this tool without the need to install any software.
-An example of this interface is running at [statemodelrnd.camerondevine.me](http://statemodelrnd.camerondevine.me).
+An example of this interface is running at [statum.camerondevine.me](http://statum.camerondevine.me).
 
 ## Credits
 

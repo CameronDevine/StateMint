@@ -13,5 +13,4 @@ clean:
 	rm -rf *.egg-info
 	rm -rf dist
 	rm -rf build
-	rm -rf docs/html
-	rm -rf docs/doctrees
+	rm -rf docs/build

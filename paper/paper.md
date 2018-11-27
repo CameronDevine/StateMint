@@ -1,5 +1,5 @@
 ---
-title: 'StateMint: An Application for Determining Symbolic Dynamic System Models using Linear Graph Methods'
+title: 'Statum: An Application for Determining Symbolic Dynamic System Models using Linear Graph Methods'
 tags:
   - system dynamics
   - calculator
@@ -62,11 +62,11 @@ A tutorial on how to use this package is included.
 The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
 This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
 Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
-This code is documented using [readthedocs.io](https://statemodelrnd.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
+This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
 # Web Interface
 
-To allow those without programming experience to use this code a web interface was designed and [implemented](http://statemodelrnd.camerondevine.me/).
+To allow those without programming experience to use this code a web interface was designed and [implemented](http://statum.camerondevine.me/).
 This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
 There is also the ability to share, download, and save the system models for later use or modification.

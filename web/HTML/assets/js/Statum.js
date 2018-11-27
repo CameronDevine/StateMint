@@ -181,7 +181,7 @@ function StateModel() {
 	console.log(aditionalParams)
 	$('#LoadingPage').show();
 	$('#LoadingPageLink').click();
-	Client.stateModelRnDPost(params, body, aditionalParams).then(function(result) {
+	Client.StatumPost(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
 		callback();
@@ -257,7 +257,7 @@ function download() {
 	var url = window.URL.createObjectURL(blob);
 	var a = document.createElement('a');
 	a.setAttribute('href', url);
-	a.setAttribute('download', 'StateModelRnD.rnd');
+	a.setAttribute('download', 'system.rnd');
 	a.click();
 }
 

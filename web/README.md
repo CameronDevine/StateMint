@@ -1,11 +1,11 @@
 ## Web Interface
 
-To allow easy use the functionality in StateModelRnD a web interface was created.
+To allow easy use the functionality in Statum a web interface was created.
 This interface allows students and other to take advantage of this tool without the need to install Python or Mathematica.
 
 ### Usage
 
-This interface uses the Python StateModelRnD [package](../python/README.md) in an AWS Lambda function to perform the symbolic mathematics.
+This interface uses the Python Statum [package](../python/README.md) in an AWS Lambda function to perform the symbolic mathematics.
 Equations can be entered in text boxes on the webpage, then the Lambda function is used to find the result which can be displayed in multiple forms for copying into Python, Mathematica, Matlab or LaTeX.
 These systems can also be saved or downloaded for later modification or use.
 

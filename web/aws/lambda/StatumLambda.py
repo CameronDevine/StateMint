@@ -1,6 +1,6 @@
 from sys import exc_info
 from sympy import latex, octave_code, mathematica_code, zeros, Function
-from StateModelRnD import Solve as StateModel
+from Statum import Solve
 import json
 
 nocode = {'LaTeX': [], 'Matlab': ['StateVec', 'OutputVec', 'TF', 'OutEq', 'StateEq', 'InputVec'], 'Mathematica': ['StateVec', 'OutputVec', 'TF', 'InputVec'], 'Python': ['StateVec', 'OutputVec', 'TF', 'InputVec']}
@@ -12,7 +12,7 @@ def handler(event, context):
 		data = event["queryStringParameters"]
 		#print data
 		model = vars(
-			StateModel(
+			Solve(
 				data["InVars"].split(','),
 				data["StVarElEqns"].split(','),
 				data["OtherElEqns"].split(','),

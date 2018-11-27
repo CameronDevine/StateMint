@@ -1,11 +1,11 @@
-StateModelRnD
+Statum
 =============
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: StateModelRnD
+.. automodule:: Statum
 	:members:
-.. automodule:: StateModelRnD.to_numpy
+.. automodule:: Statum.to_numpy
 	:members:

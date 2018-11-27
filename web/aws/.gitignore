@@ -2,4 +2,4 @@
 api.yml
 package.yml
 lambda/*
-!lambda/StateModelLambda.py
+!lambda/StatumLambda.py

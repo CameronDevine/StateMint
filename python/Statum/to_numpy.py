@@ -8,7 +8,7 @@ from sympy import symbols
 def array(data, values = {}):
 	'''Convert a symbolic matrix to a Numpy array.
 
-	Converts a given symbolic matrix, most likely returned in the output of `StateModelRnD.Solve`, into a Numpy array.
+	Converts a given symbolic matrix, most likely returned in the output of `Statum.Solve`, into a Numpy array.
 
 	Args:
 		data (sympy.Matrix): The symbolic matrix to convert to a Numpy array.
@@ -28,7 +28,7 @@ def array(data, values = {}):
 def matrix(data, values = {}):
 	'''Convert a symbolic matrix to a Numpy matrix.
 
-	Converts a given symbolic matrix, most likely returned in the output of `StateModelRnD.Solve`, into a Numpy matrix.
+	Converts a given symbolic matrix, most likely returned in the output of `Statum.Solve`, into a Numpy matrix.
 
 	Args:
 		data (sympy.Matrix): The symbolic matrix to convert to a Numpy matrix.

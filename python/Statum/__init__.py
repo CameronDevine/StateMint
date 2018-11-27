@@ -1,7 +1,7 @@
 '''
-This package provides a function to symbolically determine the differential equation describing the dynamics of a system. As inputs the `Solve` function takes the elemental and constraint equations of a system. These equations must be in the forms specified by Rowell and Wormley in "System Dynamics: An Introduction". A `tutorial <https://github.com/CameronDevine/StateModelRnD/blob/master/tutorial.md>`_ is available which covers how to prepare equations for use with this code. There is also an `example <https://github.com/CameronDevine/StateModelRnD/blob/master/python/Example.ipynb>`_ which covers the details of how to use this code. Convenience functions to convert the symbolic matrices to Numpy objects are also included.
+This package provides a function to symbolically determine the differential equation describing the dynamics of a system. As inputs the `Solve` function takes the elemental and constraint equations of a system. These equations must be in the forms specified by Rowell and Wormley in "System Dynamics: An Introduction". A `tutorial <https://github.com/CameronDevine/Statum/blob/master/tutorial.md>`_ is available which covers how to prepare equations for use with this code. There is also an `example <https://github.com/CameronDevine/Statum/blob/master/python/Example.ipynb>`_ which covers the details of how to use this code. Convenience functions to convert the symbolic matrices to Numpy objects are also included.
 
-This code can be installed by running `pip install StateModelRnD`, or one of the other interfaces can be used. Available are a Mathematica package, and a web `interface <http://statemodelrnd.camerondevine.me/>`_.
+This code can be installed by running `pip install Statum-Py`, or one of the other interfaces can be used. Available are a Mathematica package, and a web `interface <http://statum.camerondevine.me/>`_.
 '''
 
 import sympy
@@ -33,7 +33,7 @@ def make_vec(vars):
 class output:
 	'''A container for the resulting differential equation.
 
-	This class is a container in which the output from `StateModelRnD.Solve` is placed. This allows the results of the solution to be easily accessed as members of the class.
+	This class is a container in which the output from `Statum.Solve` is placed. This allows the results of the solution to be easily accessed as members of the class.
 	'''
 
 	A = None

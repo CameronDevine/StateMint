@@ -2,12 +2,12 @@
 swagger: "2.0"
 info:
   version: "0.4.2"
-  title: "StateModelRnD"
+  title: "Statum"
 basePath: "/Stage"
 schemes:
 - "https"
 paths:
-  /StateModelRnD:
+  /Statum:
     post:
       produces:
       - "application/json"
@@ -27,7 +27,7 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        uri: arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${region}:${account}:function:StateModelRnDdev/invocations
+        uri: arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${region}:${account}:function:Statum/invocations
         responses:
           default:
             statusCode: "200"
