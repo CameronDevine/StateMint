@@ -6,8 +6,7 @@ python:
   - "3.5"
 env:
   global:
-    - aws_id="AKIAJDYW3E3ERXZTUFDA"
-    - aws_region="us-west-2"
+    - AWS_ACCESS_KEY_ID="AKIAJDYW3E3ERXZTUFDA"
   matrix:
     - SYMPYVERSION=""
     - SYMPYVERSION="==1.2"
@@ -16,10 +15,6 @@ matrix:
   include:
     - python: "2.7"
       env: web=true
-before_install:
-  - mkdir ~/.aws
-  - echo "[default]]\naws_access_key_id = $aws_id\naws_secret_access_key = $aws_key" > ~/.aws/credentials
-  - echo "[default]]\nregion = $aws_region" > ~/.aws/config
 install:
   - if [ $web = true ]; then
     pip install piexif selenium awscli;
@@ -38,4 +33,4 @@ script:
     cd python;
     python TestSuite.py;
     fi;
-secure: "aFBhL5Gni48cIGv3x+yE1xT0P+/OraB49DdXftk+SNWkD0ylMBwUV2k8uji0og38nGPrq+iVcOyVEAp421cM2oO6N3cGQDUSl+8l3c4UG/tF2mg6URS+EDS1R49sULOypnahwUmtKgeCv3ZbupvoAlpAgslDscfjvoseFXKcQPjqrn+v28Bbg1RS8UrEyf/XQPdDy6LPw23kure4mTRNOX1OC4sTB4si1K34Frb4cEsjP4/xjXNO8KvFGMcvzS9rj6RWrL68JlAXDzPFSL6z4vbOwk/MJHkHjo8xGcUGPahufs6dG/scXD9Se/tnPMA5C2rTLIutVt2xUe9mQiVPCFY3D+zJLbkPFoDTrV+8Ja1EPzUbjfrR4uk3TPMLcK+fWQVcIfmJ5exvzC2MgeP5yA6pbCYj6Q7DXD1X5wnEBwmZLwAYsE0SfmdPG+Yues4VYVQ+2JiWPv98HUVflm6bFVCndPw+x7RmF8RX5yruP+i2iJdmFd3CTvd+EGDL6T2TDMNfkdTz/7Mvo77FzCkHmYhLEPsaudP0l8KAGC9qIi/Dr5Ra2pe3ESKxfLwCw/dhFdRnNbizpl2yFzKzIl/Q36e4EP6iaCAwsfLy5/fvlQodPADH4UYMJjWZTGCz59o8cTDKsJ017GYybgtZ2edr3vR4Qq9MNj4PKQ2ugCh3YtI="
+secure: "N7zPlSJjUR3djPNgvDk5ONnb3kW8z+6FHZeoBWr3Ja2sBVL/MG8fx34P2XxyViFLlOdSTAkW2V5NdcMUaA8DKMNf7lTl4sgn7roIqjDx5OY/hUZYs89lispPFb/7zJKAlaTZJWKInguDBs1B5nqjsbLr02D4mLNhh00/4VWAK88OniPxHySvq8s62IJDgNA8e+JG8YgcVg+nEDwzJ7mJubENyAZ0IHfMjtc1hAYr8gk8AbRBoVrI8FAvXp6aE3uKzr86IvNjyPMTJs8t7Aco61Rtx3Xd+lwgPzEjZw5gTqo6s4KAw2+22Hlhdt0OpYCsBAORIFE6VRK51J6FvZyZWfHVxcCzhywxNT/phoi57oUB1Dtj6fami46hH2DIKxAmMYIzn0sFA487u/VbUIgJ8P6z4ljAWWPOAnKNmHpBqtK4DWTfQIQRWp4yxInRZMxMpVp4fSDwUUwzztFxYbdyokMfEpIaS3mP1RYJXvnb6xrz/+28NDHGZV8+wMJGYhz4IZplmZ/5PAC6AKVKyHyE06VQ8RMeCSk6ikC4xI3LQkqIX7EMDKbAIEFeZm4EfC/o5JBWRQhZKiV0pP9SZ9oezUKHky7SU+pEJ/6UDgC25JWk5kUwSxMYsEwIi0OBuOOY4Qla9vULPNoQJ+re0maO7Aw1bhsAfBX7G+7tyr0gT3Q="
