@@ -10,7 +10,7 @@ env:
   - SYMPYVERSION="==1.1.1"
 matrix:
   include:
-    - python: "2.7"
+    - python: "3.5"
       env: web=true
 install:
   - if [ $web = true ]; then
@@ -23,7 +23,6 @@ install:
     fi;
 script:
   - if [ $web = true ]; then
-    cd web;
     make test;
     else
     cd python;
