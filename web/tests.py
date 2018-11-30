@@ -396,8 +396,6 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.find_element('id', 'fileUploadHidden').send_keys(os.getcwd() + '/HTML/examples/example1.jpg')
 		self.driver.wait()
 		self.assertTrue(len(self.driver.find_element('id', 'systemImage').get_attribute('src')) > 0)
-		for entry in self.driver.get_log('browser'):
-			print entry
 		self.assertTrue(self.driver.find_element('id', 'systemImage').is_displayed())
 
 	@unittest.expectedFailure
