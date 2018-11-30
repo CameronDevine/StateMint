@@ -23,13 +23,7 @@ install:
     fi;
 script:
   - if [ $web = true ]; then
-    which python;
-    sudo which python;
-    sudo "PATH=$PATH" which python;
-    sudo -E which python;
-    sudo "PATH=$PATH" -E which python;
-    python -c "import selenium";
-    sudo "PATH=$PATH" python -c "import selenium";
+    sudo "PATH=$PATH" "PYTHONPATH=$PYTHONPATH" python -c "import selenium";
     make test;
     else
     cd python;
