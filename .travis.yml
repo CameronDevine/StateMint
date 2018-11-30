@@ -14,18 +14,18 @@ matrix:
       env: web=true
 install:
   - if [ $web = true ]; then
-  - pip install piexif selenium;
-  - cd web;
-  - wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
-  - unzip chromedriver_linux64.zip;
-  - else;
-  - pip install sympy$SYMPYVERSION;
-  - fi;
+    pip install piexif selenium;
+    cd web;
+    wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
+    unzip chromedriver_linux64.zip;
+    else;
+    pip install sympy$SYMPYVERSION;
+    fi;
 script:
   - if [ $web = true ]; then
-  - cd web;
-  - make test;
-  - else;
-  - cd python;
-  - python TestSuite.py;
-  - fi;
+    cd web;
+    make test;
+    else;
+    cd python;
+    python TestSuite.py;
+    fi;
