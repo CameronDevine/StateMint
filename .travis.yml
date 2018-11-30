@@ -18,14 +18,14 @@ install:
     cd web;
     wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
     unzip chromedriver_linux64.zip;
-    else;
+    else
     pip install sympy$SYMPYVERSION;
     fi;
 script:
   - if [ $web = true ]; then
     cd web;
     make test;
-    else;
+    else
     cd python;
     python TestSuite.py;
     fi;
