@@ -51,7 +51,7 @@ remove: check
 	aws cloudformation delete-stack --stack-name statum
 
 test:
-	sudo "PATH=$$PATH" python tests.py $(tests)
+	sudo env "PATH=$$PATH" python tests.py $(tests)
 
 check:
 	if [ $$(which aws) == "" ]; then \
