@@ -18,6 +18,7 @@ install:
     cd web;
     wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
     unzip chromedriver_linux64.zip;
+    PATH=$PATH:$(pwd);
     else
     pip install sympy$SYMPYVERSION;
     fi;
