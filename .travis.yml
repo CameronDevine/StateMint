@@ -1,35 +1,31 @@
 language: python
+addons:
+  chrome: stable
 python:
   - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
-  - "3.5-dev"
-  - "3.6"
-  - "3.6-dev"
-  - "3.7-dev"
 env:
   - SYMPYVERSION=""
   - SYMPYVERSION="==1.2"
   - SYMPYVERSION="==1.1.1"
-  - SYMPYVERSION="==1.1"
-  - SYMPYVERSION="==1.0"
-  - SYMPYVERSION="==0.7.6.1"
-  - SYMPYVERSION="==0.7.6"
-  - SYMPYVERSION="==0.7.5"
-  - SYMPYVERSION="==0.7.4.1"
-  - SYMPYVERSION="==0.7.4"
 matrix:
   include:
     - python: "2.7"
-      env: SYMPYVERSION="==0.7.3"
-  exclude:
-    - python: "3.3"
-      env: SYMPYVERSION="==1.2"
-    - python: "3.3"
-      env: SYMPYVERSION=""
+      env: web=true
 install:
-  - pip install sympy$SYMPYVERSION
+  - if [ $web = true ]; then
+  - pip install piexif selenium;
+  - cd web;
+  - wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
+  - unzip chromedriver_linux64.zip;
+  - else;
+  - pip install sympy$SYMPYVERSION;
+  - fi;
 script:
-  - cd python
-  - python TestSuite.py
+  - if [ $web = true ]; then
+  - cd web;
+  - make test;
+  - else;
+  - cd python;
+  - python TestSuite.py;
+  - fi;
