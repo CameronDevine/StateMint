@@ -1,5 +1,5 @@
 SHELL := bash
-.PHONY: zip package deploy sdk clean remove check
+.PHONY: zip package deploy sdk clean remove test check
 
 all: depends zip package deploy sdk
 
@@ -49,6 +49,9 @@ clean: check
 
 remove: check
 	aws cloudformation delete-stack --stack-name statum
+
+test:
+	sudo "PATH=$$PATH" python tests.py $(tests)
 
 check:
 	if [ $$(which aws) == "" ]; then \
