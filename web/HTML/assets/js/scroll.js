@@ -11,8 +11,10 @@ function pagination() {
 		$('li').eq(2).addClass('activeDot');
 		if ($('#LoadingPage').is(":visible")) {
 			nextPage = $('#LoadingPage').position().top;
-		} else {
+		} else if($('#page6').is(":visible")) {
 			nextPage = $('#page6').position().top;
+		} else {
+			nextPage = $('#page5').position().top + $('#page5').height();
 		}
 		if (nextPage - $('#systemImage').height() <= scrolPos) {
 			$('#systemImage').hide();
