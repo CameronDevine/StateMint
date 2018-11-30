@@ -10,6 +10,7 @@ import io
 from threading import Thread
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from BaseHTTPServer import HTTPServer
+from copy import deepcopy
 
 class MyHandler(SimpleHTTPRequestHandler):
 	def log_message(self, *arg, **kwargs):
@@ -133,8 +134,9 @@ class TestWebInterface(unittest.TestCase):
 			pass
 
 	def example_test(self, num):
+		self.driver.wait()
 		self.driver.find_element('partial link text', 'Show me an example').click()
-		self.driver.wait(1)
+		self.driver.wait()
 		self.assertTrue(self.driver.find_element('id', 'page4').is_displayed())
 		self.assertEqual(self.driver.page_y_offset(), self.driver.window_inner_height())
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE {}'.format(num)))
@@ -163,19 +165,24 @@ class TestWebInterface(unittest.TestCase):
 		self.results_test(num)
 
 	def results_test(self, example_num):
-		output_form = output_forms.copy()
+		output_form = deepcopy(output_forms)
 		if example_data[example_num - 1]['nonlinear']:
-			del output_form['matlab']
+			if 'matlab' in output_form:
+				del output_form['matlab']
 		else:
 			for lang in output_form:
-				del output_form[lang]['eq']
+				if 'eq' in output_form[lang]:
+					del output_form[lang]['eq']
 		if example_data[example_num - 1]['nonstandard']:
 			for lang in output_form:
-				del output_form[lang]['StateSpace']
+				if 'StateSpace' in output_form[lang]:
+					del output_form[lang]['StateSpace']
 		else:
 			for lang in output_form:
-				del output_form[lang]['StateSpaceN']
-				del output_form[lang]['StateSpaceP']
+				if 'StateSpaceN' in output_form[lang]:
+					del output_form[lang]['StateSpaceN']
+				if 'StateSpaceP' in output_form[lang]:
+					del output_form[lang]['StateSpaceP']
 		lang_buttons = self.driver.find_element('id', 'langButtons').find_elements('tag name', 'button')
 		self.assertEqual(
 			sum([el.is_displayed() for el in lang_buttons]),
@@ -186,10 +193,12 @@ class TestWebInterface(unittest.TestCase):
 				lang_output_form = output_form[lang_name]
 				self.assertIn(lang_name, output_form)
 				lang.click()
+				self.driver.wait()
 				eq_buttons = self.driver.find_element('id', 'eqButtons').find_elements('tag name', 'button') 
 				self.assertEqual(
 					sum([el.is_displayed() for el in eq_buttons]), 
-					len(lang_output_form))
+					len(lang_output_form),
+					'button ids: {}, desired: {}'.format([el.get_attribute('id') for el in eq_buttons if el.is_displayed()], lang_output_form.keys()))
 				for eq in eq_buttons:
 					if eq.is_displayed():
 						eq_id = eq.get_attribute('id')
@@ -380,14 +389,16 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.wait()
 		self.assertTrue(self.driver.find_element('id', 'saved').is_displayed())
 		self.driver.find_element('id', 'saved').find_elements('tag name', 'td')[2].click()
-		#self.driver.wait()
 		self.assertFalse(self.driver.find_element('id', 'saved').is_displayed())
 		self.assertEqual(len(self.driver.get_cookies()), 0)
 
 	def test_add_image(self):
 		self.driver.find_element('id', 'fileUploadHidden').send_keys(os.getcwd() + '/HTML/examples/example1.jpg')
-		self.driver.wait()
+		self.driver.wait(2)
 		self.assertTrue(len(self.driver.find_element('id', 'systemImage').get_attribute('src')) > 0)
+		self.driver.save_screenshot('test.png')
+		for entry in self.driver.get_log('browser'):
+			print entry
 		self.assertTrue(self.driver.find_element('id', 'systemImage').is_displayed())
 
 	@unittest.expectedFailure
@@ -455,7 +466,7 @@ class TestWebInterface(unittest.TestCase):
 				self.assertEqual(dot_class, '')
 
 	def test_scroll(self):
-		self.driver.wait(1)
+		self.driver.wait(1.5)
 		dots = self.driver.find_element('class name', 'scrolling').find_elements('tag name', 'li')
 		self.assertTrue(self.driver.find_element('id', 'page2').is_displayed())
 		self.assertFalse(self.driver.find_element('id', 'page3').is_displayed())
