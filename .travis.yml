@@ -23,6 +23,10 @@ install:
     fi;
 script:
   - if [ $web = true ]; then
+    sudo which python;
+	sudo "PATH=$PATH" which python;
+	sudo -E which python;
+	sudo "PATH=$PATH" -E which python;
     make test;
     else
     cd python;
