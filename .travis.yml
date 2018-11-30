@@ -28,6 +28,8 @@ script:
     sudo "PATH=$PATH" which python;
     sudo -E which python;
     sudo "PATH=$PATH" -E which python;
+    python -c "import selenium";
+    sudo "PATH=$PATH" python -c "import selenium";
     make test;
     else
     cd python;
