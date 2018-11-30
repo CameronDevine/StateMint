@@ -362,7 +362,7 @@ function restart() {
 }
 
 function list_saved() {
-	template = '<tr><td style="vertical-align:middle"><h4><strong>{}</strong></h4></td><td style="vertical-align:middle;width:40px"><i class="typcn typcn-folder-open" style="font-size:36px"></i></td><td style="vertical-align:middle;width:40px"><i class="typcn typcn-trash" style="font-size:36px"></i></td></tr>\n';
+	template = '<tr><td style="vertical-align:middle"><h4><strong>{}</strong></h4></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">folder_open</i></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">delete_outline</i></td></tr>\n';
 	names = Object.keys(Cookies.get());
 	html = "";
 	if (names.length > 0) {
@@ -456,7 +456,7 @@ $(document).ready(function() {
 	$('#saved').click(function() {
 		openClick({
 			name: $(event.target).closest('tr').find('strong').html(),
-			open: Array.from($(event.target).prop('classList')).indexOf('typcn-trash') != 1});
+			open: $(event.target).closest('td').index() != 2});
 	});
 	$('[data-toggle="tooltip"]').tooltip({delay: {hide: 1500}});
 	MathJax.Hub.Config({

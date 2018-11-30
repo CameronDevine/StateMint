@@ -1,21 +1,21 @@
-.markdown p {
+.markdown > p {
 	text-align: left;
 	font-weight: normal;
 }
 
-.markdown img {
+.markdown > img {
 	margin-right: auto;
 	margin-left: auto;
 }
 
-.markdown table, th, td {
+.markdown > table, .markdown > th, .markdown > td {
 	border: 1px solid black;
 }
 
-.markdown th, td {
+.markdown > th, .markdown > td {
 	padding: 6px !important;
 }
 
-.markdown td {
+.markdown > td {
 	font-weight: normal;
 }

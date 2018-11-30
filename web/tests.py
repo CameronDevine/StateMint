@@ -134,7 +134,7 @@ class TestWebInterface(unittest.TestCase):
 
 	def example_test(self, num):
 		self.driver.find_element('partial link text', 'Show me an example').click()
-		self.driver.wait()
+		self.driver.wait(1)
 		self.assertTrue(self.driver.find_element('id', 'page4').is_displayed())
 		self.assertEqual(self.driver.page_y_offset(), self.driver.window_inner_height())
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE {}'.format(num)))
@@ -379,7 +379,7 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.find_element('id', 'page1').find_element('class name', 'btn-default').click()
 		self.driver.wait()
 		self.assertTrue(self.driver.find_element('id', 'saved').is_displayed())
-		self.driver.find_element('id', 'saved').find_element('class name', 'typcn-trash').click()
+		self.driver.find_element('id', 'saved').find_elements('tag name', 'td')[2].click()
 		#self.driver.wait()
 		self.assertFalse(self.driver.find_element('id', 'saved').is_displayed())
 		self.assertEqual(len(self.driver.get_cookies()), 0)
@@ -455,7 +455,7 @@ class TestWebInterface(unittest.TestCase):
 				self.assertEqual(dot_class, '')
 
 	def test_scroll(self):
-		self.driver.wait()
+		self.driver.wait(1)
 		dots = self.driver.find_element('class name', 'scrolling').find_elements('tag name', 'li')
 		self.assertTrue(self.driver.find_element('id', 'page2').is_displayed())
 		self.assertFalse(self.driver.find_element('id', 'page3').is_displayed())
