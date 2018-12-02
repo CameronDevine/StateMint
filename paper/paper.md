@@ -51,6 +51,8 @@ With the Lambda function, a website can be designed to allow this software to be
 The Mathematica package `StateMint` can be installed via the [documentation](). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above.
 It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
 
+The `outputEqutions` function 
+
 Another function is `linearizeState`, which accepts arguments.
 
 Rico will add more description, here.
@@ -118,8 +120,8 @@ YmUifSwiOFZHbDlDWXJqWFBOZTRHNCI6eyJzdGFydCI6MjYwOC
 wiZW5kIjoyNjIwLCJ0ZXh0Ijoid2ViIGJyb3dzZXIuIn0sIlND
 bm5wMlRjQVo2ZWRJVEMiOnsic3RhcnQiOjI2MjIsImVuZCI6Mj
 Y0MywidGV4dCI6IiMgTWF0aGVtYXRpY2EgUGFja2FnZSJ9LCJ6
-ZW1ta2hVTlFwdk5BQmtaIjp7InN0YXJ0IjozMjE0LCJlbmQiOj
-MyMjIsInRleHQiOiJpbmNsdWRlZCJ9fSwiY29tbWVudHMiOnsi
+ZW1ta2hVTlFwdk5BQmtaIjp7InN0YXJ0IjozMjQ2LCJlbmQiOj
+MyNTQsInRleHQiOiJpbmNsdWRlZCJ9fSwiY29tbWVudHMiOnsi
 UnlMamsycUxjcjhEczhKZCI6eyJkaXNjdXNzaW9uSWQiOiJTUj
 hYckl2em11VWpGY1paIiwic3ViIjoiZ286MTAyOTA1NDM1NTMw
 ODk2NDc0ODAwIiwidGV4dCI6IkknbSBhIGJpZyBiZWxpZXZlci
@@ -237,6 +239,6 @@ Q5Mjl9LCJxMEFKWnR1RzlTa2I2TnNVIjp7ImRpc2N1c3Npb25J
 ZCI6InplbW1raFVOUXB2TkFCa1oiLCJzdWIiOiJnbzoxMDI5MD
 U0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSBtZWFuIHdlIHNo
 b3VsZCBoeXBlcmxpbmsgaXQiLCJjcmVhdGVkIjoxNTQzNzIzMD
-kyMDIxfX0sImhpc3RvcnkiOls2Mjg1ODk1MzAsMjA5ODc3NTk2
+kyMDIxfX0sImhpc3RvcnkiOlszNzU5NDU0NjIsMjA5ODc3NTk2
 MF19
 -->
