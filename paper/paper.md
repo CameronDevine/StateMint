@@ -52,7 +52,7 @@ The Mathematica package `StateMint` can be installed via the [documentation](). 
 
 The `outputEquations` function derives the output equations given output expressions in terms of primary and secondary variables (including inputs). The function accepts lists of input variables, state variables, elemental and constraint equations, and output expressions.
 
-The functions `stateEquations` and `outputEquations` yield 
+The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear 
 
 Rico will add more description, here.
 
@@ -119,8 +119,8 @@ YmUifSwiOFZHbDlDWXJqWFBOZTRHNCI6eyJzdGFydCI6MjYwOC
 wiZW5kIjoyNjIwLCJ0ZXh0Ijoid2ViIGJyb3dzZXIuIn0sIlND
 bm5wMlRjQVo2ZWRJVEMiOnsic3RhcnQiOjI2MjIsImVuZCI6Mj
 Y0MywidGV4dCI6IiMgTWF0aGVtYXRpY2EgUGFja2FnZSJ9LCJ6
-ZW1ta2hVTlFwdk5BQmtaIjp7InN0YXJ0IjozNTE2LCJlbmQiOj
-M1MjQsInRleHQiOiJpbmNsdWRlZCJ9fSwiY29tbWVudHMiOnsi
+ZW1ta2hVTlFwdk5BQmtaIjp7InN0YXJ0IjozNTgzLCJlbmQiOj
+M1OTEsInRleHQiOiJpbmNsdWRlZCJ9fSwiY29tbWVudHMiOnsi
 UnlMamsycUxjcjhEczhKZCI6eyJkaXNjdXNzaW9uSWQiOiJTUj
 hYckl2em11VWpGY1paIiwic3ViIjoiZ286MTAyOTA1NDM1NTMw
 ODk2NDc0ODAwIiwidGV4dCI6IkknbSBhIGJpZyBiZWxpZXZlci
@@ -238,6 +238,6 @@ Q5Mjl9LCJxMEFKWnR1RzlTa2I2TnNVIjp7ImRpc2N1c3Npb25J
 ZCI6InplbW1raFVOUXB2TkFCa1oiLCJzdWIiOiJnbzoxMDI5MD
 U0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSBtZWFuIHdlIHNo
 b3VsZCBoeXBlcmxpbmsgaXQiLCJjcmVhdGVkIjoxNTQzNzIzMD
-kyMDIxfX0sImhpc3RvcnkiOlstMTA0MzgwODc5NSwtMTIwMTkx
+kyMDIxfX0sImhpc3RvcnkiOlstMTcwOTg0OTczMywtMTIwMTkx
 MDQ1MiwyMDk4Nzc1OTYwXX0=
 -->
