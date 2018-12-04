@@ -47,7 +47,7 @@ Because equations are entered in BASIC notation, similar to most scientific calc
 
 # Mathematica Package
 
-The Mathematica package `StateMint` can be installed via the [documentation](). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
+The Mathematica package `StateMint` can be installed via the [documentation](https://github.com/CameronDevine/Statum/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
 
 The `outputEquations` function derives the output equations given output expressions in terms of primary and secondary variables (including inputs). The function accepts lists of input variables, state variables, elemental and constraint equations, and output expressions.
 
@@ -104,9 +104,9 @@ NEc0Ijp7InN0YXJ0IjoyNDg2LCJlbmQiOjI0OTgsInRleHQiOi
 J3ZWIgYnJvd3Nlci4ifSwiU0NubnAyVGNBWjZlZElUQyI6eyJz
 dGFydCI6MjY0NywiZW5kIjoyNjY4LCJ0ZXh0IjoiIyBNYXRoZW
 1hdGljYSBQYWNrYWdlIn0sInplbW1raFVOUXB2TkFCa1oiOnsi
-c3RhcnQiOjM5ODAsImVuZCI6Mzk4OCwidGV4dCI6ImluY2x1ZG
+c3RhcnQiOjQwNTMsImVuZCI6NDA2MSwidGV4dCI6ImluY2x1ZG
 VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI3MzEs
-ImVuZCI6Mjc0OCwidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
+ImVuZCI6MjgyMSwidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
 19LCJjb21tZW50cyI6eyJSeUxqazJxTGNyOERzOEpkIjp7ImRp
 c2N1c3Npb25JZCI6IlNSOFhySXZ6bXVVakZjWloiLCJzdWIiOi
 JnbzoxMDI5MDU0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSdt
@@ -231,8 +231,8 @@ VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0aW9uXSho
 dHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9DYWxjdWxhdG
 9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90YXRpb24pXG5cblJF
 UExZIiwiY3JlYXRlZCI6MTU0Mzg4Mjg1ODMyNX19LCJoaXN0b3
-J5IjpbLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsNDg0MjQ4MjE4
-LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIxNzA2LDE2OD
-I1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMSwtMjU2OTY1ODM3
-LC0xMjAxOTEwNDUyLDIwOTg3NzU5NjBdfQ==
+J5IjpbMTEyODI3NzUxNSwtMTQ1MTc3OTQyMywtMTAwOTk1ODAy
+Nyw0ODQyNDgyMTgsMTEzMjIyMzg5MywtNTYwMzg3MjU1LC0zMz
+I2MjE3MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2MDEx
+LC0yNTY5NjU4MzcsLTEyMDE5MTA0NTIsMjA5ODc3NTk2MF19
 -->
