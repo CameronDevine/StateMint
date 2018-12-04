@@ -23,12 +23,17 @@ date: 26 September 2018
 bibliography: paper.bib
 ---
 
+# Abstract
+
+
+
 # Summary
 
 When determining the differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
 The next step is to algebraically eliminate those variables that are not state or input variables from the equations until a minimal set of differential equations remains.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
+These tools 
 
 To aid students in their learning process a program was written to symbolically determine the differential equations using the elemental and constraint equations as input.
 This program allows students to focus on the process of creating a dynamic system model without worrying about algebraic mistakes.
@@ -76,14 +81,14 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJTUjhYckl2em11VWpGY1paIjp7In
-N0YXJ0Ijo2NjUsImVuZCI6ODIwLCJ0ZXh0IjoiV2hlbiBkZXRl
+N0YXJ0Ijo2NzksImVuZCI6ODM0LCJ0ZXh0IjoiV2hlbiBkZXRl
 cm1pbmluZyB0aGUgZGlmZmVyZW50aWFsIGVxdWF0aW9uIG9mIG
 EgZHluYW1pYyBzeXN0ZW0gdXNpbmcgbGluZWFyIGdyYeKApiJ9
-LCJrSXRMMVFWQkhJeWttVEJ0Ijp7InN0YXJ0IjoxMjkxLCJlbm
-QiOjE0NjIsInRleHQiOiJUbyBhaWQgc3R1ZGVudHMgaW4gdGhl
+LCJrSXRMMVFWQkhJeWttVEJ0Ijp7InN0YXJ0IjoxMzE4LCJlbm
+QiOjE0ODksInRleHQiOiJUbyBhaWQgc3R1ZGVudHMgaW4gdGhl
 aXIgbGVhcm5pbmcgcHJvY2VzcyBhIHByb2dyYW0gd2FzIHdyaX
 R0ZW4gdG8gc3ltYm9saWNhbGx54oCmIn0sInZBaUExS2dBQm1r
-WU9jTWUiOnsic3RhcnQiOjIxMDgsImVuZCI6MjEyMiwidGV4dC
+WU9jTWUiOnsic3RhcnQiOjIxMzUsImVuZCI6MjE0OSwidGV4dC
 I6IkJBU0lDIG5vdGF0aW9uIn19LCJjb21tZW50cyI6eyJSeUxq
 azJxTGNyOERzOEpkIjp7ImRpc2N1c3Npb25JZCI6IlNSOFhySX
 Z6bXVVakZjWloiLCJzdWIiOiJnbzoxMDI5MDU0MzU1MzA4OTY0
@@ -115,11 +120,11 @@ aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2FsY3VsYX
 Rvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0aW9uXShodHRw
 czovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9DYWxjdWxhdG9yX2
 lucHV0X21ldGhvZHMjQkFTSUNfbm90YXRpb24pIiwiY3JlYXRl
-ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbLTE3NjIwMz
-czODgsLTU3NTM0MzcxMCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0x
-MTIzMzkyMDU0LC04ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OT
-c4MCwxMDg1MzA3MzgyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3
-LDQ4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMj
-YyMTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEs
-LTI1Njk2NTgzNywtMTIwMTkxMDQ1Ml19
+ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbNjE4OTk3OT
+I5LC0xNzYyMDM3Mzg4LC01NzUzNDM3MTAsNjcwNDQ3NzEsLTIy
+OTEzNTc2OSwtMTEyMzM5MjA1NCwtODg3MzAxODIsMjEwMTkyND
+Y4NSw2MDIwNzk3ODAsMTA4NTMwNzM4MiwtMTQ1MTc3OTQyMywt
+MTAwOTk1ODAyNyw0ODQyNDgyMTgsMTEzMjIyMzg5MywtNTYwMz
+g3MjU1LC0zMzI2MjE3MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3
+LDQyMzY2MDExLC0yNTY5NjU4MzddfQ==
 -->
