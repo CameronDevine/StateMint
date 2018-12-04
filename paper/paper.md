@@ -69,7 +69,7 @@ This interface has text boxes for equation input, and displays results as render
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
 There is also the ability to share, download, and save the system models for later use or modification.
 This interface is designed to run on Amazon AWS serverless resources to simplify upkeep and keep costs low.
-An automated installer is also included.
+An automated installer is also [included](https://github.com/CameronDevine/Statum/tree/master/web).
 
 # Acknowledgments
 
@@ -222,8 +222,8 @@ cl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0aW9uXShodHRwcz
 ovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9DYWxjdWxhdG9yX2lu
 cHV0X21ldGhvZHMjQkFTSUNfbm90YXRpb24pXG5cblJFUExZIi
 wiY3JlYXRlZCI6MTU0Mzg4Mjg1ODMyNX19LCJoaXN0b3J5Ijpb
-LTcwNzI0MTgxLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4ND
-I0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcw
-NiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEsLTI1Nj
-k2NTgzNywtMTIwMTkxMDQ1MiwyMDk4Nzc1OTYwXX0=
+LTczNzkxNzQwNiwtMTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0OD
+QyNDgyMTgsMTEzMjIyMzg5MywtNTYwMzg3MjU1LC0zMzI2MjE3
+MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2MDExLC0yNT
+Y5NjU4MzcsLTEyMDE5MTA0NTIsMjA5ODc3NTk2MF19
 -->
