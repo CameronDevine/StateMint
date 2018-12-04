@@ -39,7 +39,7 @@ Utilizing the advanced symbolic mathematics capabilities of Mathematica, a packa
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
 To mitigate these problems a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
 To support this interface a Python package was written with the same functionality as the Mathematica package and run as an Amazon AWS Lambda function.
-The excellent Python symbolic mathematics library, SymPy [@meurer2017], was instrumental in this implementation.
+
 
 # Web Interface
 
@@ -56,6 +56,8 @@ The Python package for performing the same task uses similar logic to the second
 This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
 Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
 This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
+
+The excellent Python symbolic mathematics library, SymPy [@meurer2017], was instrumental in this implementation.
 
 # Mathematica Package
 
@@ -114,11 +116,11 @@ aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2FsY3VsYX
 Rvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0aW9uXShodHRw
 czovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9DYWxjdWxhdG9yX2
 lucHV0X21ldGhvZHMjQkFTSUNfbm90YXRpb24pIiwiY3JlYXRl
-ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbODkwNzQwNj
-UsNjcwNDQ3NzEsLTIyOTEzNTc2OSwtMTEyMzM5MjA1NCwtODg3
-MzAxODIsMjEwMTkyNDY4NSw2MDIwNzk3ODAsMTA4NTMwNzM4Mi
-wtMTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0ODQyNDgyMTgsMTEz
-MjIyMzg5MywtNTYwMzg3MjU1LC0zMzI2MjE3MDYsMTY4MjUzMD
-Q5MywtMTQ5MjkwOTU3LDQyMzY2MDExLC0yNTY5NjU4MzcsLTEy
-MDE5MTA0NTIsMjA5ODc3NTk2MF19
+ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbMTc2MzQ2ND
+YyOSw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0LC04
+ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4MCwxMDg1MzA3Mz
+gyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4NDI0ODIxOCwx
+MTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcwNiwxNjgyNT
+MwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEsLTI1Njk2NTgzNywt
+MTIwMTkxMDQ1MiwyMDk4Nzc1OTYwXX0=
 -->
