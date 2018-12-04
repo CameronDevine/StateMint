@@ -40,10 +40,11 @@ Utilizing the advanced symbolic mathematics capabilities of Mathematica, a packa
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
 To mitigate these problems a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
 To support this interface a Python package was written with the same functionality as the Mathematica package and run as an Amazon AWS Lambda function.
-With the Lambda function running in the cloud this software can be used by any device with an internet connection and web browser.
+With the Lambda function running in the cloud this software can be used by any device with an internet connection and a web browser.
 
 # Web Interface
 
+The web interface 
 To allow those without programming experience to use this code a web interface was designed and [implemented](http://statum.camerondevine.me/).
 This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
@@ -108,10 +109,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6WzQyNDQ3OTE1NCwtMTc2MjAzNzM4OCwtNTc1MzQzNzEw
-LDY3MDQ0NzcxLC0yMjkxMzU3NjksLTExMjMzOTIwNTQsLTg4Nz
-MwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5NzgwLDEwODUzMDczODIs
-LTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsNDg0MjQ4MjE4LDExMz
-IyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIxNzA2LDE2ODI1MzA0
-OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMSwtMjU2OTY1ODM3XX0=
+9yeSI6Wy05MzU2MDUzMTUsLTE3NjIwMzczODgsLTU3NTM0Mzcx
+MCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0LC04OD
+czMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4MCwxMDg1MzA3Mzgy
+LC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4NDI0ODIxOCwxMT
+MyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcwNiwxNjgyNTMw
+NDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEsLTI1Njk2NTgzN119
 -->
