@@ -1,5 +1,5 @@
 ---
-title: 'StateMint: An Application for Determining Symbolic Dynamic System Models using Linear Graph Methods'
+title: 'StateMint: A set of Tools for Determining Symbolic Dynamic System Models using Linear Graph Methods'
 tags:
   - system dynamics
   - calculator
@@ -112,11 +112,11 @@ cvd2lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNf
 bm90YXRpb25dKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aW
 tpL0NhbGN1bGF0b3JfaW5wdXRfbWV0aG9kcyNCQVNJQ19ub3Rh
 dGlvbikiLCJjcmVhdGVkIjoxNTQzOTUzNzU0NjQ5fX0sImhpc3
-RvcnkiOlstMTIwOTc1MDc5NiwtNzM1NjA1NDY1LDE3MTcyMDAw
-ODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3NywtOTIwOTY5NjYzLD
-g3NDQwMjE5MSw1MjAyMDcxNTQsLTkzNTYwNTMxNSwtMTc2MjAz
-NzM4OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC0yMjkxMzU3NjksLT
-ExMjMzOTIwNTQsLTg4NzMwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5
-NzgwLDEwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMj
-ddfQ==
+RvcnkiOlstMTY1NTU2ODQxNCwtMTIwOTc1MDc5NiwtNzM1NjA1
+NDY1LDE3MTcyMDAwODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3Ny
+wtOTIwOTY5NjYzLDg3NDQwMjE5MSw1MjAyMDcxNTQsLTkzNTYw
+NTMxNSwtMTc2MjAzNzM4OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC
+0yMjkxMzU3NjksLTExMjMzOTIwNTQsLTg4NzMwMTgyLDIxMDE5
+MjQ2ODUsNjAyMDc5NzgwLDEwODUzMDczODIsLTE0NTE3Nzk0Mj
+NdfQ==
 -->
