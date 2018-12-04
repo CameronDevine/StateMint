@@ -33,7 +33,7 @@ When determining the differential equation of a dynamic system using linear grap
 The next step is to algebraically eliminate those variables that are not state or input variables from the equations until a minimal set of differential equations remains.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
-These tools allow students to focus on the process of creating a dynamic system model without owrrying about algebraic mistakes.
+These tools allow students to focus on the process of creating a dynamic system model without worrying about algebraic mistakes.
 This allows the student to focus on course content which is new and unique.
 
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the dynamic system model.
@@ -110,10 +110,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6Wy05MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIwNzE1NCwt
-OTM1NjA1MzE1LC0xNzYyMDM3Mzg4LC01NzUzNDM3MTAsNjcwND
-Q3NzEsLTIyOTEzNTc2OSwtMTEyMzM5MjA1NCwtODg3MzAxODIs
-MjEwMTkyNDY4NSw2MDIwNzk3ODAsMTA4NTMwNzM4MiwtMTQ1MT
-c3OTQyMywtMTAwOTk1ODAyNyw0ODQyNDgyMTgsMTEzMjIyMzg5
-MywtNTYwMzg3MjU1LC0zMzI2MjE3MDYsMTY4MjUzMDQ5M119
+9yeSI6WzIwMjIyOTUzNzcsLTkyMDk2OTY2Myw4NzQ0MDIxOTEs
+NTIwMjA3MTU0LC05MzU2MDUzMTUsLTE3NjIwMzczODgsLTU3NT
+M0MzcxMCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0
+LC04ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4MCwxMDg1Mz
+A3MzgyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4NDI0ODIx
+OCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcwNl19
 -->
