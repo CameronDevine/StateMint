@@ -42,7 +42,8 @@ Because of the size and cost of Mathematica a more economical solution was desir
 To solve this problem the Python programming language along with SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
 This provides the same functionality without the cost barrier and with a smaller installed size.
 The Python implementation also allows this code to be run as an Amazon AWS Lambda function.
-With the Lambda function, a website was designed to allow this software to be used with any device with an internet connection and web browser.
+With the Lambda function, a website was designed to allow this software to be used with any device which has an internet connection and a web browser.
+This interface 
 
 # Mathematica Package
 
@@ -99,13 +100,13 @@ cXVpcmVkIn0sInBSS1Rpbm9LZ3NXN1Z0MkgiOnsic3RhcnQiOj
 E5NDQsImVuZCI6MTk1NywidGV4dCI6InNpemUgYW5kIGNvc3Qi
 fSwicngyTHVtZGNLVkVpMmZVSyI6eyJzdGFydCI6MjEyOCwiZW
 5kIjoyMTMyLCJ0ZXh0IjoidXNlZCJ9LCI4VkdsOUNZcmpYUE5l
-NEc0Ijp7InN0YXJ0IjoyNDc5LCJlbmQiOjI0OTEsInRleHQiOi
+NEc0Ijp7InN0YXJ0IjoyNDg2LCJlbmQiOjI0OTgsInRleHQiOi
 J3ZWIgYnJvd3Nlci4ifSwiU0NubnAyVGNBWjZlZElUQyI6eyJz
-dGFydCI6MjQ5MywiZW5kIjoyNTE0LCJ0ZXh0IjoiIyBNYXRoZW
+dGFydCI6MjUxNiwiZW5kIjoyNTM3LCJ0ZXh0IjoiIyBNYXRoZW
 1hdGljYSBQYWNrYWdlIn0sInplbW1raFVOUXB2TkFCa1oiOnsi
-c3RhcnQiOjM4MjYsImVuZCI6MzgzNCwidGV4dCI6ImluY2x1ZG
-VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI1Nzcs
-ImVuZCI6MjU5NCwidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
+c3RhcnQiOjM4NDksImVuZCI6Mzg1NywidGV4dCI6ImluY2x1ZG
+VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI2MDAs
+ImVuZCI6MjYxNywidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
 19LCJjb21tZW50cyI6eyJSeUxqazJxTGNyOERzOEpkIjp7ImRp
 c2N1c3Npb25JZCI6IlNSOFhySXZ6bXVVakZjWloiLCJzdWIiOi
 JnbzoxMDI5MDU0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSdt
@@ -199,8 +200,8 @@ QkI3dDhESiIsInN1YiI6ImdvOjEwMjkwNTQzNTUzMDg5NjQ3ND
 gwMCIsInRleHQiOiJJJ20gYWZyYWlkIHRvIGhhcmRjb2RlIHRo
 ZSB1cmwsIGVzcGVjaWFsbHkgaWYgd2UncmUgY2hhbmdpbmcgdG
 8gU3RhdGVNaW50IC4uLiIsImNyZWF0ZWQiOjE1NDM3NzY4MjAy
-MTV9fSwiaGlzdG9yeSI6Wzg5MjIxMjQ1NSwtNTYwMzg3MjU1LC
-0zMzI2MjE3MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2
-MDExLC0yNTY5NjU4MzcsLTEyMDE5MTA0NTIsMjA5ODc3NTk2MF
-19
+MTV9fSwiaGlzdG9yeSI6WzExMzIyMjM4OTMsLTU2MDM4NzI1NS
+wtMzMyNjIxNzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2
+NjAxMSwtMjU2OTY1ODM3LC0xMjAxOTEwNDUyLDIwOTg3NzU5Nj
+BdfQ==
 -->
