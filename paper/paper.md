@@ -45,6 +45,22 @@ The Python implementation also allows this code to be run as an Amazon AWS Lambd
 With the Lambda function, a website was designed to allow this software to be used with any device which has an internet connection and a web browser.
 Because equations are entered in BASIC notation, similar to most scientific calculators, no programming knowledge is needed to use this interface.
 
+# Web Interface
+
+To allow those without programming experience to use this code a web interface was designed and [implemented](http://statum.camerondevine.me/).
+This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
+Examples and documentation are built in to make learning how to use the interface as painless as possible.
+There is also the ability to share, download, and save the system models for later use or modification.
+This interface is designed to run on Amazon AWS serverless resources to simplify upkeep and keep costs low.
+An automated installer is also [included](https://github.com/CameronDevine/Statum/tree/master/web).
+
+# Python Package
+
+The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
+This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
+Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
+This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
+
 # Mathematica Package
 
 The Mathematica package `StateMint` can be installed via the [documentation](https://github.com/CameronDevine/Statum/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
@@ -54,22 +70,6 @@ The `outputEquations` function derives the output equations given output express
 The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear state and output equations are typically written in a standard vector form described by matrices `A`, `B`, `C`, and `D` (and sometimes `E` and `F`). The `linearizeState` function accepts lists of input variables, state variables, and the time-derivatives of the state vector (from `stateEquations`) and returns the `A`, `B`, and `E` matrices. Similarly, `linearizeOutput` returns the `C`, `D`, and `F` matrices.
 
 An example of how to use this package is [included](https://github.com/CameronDevine/Statum/blob/master/mathematica/Example.nb).
-
-# Python Package
-
-The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
-This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
-Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
-This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
-
-# Web Interface
-
-To allow those without programming experience to use this code a web interface was designed and [implemented](http://statum.camerondevine.me/).
-This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
-Examples and documentation are built in to make learning how to use the interface as painless as possible.
-There is also the ability to share, download, and save the system models for later use or modification.
-This interface is designed to run on Amazon AWS serverless resources to simplify upkeep and keep costs low.
-An automated installer is also [included](https://github.com/CameronDevine/Statum/tree/master/web).
 
 # Acknowledgments
 
@@ -100,9 +100,9 @@ cXVpcmVkIn0sInBSS1Rpbm9LZ3NXN1Z0MkgiOnsic3RhcnQiOj
 E5NDQsImVuZCI6MTk1NywidGV4dCI6InNpemUgYW5kIGNvc3Qi
 fSwicngyTHVtZGNLVkVpMmZVSyI6eyJzdGFydCI6MjEyOCwiZW
 5kIjoyMTMyLCJ0ZXh0IjoidXNlZCJ9LCJTQ25ucDJUY0FaNmVk
-SVRDIjp7InN0YXJ0IjoyNjQ3LCJlbmQiOjI2NjgsInRleHQiOi
+SVRDIjp7InN0YXJ0IjozOTUyLCJlbmQiOjM5NzMsInRleHQiOi
 IjIE1hdGhlbWF0aWNhIFBhY2thZ2UifSwiRVVST0Y0YUY3QkI3
-dDhESiI6eyJzdGFydCI6MjczMSwiZW5kIjoyODIxLCJ0ZXh0Ij
+dDhESiI6eyJzdGFydCI6NDAzNiwiZW5kIjo0MTI2LCJ0ZXh0Ij
 oiW2RvY3VtZW50YXRpb25dKCkifSwiZldlb2l3emVoRWVSNUNT
 cSI6eyJzdGFydCI6MjUzMiwiZW5kIjoyNTQ2LCJ0ZXh0IjoiQk
 FTSUMgbm90YXRpb24ifX0sImNvbW1lbnRzIjp7IlJ5TGprMnFM
@@ -209,8 +209,9 @@ JBU0lDIG5vdGF0aW9uPyBJIGZvdW5kIGl0IG9uIFdpa2lwZWRp
 YSxcbmh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL0NhbG
 N1bGF0b3JfaW5wdXRfbWV0aG9kcyNCQVNJQ19ub3RhdGlvbiIs
 ImNyZWF0ZWQiOjE1NDM4OTczMzM3OTN9fSwiaGlzdG9yeSI6Wz
-EwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsNDg0
-MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIxNz
-A2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMSwtMjU2
-OTY1ODM3LC0xMjAxOTEwNDUyLDIwOTg3NzU5NjBdfQ==
+YwMjA3OTc4MCwxMDg1MzA3MzgyLC0xNDUxNzc5NDIzLC0xMDA5
+OTU4MDI3LDQ4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNT
+UsLTMzMjYyMTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIz
+NjYwMTEsLTI1Njk2NTgzNywtMTIwMTkxMDQ1MiwyMDk4Nzc1OT
+YwXX0=
 -->
