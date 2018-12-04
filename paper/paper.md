@@ -27,7 +27,7 @@ bibliography: paper.bib
 
 StateMint is a set of tools which solve sets of equations to find dynamic system models.
 These tools are especially useful for students who are learning system dynamics for the first time.
-This set of tools include a Mathematica Package, Python Package, and a 
+This set of tools include a Mathematica package, Python package, and a web interface.
 
 # Introduction
 
@@ -82,11 +82,11 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJTUjhYckl2em11VWpGY1paIjp7In
-N0YXJ0Ijo5NDQsImVuZCI6MTA5OSwidGV4dCI6IldoZW4gZGV0
+N0YXJ0Ijo5NTgsImVuZCI6MTExMywidGV4dCI6IldoZW4gZGV0
 ZXJtaW5pbmcgdGhlIGRpZmZlcmVudGlhbCBlcXVhdGlvbiBvZi
 BhIGR5bmFtaWMgc3lzdGVtIHVzaW5nIGxpbmVhciBncmHigKYi
-fSwidkFpQTFLZ0FCbWtZT2NNZSI6eyJzdGFydCI6MjIxMSwiZW
-5kIjoyMjI1LCJ0ZXh0IjoiQkFTSUMgbm90YXRpb24ifX0sImNv
+fSwidkFpQTFLZ0FCbWtZT2NNZSI6eyJzdGFydCI6MjIyNSwiZW
+5kIjoyMjM5LCJ0ZXh0IjoiQkFTSUMgbm90YXRpb24ifX0sImNv
 bW1lbnRzIjp7IlJ5TGprMnFMY3I4RHM4SmQiOnsiZGlzY3Vzc2
 lvbklkIjoiU1I4WHJJdnptdVVqRmNaWiIsInN1YiI6ImdvOjEw
 MjkwNTQzNTUzMDg5NjQ3NDgwMCIsInRleHQiOiJJJ20gYSBiaW
@@ -112,7 +112,7 @@ cvd2lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNf
 bm90YXRpb25dKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aW
 tpL0NhbGN1bGF0b3JfaW5wdXRfbWV0aG9kcyNCQVNJQ19ub3Rh
 dGlvbikiLCJjcmVhdGVkIjoxNTQzOTUzNzU0NjQ5fX0sImhpc3
-RvcnkiOlstMTE1ODUzMzQ3OSwtNzM1NjA1NDY1LDE3MTcyMDAw
+RvcnkiOlstMTIwOTc1MDc5NiwtNzM1NjA1NDY1LDE3MTcyMDAw
 ODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3NywtOTIwOTY5NjYzLD
 g3NDQwMjE5MSw1MjAyMDcxNTQsLTkzNTYwNTMxNSwtMTc2MjAz
 NzM4OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC0yMjkxMzU3NjksLT
