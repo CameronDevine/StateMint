@@ -46,9 +46,10 @@ With the Lambda function running in the cloud this software can be used by any d
 
 The [web interface](http://statum.camerondevine.me/) has text boxes for equations to be input.
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
-This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
+The results are then displayed as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
-There is also the ability to share, download, and save the system models for later use or modification.
+There is also the ability to share, download, and save the dynamic system models for later use or modification.
+Because this interface runs on Amazon AWS serverless resources,
 This interface is designed to run on Amazon AWS serverless resources to simplify upkeep and keep costs low.
 An automated installer is also [included](https://github.com/CameronDevine/Statum/tree/master/web).
 
@@ -109,11 +110,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6Wy0xNTE2ODM3NDg4LC05MzU2MDUzMTUsLTE3NjIwMzcz
-ODgsLTU3NTM0MzcxMCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMT
-IzMzkyMDU0LC04ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4
-MCwxMDg1MzA3MzgyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LD
-Q4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYy
-MTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTFdfQ
-==
+9yeSI6Wzk2NjY2NjI2MiwtOTM1NjA1MzE1LC0xNzYyMDM3Mzg4
+LC01NzUzNDM3MTAsNjcwNDQ3NzEsLTIyOTEzNTc2OSwtMTEyMz
+M5MjA1NCwtODg3MzAxODIsMjEwMTkyNDY4NSw2MDIwNzk3ODAs
+MTA4NTMwNzM4MiwtMTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0OD
+QyNDgyMTgsMTEzMjIyMzg5MywtNTYwMzg3MjU1LC0zMzI2MjE3
+MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2MDExXX0=
 -->
