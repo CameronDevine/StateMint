@@ -55,18 +55,14 @@ An automated installer is also [included](https://github.com/CameronDevine/Statu
 
 # Python Package
 
-The Python package uses the SymPy [@meurer2017] library to symbolically 
-
-The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
+The Python package uses the SymPy [@meurer2017] library to symbolically eliminate the unneeded variables.
 This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
 Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
 This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
-The excellent Python symbolic mathematics library, , was instrumental in this implementation.
-
 # Mathematica Package
 
-The Mathematica package `StateMint` can be installed via the [documentation](https://github.com/CameronDevine/Statum/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
+The Mathematica package `StateMint` can be installed as described in the [documentation](https://github.com/CameronDevine/Statum/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
 
 The `outputEquations` function derives the output equations given output expressions in terms of primary and secondary variables (including inputs). The function accepts lists of input variables, state variables, elemental and constraint equations, and output expressions.
 
@@ -112,10 +108,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6WzIxMjgzNDkyMTcsLTkzNTYwNTMxNSwtMTc2MjAzNzM4
-OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC0yMjkxMzU3NjksLTExMj
-MzOTIwNTQsLTg4NzMwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5Nzgw
-LDEwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsND
-g0MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIx
-NzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMV19
+9yeSI6WzUyMDIwNzE1NCwtOTM1NjA1MzE1LC0xNzYyMDM3Mzg4
+LC01NzUzNDM3MTAsNjcwNDQ3NzEsLTIyOTEzNTc2OSwtMTEyMz
+M5MjA1NCwtODg3MzAxODIsMjEwMTkyNDY4NSw2MDIwNzk3ODAs
+MTA4NTMwNzM4MiwtMTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0OD
+QyNDgyMTgsMTEzMjIyMzg5MywtNTYwMzg3MjU1LC0zMzI2MjE3
+MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2MDExXX0=
 -->
