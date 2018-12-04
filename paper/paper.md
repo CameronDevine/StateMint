@@ -43,7 +43,9 @@ To solve this problem the Python programming language along with SymPy [@meurer2
 This provides the same functionality without the cost barrier and with a smaller installed size.
 The Python implementation also allows this code to be run as an Amazon AWS Lambda function.
 With the Lambda function, a website was designed to allow this software to be used with any device which has an internet connection and a web browser.
-This interface can be used with zero knowledge of programming by simply entering 
+To use this interface no knowledge of programming is need.
+Equations are simply entered
+This interface can be used with zero knowledge of programming by simply entering equations
 
 # Mathematica Package
 
@@ -102,11 +104,11 @@ fSwicngyTHVtZGNLVkVpMmZVSyI6eyJzdGFydCI6MjEyOCwiZW
 5kIjoyMTMyLCJ0ZXh0IjoidXNlZCJ9LCI4VkdsOUNZcmpYUE5l
 NEc0Ijp7InN0YXJ0IjoyNDg2LCJlbmQiOjI0OTgsInRleHQiOi
 J3ZWIgYnJvd3Nlci4ifSwiU0NubnAyVGNBWjZlZElUQyI6eyJz
-dGFydCI6MjU4MiwiZW5kIjoyNjAzLCJ0ZXh0IjoiIyBNYXRoZW
+dGFydCI6MjY3OSwiZW5kIjoyNzAwLCJ0ZXh0IjoiIyBNYXRoZW
 1hdGljYSBQYWNrYWdlIn0sInplbW1raFVOUXB2TkFCa1oiOnsi
-c3RhcnQiOjM5MTUsImVuZCI6MzkyMywidGV4dCI6ImluY2x1ZG
-VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI2NjYs
-ImVuZCI6MjY4MywidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
+c3RhcnQiOjQwMTIsImVuZCI6NDAyMCwidGV4dCI6ImluY2x1ZG
+VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI3NjMs
+ImVuZCI6Mjc4MCwidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
 19LCJjb21tZW50cyI6eyJSeUxqazJxTGNyOERzOEpkIjp7ImRp
 c2N1c3Npb25JZCI6IlNSOFhySXZ6bXVVakZjWloiLCJzdWIiOi
 JnbzoxMDI5MDU0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSdt
@@ -218,8 +220,8 @@ IHRoZSB2ZXJzaW9uIHRoYXQgaXMgbW9zdCBsaWtlbHkgdG8gYm
 UgdXNlZCBzaG91bGQgYmUgcHV0IGZpcnN0LiBTbyBzaG91bGQg
 SSBjaGFuZ2UgdGhlIG9yZGVyIHRvIDEuIFdlYiBJbnRlcmZhY2
 UsIDIuIFB5dGhvbiwgYW5kIDMuIE1hdGhlbWF0aWNhPyIsImNy
-ZWF0ZWQiOjE1NDM4ODIxNjMwMjN9fSwiaGlzdG9yeSI6Wy0xNz
-E5MDExNjMyLDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIx
-NzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMSwtMj
-U2OTY1ODM3LC0xMjAxOTEwNDUyLDIwOTg3NzU5NjBdfQ==
+ZWF0ZWQiOjE1NDM4ODIxNjMwMjN9fSwiaGlzdG9yeSI6WzQ4ND
+I0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcw
+NiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEsLTI1Nj
+k2NTgzNywtMTIwMTkxMDQ1MiwyMDk4Nzc1OTYwXX0=
 -->
