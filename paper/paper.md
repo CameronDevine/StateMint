@@ -39,7 +39,7 @@ Utilizing the advanced symbolic mathematics capabilities of Mathematica, a packa
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
 To mitigate these problems a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
 To support this interface a Python package was written with the same functionality as the Mathematica package and run as an Amazon AWS Lambda function.
-
+With the Lambda function running in the cloud this software can be used by any device with an internet connection and web browser.
 
 # Web Interface
 
@@ -116,8 +116,8 @@ aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2FsY3VsYX
 Rvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0aW9uXShodHRw
 czovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9DYWxjdWxhdG9yX2
 lucHV0X21ldGhvZHMjQkFTSUNfbm90YXRpb24pIiwiY3JlYXRl
-ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbMTc2MzQ2ND
-YyOSw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0LC04
+ZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaXN0b3J5IjpbLTU3NTM0Mz
+cxMCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0LC04
 ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4MCwxMDg1MzA3Mz
 gyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4NDI0ODIxOCwx
 MTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcwNiwxNjgyNT
