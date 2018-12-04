@@ -45,6 +45,7 @@ With the Lambda function running in the cloud this software can be used by any d
 # Web Interface
 
 The [web interface](http://statum.camerondevine.me/) has text boxes for equations to be input.
+These equations must be entered in the form defined by Rowell and Wormley [@rowell1997].
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
 The results are then displayed as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
@@ -54,12 +55,14 @@ An automated installer is also [included](https://github.com/CameronDevine/Statu
 
 # Python Package
 
+The Python package uses the SymPy [@meurer2017] library to symbolically 
+
 The Python package for performing the same task uses similar logic to the second method of the Mathematica package, again in the form defined by Rowell and Wormley [@rowell1997].
 This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
 Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
 This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
-The excellent Python symbolic mathematics library, SymPy [@meurer2017], was instrumental in this implementation.
+The excellent Python symbolic mathematics library, , was instrumental in this implementation.
 
 # Mathematica Package
 
@@ -109,11 +112,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6Wy0xNDcyOTQxMzU2LC05MzU2MDUzMTUsLTE3NjIwMzcz
-ODgsLTU3NTM0MzcxMCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMT
-IzMzkyMDU0LC04ODczMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4
-MCwxMDg1MzA3MzgyLC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LD
-Q4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzODcyNTUsLTMzMjYy
-MTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsNDIzNjYwMTFdfQ
-==
+9yeSI6WzIxMjgzNDkyMTcsLTkzNTYwNTMxNSwtMTc2MjAzNzM4
+OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC0yMjkxMzU3NjksLTExMj
+MzOTIwNTQsLTg4NzMwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5Nzgw
+LDEwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsND
+g0MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIx
+NzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMV19
 -->
