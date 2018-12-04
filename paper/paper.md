@@ -39,8 +39,7 @@ Utilizing the advanced symbolic mathematics capabilities of Mathematica, a packa
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
 To mitigate these problems a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
 To support this interface a Python package was written with the same functionality as the Mathematica package.
-
-To solve this problem the Python programming language along with SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
+The excellent Python symbolic mathematics library, SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
 This provides the same functionality without the cost barrier and with a smaller installed size.
 The Python implementation also allows this code to be run as an Amazon AWS Lambda function.
 With the Lambda function, a website was designed to allow this software to be used with any device which has an internet connection and a web browser.
@@ -91,9 +90,9 @@ a21UQnQiOnsic3RhcnQiOjEyOTIsImVuZCI6MTQ2MywidGV4dC
 I6IlRvIGFpZCBzdHVkZW50cyBpbiB0aGVpciBsZWFybmluZyBw
 cm9jZXNzIGEgcHJvZ3JhbSB3YXMgd3JpdHRlbiB0byBzeW1ib2
 xpY2FsbHnigKYifSwicngyTHVtZGNLVkVpMmZVSyI6eyJzdGFy
-dCI6MjM5MiwiZW5kIjoyMzk2LCJ0ZXh0IjoidXNlZCJ9LCJFVV
-JPRjRhRjdCQjd0OERKIjp7InN0YXJ0Ijo0MzAwLCJlbmQiOjQz
-OTAsInRleHQiOiJbZG9jdW1lbnRhdGlvbl0oKSJ9LCJ2QWlBMU
+dCI6MjM3NywiZW5kIjoyMzgxLCJ0ZXh0IjoidXNlZCJ9LCJFVV
+JPRjRhRjdCQjd0OERKIjp7InN0YXJ0Ijo0Mjg1LCJlbmQiOjQz
+NzUsInRleHQiOiJbZG9jdW1lbnRhdGlvbl0oKSJ9LCJ2QWlBMU
 tnQUJta1lPY01lIjp7InN0YXJ0IjoyMTA5LCJlbmQiOjIxMjMs
 InRleHQiOiJCQVNJQyBub3RhdGlvbiJ9fSwiY29tbWVudHMiOn
 siUnlMamsycUxjcjhEczhKZCI6eyJkaXNjdXNzaW9uSWQiOiJT
@@ -158,10 +157,11 @@ VkaWEub3JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2Rz
 I0JBU0lDX25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS
 5vcmcvd2lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFT
 SUNfbm90YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX
-19LCJoaXN0b3J5IjpbNjcwNDQ3NzEsLTIyOTEzNTc2OSwtMTEy
-MzM5MjA1NCwtODg3MzAxODIsMjEwMTkyNDY4NSw2MDIwNzk3OD
-AsMTA4NTMwNzM4MiwtMTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0
-ODQyNDgyMTgsMTEzMjIyMzg5MywtNTYwMzg3MjU1LC0zMzI2Mj
-E3MDYsMTY4MjUzMDQ5MywtMTQ5MjkwOTU3LDQyMzY2MDExLC0y
-NTY5NjU4MzcsLTEyMDE5MTA0NTIsMjA5ODc3NTk2MF19
+19LCJoaXN0b3J5IjpbLTg1OTU2MzMyMSw2NzA0NDc3MSwtMjI5
+MTM1NzY5LC0xMTIzMzkyMDU0LC04ODczMDE4MiwyMTAxOTI0Nj
+g1LDYwMjA3OTc4MCwxMDg1MzA3MzgyLC0xNDUxNzc5NDIzLC0x
+MDA5OTU4MDI3LDQ4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzOD
+cyNTUsLTMzMjYyMTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcs
+NDIzNjYwMTEsLTI1Njk2NTgzNywtMTIwMTkxMDQ1MiwyMDk4Nz
+c1OTYwXX0=
 -->
