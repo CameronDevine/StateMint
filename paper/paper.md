@@ -43,9 +43,7 @@ To solve this problem the Python programming language along with SymPy [@meurer2
 This provides the same functionality without the cost barrier and with a smaller installed size.
 The Python implementation also allows this code to be run as an Amazon AWS Lambda function.
 With the Lambda function, a website was designed to allow this software to be used with any device which has an internet connection and a web browser.
-To use this interface no knowledge of programming is need.
-Equations are simply entered in BASIC notation, similar to any scientific calculator.
-This interface can be used with zero knowledge of programming by simply entering equations
+Because equations are entered in BASIC notation, similar to most scientific calculators, no programming knowledge is needed to use this interface.
 
 # Mathematica Package
 
@@ -104,11 +102,11 @@ fSwicngyTHVtZGNLVkVpMmZVSyI6eyJzdGFydCI6MjEyOCwiZW
 5kIjoyMTMyLCJ0ZXh0IjoidXNlZCJ9LCI4VkdsOUNZcmpYUE5l
 NEc0Ijp7InN0YXJ0IjoyNDg2LCJlbmQiOjI0OTgsInRleHQiOi
 J3ZWIgYnJvd3Nlci4ifSwiU0NubnAyVGNBWjZlZElUQyI6eyJz
-dGFydCI6MjczNiwiZW5kIjoyNzU3LCJ0ZXh0IjoiIyBNYXRoZW
+dGFydCI6MjY0NywiZW5kIjoyNjY4LCJ0ZXh0IjoiIyBNYXRoZW
 1hdGljYSBQYWNrYWdlIn0sInplbW1raFVOUXB2TkFCa1oiOnsi
-c3RhcnQiOjQwNjksImVuZCI6NDA3NywidGV4dCI6ImluY2x1ZG
-VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI4MjAs
-ImVuZCI6MjgzNywidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
+c3RhcnQiOjM5ODAsImVuZCI6Mzk4OCwidGV4dCI6ImluY2x1ZG
+VkIn0sIkVVUk9GNGFGN0JCN3Q4REoiOnsic3RhcnQiOjI3MzEs
+ImVuZCI6Mjc0OCwidGV4dCI6Iltkb2N1bWVudGF0aW9uXSgpIn
 19LCJjb21tZW50cyI6eyJSeUxqazJxTGNyOERzOEpkIjp7ImRp
 c2N1c3Npb25JZCI6IlNSOFhySXZ6bXVVakZjWloiLCJzdWIiOi
 JnbzoxMDI5MDU0MzU1MzA4OTY0NzQ4MDAiLCJ0ZXh0IjoiSSdt
@@ -220,9 +218,9 @@ IHRoZSB2ZXJzaW9uIHRoYXQgaXMgbW9zdCBsaWtlbHkgdG8gYm
 UgdXNlZCBzaG91bGQgYmUgcHV0IGZpcnN0LiBTbyBzaG91bGQg
 SSBjaGFuZ2UgdGhlIG9yZGVyIHRvIDEuIFdlYiBJbnRlcmZhY2
 UsIDIuIFB5dGhvbiwgYW5kIDMuIE1hdGhlbWF0aWNhPyIsImNy
-ZWF0ZWQiOjE1NDM4ODIxNjMwMjN9fSwiaGlzdG9yeSI6Wy0xNj
-A3ODg4MjQ5LDQ4NDI0ODIxOCwxMTMyMjIzODkzLC01NjAzODcy
-NTUsLTMzMjYyMTcwNiwxNjgyNTMwNDkzLC0xNDkyOTA5NTcsND
-IzNjYwMTEsLTI1Njk2NTgzNywtMTIwMTkxMDQ1MiwyMDk4Nzc1
-OTYwXX0=
+ZWF0ZWQiOjE1NDM4ODIxNjMwMjN9fSwiaGlzdG9yeSI6Wy00Nj
+Y0ODkwMTksNDg0MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1
+NSwtMzMyNjIxNzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0Mj
+M2NjAxMSwtMjU2OTY1ODM3LC0xMjAxOTEwNDUyLDIwOTg3NzU5
+NjBdfQ==
 -->
