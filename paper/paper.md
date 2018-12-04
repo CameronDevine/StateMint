@@ -44,7 +44,7 @@ With the Lambda function running in the cloud this software can be used by any d
 
 # Web Interface
 
-The web interface 
+The web interface allows 
 To allow those without programming experience to use this code a web interface was designed and [implemented](http://statum.camerondevine.me/).
 This interface has text boxes for equation input, and displays results as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
@@ -109,10 +109,10 @@ a2lwZWRpYSwgIFxuW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy
 b3RhdGlvbl0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2
 kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lDX25vdGF0
 aW9uKSIsImNyZWF0ZWQiOjE1NDM5NTM3NTQ2NDl9fSwiaGlzdG
-9yeSI6Wy05MzU2MDUzMTUsLTE3NjIwMzczODgsLTU3NTM0Mzcx
-MCw2NzA0NDc3MSwtMjI5MTM1NzY5LC0xMTIzMzkyMDU0LC04OD
-czMDE4MiwyMTAxOTI0Njg1LDYwMjA3OTc4MCwxMDg1MzA3Mzgy
-LC0xNDUxNzc5NDIzLC0xMDA5OTU4MDI3LDQ4NDI0ODIxOCwxMT
-MyMjIzODkzLC01NjAzODcyNTUsLTMzMjYyMTcwNiwxNjgyNTMw
-NDkzLC0xNDkyOTA5NTcsNDIzNjYwMTEsLTI1Njk2NTgzN119
+9yeSI6Wy02NDk3MzQ5NjMsLTkzNTYwNTMxNSwtMTc2MjAzNzM4
+OCwtNTc1MzQzNzEwLDY3MDQ0NzcxLC0yMjkxMzU3NjksLTExMj
+MzOTIwNTQsLTg4NzMwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5Nzgw
+LDEwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsND
+g0MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIx
+NzA2LDE2ODI1MzA0OTMsLTE0OTI5MDk1Nyw0MjM2NjAxMV19
 -->
