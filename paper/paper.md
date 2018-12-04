@@ -37,7 +37,7 @@ This allows the student to focus on course content which is new and unique.
 
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the differential equation.
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
-To mitigate these problems a web app was designed to allow students 
+To mitigate these problems a web app was designed to allow students to use this without any knowledge
 Because of the size and cost of Mathematica a more economical solution was desired.
 To solve this problem the Python programming language along with SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
 This provides the same functionality without the cost barrier and with a smaller installed size.
@@ -90,12 +90,12 @@ a21UQnQiOnsic3RhcnQiOjEyOTIsImVuZCI6MTQ2MywidGV4dC
 I6IlRvIGFpZCBzdHVkZW50cyBpbiB0aGVpciBsZWFybmluZyBw
 cm9jZXNzIGEgcHJvZ3JhbSB3YXMgd3JpdHRlbiB0byBzeW1ib2
 xpY2FsbHnigKYifSwicFJLVGlub0tnc1c3VnQySCI6eyJzdGFy
-dCI6MjAzNCwiZW5kIjoyMDQ3LCJ0ZXh0Ijoic2l6ZSBhbmQgY2
-9zdCJ9LCJyeDJMdW1kY0tWRWkyZlVLIjp7InN0YXJ0IjoyMjE4
-LCJlbmQiOjIyMjIsInRleHQiOiJ1c2VkIn0sIkVVUk9GNGFGN0
-JCN3Q4REoiOnsic3RhcnQiOjQxMjYsImVuZCI6NDIxNiwidGV4
+dCI6MjA2NywiZW5kIjoyMDgwLCJ0ZXh0Ijoic2l6ZSBhbmQgY2
+9zdCJ9LCJyeDJMdW1kY0tWRWkyZlVLIjp7InN0YXJ0IjoyMjUx
+LCJlbmQiOjIyNTUsInRleHQiOiJ1c2VkIn0sIkVVUk9GNGFGN0
+JCN3Q4REoiOnsic3RhcnQiOjQxNTksImVuZCI6NDI0OSwidGV4
 dCI6Iltkb2N1bWVudGF0aW9uXSgpIn0sImZXZW9pd3plaEVlUj
-VDU3EiOnsic3RhcnQiOjI2MjIsImVuZCI6MjYzNiwidGV4dCI6
+VDU3EiOnsic3RhcnQiOjI2NTUsImVuZCI6MjY2OSwidGV4dCI6
 IkJBU0lDIG5vdGF0aW9uIn19LCJjb21tZW50cyI6eyJSeUxqaz
 JxTGNyOERzOEpkIjp7ImRpc2N1c3Npb25JZCI6IlNSOFhySXZ6
 bXVVakZjWloiLCJzdWIiOiJnbzoxMDI5MDU0MzU1MzA4OTY0Nz
@@ -166,7 +166,7 @@ dGV4dCI6IlNob3VsZCB3ZSBjaXRlIEJBU0lDIG5vdGF0aW9uPy
 BJIGZvdW5kIGl0IG9uIFdpa2lwZWRpYSxcbmh0dHBzOi8vZW4u
 d2lraXBlZGlhLm9yZy93aWtpL0NhbGN1bGF0b3JfaW5wdXRfbW
 V0aG9kcyNCQVNJQ19ub3RhdGlvbiIsImNyZWF0ZWQiOjE1NDM4
-OTczMzM3OTN9fSwiaGlzdG9yeSI6WzEwMDA5MDUwOTgsLTExMj
+OTczMzM3OTN9fSwiaGlzdG9yeSI6Wy02NzMzNzIzNDgsLTExMj
 MzOTIwNTQsLTg4NzMwMTgyLDIxMDE5MjQ2ODUsNjAyMDc5Nzgw
 LDEwODUzMDczODIsLTE0NTE3Nzk0MjMsLTEwMDk5NTgwMjcsND
 g0MjQ4MjE4LDExMzIyMjM4OTMsLTU2MDM4NzI1NSwtMzMyNjIx
