@@ -37,7 +37,7 @@ This allows the student to focus on course content which is new and unique.
 
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the differential equation.
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
-To mi
+To mitigate these problems 
 Because of the size and cost of Mathematica a more economical solution was desired.
 To solve this problem the Python programming language along with SymPy [@meurer2017], a symbolic math library, was used to recreate the software.
 This provides the same functionality without the cost barrier and with a smaller installed size.
@@ -90,12 +90,12 @@ a21UQnQiOnsic3RhcnQiOjEyOTIsImVuZCI6MTQ2MywidGV4dC
 I6IlRvIGFpZCBzdHVkZW50cyBpbiB0aGVpciBsZWFybmluZyBw
 cm9jZXNzIGEgcHJvZ3JhbSB3YXMgd3JpdHRlbiB0byBzeW1ib2
 xpY2FsbHnigKYifSwicFJLVGlub0tnc1c3VnQySCI6eyJzdGFy
-dCI6MTk3MSwiZW5kIjoxOTg0LCJ0ZXh0Ijoic2l6ZSBhbmQgY2
-9zdCJ9LCJyeDJMdW1kY0tWRWkyZlVLIjp7InN0YXJ0IjoyMTU1
-LCJlbmQiOjIxNTksInRleHQiOiJ1c2VkIn0sIkVVUk9GNGFGN0
-JCN3Q4REoiOnsic3RhcnQiOjQwNjMsImVuZCI6NDE1MywidGV4
+dCI6MTk5MywiZW5kIjoyMDA2LCJ0ZXh0Ijoic2l6ZSBhbmQgY2
+9zdCJ9LCJyeDJMdW1kY0tWRWkyZlVLIjp7InN0YXJ0IjoyMTc3
+LCJlbmQiOjIxODEsInRleHQiOiJ1c2VkIn0sIkVVUk9GNGFGN0
+JCN3Q4REoiOnsic3RhcnQiOjQwODUsImVuZCI6NDE3NSwidGV4
 dCI6Iltkb2N1bWVudGF0aW9uXSgpIn0sImZXZW9pd3plaEVlUj
-VDU3EiOnsic3RhcnQiOjI1NTksImVuZCI6MjU3MywidGV4dCI6
+VDU3EiOnsic3RhcnQiOjI1ODEsImVuZCI6MjU5NSwidGV4dCI6
 IkJBU0lDIG5vdGF0aW9uIn19LCJjb21tZW50cyI6eyJSeUxqaz
 JxTGNyOERzOEpkIjp7ImRpc2N1c3Npb25JZCI6IlNSOFhySXZ6
 bXVVakZjWloiLCJzdWIiOiJnbzoxMDI5MDU0MzU1MzA4OTY0Nz
@@ -166,7 +166,7 @@ dGV4dCI6IlNob3VsZCB3ZSBjaXRlIEJBU0lDIG5vdGF0aW9uPy
 BJIGZvdW5kIGl0IG9uIFdpa2lwZWRpYSxcbmh0dHBzOi8vZW4u
 d2lraXBlZGlhLm9yZy93aWtpL0NhbGN1bGF0b3JfaW5wdXRfbW
 V0aG9kcyNCQVNJQ19ub3RhdGlvbiIsImNyZWF0ZWQiOjE1NDM4
-OTczMzM3OTN9fSwiaGlzdG9yeSI6Wzg1NTY5ODgwMywtODg3Mz
+OTczMzM3OTN9fSwiaGlzdG9yeSI6WzE1NDEyNTYwNCwtODg3Mz
 AxODIsMjEwMTkyNDY4NSw2MDIwNzk3ODAsMTA4NTMwNzM4Miwt
 MTQ1MTc3OTQyMywtMTAwOTk1ODAyNyw0ODQyNDgyMTgsMTEzMj
 IyMzg5MywtNTYwMzg3MjU1LC0zMzI2MjE3MDYsMTY4MjUzMDQ5
