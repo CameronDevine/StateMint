@@ -30,7 +30,7 @@ install:
     fi;
 script:
   - if [ $web = true ]; then
-    make test;
+    travis_retry make test;
     else
     cd python;
     python TestSuite.py;
