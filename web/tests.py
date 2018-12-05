@@ -254,11 +254,14 @@ class TestWebInterface(unittest.TestCase):
 		self.example_test(3)
 
 	def test_tutorial1(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
-		self.driver.wait()
-		self.modal_test(self.driver.find_element('link text', 'tutorial'), 'tutorialRef', test_content = True)
+		self.modal_test(self.driver.find_elements('link text', 'tutorial')[0], 'tutorialRef', test_content = True)
 
 	def test_tutorial2(self):
+		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.wait()
+		self.modal_test(self.driver.find_elements('link text', 'tutorial')[1], 'tutorialRef', test_content = True)
+
+	def test_tutorial3(self):
 		self.modal_test(self.driver.find_element('class name', 'help-block').find_elements('link text', 'here')[1], 'tutorialRef', test_content = True)
 
 	def test_command1(self):
