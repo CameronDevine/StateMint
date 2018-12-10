@@ -1,6 +1,6 @@
 # StateMint
 
-_StateMint_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding Python [REFERENCE] and web [REFERENCE] versions of this project. 
+_StateMint_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding [Python](../python) and [web](../web) versions of this project. 
 
 ## Installation
 
