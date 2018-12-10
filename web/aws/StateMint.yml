@@ -5,25 +5,25 @@ Resources:
   LambdaFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: Statum
-      Handler: StateModelLambda.handler
+      FunctionName: StateMint
+      Handler: StateMintLambda.handler
       Runtime: python2.7
       CodeUri: lambda.zip
-      Description: The Lambda function for Statum.
+      Description: The Lambda function for StateMint.
       MemorySize: 768
       Timeout: 10
       Events:
         Http:
           Type: Api
           Properties:
-            Path: /Statum
+            Path: /StateMint
             Method: post
             RestApiId: !Ref API
   API:
     Type: 'AWS::Serverless::Api'
     Properties:
-      Name: Statum
-      StageName: Stage2
+      Name: StateMint
+      StageName: StateMint
       DefinitionUri: api.yml
 Outputs:
   ApiId:

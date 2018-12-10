@@ -181,7 +181,7 @@ function StateModel() {
 	console.log(aditionalParams)
 	$('#LoadingPage').show();
 	$('#LoadingPageLink').click();
-	Client.statumPost(params, body, aditionalParams).then(function(result) {
+	Client.stateMintPost(params, body, aditionalParams).then(function(result) {
 		console.log(result);
 		data = result.data;
 		callback();

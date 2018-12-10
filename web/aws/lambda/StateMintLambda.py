@@ -1,6 +1,6 @@
 from sys import exc_info
 from sympy import latex, octave_code, mathematica_code, zeros, Function
-from Statum import Solve
+from StateMint import Solve
 import json
 
 nocode = {'LaTeX': [], 'Matlab': ['StateVec', 'OutputVec', 'TF', 'OutEq', 'StateEq', 'InputVec'], 'Mathematica': ['StateVec', 'OutputVec', 'TF', 'InputVec'], 'Python': ['StateVec', 'OutputVec', 'TF', 'InputVec']}

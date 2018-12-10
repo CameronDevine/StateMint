@@ -1,25 +1,25 @@
-# Statum
+# StateMint
 
-_Statum_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding Python [REFERENCE] and web [REFERENCE] versions of this project. 
+_StateMint_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding Python [REFERENCE] and web [REFERENCE] versions of this project. 
 
 ## Installation
 
 Clone or download this repository. 
 
-To fully install, copy the `Statum.m` Mathematica package file to a directory in your Mathematica *path* (to see which directories are in your path, evaluate `$Path` in a Mathematica notebook). It is recommended to use the path that is returned by Mathematica when you evaluate `FileNameJoin[{$UserBaseDirectory, "Applications"}]`.
+To fully install, copy the `StateMint.m` Mathematica package file to a directory in your Mathematica *path* (to see which directories are in your path, evaluate `$Path` in a Mathematica notebook). It is recommended to use the path that is returned by Mathematica when you evaluate `FileNameJoin[{$UserBaseDirectory, "Applications"}]`.
 
 Another option for full installation is to 
 
 - open Mathematica, 
 - select `File > Install...`, 
 - select `Package` from the `Type of Item to Install` menu,
-- select `Statum.m` from the `Source > File...` dialog, and
+- select `StateMint.m` from the `Source > File...` dialog, and
 - select `OK`.
 
-Once `Statum` is fully installed, it can be loaded into a Mathematica notebook with the command
+Once `StateMint` is fully installed, it can be loaded into a Mathematica notebook with the command
 
 ```mathematica
-<<Statum`
+<<StateMint`
 ```
 
 A third option is loading the package from the working directory, which can be set to the notebook's directory with the command
@@ -28,7 +28,7 @@ A third option is loading the package from the working directory, which can be s
 SetDirectory[NotebookDirectory[]];
 ```
 
-If `Statum.m` is then placed in the same directory as the notebook, it can be loaded with the same command (``<<Statum` ``) without requiring full installation.
+If `StateMint.m` is then placed in the same directory as the notebook, it can be loaded with the same command (``<<StateMint` ``) without requiring full installation.
 
 ## Usage
 

@@ -1,11 +1,11 @@
-Statum
+StateMint
 =============
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: Statum
+.. automodule:: StateMint
 	:members:
-.. automodule:: Statum.to_numpy
+.. automodule:: StateMint.to_numpy
 	:members:

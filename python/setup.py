@@ -4,14 +4,14 @@ with open('README.md') as f:
 	long_description=f.read()
 
 setuptools.setup(
-	name="Statum-Py",
+	name="StateMint",
 	version="1.0.0",
 	author="Cameron Devine",
 	author_email="camdev@uw.edu",
 	description="A library for finding State Space models of dynamical systems.",
 	long_description=long_description,
 	long_description_content_type='text/markdown',
-	url="https://github.com/CameronDevine/Statum",
+	url="https://github.com/CameronDevine/StateMint",
 	packages=setuptools.find_packages(),
 	python_requires=">=2.7",
 	install_requires=("sympy>=0.7.3",),

@@ -46,33 +46,33 @@ With the Lambda function running in the cloud this software can be used by any d
 
 # Web Interface
 
-The [web interface](http://statum.camerondevine.me/) has text boxes for equations to be input.
+The [web interface](http://statemint.camerondevine.me/) has text boxes for equations to be input.
 These equations must be entered in the form defined by Rowell and Wormley [@rowell1997].
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
 The results are then displayed as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
 There is also the ability to share, download, and save the dynamic system models for later use or modification.
 Because this interface utilizes Amazon AWS serverless resources, required maintenance and costs are minimized.
-An automated installer is also [included](https://github.com/CameronDevine/Statum/tree/master/web).
+An automated installer is also [included](https://github.com/CameronDevine/StateMint/tree/master/web).
 
 # Python Package
 
 The Python package uses the SymPy [@meurer2017] library to symbolically eliminate the unneeded variables.
 This function returns an object which includes the resulting system as a state space model, a transfer function, and an equation.
 Helper functions are included to convert the symbolic matrices to Numpy [@oliphant2015] objects.
-This code is documented using [readthedocs.io](https://statum.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
+This code is documented using [readthedocs.io](https://statemint.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
-An example of how to use this package is [included](https://github.com/CameronDevine/Statum/blob/master/python/Example.ipynb).
+An example of how to use this package is [included](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb).
 
 # Mathematica Package
 
-The Mathematica package `StateMint` can be installed as described in the [documentation](https://github.com/CameronDevine/Statum/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
+The Mathematica package `StateMint` can be installed as described in the [documentation](https://github.com/CameronDevine/StateMint/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
 
 The `outputEquations` function derives the output equations given output expressions in terms of primary and secondary variables (including inputs). The function accepts lists of input variables, state variables, elemental and constraint equations, and output expressions.
 
 The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear state and output equations are typically written in a standard vector form described by matrices `A`, `B`, `C`, and `D` (and sometimes `E` and `F`). The `linearizeState` function accepts lists of input variables, state variables, and the time-derivatives of the state vector (from `stateEquations`) and returns the `A`, `B`, and `E` matrices. Similarly, `linearizeOutput` returns the `C`, `D`, and `F` matrices.
 
-An example of how to use this package is [included](https://github.com/CameronDevine/Statum/blob/master/mathematica/Example.nb).
+An example of how to use this package is [included](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb).
 
 # Acknowledgments
 

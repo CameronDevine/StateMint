@@ -1,10 +1,10 @@
 (* ::Package:: *)
 
-BeginPackage["Statum`"];
+BeginPackage["StateMint`"];
 
-Unprotect["Statum`*"];
-ClearAll["Statum`*"];
-ClearAll["Statum`Private`*"];
+Unprotect["StateMint`*"];
+ClearAll["StateMint`*"];
+ClearAll["StateMint`Private`*"];
 
 
 stateEquations::usage =
@@ -217,6 +217,6 @@ Returns input list joined with its derivative, e.g. {vC1[t],vc2[t],vC1'[t],vC2'[
 joinWDer[list_List,t_Symbol]:=(list~Join~(D[#,t]&/@list))//Flatten;
 
 
-(*Protect["Statum`*"];*)
+(*Protect["StateMint`*"];*)
 End[]
 EndPackage[]
