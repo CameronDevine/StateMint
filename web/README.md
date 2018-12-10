@@ -2,6 +2,7 @@
 
 To allow easy use the functionality in StateMint a web interface was created.
 This interface allows students and other to take advantage of this tool without the need to install Python or Mathematica.
+An example of this interface is running [here](statemint.camerondevine.me).
 
 ### Usage
 
