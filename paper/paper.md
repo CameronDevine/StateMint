@@ -44,8 +44,8 @@ These will allow students to focus on understanding the process of dynamic syste
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the dynamic system model.
 However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and a learning curve.
 To mitigate these problems, a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
-To support this interface, a Python package was written with the same functionality as the Mathematica package and is deployed by the web app run as an Amazon AWS Lambda function.
-With the Lambda function running in the cloud this software can be used by any device with an internet connection and a web browser.
+To support this interface, a Python package was written with the same functionality as the Mathematica package and is deployed by the web app as an Amazon AWS Lambda function.
+With the Lambda function running in the cloud, this software can be used by any device with an internet connection and a web browser.
 
 # Web Interface
 
@@ -95,7 +95,7 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbLTQxMzY4MTM3MSwtNTU2OTQwMzA3LDQzMzc0NDY5
+N0b3J5IjpbLTg4ODEzMDQ0MiwtNTU2OTQwMzA3LDQzMzc0NDY5
 MywtMzg3NTMyOTIwLDMyMzMyNjY4NCw1MTI2MDk1OTYsLTE5ND
 k0MTM2MDIsLTQyMjA0MTU5NSwtMTY1NTU2ODQxNCwtMTIwOTc1
 MDc5NiwtNzM1NjA1NDY1LDE3MTcyMDAwODYsLTE1MTM5MDUwMD
