@@ -39,10 +39,10 @@ Finally, the set of equations can be reduced to a system of first-order differen
 It is in these last two steps, especially the very last, that a student manually reducing the set of equations will often make some minor mistake, typically of a "book keeping" variety that, if it teaches the student anything, it is not system dynamics.
 Instead, the student can be easily discouraged and confused about where they have made their mistake.
 Fortunately, this process can be automated with the software tools presented here.
-These will allow students to focus on the process of dynamic system modeling.
+These will allow students to focus on understanding the process of dynamic system modeling.
 
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the dynamic system model.
-However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and learning curve.
+However, this requires students to purchase, install, and learn Mathematica, often with a considerable monetary investment and a learning curve.
 To mitigate these problems a web app was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input in BASIC notation, similar to most scientific calculators.
 To support this interface a Python package was written with the same functionality as the Mathematica package and run as an Amazon AWS Lambda function.
 With the Lambda function running in the cloud this software can be used by any device with an internet connection and a web browser.
@@ -85,8 +85,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyODQ4LCJl
-bmQiOjI4NjJ9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyODY0LCJl
+bmQiOjI4Nzh9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -95,11 +95,11 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbMTU1NTA0NDg2MiwtNTU2OTQwMzA3LDQzMzc0NDY5
-MywtMzg3NTMyOTIwLDMyMzMyNjY4NCw1MTI2MDk1OTYsLTE5ND
-k0MTM2MDIsLTQyMjA0MTU5NSwtMTY1NTU2ODQxNCwtMTIwOTc1
-MDc5NiwtNzM1NjA1NDY1LDE3MTcyMDAwODYsLTE1MTM5MDUwMD
-csMjAyMjI5NTM3NywtOTIwOTY5NjYzLDg3NDQwMjE5MSw1MjAy
-MDcxNTQsLTkzNTYwNTMxNSwtMTc2MjAzNzM4OCwtNTc1MzQzNz
-EwXX0=
+N0b3J5IjpbMjAzMjM2Njg0LC01NTY5NDAzMDcsNDMzNzQ0Njkz
+LC0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5NiwtMTk0OT
+QxMzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC0xMjA5NzUw
+Nzk2LC03MzU2MDU0NjUsMTcxNzIwMDA4NiwtMTUxMzkwNTAwNy
+wyMDIyMjk1Mzc3LC05MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIw
+NzE1NCwtOTM1NjA1MzE1LC0xNzYyMDM3Mzg4LC01NzUzNDM3MT
+BdfQ==
 -->
