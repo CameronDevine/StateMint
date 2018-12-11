@@ -31,7 +31,8 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 
 # Introduction
 
-When deriving a system's state-space model&mdash;that is, its vector state (differential) equation and its differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
+When deriving a system's state-space model&mdash;that is, its vector state (differential) equation and its vector output (algebraic) equation&mdash;one proceeds by defining the state
+differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
 The next step is to algebraically eliminate those variables that are not state or input variables from the equations until a minimal set of differential equations remains.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
@@ -82,8 +83,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNDY1LCJl
-bmQiOjI0Nzl9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNTQxLCJl
+bmQiOjI1NTV9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -92,11 +93,11 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbLTE1NDMwODQ0MzQsNDMzNzQ0NjkzLC0zODc1MzI5
-MjAsMzIzMzI2Njg0LDUxMjYwOTU5NiwtMTk0OTQxMzYwMiwtND
-IyMDQxNTk1LC0xNjU1NTY4NDE0LC0xMjA5NzUwNzk2LC03MzU2
-MDU0NjUsMTcxNzIwMDA4NiwtMTUxMzkwNTAwNywyMDIyMjk1Mz
-c3LC05MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIwNzE1NCwtOTM1
-NjA1MzE1LC0xNzYyMDM3Mzg4LC01NzUzNDM3MTAsNjcwNDQ3Nz
-FdfQ==
+N0b3J5IjpbODg0NjI5Mjk5LDQzMzc0NDY5MywtMzg3NTMyOTIw
+LDMyMzMyNjY4NCw1MTI2MDk1OTYsLTE5NDk0MTM2MDIsLTQyMj
+A0MTU5NSwtMTY1NTU2ODQxNCwtMTIwOTc1MDc5NiwtNzM1NjA1
+NDY1LDE3MTcyMDAwODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3Ny
+wtOTIwOTY5NjYzLDg3NDQwMjE5MSw1MjAyMDcxNTQsLTkzNTYw
+NTMxNSwtMTc2MjAzNzM4OCwtNTc1MzQzNzEwLDY3MDQ0NzcxXX
+0=
 -->
