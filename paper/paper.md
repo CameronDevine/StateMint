@@ -31,7 +31,7 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 
 # Introduction
 
-When determining the differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
+When deriving a system's state-space model, a differential equation of a dynamic system using linear graph methods finding the elemental and constraint equations is the first step.
 The next step is to algebraically eliminate those variables that are not state or input variables from the equations until a minimal set of differential equations remains.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
@@ -82,8 +82,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyMzc5LCJl
-bmQiOjIzOTN9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNDA0LCJl
+bmQiOjI0MTh9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -92,11 +92,11 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbNDMzNzQ0NjkzLC0zODc1MzI5MjAsMzIzMzI2Njg0
-LDUxMjYwOTU5NiwtMTk0OTQxMzYwMiwtNDIyMDQxNTk1LC0xNj
-U1NTY4NDE0LC0xMjA5NzUwNzk2LC03MzU2MDU0NjUsMTcxNzIw
-MDA4NiwtMTUxMzkwNTAwNywyMDIyMjk1Mzc3LC05MjA5Njk2Nj
-MsODc0NDAyMTkxLDUyMDIwNzE1NCwtOTM1NjA1MzE1LC0xNzYy
-MDM3Mzg4LC01NzUzNDM3MTAsNjcwNDQ3NzEsLTIyOTEzNTc2OV
+N0b3J5IjpbLTU2NzY1NTIwMyw0MzM3NDQ2OTMsLTM4NzUzMjky
+MCwzMjMzMjY2ODQsNTEyNjA5NTk2LC0xOTQ5NDEzNjAyLC00Mj
+IwNDE1OTUsLTE2NTU1Njg0MTQsLTEyMDk3NTA3OTYsLTczNTYw
+NTQ2NSwxNzE3MjAwMDg2LC0xNTEzOTA1MDA3LDIwMjIyOTUzNz
+csLTkyMDk2OTY2Myw4NzQ0MDIxOTEsNTIwMjA3MTU0LC05MzU2
+MDUzMTUsLTE3NjIwMzczODgsLTU3NTM0MzcxMCw2NzA0NDc3MV
 19
 -->
