@@ -52,7 +52,7 @@ This app can be accessed by any device with an internet connection and a web bro
 The [web interface](http://statemint.camerondevine.me/) has text boxes for entering equations and variables.
 A special form of the constraint equations is required, as described in the tutorial, based on the work of Rowell and Wormley [@rowell1997].
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
-The results are then displayed as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
+The results are then displayed as rendered math or source code in one of the following languages: \LaTeX , Matlab source, Python source, or Mathematica source.
 Examples and documentation are built in to make learning how to use the interface as painless as possible.
 There is also the ability to share, download, and save the dynamic system models for later use or modification.
 Because this interface utilizes Amazon AWS serverless resources, required maintenance and costs are minimized.
@@ -101,11 +101,11 @@ Q3NDgwMCIsInRleHQiOiJJIHRoaW5rIHRoYXQgd291bGQgYmUg
 Z29vZCB0byBjaXRlIGl0IC4uLiBCQVNJQyBpcyBhIGxhbmd1YW
 dlLCByaWdodD8gU28gSSdkIGNpdGUgaXQgaG93ZXZlciB5b3Un
 dmUgYmVlbiBjaXRpbmcgdGhlIG90aGVycyAuLi4iLCJjcmVhdG
-VkIjoxNTQ0NTE2MjYxMzc1fX0sImhpc3RvcnkiOlstMTE3MTUw
-OTc5OSwtMjY3NzY2Mzk1LC01NTY5NDAzMDcsNDMzNzQ0NjkzLC
-0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5NiwtMTk0OTQx
-MzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC0xMjA5NzUwNz
-k2LC03MzU2MDU0NjUsMTcxNzIwMDA4NiwtMTUxMzkwNTAwNywy
-MDIyMjk1Mzc3LC05MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIwNz
-E1NCwtOTM1NjA1MzE1LC0xNzYyMDM3Mzg4XX0=
+VkIjoxNTQ0NTE2MjYxMzc1fX0sImhpc3RvcnkiOlsxNjIwMDQx
+OTk4LC0xMTcxNTA5Nzk5LC0yNjc3NjYzOTUsLTU1Njk0MDMwNy
+w0MzM3NDQ2OTMsLTM4NzUzMjkyMCwzMjMzMjY2ODQsNTEyNjA5
+NTk2LC0xOTQ5NDEzNjAyLC00MjIwNDE1OTUsLTE2NTU1Njg0MT
+QsLTEyMDk3NTA3OTYsLTczNTYwNTQ2NSwxNzE3MjAwMDg2LC0x
+NTEzOTA1MDA3LDIwMjIyOTUzNzcsLTkyMDk2OTY2Myw4NzQ0MD
+IxOTEsNTIwMjA3MTU0LC05MzU2MDUzMTVdfQ==
 -->
