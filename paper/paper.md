@@ -27,7 +27,7 @@ bibliography: paper.bib
 
 StateMint is a set of software tools that reduce sets of dynamic equations and their constraints to a state-space model and related dynamic system model formulations.
 These tools are especially useful for the student of system dynamics, many of whom can become lost in this algebraic reduction.
-This set of tools include a Mathematica package, a Python package, and a web interface.
+StateMint includes a Mathematica package, a Python package, and a web interface that is built as a layer on top of the Python package.
 
 # Introduction
 
@@ -82,8 +82,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyMzMyLCJl
-bmQiOjIzNDZ9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyMzc5LCJl
+bmQiOjIzOTN9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -92,7 +92,7 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbMzMwNTgxOTMzLC0zODc1MzI5MjAsMzIzMzI2Njg0
+N0b3J5IjpbNDMzNzQ0NjkzLC0zODc1MzI5MjAsMzIzMzI2Njg0
 LDUxMjYwOTU5NiwtMTk0OTQxMzYwMiwtNDIyMDQxNTk1LC0xNj
 U1NTY4NDE0LC0xMjA5NzUwNzk2LC03MzU2MDU0NjUsMTcxNzIw
 MDA4NiwtMTUxMzkwNTAwNywyMDIyMjk1Mzc3LC05MjA5Njk2Nj
