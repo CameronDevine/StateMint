@@ -49,7 +49,7 @@ This app can be accessed by any device with an internet connection and a web bro
 
 # Web Interface
 
-The [web interface](http://statemint.camerondevine.me/) has text boxes for equations to be input.
+The [web interface](http://statemint.camerondevine.me/) has text boxes for entering equations and variables.
 These equations must be entered in the form defined by Rowell and Wormley [@rowell1997].
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
 The results are then displayed as rendered math or code which can be copied into \LaTeX, Matlab, Python, or Mathematica.
@@ -101,11 +101,11 @@ Q3NDgwMCIsInRleHQiOiJJIHRoaW5rIHRoYXQgd291bGQgYmUg
 Z29vZCB0byBjaXRlIGl0IC4uLiBCQVNJQyBpcyBhIGxhbmd1YW
 dlLCByaWdodD8gU28gSSdkIGNpdGUgaXQgaG93ZXZlciB5b3Un
 dmUgYmVlbiBjaXRpbmcgdGhlIG90aGVycyAuLi4iLCJjcmVhdG
-VkIjoxNTQ0NTE2MjYxMzc1fX0sImhpc3RvcnkiOlstMjY3NzY2
-Mzk1LC01NTY5NDAzMDcsNDMzNzQ0NjkzLC0zODc1MzI5MjAsMz
-IzMzI2Njg0LDUxMjYwOTU5NiwtMTk0OTQxMzYwMiwtNDIyMDQx
-NTk1LC0xNjU1NTY4NDE0LC0xMjA5NzUwNzk2LC03MzU2MDU0Nj
-UsMTcxNzIwMDA4NiwtMTUxMzkwNTAwNywyMDIyMjk1Mzc3LC05
-MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIwNzE1NCwtOTM1NjA1Mz
-E1LC0xNzYyMDM3Mzg4LC01NzUzNDM3MTBdfQ==
+VkIjoxNTQ0NTE2MjYxMzc1fX0sImhpc3RvcnkiOlstMTE2ODI3
+MzQ2NywtMjY3NzY2Mzk1LC01NTY5NDAzMDcsNDMzNzQ0NjkzLC
+0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5NiwtMTk0OTQx
+MzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC0xMjA5NzUwNz
+k2LC03MzU2MDU0NjUsMTcxNzIwMDA4NiwtMTUxMzkwNTAwNywy
+MDIyMjk1Mzc3LC05MjA5Njk2NjMsODc0NDAyMTkxLDUyMDIwNz
+E1NCwtOTM1NjA1MzE1LC0xNzYyMDM3Mzg4XX0=
 -->
