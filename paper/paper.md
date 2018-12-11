@@ -33,7 +33,8 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 
 When deriving a system's state-space model&mdash;that is, its vector state (differential) equation and its vector output (algebraic) equation&mdash;one begins by forming one (or more) scalar equation for each element describing its dynamics.
 The next step is to form a set of N constraint equations that describe the topology of the system defined by the interconnection of the N elements.
-If properly 
+A set of 2N differential and algebraic equations
+If properly constructed (e.g. with the linear graph technique), N 
 Finally, the variables that are not state or input variables from the equations until a minimal set of differential equations remains.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
@@ -84,8 +85,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNTg5LCJl
-bmQiOjI2MDN9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNjkyLCJl
+bmQiOjI3MDZ9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -94,7 +95,7 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbMTkzMzk0NDg2Niw0MzM3NDQ2OTMsLTM4NzUzMjky
+N0b3J5IjpbMTg3NzgyNzA0Nyw0MzM3NDQ2OTMsLTM4NzUzMjky
 MCwzMjMzMjY2ODQsNTEyNjA5NTk2LC0xOTQ5NDEzNjAyLC00Mj
 IwNDE1OTUsLTE2NTU1Njg0MTQsLTEyMDk3NTA3OTYsLTczNTYw
 NTQ2NSwxNzE3MjAwMDg2LC0xNTEzOTA1MDA3LDIwMjIyOTUzNz
