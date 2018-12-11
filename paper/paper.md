@@ -35,7 +35,7 @@ When deriving a system's state-space model&mdash;that is, its vector state (diff
 The next step is to form a set of N constraint equations that describe the topology of the system defined by the interconnection of the N elements.
 A set of 2N differential and algebraic equations and 2N unknown variables results.
 If properly constructed (e.g. with the linear graph technique), N of the unknown variables can be immediately eliminated through direct substitution.
-Finally, the set of equations can be reduced to a system of first-order  state and input variables and their time-derivatives.
+Finally, the set of equations can be reduced to a system of first-order differential equations in state and input variables and their time-derivatives, alone.
 During this step of manually reducing the system of equations is where students often make mistakes, leading to frustration and discouragement.
 However, this algebra is not a necessary component of a strong understanding of system dynamics and can be easily automated using tools we present here.
 These tools allow students to focus on the process of creating a dynamic system model without worrying about algebraic mistakes.
@@ -85,8 +85,8 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyODAxLCJl
-bmQiOjI4MTV9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyODMzLCJl
+bmQiOjI4NDd9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
 tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
 Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
 dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
@@ -95,11 +95,11 @@ JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
 X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
 lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
 YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX19LCJoaX
-N0b3J5IjpbMTY0MTU3MDc1LDQzMzc0NDY5MywtMzg3NTMyOTIw
-LDMyMzMyNjY4NCw1MTI2MDk1OTYsLTE5NDk0MTM2MDIsLTQyMj
-A0MTU5NSwtMTY1NTU2ODQxNCwtMTIwOTc1MDc5NiwtNzM1NjA1
-NDY1LDE3MTcyMDAwODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3Ny
-wtOTIwOTY5NjYzLDg3NDQwMjE5MSw1MjAyMDcxNTQsLTkzNTYw
-NTMxNSwtMTc2MjAzNzM4OCwtNTc1MzQzNzEwLDY3MDQ0NzcxXX
-0=
+N0b3J5IjpbLTU1Njk0MDMwNyw0MzM3NDQ2OTMsLTM4NzUzMjky
+MCwzMjMzMjY2ODQsNTEyNjA5NTk2LC0xOTQ5NDEzNjAyLC00Mj
+IwNDE1OTUsLTE2NTU1Njg0MTQsLTEyMDk3NTA3OTYsLTczNTYw
+NTQ2NSwxNzE3MjAwMDg2LC0xNTEzOTA1MDA3LDIwMjIyOTUzNz
+csLTkyMDk2OTY2Myw4NzQ0MDIxOTEsNTIwMjA3MTU0LC05MzU2
+MDUzMTUsLTE3NjIwMzczODgsLTU3NTM0MzcxMCw2NzA0NDc3MV
+19
 -->
