@@ -1,25 +1,25 @@
-# StateMint
+# StateMintum
 
-_StateMint_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding [Python](../python) and [web](../web) versions of this project. 
+_StateMintum_ is a Mathematica package for assisting in the derivation of the equations of state for a dynamic system. It was originally developed by Joseph L. Garbini at the University of Washington, who continues to contribute to its development, along with Rico A.R. Picone of Saint Martin's University and Cameron N. Devine of the University of Washington. It has nearly identical functionality to the corresponding [Python](../python) [REFERENCE] and [web](../web) [REFERENCE] versions of this project. 
 
 ## Installation
 
 Clone or download this repository. 
 
-To fully install, copy the `StateMint.m` Mathematica package file to a directory in your Mathematica *path* (to see which directories are in your path, evaluate `$Path` in a Mathematica notebook). It is recommended to use the path that is returned by Mathematica when you evaluate `FileNameJoin[{$UserBaseDirectory, "Applications"}]`.
+To fully install, copy the `StateMintum.m` Mathematica package file to a directory in your Mathematica *path* (to see which directories are in your path, evaluate `$Path` in a Mathematica notebook). It is recommended to use the path that is returned by Mathematica when you evaluate `FileNameJoin[{$UserBaseDirectory, "Applications"}]`.
 
 Another option for full installation is to 
 
 - open Mathematica, 
 - select `File > Install...`, 
 - select `Package` from the `Type of Item to Install` menu,
-- select `StateMint.m` from the `Source > File...` dialog, and
+- select `StateMintum.m` from the `Source > File...` dialog, and
 - select `OK`.
 
-Once `StateMint` is fully installed, it can be loaded into a Mathematica notebook with the command
+Once `StateMintum` is fully installed, it can be loaded into a Mathematica notebook with the command
 
 ```mathematica
-<<StateMint`
+<<StateMintum`
 ```
 
 A third option is loading the package from the working directory, which can be set to the notebook's directory with the command
@@ -28,7 +28,7 @@ A third option is loading the package from the working directory, which can be s
 SetDirectory[NotebookDirectory[]];
 ```
 
-If `StateMint.m` is then placed in the same directory as the notebook, it can be loaded with the same command (``<<StateMint` ``) without requiring full installation.
+If `StateMintum.m` is then placed in the same directory as the notebook, it can be loaded with the same command (``<<StateMintum` ``) without requiring full installation.
 
 ## Usage
 
@@ -222,3 +222,6 @@ The output looks something like the following.
 The example notebook `Example.nb` shows an application. Open it in Mathematica and run them. It works without fully installing the package.
 
 An extensive example of a hydroelectric power generation system can be found [here](http://ricopic.one/dynamic_systems/source/microhydroelectric.nb).
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDkwMDY1MDE1XX0=
+-->
