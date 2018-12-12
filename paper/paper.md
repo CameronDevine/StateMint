@@ -62,7 +62,7 @@ An automated installer for independent deployment of the website is also [includ
 
 The Python package uses the SymPy [@meurer2017] library to symbolically reduce the set of elemental and constraint equations to the state and output equations.
 This function returns an object which includes the resulting system as a state-space model, a transfer function, and a state equation.
-Auxiliary functions are included to convert the SymPy symbolic matrices to Numpy [@oliphant2015] objects.
+Auxiliary functions are included to convert the SymPy symbolic matrices to Numpy [@oliphant2015] arrays a.
 This package is documented at [statemint.readthedocs.io](https://statemint.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
 An example of how to use this package is [included](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb).
@@ -85,15 +85,15 @@ The authors would like to acknowledge the work of [Gavin Basuel](https://www.gav
 
 <!--stackedit_data:
 eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyODY1LCJl
-bmQiOjI4Nzl9LCJ0dG5oaFpxdjhqekRqemtlIjp7InRleHQiOi
+RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNzAwLCJl
+bmQiOjI3MTR9LCJ0dG5oaFpxdjhqekRqemtlIjp7InRleHQiOi
 JBbiBhdXRvbWF0ZWQgaW5zdGFsbGVyIGZvciBpbmRlcGVuZGVu
 dCBkZXBsb3ltZW50IG9mIHRoZSB3ZWJzaXRlIGlzIGFsc28gW2
-luY2x14oCmIiwic3RhcnQiOjQwNTUsImVuZCI6NDIyN30sIkc3
+luY2x14oCmIiwic3RhcnQiOjM5OTgsImVuZCI6NDE3MH0sIkc3
 SnhoWkpHZVV6Um9oSE8iOnsidGV4dCI6InN0YXRlLXNwYWNlIi
-wic3RhcnQiOjQ0ODAsImVuZCI6NDQ5MX0sIlhaMnU3YnJlTTVO
-QmZTNlIiOnsidGV4dCI6Im9iamVjdHMiLCJzdGFydCI6NDYzOS
-wiZW5kIjo0NjQ2fX0sImNvbW1lbnRzIjp7IkV1T1V2YkZpSDVx
+wic3RhcnQiOjQ0MTUsImVuZCI6NDQyNn0sIlhaMnU3YnJlTTVO
+QmZTNlIiOnsidGV4dCI6Im9iamVjdHMiLCJzdGFydCI6NDU3Mi
+wiZW5kIjo0NTc5fX0sImNvbW1lbnRzIjp7IkV1T1V2YkZpSDVx
 VG5LUTAiOnsiZGlzY3Vzc2lvbklkIjoidkFpQTFLZ0FCbWtZT2
 NNZSIsInN1YiI6ImdoOjEwMzk0ODk2IiwidGV4dCI6IlNob3Vs
 ZCB3ZSBjaXRlIEJBU0lDIG5vdGF0aW9uPyBJIGZvdW5kIGl0IG
@@ -144,12 +144,15 @@ bWFpbiBkYXRhIHR5cGVzLCBgYXJyYXlgLCBhbmQgYG1hdHJpeG
 AuIEZ1bmN0aW9ucyBhcmUgcHJvdmlkZWQgdG8gY29udmVydCB0
 byBlaXRoZXIuIEFzIGV2ZXJ5IHZhcmlhYmxlIGluIFB5dGhvbi
 BpcyBhbiBvYmplY3QsIEkgdXNlZCB0aGF0IHdvcmQgaGVyZS4i
-LCJjcmVhdGVkIjoxNTQ0NTYwNDM5MjY1fX0sImhpc3RvcnkiOl
-sxMDI1MzQxNDk4LDExMzMyNDQ2NjQsLTEyNjA1NTQ1NTAsLTE2
-ODM0Njk0NDksLTExNzE1MDk3OTksLTI2Nzc2NjM5NSwtNTU2OT
-QwMzA3LDQzMzc0NDY5MywtMzg3NTMyOTIwLDMyMzMyNjY4NCw1
-MTI2MDk1OTYsLTE5NDk0MTM2MDIsLTQyMjA0MTU5NSwtMTY1NT
-U2ODQxNCwtMTIwOTc1MDc5NiwtNzM1NjA1NDY1LDE3MTcyMDAw
-ODYsLTE1MTM5MDUwMDcsMjAyMjI5NTM3NywtOTIwOTY5NjYzXX
-0=
+LCJjcmVhdGVkIjoxNTQ0NTYwNDM5MjY1fSwiSm93ZTFJb1JoUm
+RyZlgwWSI6eyJkaXNjdXNzaW9uSWQiOiJ0dG5oaFpxdjhqekRq
+emtlIiwic3ViIjoiZ286MTAyOTA1NDM1NTMwODk2NDc0ODAwIi
+widGV4dCI6IkJlYXV0aWZ1bCEiLCJjcmVhdGVkIjoxNTQ0NTc5
+NTYyNjczfX0sImhpc3RvcnkiOlsxNzU0MTczODk5LDEwMjUzND
+E0OTgsMTEzMzI0NDY2NCwtMTI2MDU1NDU1MCwtMTY4MzQ2OTQ0
+OSwtMTE3MTUwOTc5OSwtMjY3NzY2Mzk1LC01NTY5NDAzMDcsND
+MzNzQ0NjkzLC0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5
+NiwtMTk0OTQxMzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC
+0xMjA5NzUwNzk2LC03MzU2MDU0NjUsMTcxNzIwMDA4NiwtMTUx
+MzkwNTAwNywyMDIyMjk1Mzc3XX0=
 -->
