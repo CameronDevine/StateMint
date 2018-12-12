@@ -62,7 +62,7 @@ An automated installer for independent deployment of the website is also [includ
 
 The Python package uses the SymPy [@meurer2017] library to symbolically reduce the set of elemental and constraint equations to the state and output equations.
 This function returns an object which includes the resulting system as a state-space model, a transfer function, and a state equation.
-Auxiliary functions are included to convert the SymPy symbolic matrices to Numpy [@oliphant2015] arrays a.
+Auxiliary functions are included to convert the SymPy symbolic matrices to Numpy [@oliphant2015] arrays or matrices.
 This package is documented at [statemint.readthedocs.io](https://statemint.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
 An example of how to use this package is [included](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb).
@@ -148,11 +148,16 @@ LCJjcmVhdGVkIjoxNTQ0NTYwNDM5MjY1fSwiSm93ZTFJb1JoUm
 RyZlgwWSI6eyJkaXNjdXNzaW9uSWQiOiJ0dG5oaFpxdjhqekRq
 emtlIiwic3ViIjoiZ286MTAyOTA1NDM1NTMwODk2NDc0ODAwIi
 widGV4dCI6IkJlYXV0aWZ1bCEiLCJjcmVhdGVkIjoxNTQ0NTc5
-NTYyNjczfX0sImhpc3RvcnkiOlsxNzU0MTczODk5LDEwMjUzND
-E0OTgsMTEzMzI0NDY2NCwtMTI2MDU1NDU1MCwtMTY4MzQ2OTQ0
-OSwtMTE3MTUwOTc5OSwtMjY3NzY2Mzk1LC01NTY5NDAzMDcsND
-MzNzQ0NjkzLC0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5
-NiwtMTk0OTQxMzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC
-0xMjA5NzUwNzk2LC03MzU2MDU0NjUsMTcxNzIwMDA4NiwtMTUx
-MzkwNTAwNywyMDIyMjk1Mzc3XX0=
+NTYyNjczfSwieTVNODFEcU1pQkxvZk1XRSI6eyJkaXNjdXNzaW
+9uSWQiOiJYWjJ1N2JyZU01TkJmUzZSIiwic3ViIjoiZ286MTAy
+OTA1NDM1NTMwODk2NDc0ODAwIiwidGV4dCI6IkkgY2hhbmdlZC
+BpdCB0byBiZSBtb3JlIHNwZWNpZmljLCB0aGVuIC4uLiB5b3Ug
+Y2FuIGNoYW5nZSBpdCBiYWNrIGlmIHlvdSBsaWtlISIsImNyZW
+F0ZWQiOjE1NDQ1Nzk2NjQ3MzV9fSwiaGlzdG9yeSI6Wy0xNDU1
+MzkxMzAwLDEwMjUzNDE0OTgsMTEzMzI0NDY2NCwtMTI2MDU1ND
+U1MCwtMTY4MzQ2OTQ0OSwtMTE3MTUwOTc5OSwtMjY3NzY2Mzk1
+LC01NTY5NDAzMDcsNDMzNzQ0NjkzLC0zODc1MzI5MjAsMzIzMz
+I2Njg0LDUxMjYwOTU5NiwtMTk0OTQxMzYwMiwtNDIyMDQxNTk1
+LC0xNjU1NTY4NDE0LC0xMjA5NzUwNzk2LC03MzU2MDU0NjUsMT
+cxNzIwMDA4NiwtMTUxMzkwNTAwNywyMDIyMjk1Mzc3XX0=
 -->
