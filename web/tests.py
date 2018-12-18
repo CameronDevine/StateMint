@@ -135,7 +135,7 @@ class TestWebInterface(unittest.TestCase):
 
 	def example_test(self, num):
 		self.driver.wait()
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.assertTrue(self.driver.find_element('id', 'page4').is_displayed())
 		self.assertEqual(self.driver.page_y_offset(), self.driver.window_inner_height())
@@ -257,7 +257,7 @@ class TestWebInterface(unittest.TestCase):
 		self.modal_test(self.driver.find_elements('link text', 'tutorial')[0], 'tutorialRef', test_content = True)
 
 	def test_tutorial2(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.modal_test(self.driver.find_elements('link text', 'tutorial')[1], 'tutorialRef', test_content = True)
 
@@ -265,12 +265,12 @@ class TestWebInterface(unittest.TestCase):
 		self.modal_test(self.driver.find_element('class name', 'help-block').find_elements('link text', 'here')[1], 'tutorialRef', test_content = True)
 
 	def test_command1(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.modal_test(self.driver.find_element('link text', 'syntax'), 'commandRef')
 
 	def test_command2(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.modal_test(self.driver.find_element('class name', 'help-block').find_elements('link text', 'here')[0], 'commandRef')
 
@@ -305,7 +305,7 @@ class TestWebInterface(unittest.TestCase):
 		self.assertTrue(self.driver.find_element('id', 'page6').is_displayed())
 
 	def test_share_copy(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE 1'))
 		self.driver.show('#page6')
@@ -316,7 +316,7 @@ class TestWebInterface(unittest.TestCase):
 
 	def test_save(self):
 		self.driver.delete_all_cookies()
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE 1'))
 		self.driver.show('#page6')
@@ -403,7 +403,7 @@ class TestWebInterface(unittest.TestCase):
 
 	@unittest.expectedFailure
 	def test_download(self):
-		self.driver.find_element('partial link text', 'Show me an example').click()
+		self.driver.find_element('link text', 'examples').click()
 		self.driver.wait()
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE 1'))
 		self.driver.show('#page6')
@@ -495,7 +495,7 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.wait()
 		self.assertDotSize(0)
 		self.assertScroll('page1')
-		self.driver.find_element('partial link text', 'Show me an example').click()	
+		self.driver.find_element('link text', 'examples').click()	
 		self.driver.wait()
 		self.assertFalse(self.driver.find_element('id', 'page2').is_displayed())
 		self.assertFalse(self.driver.find_element('id', 'page3').is_displayed())
