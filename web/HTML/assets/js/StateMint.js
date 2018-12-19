@@ -10,11 +10,13 @@ function callback() {
 	console.log(data);
 	$('#matlabButton').show();
 	$('#eq').hide();
+	$('#TF').show();
 	default_form = 'StateSpace';
 	if (data.Nonlinear) {
 		console.log("nonlinear");
 		$('#matlabButton').hide();
 		$('#eq').show();
+		$('#TF').hide();
 		default_form = 'StateSpace';
 	}
 	$('#StateSpaceN').hide();
@@ -156,7 +158,9 @@ function set_forms(type) {
 	$('#TF').hide();
 	$('#vector').hide();
 	if (type == "Equation" || type == "LaTeX") {
-		$('#TF').show();
+		if (!data.Nonlinear) {
+			$('#TF').show();
+		}
 		$('#vector').show();
 	}
 	if (type != "Equation" && type != "LaTeX" && (last_form == "TF" || last_form == "vector")) {

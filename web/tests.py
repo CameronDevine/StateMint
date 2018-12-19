@@ -169,6 +169,9 @@ class TestWebInterface(unittest.TestCase):
 		if example_data[example_num - 1]['nonlinear']:
 			if 'matlab' in output_form:
 				del output_form['matlab']
+			for lang in output_form:
+				if 'TF' in output_form[lang]:
+					del output_form[lang]['TF']
 		else:
 			for lang in output_form:
 				if 'eq' in output_form[lang]:
