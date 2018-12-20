@@ -62,8 +62,10 @@ An automated installer for independent deployment of the website is also [includ
 # Python Package
 
 The Python package uses the SymPy library [@meurer2017] to symbolically reduce the set of elemental and constraint equations to the state and output equations.
+The main function, `StateMint.Solve`, accepts the input variables, state variable elemental equations, other elemental equations, constraint equations, and output variables.
 This function returns an object which includes the resulting system as a state-space model and (when applicable) a transfer function.
-Auxiliary functions are included to convert the SymPy symbolic matrices to NumPy [@oliphant2015] arrays or matrices.
+Auxiliary functions, `StateMint.to_numpy.array` and `StateMint.to_numpy.matrix` are included to convert the SymPy symbolic matrices to NumPy [@oliphant2015] arrays or matrices respectively.
+These functions accept a symbolic matrix and a dictionary mapping system parameters to numeric values.
 The StateMint package is documented at [statemint.readthedocs.io](https://statemint.readthedocs.io/en/latest/) and works for both linear and nonlinear systems.
 
 A detailed example of how to use the Python StateMint package is [included](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb) in the StateMint repository.
@@ -77,36 +79,10 @@ The `outputEquations` function derives the output equations given output express
 The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear state and output equations are typically written in a standard vector form described by matrices `A`, `B`, `C`, and `D` (and sometimes `E` and `F`). The `linearizeState` function accepts lists of input variables, state variables, and the time-derivatives of the state vector (from `stateEquations`) and returns the `A`, `B`, and `E` matrices. Similarly, `linearizeOutput` returns the `C`, `D`, and `F` matrices.
 
 A detailed example of how to use the Mathematica StateMint package is [included](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb) in the StateMint repository.
+This package is best used by those who are already familiar with Mathematica, or for more complex problems where Mathematica may perform better than SymPy.
 
 # Acknowledgments
 
 The authors would like to acknowledge the work of [Gavin Basuel](https://www.gavinbasuel.com/) who designed the user experience for the web interface and helped with HTML/CSS development.
 
 # References
-
-<!--stackedit_data:
-eyJkaXNjdXNzaW9ucyI6eyJ2QWlBMUtnQUJta1lPY01lIjp7In
-RleHQiOiJCQVNJQyBub3RhdGlvbiIsInN0YXJ0IjoyNzAwLCJl
-bmQiOjI3MTR9fSwiY29tbWVudHMiOnsiRXVPVXZiRmlINXFUbk
-tRMCI6eyJkaXNjdXNzaW9uSWQiOiJ2QWlBMUtnQUJta1lPY01l
-Iiwic3ViIjoiZ2g6MTAzOTQ4OTYiLCJ0ZXh0IjoiU2hvdWxkIH
-dlIGNpdGUgQkFTSUMgbm90YXRpb24/IEkgZm91bmQgaXQgb24g
-V2lraXBlZGlhLCAgXG5baHR0cHM6Ly9lbi53aWtpcGVkaWEub3
-JnL3dpa2kvQ2FsY3VsYXRvcl9pbnB1dF9tZXRob2RzI0JBU0lD
-X25vdGF0aW9uXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2
-lraS9DYWxjdWxhdG9yX2lucHV0X21ldGhvZHMjQkFTSUNfbm90
-YXRpb24pIiwiY3JlYXRlZCI6MTU0Mzk1Mzc1NDY0OX0sIkVVRD
-ZaRVlLc09aWUFXcWYiOnsiZGlzY3Vzc2lvbklkIjoidkFpQTFL
-Z0FCbWtZT2NNZSIsInN1YiI6ImdvOjEwMjkwNTQzNTUzMDg5Nj
-Q3NDgwMCIsInRleHQiOiJJIHRoaW5rIHRoYXQgd291bGQgYmUg
-Z29vZCB0byBjaXRlIGl0IC4uLiBCQVNJQyBpcyBhIGxhbmd1YW
-dlLCByaWdodD8gU28gSSdkIGNpdGUgaXQgaG93ZXZlciB5b3Un
-dmUgYmVlbiBjaXRpbmcgdGhlIG90aGVycyAuLi4iLCJjcmVhdG
-VkIjoxNTQ0NTE2MjYxMzc1fX0sImhpc3RvcnkiOlsxNTE1NjYw
-MTAzLDM2MTc0MDEyLC0xNDU1MzkxMzAwLDEwMjUzNDE0OTgsMT
-EzMzI0NDY2NCwtMTI2MDU1NDU1MCwtMTY4MzQ2OTQ0OSwtMTE3
-MTUwOTc5OSwtMjY3NzY2Mzk1LC01NTY5NDAzMDcsNDMzNzQ0Nj
-kzLC0zODc1MzI5MjAsMzIzMzI2Njg0LDUxMjYwOTU5NiwtMTk0
-OTQxMzYwMiwtNDIyMDQxNTk1LC0xNjU1NTY4NDE0LC0xMjA5Nz
-UwNzk2LC03MzU2MDU0NjUsMTcxNzIwMDA4Nl19
--->
