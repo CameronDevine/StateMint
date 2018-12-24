@@ -10,6 +10,3 @@ These outputs can be further analyzed with SymPy or converted to Numpy objects f
 The full documentation for the code is available on [readthedocs.io](https://statemint.readthedocs.io/en/latest/).
 An [example](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb) Jupyter notebook is also included with the package.
 Because this package is available on PyPI the latest release can be easily installed by running `pip install StateMint`.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzMjYwNTkzNl19
--->

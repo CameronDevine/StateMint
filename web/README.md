@@ -19,6 +19,3 @@ Next, make sure Python's `pip` is installed.
 Finally run `make` in this directory.
 If not done previously this will prompt you to set up the AWS CLI, see [this link](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for details.
 When the command has completed successfully, copy the contents of the `HTML` directory to your favorite static web host.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg3NDQzMjY5MF19
--->

@@ -28,6 +28,3 @@ An example of this interface is running at [statemint.stmartin.edu](http://state
 ## Credits
 
 Original Mathematica Notebook: Joseph Garbini
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbODUwMTg0NDc2XX0=
--->
