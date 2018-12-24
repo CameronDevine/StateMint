@@ -50,7 +50,7 @@ This interface can be accessed by any device with an internet connection and a w
 
 # Web Interface
 
-The web interface ([statemint.camerondevine.me](http://statemint.camerondevine.me/)) has text boxes for entering equations and variables.
+The web interface ([statemint.stmartin.edu](http://statemint.stmartin.edu/)) has text boxes for entering equations and variables.
 A special form of the constraint equations is required, as described in the [tutorial](https://github.com/CameronDevine/StateMint/blob/master/tutorial.md), based on the text of Rowell and Wormley [@rowell1997].
 Once entered, the equations are sent to the Lambda function and the dynamic system model is returned.
 The results are then displayed as rendered math or source code in any of the following languages: \LaTeX, Matlab, Python, and Mathematica.

@@ -1,7 +1,7 @@
 '''
 This package provides a function to symbolically determine the differential equation describing the dynamics of a system. As inputs the `Solve` function takes the elemental and constraint equations of a system. These equations must be in the forms specified by Rowell and Wormley in "System Dynamics: An Introduction". A `tutorial <https://github.com/CameronDevine/StateMint/blob/master/tutorial.md>`_ is available which covers how to prepare equations for use with this code. There is also an `example <https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb>`_ which covers the details of how to use this code. Convenience functions to convert the symbolic matrices to Numpy objects are also included.
 
-This code can be installed by running `pip install StateMint`, or one of the other interfaces can be used. Available are a Mathematica package, and a web `interface <http://statemint.camerondevine.me/>`_.
+This code can be installed by running `pip install StateMint`, or one of the other interfaces can be used. Available are a Mathematica package, and a web `interface <http://statemint.stmartin.edu/>`_.
 '''
 
 import sympy
