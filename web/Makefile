@@ -15,19 +15,19 @@ zip:
 package: check
 	found="false"; \
 	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "statemint" ]; then \
+		if [ "$$line" == "statemint--$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
 			found="true"; \
 			break; \
 		fi; \
 	done; \
 	if [ "$$found" == "false" ]; then \
-		aws s3 mb s3://statemint; \
+		aws s3 mb s3://statemint-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4); \
 	fi
 	echo "$(shell \
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
 		export region=`aws configure get region`; \
 		envsubst '$$account $$region' < aws/api-template.yml > aws/api.yml)"
-	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket statemint --output-template-file aws/package.yml
+	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket statemint-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --output-template-file aws/package.yml
 
 deploy: check
 	aws cloudformation deploy --stack-name StateMint --template-file aws/package.yml --capabilities CAPABILITY_IAM
@@ -44,7 +44,7 @@ clean: check
 	rm -rf HTML/assets/apiGateway-js-sdk
 	for line in $$(aws s3 ls); do \
 		if [ "$$line" == "statemint" ]; then \
-			aws s3 rb s3://statemint --force; \
+			aws s3 rb s3://statemint-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --force; \
 			break; \
 		fi; \
 	done
