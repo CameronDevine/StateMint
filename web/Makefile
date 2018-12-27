@@ -64,6 +64,8 @@ check:
 	fi
 
 tracking:
-	if [ $(trackingID) != "none" ]; then \
+	if [ $(trackingID) == "null" ]; then \
+		sed -i "1s/.*/trackingID = null;/" HTML/assets/js/tracking.js; \
+	elif [ $(trackingID) != "none" ]; then \
 		sed -i "1s/.*/trackingID = '$(trackingID)';/" HTML/assets/js/tracking.js; \
 	fi;
