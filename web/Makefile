@@ -2,6 +2,7 @@ SHELL := bash
 .PHONY: zip package deploy sdk clean remove test check tracking
 
 trackingID = none
+stack = StateMint
 
 all: depends zip package deploy sdk tracking
 
@@ -15,7 +16,7 @@ zip:
 package: check
 	found="false"; \
 	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "statemint--$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
+		if [ "$$line" == "statemint-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
 			found="true"; \
 			break; \
 		fi; \
@@ -26,14 +27,16 @@ package: check
 	echo "$(shell \
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
 		export region=`aws configure get region`; \
-		envsubst '$$account $$region' < aws/api-template.yml > aws/api.yml)"
+		export stack=$(stack); \
+		envsubst '$$account $$region $$stack' < aws/api-template.yml > aws/api.yml; \
+		envsubst '$$stack' < aws/StateMint-template.yml > aws/StateMint.yml;)"
 	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket statemint-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --output-template-file aws/package.yml
 
 deploy: check
-	aws cloudformation deploy --stack-name StateMint --template-file aws/package.yml --capabilities CAPABILITY_IAM
+	aws cloudformation deploy --stack-name $(stack) --template-file aws/package.yml --capabilities CAPABILITY_IAM
 
 sdk: check
-	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name StateMint | grep OutputValue | cut -d '"' -f 4) --stage-name StateMint --sdk-type javascript HTML/assets/sdk.zip
+	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name $(stack) | grep OutputValue | cut -d '"' -f 4) --stage-name StateMint --sdk-type javascript HTML/assets/sdk.zip
 	cd HTML/assets/; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
 
 clean: check
@@ -41,6 +44,7 @@ clean: check
 	rm -f aws/lambda.zip
 	rm -f aws/package.yml
 	rm -f aws/api.yml
+	rm -f aws/StateMint.yml
 	rm -rf HTML/assets/apiGateway-js-sdk
 	for line in $$(aws s3 ls); do \
 		if [ "$$line" == "statemint" ]; then \
@@ -50,7 +54,7 @@ clean: check
 	done
 
 remove: check
-	aws cloudformation delete-stack --stack-name StateMint
+	aws cloudformation delete-stack --stack-name $(stack)
 
 test:
 	sudo env "PATH=$$PATH" python tests.py $(tests)

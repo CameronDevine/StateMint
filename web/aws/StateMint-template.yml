@@ -5,7 +5,7 @@ Resources:
   LambdaFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: StateMint
+      FunctionName: ${stack}
       Handler: StateMintLambda.handler
       Runtime: python2.7
       CodeUri: lambda.zip

@@ -3,3 +3,4 @@ api.yml
 package.yml
 lambda/*
 !lambda/StateMintLambda.py
+StateMint.yml
