@@ -1,7 +1,9 @@
 SHELL := bash
-.PHONY: zip package deploy sdk clean remove test check
+.PHONY: zip package deploy sdk clean remove test check tracking
 
-all: depends zip package deploy sdk
+trackingID = none
+
+all: depends zip package deploy sdk tracking
 
 depends:
 	pip install --upgrade sympy mpmath -t aws/lambda/
@@ -60,3 +62,8 @@ check:
 	if ! aws sts get-caller-identity; then \
 		aws configure; \
 	fi
+
+tracking:
+	if [ $(trackingID) != "none" ]; then \
+		sed -i "1s/.*/trackingID = '$(trackingID)';/" HTML/assets/js/tracking.js; \
+	fi;
