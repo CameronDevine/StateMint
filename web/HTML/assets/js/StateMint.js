@@ -196,6 +196,9 @@ function StateModel() {
 }
 
 function loadExample(num, scroll) {
+	if (trackingID) {
+		ga('send', 'pageview', '/example' + num);
+	}
 	if (num == 1) {
 		document.getElementById("InVars").value = "vS";
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT";
@@ -437,20 +440,23 @@ function loadFromURL() {
 }
 
 function tutorial() {
-	if (!tutorial_loaded) {
-		fetch('tutorial/tutorial.md').then(function(resp) {
-			resp.text().then(function(data) {
-				body = $('#tutorialRef').find('.modal-body')
-				body.html(window.markdownit().render(
-					data.split('\\\\').join('\\\\\\\\')));
-				body.find('a').each(function() {
-					$(this).attr('target', '_blank');
-				});
-				MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'tutorialRef']);
-				tutorial_loaded = true;
+	if (trackingID) {
+		ga('send', 'pageview', '/tutorial');
+	}
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'tutorialRef']);
+}
+
+function loadTutorial() {
+	fetch('tutorial/tutorial.md').then(function(resp) {
+		resp.text().then(function(data) {
+			body = $('#tutorialRef').find('.modal-body')
+			body.html(window.markdownit().render(
+				data.split('\\\\').join('\\\\\\\\')));
+			body.find('a').each(function() {
+				$(this).attr('target', '_blank');
 			});
 		});
-	}
+	});
 }
 
 $(document).ready(function() {
@@ -468,4 +474,5 @@ $(document).ready(function() {
 			inlineMath: [['$', '$']]
 		}
 	});
+	loadTutorial();
 });
