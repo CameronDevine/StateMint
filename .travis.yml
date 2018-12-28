@@ -45,6 +45,7 @@ jobs:
           aws configure set region $AWS_DEFAULT_REGION;
       script:
         - make trackingID=$TRACKING_ID;
+          echo "statemint.stmartin.edu" > HTML/CNAME
       deploy:
         provider: pages
         keep-history: true
@@ -52,3 +53,4 @@ jobs:
         local-dir: web/HTML/
         repo: StateMint/StateMint.github.io
         target-branch: master
+        skip_cleanup: true
