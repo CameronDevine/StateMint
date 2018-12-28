@@ -49,5 +49,6 @@ jobs:
         provider: pages
         keep-history: true
         github-token: $GH_TOKEN
-        local-dir: HTML/
+        local-dir: web/HTML/
         repo: StateMint/StateMint.github.io
+        target-branch: master
