@@ -1,6 +1,4 @@
 language: python
-addons:
-  chrome: stable
 python:
   - "2.7"
   - "3.5"
@@ -23,6 +21,8 @@ script:
 jobs:
   include:
     - stage: web test
+      addons:
+        chrome: stable
       python: 2.7
       install: 
         - pip install piexif selenium awscli;
