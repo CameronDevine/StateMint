@@ -23,6 +23,7 @@ jobs:
   include:
     - stage: web test
       python: 2.7
+      before_install: aws configure set region $AWS_DEFAULT_REGION
       install: 
         - pip install piexif selenium awscli;
           cd web;
@@ -33,6 +34,7 @@ jobs:
     - stage: deploy
       if: branch = master
       python: 2.7
+      before_install: aws configure set region $AWS_DEFAULT_REGION
       install:
         - pip install piexif selenium awscli;
           cd web;
