@@ -23,24 +23,24 @@ jobs:
   include:
     - stage: web test
       python: 2.7
-      before_install: aws configure set region $AWS_DEFAULT_REGION
       install: 
         - pip install piexif selenium awscli;
           cd web;
           wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
           unzip chromedriver_linux64.zip;
           PATH=$PATH:$(pwd);
+          aws configure set region $AWS_DEFAULT_REGION;
       script: make all test stack=StateMint-test;
     - stage: deploy
       if: branch = master
       python: 2.7
-      before_install: aws configure set region $AWS_DEFAULT_REGION
       install:
         - pip install piexif selenium awscli;
           cd web;
           wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip;
           unzip chromedriver_linux64.zip;
           PATH=$PATH:$(pwd);
+          aws configure set region $AWS_DEFAULT_REGION;
       script:
         - make trackingID=$TRACKING_ID;
       deploy:
