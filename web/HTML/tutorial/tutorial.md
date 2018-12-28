@@ -1,8 +1,8 @@
 # System Dynamics Tutorial
 
-## Purpose
-
 The purpose of this tutorial is to give the necessary background information on how to use the StateMint software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
+To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
+Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
 
 ## Background Information
 
@@ -10,104 +10,104 @@ This method of finding a differential equation of a dynamic system works with mu
 
 ### System Types
 
-In each energy domain a through and an across variable is defined.
-Through variables are chosen as those whose value remains constant through a given element.
-Across variables are those whose value is relative and changes through an element.
-A list of system types and their through and across variables can be found below.
+In each energy domain a through-variable, $v$, and an across-variable, $f$, is defined.
+Through-variables are chosen as those whose value remains constant through a given element.
+Across-variables are those whose value is relative and changes through an element.
+A list of common system types and their through-variables and across-variables can be found below.
 
-| System Type   | Across                   | Through        |
-| ------------- | ------------------------ | -------------- |
-| Translational | Velocity                 | Force          |
-| Rotational    | Angular Velocity         | Torque         |
-| Electrical    | Voltage                  | Current        |
-| Fluid         | Pressure                 | Flow Rate      |
-| Thermal       | Temperature Differential | Heat Flow Rate |
+| System Type   | Across-variables              | Through-variables      |
+| ------------- | ----------------------------- | ---------------------- |
+| Translational | Velocity, $v$                 | Force, $F$             |
+| Rotational    | Angular Velocity, $\Omega$    | Torque, $\tau$         |
+| Electrical    | Voltage, $v$                  | Current, $i$           |
+| Fluid         | Pressure, $P$                 | Flow Rate, $Q$         |
+| Thermal       | Temperature Differential, $T$ | Heat Flow Rate, $q$    |
 
 ### Elemental Equations
 
-In each energy domain there are multiple different elements which are used to model a system.
+Within each energy domain there are multiple element types which can be used to model a system in that domain.
 Across energy domains these elements can be grouped into three distinct types.
 
 #### A Type Elements
 
-A type elements are energy storage elements which relates the rate of change of the across variable to the through variable of the element.
+A type elements are energy storage elements which relates the rate of change of the across-variable to the through-variable of the element.
 
-| System Type   | Element            | Elemental Equation
-| ------------- | ------------------ | ------------------
-| Translational | Mass               | $F=m\frac{dv}{dt}$
-| Rotational    | Inertia            | $\tau=J\frac{d\Omega}{dt}$
-| Electrical    | Capacitor          | $i=C\frac{dv}{dt}$
-| Fluid         | Fluid Capacitor    | $Q=C_f\frac{dP}{dt}$
-| Thermal       | Thermal Capacitance | $q=C_t\frac{dT}{dt}$
+| System Type   | Element             | Elemental Equation         | Parameter
+| ------------- | ------------------- | -------------------------- | ---------
+| Translational | Mass                | $F=m\frac{dv}{dt}$         | Mass, $m$
+| Rotational    | Inertia             | $\tau=J\frac{d\Omega}{dt}$ | Rotational Inertia, $J$
+| Electrical    | Capacitor           | $i=C\frac{dv}{dt}$         | Capacitance, $C$
+| Fluid         | Fluid Capacitor     | $Q=C_f\frac{dP}{dt}$       | Fluid Capacitance, $C_f$
+| Thermal       | Thermal Capacitance | $q=C_t\frac{dT}{dt}$       | Thermal Capacitance, $C_t$
 
 #### T Type Elements
 
-T type elements are energy storage elements which relate the rate of change of the through variable to the across variable of the element.
+T type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
 
-| System Type   | Element          | Elemental Equation
-| ------------- | ---------------- | ------------------
-| Translational | Spring           | $v=\frac{1}{K}\frac{dF}{dt}$
-| Rotational    | Torsional Spring | $\Omega=\frac{1}{k_r}\frac{d\tau}{dt}$
-| Electrical    | Inductor         | $v=L\frac{di}{dt}$
-| Fluid         | Inertance        | $P=I_f\frac{dQ}{dt}$
+| System Type   | Element          | Elemental Equation                     | Parameter
+| ------------- | ---------------- | -------------------------------------- | ---------
+| Translational | Spring           | $v=\frac{1}{K}\frac{dF}{dt}$           | Spring Constant, $K$
+| Rotational    | Torsional Spring | $\Omega=\frac{1}{k_r}\frac{d\tau}{dt}$ | Torsional Sprint Constant, $k_r$
+| Electrical    | Inductor         | $v=L\frac{di}{dt}$                     | Inductance, $L$
+| Fluid         | Inertance        | $P=I_f\frac{dQ}{dt}$                   | Fluid Inertance, $I_f$
 
 #### D Type Elements
 
-D type elements are strictly dissipative with a linear relationship between through and across variables.
+D type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
 
-| System Type   | Element            | Elemental Equation
-| ------------- | ------------------ | ------------------
-| Translational | Damper             | $v=\frac{1}{B}F$
-| Rotational    | Rotational Damper  | $\Omega=\frac{1}{B_r}\tau$
-| Electrical    | Resistor           | $v=Ri$
-| Fluid         | Fluid Resistance   | $P=R_fQ$
-| Thermal       | Thermal Resistance | $T=R_tq$
+| System Type   | Element            | Elemental Equation         | Parameter
+| ------------- | ------------------ | -------------------------- | ---------
+| Translational | Damper             | $v=\frac{1}{B}F$           | Viscous Damping Constant, $B$
+| Rotational    | Rotational Damper  | $\Omega=\frac{1}{B_r}\tau$ | Rotational Viscous Damping Constant, $B_r$
+| Electrical    | Resistor           | $v=Ri$                     | Resistance, $R$
+| Fluid         | Fluid Resistance   | $P=R_fQ$                   | Fluid Resistance, $R_f$
+| Thermal       | Thermal Resistance | $T=R_tq$                   | Thermal Resistance, $R_t$
 
 #### Transformers
 
-In dynamic systems energy can flow between multiple domains.
-Transformers are one tool used to model this by relating the through and across variables to each other,
+In dynamic systems, energy can flow between multiple domains.
+Transformers are one model for relating the through-variable and across-variable of two energy domains to each other,
 
 $\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$
 
 Here $TF$ can be used in many different applications.
 A few of these are listed below,
 
-| Element                | $TF$
-| ---------------------- | ----
-| Rack & Pinion          | $r$
-| Gear train             | $-r_2/r_1$
-| DC Motor               | $1/Kv$
-| Lever                  | $-l_1/l_2$
-| Belt Drive             | $r_2/r_1$
-| Electrical transformer | $N_1/N_2$
-| Fluid Transformer      | $A_2/A_1$
+| Element                | $TF$       | Parameter
+| ---------------------- | ---------- | ---------
+| Rack & Pinion          | $r$        | Pinion Pitch Diameter, $r$
+| Gear train             | $-r_2/r_1$ | Gear Pitch Diameters, $r_1$ and $r_2$
+| DC Motor               | $1/Kv$     | Motor Velocity Constant $Kv$
+| Lever                  | $-l_1/l_2$ | Distance to Fulcrum, $l_1$ and $l_2$
+| Belt Drive             | $r_2/r_1$  | Pulley Pitch Diameters, $r_1$ and $r_2$
+| Electrical transformer | $N_1/N_2$  | Primary Coil Turns, $N_1$ and Secondary Coil Turns, $N_2$
+| Fluid Transformer      | $A_2/A_1$  | Fluid Transformer Areas, $A_1$ and $A_2$
 
 #### Gyrators
 
 Gyrators are another tool used to model energy flow between domains.
-This model relates across variables in one domain to through variables in the other,
+This model relates the across-variable in one energy domain to the through-variable in the other,
 
 $\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$
 
 The following elements can be modeled as gyrators,
 
-| Element           | $GY$
-| ----------------- | ----
-| Hydraulic Ram     | $-1/A$
-| Displacement Pump | $-1/D$
+| Element           | $GY$   | Parameter
+| ----------------- | ------ | ---------
+| Hydraulic Ram     | $-1/A$ | Piston Area, $A$
+| Displacement Pump | $-1/D$ | Pump Displacement, $D$
 
-### Linear Graph
+### Linear Graphs
 
 Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
-Each node represents an independent across variable value.
+Each node represents an independent across-variable value.
 Branches are created for each element in the system.
 In non electrical systems A type elements always connect to a ground node.
-Arrows on branches point in the direction of decreasing across variable.
+Arrows on branches point in the direction of decreasing across-variable.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
-### Normal Tree
+### Normal Trees
 
 In order to find the primary and secondary variables a normal tree can be constructed.
 This normal tree should consist of $N-1$ branches from the linear graph where $N$ is the number of nodes in the linear graph.
@@ -115,7 +115,7 @@ If multiple ground nodes are present in the linear graph they should be counted 
 Since the normal tree must be a tree structure no loops may be created when constructing the normal tree.
 To construct the normal tree select branches in the following order.
 
-1. Across variable sources
+1. Across-variable sources
 2. A type elements
 3. Transformers and Gyrators (minimizing the number of T type elements in the normal tree)
 4. D type elements
@@ -124,24 +124,24 @@ To construct the normal tree select branches in the following order.
 For transformers one branch must be selected, and for gyrators both or neither branches can be selected.
 The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
 
-### Primary Variables
+### Primary and Secondary Variables
 
 Once the normal tree has been created it is trivial to determine the primary and secondary variables. These are defined as,
 
-* Across variables on normal tree branches
-* Through variables on normal tree links
+* Across-variables on normal tree branches and
+* Through-variables on normal tree links.
 
 For each element the secondary variable is the non primary variable. In other words the secondary variables are,
 
-* Across variables on normal tree links
-* Through variables on normal tree branches
+* Across-variables on normal tree links
+* Through-variables on normal tree branches
 
 ### State Variables
 
 The state variables of the system are,
 
-* A type elements on normal tree branches
-* T type elements on normal tree links
+* A type elements on normal tree branches and
+* T type elements on normal tree links.
 
 ### Elemental Equations
 
@@ -151,12 +151,12 @@ Here $B$ is the number of branches in the linear graph and $S$ is the number of 
 ### Continuity Equations
 
 $N-1-S_A$ continuity equations should be found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
-For each equation the secondary through variable should be placed on the left hand side, and the sum of the through variable flowing through the contour determined.
+For each equation the secondary through-variable should be placed on the left hand side, and the sum of the through-variable flowing through the contour determined.
 
 ### Compatibility Equations
 
-$B-N+1-S_T$ compatibility equations should be written with the secondary across variable on the left side.
-To create these equations calculate the sum of the across variables around the loop created when a normal tree link is added to the normal tree.
+$B-N+1-S_T$ compatibility equations should be written with the secondary across-variable on the left side.
+To create these equations calculate the sum of the across-variables around the loop created when a normal tree link is added to the normal tree.
 Do this for each normal tree link.
 
 ## Example
@@ -285,8 +285,3 @@ An example continuing this tutorial is [provided](https://github.com/CameronDevi
 
 Finally, the Mathematica package can be used.
 An example using Mathematica is also [provided](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb).
-
-## Further reading
-
-To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.

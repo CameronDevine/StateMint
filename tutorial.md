@@ -1,8 +1,8 @@
 # System Dynamics Tutorial
 
-## Purpose
-
 The purpose of this tutorial is to give the necessary background information on how to use the StateMint software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
+To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
+Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
 
 ## Background Information
 
@@ -10,104 +10,104 @@ This method of finding a differential equation of a dynamic system works with mu
 
 ### System Types
 
-In each energy domain a through and an across variable is defined.
-Through variables are chosen as those whose value remains constant through a given element.
-Across variables are those whose value is relative and changes through an element.
-A list of system types and their through and across variables can be found below.
+In each energy domain a through-variable, ![$v$](http://latex.codecogs.com/svg.latex?v), and an across-variable, ![$f$](http://latex.codecogs.com/svg.latex?f), is defined.
+Through-variables are chosen as those whose value remains constant through a given element.
+Across-variables are those whose value is relative and changes through an element.
+A list of common system types and their through-variables and across-variables can be found below.
 
-| System Type   | Across                   | Through        |
-| ------------- | ------------------------ | -------------- |
-| Translational | Velocity                 | Force          |
-| Rotational    | Angular Velocity         | Torque         |
-| Electrical    | Voltage                  | Current        |
-| Fluid         | Pressure                 | Flow Rate      |
-| Thermal       | Temperature Differential | Heat Flow Rate |
+| System Type   | Across-variables              | Through-variables      |
+| ------------- | ----------------------------- | ---------------------- |
+| Translational | Velocity, ![$v$](http://latex.codecogs.com/svg.latex?v)                 | Force, ![$F$](http://latex.codecogs.com/svg.latex?F)             |
+| Rotational    | Angular Velocity, ![$\Omega$](http://latex.codecogs.com/svg.latex?%5COmega)    | Torque, ![$\tau$](http://latex.codecogs.com/svg.latex?%5Ctau)         |
+| Electrical    | Voltage, ![$v$](http://latex.codecogs.com/svg.latex?v)                  | Current, ![$i$](http://latex.codecogs.com/svg.latex?i)           |
+| Fluid         | Pressure, ![$P$](http://latex.codecogs.com/svg.latex?P)                 | Flow Rate, ![$Q$](http://latex.codecogs.com/svg.latex?Q)         |
+| Thermal       | Temperature Differential, ![$T$](http://latex.codecogs.com/svg.latex?T) | Heat Flow Rate, ![$q$](http://latex.codecogs.com/svg.latex?q)    |
 
 ### Elemental Equations
 
-In each energy domain there are multiple different elements which are used to model a system.
+Within each energy domain there are multiple element types which can be used to model a system in that domain.
 Across energy domains these elements can be grouped into three distinct types.
 
 #### A Type Elements
 
-A type elements are energy storage elements which relates the rate of change of the across variable to the through variable of the element.
+A type elements are energy storage elements which relates the rate of change of the across-variable to the through-variable of the element.
 
-| System Type   | Element            | Elemental Equation
-| ------------- | ------------------ | ------------------
-| Translational | Mass               | ![$F=m\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?F%3Dm%5Cfrac%7Bdv%7D%7Bdt%7D)
-| Rotational    | Inertia            | ![$\tau=J\frac{d\Omega}{dt}$](http://latex.codecogs.com/svg.latex?%5Ctau%3DJ%5Cfrac%7Bd%5COmega%7D%7Bdt%7D)
-| Electrical    | Capacitor          | ![$i=C\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?i%3DC%5Cfrac%7Bdv%7D%7Bdt%7D)
-| Fluid         | Fluid Capacitor    | ![$Q=C_f\frac{dP}{dt}$](http://latex.codecogs.com/svg.latex?Q%3DC_f%5Cfrac%7BdP%7D%7Bdt%7D)
-| Thermal       | Thermal Capacitance | ![$q=C_t\frac{dT}{dt}$](http://latex.codecogs.com/svg.latex?q%3DC_t%5Cfrac%7BdT%7D%7Bdt%7D)
+| System Type   | Element             | Elemental Equation         | Parameter
+| ------------- | ------------------- | -------------------------- | ---------
+| Translational | Mass                | ![$F=m\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?F%3Dm%5Cfrac%7Bdv%7D%7Bdt%7D)         | Mass, ![$m$](http://latex.codecogs.com/svg.latex?m)
+| Rotational    | Inertia             | ![$\tau=J\frac{d\Omega}{dt}$](http://latex.codecogs.com/svg.latex?%5Ctau%3DJ%5Cfrac%7Bd%5COmega%7D%7Bdt%7D) | Rotational Inertia, ![$J$](http://latex.codecogs.com/svg.latex?J)
+| Electrical    | Capacitor           | ![$i=C\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?i%3DC%5Cfrac%7Bdv%7D%7Bdt%7D)         | Capacitance, ![$C$](http://latex.codecogs.com/svg.latex?C)
+| Fluid         | Fluid Capacitor     | ![$Q=C_f\frac{dP}{dt}$](http://latex.codecogs.com/svg.latex?Q%3DC_f%5Cfrac%7BdP%7D%7Bdt%7D)       | Fluid Capacitance, ![$C_f$](http://latex.codecogs.com/svg.latex?C_f)
+| Thermal       | Thermal Capacitance | ![$q=C_t\frac{dT}{dt}$](http://latex.codecogs.com/svg.latex?q%3DC_t%5Cfrac%7BdT%7D%7Bdt%7D)       | Thermal Capacitance, ![$C_t$](http://latex.codecogs.com/svg.latex?C_t)
 
 #### T Type Elements
 
-T type elements are energy storage elements which relate the rate of change of the through variable to the across variable of the element.
+T type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
 
-| System Type   | Element          | Elemental Equation
-| ------------- | ---------------- | ------------------
-| Translational | Spring           | ![$v=\frac{1}{K}\frac{dF}{dt}$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BK%7D%5Cfrac%7BdF%7D%7Bdt%7D)
-| Rotational    | Torsional Spring | ![$\Omega=\frac{1}{k_r}\frac{d\tau}{dt}$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7Bk_r%7D%5Cfrac%7Bd%5Ctau%7D%7Bdt%7D)
-| Electrical    | Inductor         | ![$v=L\frac{di}{dt}$](http://latex.codecogs.com/svg.latex?v%3DL%5Cfrac%7Bdi%7D%7Bdt%7D)
-| Fluid         | Inertance        | ![$P=I_f\frac{dQ}{dt}$](http://latex.codecogs.com/svg.latex?P%3DI_f%5Cfrac%7BdQ%7D%7Bdt%7D)
+| System Type   | Element          | Elemental Equation                     | Parameter
+| ------------- | ---------------- | -------------------------------------- | ---------
+| Translational | Spring           | ![$v=\frac{1}{K}\frac{dF}{dt}$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BK%7D%5Cfrac%7BdF%7D%7Bdt%7D)           | Spring Constant, ![$K$](http://latex.codecogs.com/svg.latex?K)
+| Rotational    | Torsional Spring | ![$\Omega=\frac{1}{k_r}\frac{d\tau}{dt}$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7Bk_r%7D%5Cfrac%7Bd%5Ctau%7D%7Bdt%7D) | Torsional Sprint Constant, ![$k_r$](http://latex.codecogs.com/svg.latex?k_r)
+| Electrical    | Inductor         | ![$v=L\frac{di}{dt}$](http://latex.codecogs.com/svg.latex?v%3DL%5Cfrac%7Bdi%7D%7Bdt%7D)                     | Inductance, ![$L$](http://latex.codecogs.com/svg.latex?L)
+| Fluid         | Inertance        | ![$P=I_f\frac{dQ}{dt}$](http://latex.codecogs.com/svg.latex?P%3DI_f%5Cfrac%7BdQ%7D%7Bdt%7D)                   | Fluid Inertance, ![$I_f$](http://latex.codecogs.com/svg.latex?I_f)
 
 #### D Type Elements
 
-D type elements are strictly dissipative with a linear relationship between through and across variables.
+D type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
 
-| System Type   | Element            | Elemental Equation
-| ------------- | ------------------ | ------------------
-| Translational | Damper             | ![$v=\frac{1}{B}F$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BB%7DF)
-| Rotational    | Rotational Damper  | ![$\Omega=\frac{1}{B_r}\tau$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7BB_r%7D%5Ctau)
-| Electrical    | Resistor           | ![$v=Ri$](http://latex.codecogs.com/svg.latex?v%3DRi)
-| Fluid         | Fluid Resistance   | ![$P=R_fQ$](http://latex.codecogs.com/svg.latex?P%3DR_fQ)
-| Thermal       | Thermal Resistance | ![$T=R_tq$](http://latex.codecogs.com/svg.latex?T%3DR_tq)
+| System Type   | Element            | Elemental Equation         | Parameter
+| ------------- | ------------------ | -------------------------- | ---------
+| Translational | Damper             | ![$v=\frac{1}{B}F$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BB%7DF)           | Viscous Damping Constant, ![$B$](http://latex.codecogs.com/svg.latex?B)
+| Rotational    | Rotational Damper  | ![$\Omega=\frac{1}{B_r}\tau$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7BB_r%7D%5Ctau) | Rotational Viscous Damping Constant, ![$B_r$](http://latex.codecogs.com/svg.latex?B_r)
+| Electrical    | Resistor           | ![$v=Ri$](http://latex.codecogs.com/svg.latex?v%3DRi)                     | Resistance, ![$R$](http://latex.codecogs.com/svg.latex?R)
+| Fluid         | Fluid Resistance   | ![$P=R_fQ$](http://latex.codecogs.com/svg.latex?P%3DR_fQ)                   | Fluid Resistance, ![$R_f$](http://latex.codecogs.com/svg.latex?R_f)
+| Thermal       | Thermal Resistance | ![$T=R_tq$](http://latex.codecogs.com/svg.latex?T%3DR_tq)                   | Thermal Resistance, ![$R_t$](http://latex.codecogs.com/svg.latex?R_t)
 
 #### Transformers
 
-In dynamic systems energy can flow between multiple domains.
-Transformers are one tool used to model this by relating the through and across variables to each other,
+In dynamic systems, energy can flow between multiple domains.
+Transformers are one model for relating the through-variable and across-variable of two energy domains to each other,
 
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
 
 Here ![$TF$](http://latex.codecogs.com/svg.latex?TF) can be used in many different applications.
 A few of these are listed below,
 
-| Element                | ![$TF$](http://latex.codecogs.com/svg.latex?TF)
-| ---------------------- | ----
-| Rack & Pinion          | ![$r$](http://latex.codecogs.com/svg.latex?r)
-| Gear train             | ![$-r_2/r_1$](http://latex.codecogs.com/svg.latex?-r_2/r_1)
-| DC Motor               | ![$1/Kv$](http://latex.codecogs.com/svg.latex?1/Kv)
-| Lever                  | ![$-l_1/l_2$](http://latex.codecogs.com/svg.latex?-l_1/l_2)
-| Belt Drive             | ![$r_2/r_1$](http://latex.codecogs.com/svg.latex?r_2/r_1)
-| Electrical transformer | ![$N_1/N_2$](http://latex.codecogs.com/svg.latex?N_1/N_2)
-| Fluid Transformer      | ![$A_2/A_1$](http://latex.codecogs.com/svg.latex?A_2/A_1)
+| Element                | ![$TF$](http://latex.codecogs.com/svg.latex?TF)       | Parameter
+| ---------------------- | ---------- | ---------
+| Rack & Pinion          | ![$r$](http://latex.codecogs.com/svg.latex?r)        | Pinion Pitch Diameter, ![$r$](http://latex.codecogs.com/svg.latex?r)
+| Gear train             | ![$-r_2/r_1$](http://latex.codecogs.com/svg.latex?-r_2/r_1) | Gear Pitch Diameters, ![$r_1$](http://latex.codecogs.com/svg.latex?r_1) and ![$r_2$](http://latex.codecogs.com/svg.latex?r_2)
+| DC Motor               | ![$1/Kv$](http://latex.codecogs.com/svg.latex?1/Kv)     | Motor Velocity Constant ![$Kv$](http://latex.codecogs.com/svg.latex?Kv)
+| Lever                  | ![$-l_1/l_2$](http://latex.codecogs.com/svg.latex?-l_1/l_2) | Distance to Fulcrum, ![$l_1$](http://latex.codecogs.com/svg.latex?l_1) and ![$l_2$](http://latex.codecogs.com/svg.latex?l_2)
+| Belt Drive             | ![$r_2/r_1$](http://latex.codecogs.com/svg.latex?r_2/r_1)  | Pulley Pitch Diameters, ![$r_1$](http://latex.codecogs.com/svg.latex?r_1) and ![$r_2$](http://latex.codecogs.com/svg.latex?r_2)
+| Electrical transformer | ![$N_1/N_2$](http://latex.codecogs.com/svg.latex?N_1/N_2)  | Primary Coil Turns, ![$N_1$](http://latex.codecogs.com/svg.latex?N_1) and Secondary Coil Turns, ![$N_2$](http://latex.codecogs.com/svg.latex?N_2)
+| Fluid Transformer      | ![$A_2/A_1$](http://latex.codecogs.com/svg.latex?A_2/A_1)  | Fluid Transformer Areas, ![$A_1$](http://latex.codecogs.com/svg.latex?A_1) and ![$A_2$](http://latex.codecogs.com/svg.latex?A_2)
 
 #### Gyrators
 
 Gyrators are another tool used to model energy flow between domains.
-This model relates across variables in one domain to through variables in the other,
+This model relates the across-variable in one energy domain to the through-variable in the other,
 
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D0%26GY%5C%5C-1/GY%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
 
 The following elements can be modeled as gyrators,
 
-| Element           | ![$GY$](http://latex.codecogs.com/svg.latex?GY)
-| ----------------- | ----
-| Hydraulic Ram     | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A)
-| Displacement Pump | ![$-1/D$](http://latex.codecogs.com/svg.latex?-1/D)
+| Element           | ![$GY$](http://latex.codecogs.com/svg.latex?GY)   | Parameter
+| ----------------- | ------ | ---------
+| Hydraulic Ram     | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A) | Piston Area, ![$A$](http://latex.codecogs.com/svg.latex?A)
+| Displacement Pump | ![$-1/D$](http://latex.codecogs.com/svg.latex?-1/D) | Pump Displacement, ![$D$](http://latex.codecogs.com/svg.latex?D)
 
-### Linear Graph
+### Linear Graphs
 
 Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
-Each node represents an independent across variable value.
+Each node represents an independent across-variable value.
 Branches are created for each element in the system.
 In non electrical systems A type elements always connect to a ground node.
-Arrows on branches point in the direction of decreasing across variable.
+Arrows on branches point in the direction of decreasing across-variable.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
-### Normal Tree
+### Normal Trees
 
 In order to find the primary and secondary variables a normal tree can be constructed.
 This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) branches from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
@@ -115,7 +115,7 @@ If multiple ground nodes are present in the linear graph they should be counted 
 Since the normal tree must be a tree structure no loops may be created when constructing the normal tree.
 To construct the normal tree select branches in the following order.
 
-1. Across variable sources
+1. Across-variable sources
 2. A type elements
 3. Transformers and Gyrators (minimizing the number of T type elements in the normal tree)
 4. D type elements
@@ -124,24 +124,24 @@ To construct the normal tree select branches in the following order.
 For transformers one branch must be selected, and for gyrators both or neither branches can be selected.
 The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
 
-### Primary Variables
+### Primary and Secondary Variables
 
 Once the normal tree has been created it is trivial to determine the primary and secondary variables. These are defined as,
 
-* Across variables on normal tree branches
-* Through variables on normal tree links
+* Across-variables on normal tree branches and
+* Through-variables on normal tree links.
 
 For each element the secondary variable is the non primary variable. In other words the secondary variables are,
 
-* Across variables on normal tree links
-* Through variables on normal tree branches
+* Across-variables on normal tree links
+* Through-variables on normal tree branches
 
 ### State Variables
 
 The state variables of the system are,
 
-* A type elements on normal tree branches
-* T type elements on normal tree links
+* A type elements on normal tree branches and
+* T type elements on normal tree links.
 
 ### Elemental Equations
 
@@ -151,12 +151,12 @@ Here ![$B$](http://latex.codecogs.com/svg.latex?B) is the number of branches in 
 ### Continuity Equations
 
 ![$N-1-S_A$](http://latex.codecogs.com/svg.latex?N-1-S_A) continuity equations should be found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
-For each equation the secondary through variable should be placed on the left hand side, and the sum of the through variable flowing through the contour determined.
+For each equation the secondary through-variable should be placed on the left hand side, and the sum of the through-variable flowing through the contour determined.
 
 ### Compatibility Equations
 
-![$B-N+1-S_T$](http://latex.codecogs.com/svg.latex?B-N%2B1-S_T) compatibility equations should be written with the secondary across variable on the left side.
-To create these equations calculate the sum of the across variables around the loop created when a normal tree link is added to the normal tree.
+![$B-N+1-S_T$](http://latex.codecogs.com/svg.latex?B-N%2B1-S_T) compatibility equations should be written with the secondary across-variable on the left side.
+To create these equations calculate the sum of the across-variables around the loop created when a normal tree link is added to the normal tree.
 Do this for each normal tree link.
 
 ## Example
@@ -285,8 +285,3 @@ An example continuing this tutorial is [provided](https://github.com/CameronDevi
 
 Finally, the Mathematica package can be used.
 An example using Mathematica is also [provided](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb).
-
-## Further reading
-
-To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
