@@ -10,6 +10,7 @@ env:
     - secure: "N7zPlSJjUR3djPNgvDk5ONnb3kW8z+6FHZeoBWr3Ja2sBVL/MG8fx34P2XxyViFLlOdSTAkW2V5NdcMUaA8DKMNf7lTl4sgn7roIqjDx5OY/hUZYs89lispPFb/7zJKAlaTZJWKInguDBs1B5nqjsbLr02D4mLNhh00/4VWAK88OniPxHySvq8s62IJDgNA8e+JG8YgcVg+nEDwzJ7mJubENyAZ0IHfMjtc1hAYr8gk8AbRBoVrI8FAvXp6aE3uKzr86IvNjyPMTJs8t7Aco61Rtx3Xd+lwgPzEjZw5gTqo6s4KAw2+22Hlhdt0OpYCsBAORIFE6VRK51J6FvZyZWfHVxcCzhywxNT/phoi57oUB1Dtj6fami46hH2DIKxAmMYIzn0sFA487u/VbUIgJ8P6z4ljAWWPOAnKNmHpBqtK4DWTfQIQRWp4yxInRZMxMpVp4fSDwUUwzztFxYbdyokMfEpIaS3mP1RYJXvnb6xrz/+28NDHGZV8+wMJGYhz4IZplmZ/5PAC6AKVKyHyE06VQ8RMeCSk6ikC4xI3LQkqIX7EMDKbAIEFeZm4EfC/o5JBWRQhZKiV0pP9SZ9oezUKHky7SU+pEJ/6UDgC25JWk5kUwSxMYsEwIi0OBuOOY4Qla9vULPNoQJ+re0maO7Aw1bhsAfBX7G+7tyr0gT3Q="
     - AWS_DEFAULT_REGION="us-west-2"
     - TRACKING_ID="UA-131371194-2"
+    - secure: "stLyaW3u0VPvTOpxg2aVSrT8x3WC8/Rc4YlZG624xfKboYRYtTDmyvidS8w5RKAAK5WIUU7cNjUsmaHTlmoI3o0l3MXPbDeAN/ub0kA1wzFa7/hWkFiN9fcjBxY0ZVwuBlGsolfL1dUiF5zJgiG3LpTWoLaG0k5fMOds5H0TMfUHInXFaKGsccDEtAfxg2/Me4IuDbJdYJTmgzxTdZjo2eIpj6MzuX7a/pEVkTn03HvRVNSwKMhxm/hcWrPz3ckqrVQlSiVNaksuhaXtDMU/Zyp9cu59CY6nO64lnnD1Ubj7/sfVyrIm7qgicWaBJ/AIg7ATqiGypFCV/VjzrVBY5VD0txp65VR0henoloeer6TwDzx3FXQbBsW4KpQ2Yfze+0mAfWBp3VTlAb5bOugZs3oTMaUXKgy5ArT2clhf8UV8a5t0JV3mQDVw6MSEmXpYlYxUbudghgPnM9CkhUZYK1n1Lgnx+sNR4KcgulXa2ftlSF0xpXhc4IRwQY23B8MWCnO7xRwPyTHGPhPDaU5+YOJS1HpGsJJg+d6RASEknY7DBBCOa/iJEpw2lCdPyhOwv9Mpd4OyzBhx/RKbXYZpCEK/23xBK+WDjya81X2rYz0SyD/NydBjUGUAKFcV/cbzp0LnmU1A2jmJHyWWRP4Jc/s4pwO8ITqiBibRbQLHGpY="
   matrix:
     - SYMPYVERSION=""
     - SYMPYVERSION="==1.2"
@@ -31,6 +32,7 @@ jobs:
           PATH=$PATH:$(pwd);
           aws configure set region $AWS_DEFAULT_REGION;
       script: make all test stack=StateMint-test;
+      after_script: make remove
     - stage: deploy
       if: branch = master
       python: 2.7
