@@ -11,8 +11,10 @@ This method of finding a differential equation of a dynamic system works with mu
 ### System Types
 
 In each energy domain a through-variable, $v$, and an across-variable, $f$, is defined.
-Through-variables are chosen as those whose value remains constant through a given element.
-Across-variables are those whose value is relative and changes through an element.
+A through-variable is a variable that generally has the same value at each element terminal.
+It corresponds to a physical quantity that would be measured flowing through an element.
+An across-variable is a variable that generally has a different value at each element terminal.
+It corresponds to a physical quantity that would be measured across an element or relative to some reference.
 A list of common system types and their through-variables and across-variables can be found below.
 
 | System Type   | Across-variables              | Through-variables      |
