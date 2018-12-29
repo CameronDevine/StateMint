@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setuptools.setup(
 	name="StateMint",
-	version="1.0.1",
+	version="2.0.0",
 	author="Cameron Devine",
 	author_email="camdev@uw.edu",
 	description="A library for finding State Space models of dynamical systems.",
