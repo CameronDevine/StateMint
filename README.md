@@ -28,6 +28,6 @@ An example of this interface is running at [statemint.stmartin.edu](http://state
 ## Contributors
 
 - Cameron Devine, Dept. of Mechanical Engineering, University of Washington: Python Package and Web Interface
-- Rico Picone, Dept. of Mechanical Engineering, St. Martin's University: Mathematica Package Maintenence
+- [Rico Picone](http://ricopic.one), Dept. of Mechanical Engineering, St. Martin's University: Mathematica Package Maintenence
 - Joseph Garbini, Dept. of Mechanical Engineering, University of Washington: Original Mathematica Package and Web Interface Terminology
-- [Gavin Basuel](gavinbasuel.com), 1G Media & Design: Web Interface User Experience Design
+- [Gavin Basuel](http://gavinbasuel.com), 1G Media & Design: Web Interface User Experience Design
