@@ -25,6 +25,9 @@ A [web interface](web) is also available which uses the Python package as a back
 This package allows anyone to use this tool without the need to install any software.
 An example of this interface is running at [statemint.stmartin.edu](http://statemint.stmartin.edu).
 
-## Credits
+## Contributors
 
-Original Mathematica Notebook: Joseph Garbini
+- Cameron Devine, Dept. of Mechanical Engineering, University of Washington: Python Package and Web Interface
+- Rico Picone, Dept. of Mechanical Engineering, St. Martin's University: Mathematica Package Maintenence
+- Joseph Garbini, Dept. of Mechanical Engineering, University of Washington: Original Mathematica Package and Web Interface Terminology
+- [Gavin Basuel](gavinbasuel.com), 1G Media & Design: Web Interface User Experience Design
