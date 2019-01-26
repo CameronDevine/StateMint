@@ -31,21 +31,21 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 
 # Introduction
 
-When deriving a system's state-space model&mdash;that is, the vector state (differential) equation and the vector output (algebraic) equation&mdash;one begins by forming scalar equations for each element describing its dynamics.
+When deriving a system's state-space model&mdash;that is, the vector state (differential) equation and the vector output (algebraic) equation&mdash;one begins by forming scalar equations for each element **REVIEW: Not all systems are "element"-based. The reader may need more background here.** describing its dynamics.
 The next step is to form a set of $N$ constraint equations that describe the topology of the system defined by the interconnection of the $N$ elements.
-A set of $2N$ differential and algebraic equations and $2N$ unknown variables result.
-If properly constructed (e.g. with the linear graph technique), $N$ of the unknown variables can be immediately eliminated through direct substitution.
+A set of $2N$ differential and algebraic equations and $2N$ unknown variables result **REVIEW: Add a citation for why this is the case?**.
+If properly constructed (e.g. with the linear graph technique **REVIEW: Not defined**), $N$ of the unknown variables can be immediately eliminated through direct substitution.
 Finally, the set of equations can be reduced to a system of first-order differential equations in state and input variables and their time-derivatives, alone.
-It is in these last two steps, especially the very last, that a student, manually reducing the set of equations, will often make some minor mistake.
-This is typically of a "book keeping" variety that, if it teaches the student anything, it is not system dynamics.
+It is in these last two steps, especially the last, that a student, manually reducing the set of equations, will often make some minor mistake.
+This mistake is typically of a "book keeping" variety that, if it teaches the student anything, it is not system dynamics.
 Instead, the student can be easily discouraged and confused about where they have made their mistake.
 Fortunately, the software tools presented here will automate the algebraic reduction.
 These will allow students to focus on understanding the process of dynamic system modeling.
 
-Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the dynamic system model.
-However, this requires students to install and learn (at least) the basics of Mathematica.
-To mitigate this problem, a web interface was designed to allow students to use this tool without any knowledge of programming by allowing equations to be input with notation similar to that of many scientific calculators.
-To support this interface, a Python package was written with the same functionality as the Mathematica package and is deployed as an Amazon AWS Lambda function for use by the web interface.
+Utilizing the advanced symbolic mathematics capabilities of Mathematica, we created a package that determines the dynamic system model.
+However, this requires students to install and learn the basics of Mathematica.
+To mitigate this problem, we designed a web interface to allow students to use this tool without any knowledge of programming by allowing equations to be input with notation similar to that of many scientific calculators.
+To support this interface, we created a Python package with the same functionality as the Mathematica package and we deployed the package as an Amazon AWS Lambda function for use by the web interface.
 This interface can be accessed by any device with an internet connection and a web browser.
 
 # Web Interface
@@ -72,14 +72,14 @@ A detailed example of how to use the Python StateMint package is [included](http
 
 # Mathematica Package
 
-The Mathematica package `StateMint` can be installed as described in the [documentation](https://github.com/CameronDevine/StateMint/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
+The Mathematica package `StateMint` can be installed as described in the [documentation](https://github.com/CameronDevine/StateMint/blob/master/mathematica/README.md). The central function of the package is `stateEquations`, which uses an algorithm similar **REVIEW: Not exactly the same? Why not?** to that of the Python package, above, to derive the state equations. It takes as arguments lists of elemental equations, constraint equations, primary variables, and input variables and returns the vector state equation, state variables, and the time-derivative of the state variables.
 
 The `outputEquations` function derives the output equations given output expressions in terms of primary and secondary variables (including inputs). The function accepts lists of input variables, state variables, elemental and constraint equations, and output expressions.
 
-The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear state and output equations are typically written in a standard vector form described by matrices `A`, `B`, `C`, and `D` (and sometimes `E` and `F`). The `linearizeState` function accepts lists of input variables, state variables, and the time-derivatives of the state vector (from `stateEquations`) and returns the `A`, `B`, and `E` matrices. Similarly, `linearizeOutput` returns the `C`, `D`, and `F` matrices.
+The functions `stateEquations` and `outputEquations` yield what are in general *nonlinear* state and output equations. Linear state and output equations are typically written in a standard vector form described by matrices `A`, `B`, `C`, and `D` (and sometimes `E` and `F`) **REVIEW: Please provide a reference.**. The `linearizeState` function accepts lists of input variables, state variables, and the time-derivatives of the state vector (from `stateEquations`) and returns the `A`, `B`, and `E` matrices. Similarly, `linearizeOutput` returns the `C`, `D`, and `F` matrices.
 
 A detailed example of how to use the Mathematica StateMint package is [included](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb) in the StateMint repository.
-This package is best used by those who are already familiar with Mathematica, or for more complex problems where Mathematica may perform better than SymPy.
+This package is best used by those who are already familiar with Mathematica, or for more complex problems where Mathematica may perform better than SymPy **REVIEW: Do you have any evidence or citations for this claim?**.
 
 # Acknowledgments
 

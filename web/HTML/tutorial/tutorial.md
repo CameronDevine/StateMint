@@ -10,7 +10,7 @@ This method of finding a differential equation of a dynamic system works with mu
 
 ### System Types
 
-In each energy domain a through-variable, $v$, and an across-variable, $f$, is defined.
+In each energy domain, a through-variable, $v$, and an across-variable, $f$, is defined.
 A through-variable is a variable that generally has the same value at each element terminal.
 It corresponds to a physical quantity that would be measured flowing through an element.
 An across-variable is a variable that generally has a different value at each element terminal.
@@ -27,12 +27,12 @@ A list of common system types and their through-variables and across-variables c
 
 ### Elemental Equations
 
-Within each energy domain there are multiple element types which can be used to model a system in that domain.
-Across energy domains these elements can be grouped into three distinct types.
+Within each energy domain, there are multiple element types which can be used to model a system in that domain.
+Across energy domains, these elements can be grouped into three distinct types.
 
 #### A Type Elements
 
-A type elements are energy storage elements which relates the rate of change of the across-variable to the through-variable of the element.
+A type elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
 
 | System Type   | Element             | Elemental Equation         | Parameter
 | ------------- | ------------------- | -------------------------- | ---------
@@ -103,37 +103,37 @@ The following elements can be modeled as gyrators,
 
 Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
 Each node represents an independent across-variable value.
-Branches are created for each element in the system.
-In non electrical systems A type elements always connect to a ground node.
+Branches are created for each element in the system. **REVIEW: Could you explain this idea more?**
+In non-electrical systems, A type elements always connect to a ground node.
 Arrows on branches point in the direction of decreasing across-variable.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
 ### Normal Trees
 
-In order to find the primary and secondary variables a normal tree can be constructed.
+In order to find the primary and secondary variables **REVIEW: You have not yet defined primary and secondary variables**, a normal tree can be constructed.
 This normal tree should consist of $N-1$ branches from the linear graph where $N$ is the number of nodes in the linear graph.
-If multiple ground nodes are present in the linear graph they should be counted as a single node.
-Since the normal tree must be a tree structure no loops may be created when constructing the normal tree.
-To construct the normal tree select branches in the following order.
+If multiple ground nodes are present in the linear graph, they should be counted as a single node.
+Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
+To construct the normal tree, select branches in the following order.
 
-1. Across-variable sources
+1. Across-variable sources **REVIEW: You have not defined source.**
 2. A type elements
 3. Transformers and Gyrators (minimizing the number of T type elements in the normal tree)
 4. D type elements
 5. T type elements
 
-For transformers one branch must be selected, and for gyrators both or neither branches can be selected.
+For transformers, one branch must be selected. For gyrators, both or neither branches can be selected.
 The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
 
 ### Primary and Secondary Variables
 
-Once the normal tree has been created it is trivial to determine the primary and secondary variables. These are defined as,
+Once the normal tree has been created, it is trivial to determine the primary and secondary variables. Primary variables are defined as,
 
 * Across-variables on normal tree branches and
 * Through-variables on normal tree links.
 
-For each element the secondary variable is the non primary variable. In other words the secondary variables are,
+For each element, the secondary variable is the non-primary variable. In other words the secondary variables are,
 
 * Across-variables on normal tree links
 * Through-variables on normal tree branches
@@ -147,8 +147,8 @@ The state variables of the system are,
 
 ### Elemental Equations
 
+We define $B$ as the number of branches in the linear graph and $S$ as the number of sources. **REVIEW: What is a source?**
 $B-S$ elemental equations should be written with the primary variable on the left hand side.
-Here $B$ is the number of branches in the linear graph and $S$ is the number of sources.
 
 ### Continuity Equations
 
@@ -191,7 +191,7 @@ Also adding both sides of the gyrator means that adding the torsional spring wou
 
 ![Normal Tree](tutorial/tutorial6.svg)
 
-Next a the motor resistance is added.
+Next, the motor resistance is added.
 
 ![Normal Tree](tutorial/tutorial7.svg)
 
@@ -215,7 +215,7 @@ $Q_R$
 
 ### Secondary Variables
 
-Given the primary variables above the following are easily determined to be secondary variables.
+Given the primary variables above, the following are easily determined to be secondary variables.
 
 $i_s$,
 $i_R$,
@@ -235,7 +235,7 @@ $\tau_k$
 
 ### Elemental Equations
 
-Based on the list of elemental equations the following list of elemental equations can be generated.
+Based on the list of elemental equations, the following list of elemental equations can be generated.
 
 * $v_R=Ri_R$
 * $v_L=Li_L'$
@@ -248,11 +248,11 @@ Based on the list of elemental equations the following list of elemental equatio
 
 ### Continuity Equations
 
-To determine the continuity equations the following contours can be drawn.
+To determine the continuity equations, the following contours can be drawn.
 
 ![Normal Tree](tutorial/tutorial9.svg)
 
-Using these contours the equations below were constructed.
+Using these contours, the equations below were constructed.
 
 * $i_L=i_1$
 * $i_R=i_1$
@@ -270,7 +270,7 @@ By adding each link into the normal tree the equations below were generated.
 
 ## Using the Software
 
-Given these equations the state equation could be found by hand, or one of the following tools could be used.
+Given these equations, the state equation could be found by hand, or by using one of the following tools.
 
 ### Web Interface
 
