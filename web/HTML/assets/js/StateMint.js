@@ -196,9 +196,11 @@ function StateModel() {
 }
 
 function loadExample(num, scroll) {
-	if (trackingID) {
-		ga('send', 'pageview', '/example' + num);
-	}
+	try {
+		if (trackingID) {
+			ga('send', 'pageview', '/example' + num);
+		}
+	} catch(err) {}
 	if (num == 1) {
 		document.getElementById("InVars").value = "vS";
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT";
@@ -440,9 +442,11 @@ function loadFromURL() {
 }
 
 function tutorial() {
-	if (trackingID) {
-		ga('send', 'pageview', '/tutorial');
-	}
+	try {
+		if (trackingID) {
+			ga('send', 'pageview', '/tutorial');
+		}
+	} catch(err) {}
 	MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'tutorialRef']);
 }
 
