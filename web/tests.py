@@ -345,14 +345,14 @@ class TestWebInterface(unittest.TestCase):
 		cookies = self.driver.get_cookies()
 		self.assertEqual(len(cookies), 1)
 		cookie = cookies[0]
-		self.assertEqual(cookie['name'], 'test')
+		self.assertEqual(cookie['name'], 'stmt_test')
 		self.assertEqual(json.loads(unquote(cookie['value'])), examples[0])
 
 	def test_load(self):
 		self.driver.find_element('id', 'page1').find_element('class name', 'btn-default').click()
 		self.assertFalse(self.driver.find_element('id', 'saved').is_displayed())
 		self.driver.add_cookie({
-			'name': 'test2',
+			'name': 'stmt_test2',
 			'value': quote(json.dumps(examples[1]))
 		})
 		self.driver.refresh()
@@ -387,7 +387,7 @@ class TestWebInterface(unittest.TestCase):
 
 	def test_delete(self):
 		self.driver.add_cookie({
-			'name': 'test2',
+			'name': 'stmt_test2',
 			'value': quote(json.dumps(examples[1]))
 		})
 		self.driver.refresh()

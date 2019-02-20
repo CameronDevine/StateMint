@@ -385,12 +385,14 @@ function list_saved() {
 	template = '<tr><td style="vertical-align:middle"><h4><strong>{}</strong></h4></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">folder_open</i></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">delete_outline</i></td></tr>\n';
 	names = Object.keys(Cookies.get());
 	html = "";
-	if (names.length > 0) {
+	for (i in names) {
+		if (names[i].slice(0, 5) == 'stmt_') {
+			html += template.replace('{}', names[i].slice(5));
+		}
+	}
+	if (html.length > 0) {
 		$('#saved').closest('.col-sm-6').show();
 		$('#fileUploadLink').parent().addClass('col-sm-6');
-		for (i in names) {
-			html += template.replace('{}', names[i]);
-		}
 		$('#saved tbody').html(html);
 	} else {
 		$('#saved').closest('.col-sm-6').hide()
@@ -399,16 +401,16 @@ function list_saved() {
 }
 
 function save() {
-	Cookies.set($('#saveName').val(), getData(), {expires: 365 * 10});
+	Cookies.set('stmt_' + $('#saveName').val(), getData(), {expires: 365 * 10});
 	list_saved();
 }
 
 function openClick(data) {
 	if (!data.open) {
-		Cookies.remove(data.name);
+		Cookies.remove('stmt_' + data.name);
 		list_saved()
 	} else {
-		system = JSON.parse(Cookies.get(data.name));
+		system = JSON.parse(Cookies.get('stmt_' + data.name));
 		addEquations(system);
 		$('#saveName').val(data.name);
 		StateModel();
