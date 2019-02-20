@@ -189,9 +189,20 @@ function StateModel() {
 		console.log(result);
 		data = result.data;
 		callback();
-		}, function(err) {
-		console.log(err);
-		document.getElementById("output").innerHTML = "<h1>We're sorry. The function has encountered an error</h1>";
+	}, function(err) {
+		if (err.status == 400) {
+			error_text = "Unable to solve system. Please check input.";
+		} else if (err.status == 0) {
+			error_text = "Please check your internet connection.";
+		} else {
+			error_text = "Unknown error.";
+		}
+		console.log(err.status == 0)
+		console.log(error_text);
+		$('#error').html(error_text);
+		$('#errorRef').modal();
+		$('#LoadingPage').hide();
+		$('#page3button').click();
 	});
 }
 
