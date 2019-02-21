@@ -218,18 +218,21 @@ function loadExample(num, scroll) {
 		document.getElementById("OtherElEqns").value = "fBS = BS * vBS,\nfBT = BT * vBT";
 		document.getElementById("Constraints").value = "fMB = fKS + fBS,nfMW = fKT + fBT - fKS - fBS,\nvKS = vMW - vMB,\nvKT = vS - vMW,\nvBS = vMW - vMB,\nvBT = vS - vMW";
 		document.getElementById("OutputVars").value = "vMB, vMW, fKS, fKT, fBS, fBT";
+		$('#exampleDesc').html('A model of the suspension system of one wheel of a car including tire elasticity, damping, and mass, suspension springs and shocks, and body mass.');
 	} else if (num == 2) {
 		document.getElementById("InVars").value = "Fs";
 		document.getElementById("StVarElEqns").value = "vm' = Fm/m,\nFK1' = K1 * vK1";
 		document.getElementById("OtherElEqns").value = "FB2 = B2 * vB2,\nvB1 = FB1/B1,\nvK2 = FK2' / K2";
 		document.getElementById("Constraints").value = "vK1 = vK2 - vB1,\nvB2 = vm,\nFK2 = Fs - FK1,\nFB1 = FK1,\nFm = Fs - FB2";
 		document.getElementById("OutputVars").value = "vB1";
+		$('#exampleDesc').html('A model of a damped mass driven by a force source through a parallel linkage of a spring and a series combination of a damper and a spring.');
 	} else if (num == 3) {
-		document.getElementById("InVars").value = "Fp, F0";
+		document.getElementById("InVars").value = "Fp, Fr";
 		document.getElementById("StVarElEqns").value = "vm' = Fm / m";
 		document.getElementById("OtherElEqns").value = "Fd = cd * vd**2";
-		document.getElementById("Constraints").value = "Fm = Fp - F0 - Fd,\nvd = vm";
+		document.getElementById("Constraints").value = "Fm = Fp - Fr - Fd,\nvd = vm";
 		document.getElementById("OutputVars").value = "vm";
+		$('#exampleDesc').html('A model of an idealized car driving down a straight road including propulsive force, aerodynamic drag, rolling resistance, and car mass.');
 	}
 	$('#exampleImage').prop('src', 'examples/example' + num + '.svg');
 	insertImage('examples/example' + num + '.svg')
