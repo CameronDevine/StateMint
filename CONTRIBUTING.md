@@ -12,7 +12,6 @@ You can find a [list of current issues](https://github.com/CameronDevine/StateMi
 
 ## Pull Requests
 
-* If you're unfamiliar with Pull Requests, please take a look at the [GitHub documentation for them](https://help.github.com/articles/proposing-changes-to-a-project-with-pull-requests/).
 * **Make sure the test suite passes** on your computer. To do this, run `python TestSuite.py` from the `python` directory, `make test` from the `web` directory, or run the `TestSuite.nb` notebook from the `mathematica` directory, depending on what code has been changed.
 * _Always_ add tests and docs for your code.
 * Please reference relevant GitHub issues in your commit messages using `#123`.
