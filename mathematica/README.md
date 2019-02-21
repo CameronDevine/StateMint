@@ -222,3 +222,7 @@ The output looks something like the following.
 The example notebook `Example.nb` shows an application. Open it in Mathematica and run them. It works without fully installing the package.
 
 An extensive example of a hydroelectric power generation system can be found [here](http://ricopic.one/dynamic_systems/source/microhydroelectric.nb).
+
+## Note
+
+This package has been developed and tested on Mathematica 11.
