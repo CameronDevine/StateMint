@@ -72,10 +72,10 @@ examples = [{
 	"Constraints": "vK1 = vK2 - vB1,\nvB2 = vm,\nFK2 = Fs - FK1,\nFB1 = FK1,\nFm = Fs - FB2",
 	"OutputVars": "vB1",
 	}, {
-	"InVars": "Fp, F0",
+	"InVars": "Fp, Fr",
 	"StVarElEqns": "vm' = Fm / m",
 	"OtherElEqns": "Fd = cd * vd**2",
-	"Constraints": "Fm = Fp - F0 - Fd,\nvd = vm",
+	"Constraints": "Fm = Fp - Fr - Fd,\nvd = vm",
 	"OutputVars": "vm"
 }]
 
@@ -89,6 +89,11 @@ example_data = [{
 	'nonlinear': True,
 	'nonstandard': False,
 }]
+
+example_descriptions = [
+	"A model of the suspension system of one wheel of a car including tire elasticity, damping, and mass, suspension springs and shocks, and body mass.",
+	"A model of a damped mass driven by a force source through a parallel linkage of a spring and a series combination of a damper and a spring.",
+	"A model of an idealized car driving down a straight road including propulsive force, aerodynamic drag, rolling resistance, and car mass."]
 
 output_forms = {
 	'equation': {
@@ -110,9 +115,9 @@ output_forms = {
 		'StateSpaceN': ['A', 'B', 'C', 'D', 'E', 'F'],
 		'StateSpaceP': ['A', "B'", 'C', "D'"]},
 	'mathematica': {
-		'StateSpace': ['State Equation Matricies'],
-		'StateSpaceN': ['State Equation Matricies'],
-		'StateSpaceP': ['State Equation Matricies'],
+		'StateSpace': ['State Equation Matrices'],
+		'StateSpaceN': ['State Equation Matrices'],
+		'StateSpaceP': ['State Equation Matrices'],
 		'eq': ['State Equation', 'Output Equation']},
 	'python': {
 		'StateSpace': ['A', 'B', 'C', 'D'],
@@ -141,6 +146,7 @@ class TestWebInterface(unittest.TestCase):
 		self.assertEqual(self.driver.page_y_offset(), self.driver.window_inner_height())
 		self.driver.hover(self.driver.find_element('link text', 'EXAMPLE {}'.format(num)))
 		self.assertEqual(self.driver.find_element('id', 'exampleImage').get_attribute('src').split('/')[-1], 'example{}.svg'.format(num))
+		self.assertEqual(self.driver.find_element('id', 'exampleDesc').text, example_descriptions[num - 1])
 		self.driver.find_element('id', 'page4').find_element('class name', 'smooth').click()
 		self.driver.wait()
 		self.assertEqual(self.driver.page_y_offset(), 2 * self.driver.window_inner_height())
@@ -622,6 +628,13 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.wait()
 		self.assertDotSize(1)
 		self.assertScroll('page3')
+
+	def test_about(self):
+		for button in self.driver.find_elements('tag name', 'button'):
+			if button.text == 'ABOUT':
+				self.modal_test(button, 'aboutRef')
+				return
+		self.fail('Cannot find about button')
 
 if __name__ == '__main__':
 	unittest.main()
