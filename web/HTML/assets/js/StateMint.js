@@ -90,13 +90,13 @@ function eqform(type) {
 	} else if (use_lang == "Mathematica") {
 		var codes = data.Mathematica;
 		if (type == "StateSpace") {
-			output(['State Equation Matricies'], [
+			output(['State Equation Matrices'], [
 				"{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + "}"]);
 		} else if (type == "StateSpaceN") {
-			output(['State Equation Matricies'], [
+			output(['State Equation Matrices'], [
 				"{a->" + codes.A + ",b->" + codes.B + ",c->" + codes.C + ",d->" + codes.D + ",e->" + codes.E + ",f->" + codes.F + "}"]);
 		} else if (type == "StateSpaceP") {
-			output(['State Equation Matricies'], [
+			output(['State Equation Matrices'], [
 				"{a->" + codes.A + ",bp->" + codes.Bp + ",c->" + codes.C + ",dp->" + codes.Dp + "}"]);
 		} else if (type == "eq") {
 			output(['State Equation', 'Output Equation'],
