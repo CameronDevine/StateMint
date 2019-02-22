@@ -99,11 +99,18 @@ The following elements can be modeled as gyrators,
 | Hydraulic Ram     | $-1/A$ | Piston Area, $A$
 | Displacement Pump | $-1/D$ | Pump Displacement, $D$
 
+#### Sources
+
+The final type of element are the source elements.
+Source elements come in two types, across-variable sources and through-variable sources.
+These sources allow power to be injected into the system at a given across or through-variable time dependent level.
+
 ### Linear Graphs
 
 Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
-Each node represents an independent across-variable value.
-Branches are created for each element in the system.
+Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
+Branches are created for each element in the system, where power flows between the nodes.
+Branches are drawn as a line between two nodes with an arrow in the direction of the decreasing across-variable.
 In non-electrical systems, A type elements always connect to a ground node.
 Arrows on branches point in the direction of decreasing across-variable.
 Arrows on transformers and gyrators always point towards ground.
