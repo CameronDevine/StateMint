@@ -101,9 +101,9 @@ The following elements can be modeled as gyrators,
 
 #### Sources
 
-The final type of element are the source elements.
-Source elements come in two types, across-variable sources and through-variable sources.
-These sources allow power to be injected into the system at a given across or through-variable time dependent level.
+The final type of element are the ideal sources.
+Ideal sources provide (potentially arbitrary) external power to a system by specifying either its across-variable or through-variable.
+The former are called across-variable sources and the latter through-variable sources.
 
 ### Linear Graphs
 
