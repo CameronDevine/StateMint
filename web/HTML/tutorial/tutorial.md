@@ -184,6 +184,8 @@ Finally the pump pushes water through a curved pipe of known resistance.
 ### Linear Graph
 
 This system can be distilled into the linear graph below.
+Here 1 is the electrical input to the motor, and 2 is rotational output.
+Similarly 3 is the rotational input to the pump, and 4 is the fluid output.
 
 ![Linear Graph](tutorial/tutorial2.svg)
 
@@ -280,7 +282,9 @@ By adding each link into the normal tree the equations below were generated.
 
 ## Using the Software
 
-Given these equations, the state equation could be found by hand, or by using one of the following tools.
+Given the equations derived above, the state equation could be found by hand.
+However, one of the following tools can be used.
+These tools require the equations as derived above to be provided.
 
 ### Web Interface
 
