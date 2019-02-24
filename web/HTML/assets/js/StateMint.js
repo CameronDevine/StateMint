@@ -197,8 +197,7 @@ function StateModel() {
 		} else {
 			error_text = "Unknown error.";
 		}
-		console.log(err.status == 0)
-		console.log(error_text);
+		console.log(err);
 		$('#error').html(error_text);
 		$('#errorRef').modal();
 		$('#LoadingPage').hide();

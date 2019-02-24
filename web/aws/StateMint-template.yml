@@ -11,7 +11,7 @@ Resources:
       CodeUri: lambda.zip
       Description: The Lambda function for StateMint.
       MemorySize: 768
-      Timeout: 10
+      Timeout: 30
       Events:
         Http:
           Type: Api
