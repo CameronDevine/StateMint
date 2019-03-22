@@ -2,7 +2,7 @@
 
 The purpose of this tutorial is to give the necessary background information on how to use the StateMint software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
 To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's university taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
+Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's University taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
 
 ## Background Information
 
@@ -27,12 +27,12 @@ A list of common system types and their through-variables and across-variables c
 
 ### Elemental Equations
 
-Within each energy domain, there are multiple element types which can be used to model a system in that domain.
-Across energy domains, these elements can be grouped into three distinct types.
+Within each energy domain, there are multiple element-types which can be used to model a system in that domain.
+Across energy domains, these elements can be grouped into three distinct-types.
 
-#### A Type Elements
+#### A-Type Elements
 
-A type elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
+A-type elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
 
 | System Type   | Element             | Elemental Equation         | Parameter
 | ------------- | ------------------- | -------------------------- | ---------
@@ -42,9 +42,9 @@ A type elements are energy storage elements which relate the rate of change of t
 | Fluid         | Fluid Capacitor     | ![$Q=C_f\frac{dP}{dt}$](http://latex.codecogs.com/svg.latex?Q%3DC_f%5Cfrac%7BdP%7D%7Bdt%7D)       | Fluid Capacitance, ![$C_f$](http://latex.codecogs.com/svg.latex?C_f)
 | Thermal       | Thermal Capacitance | ![$q=C_t\frac{dT}{dt}$](http://latex.codecogs.com/svg.latex?q%3DC_t%5Cfrac%7BdT%7D%7Bdt%7D)       | Thermal Capacitance, ![$C_t$](http://latex.codecogs.com/svg.latex?C_t)
 
-#### T Type Elements
+#### T-Type Elements
 
-T type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
+T-type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
 
 | System Type   | Element          | Elemental Equation                     | Parameter
 | ------------- | ---------------- | -------------------------------------- | ---------
@@ -53,9 +53,9 @@ T type elements are energy storage elements which relate the rate of change of t
 | Electrical    | Inductor         | ![$v=L\frac{di}{dt}$](http://latex.codecogs.com/svg.latex?v%3DL%5Cfrac%7Bdi%7D%7Bdt%7D)                     | Inductance, ![$L$](http://latex.codecogs.com/svg.latex?L)
 | Fluid         | Inertance        | ![$P=I_f\frac{dQ}{dt}$](http://latex.codecogs.com/svg.latex?P%3DI_f%5Cfrac%7BdQ%7D%7Bdt%7D)                   | Fluid Inertance, ![$I_f$](http://latex.codecogs.com/svg.latex?I_f)
 
-#### D Type Elements
+#### D-Type Elements
 
-D type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
+D-type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
 
 | System Type   | Element            | Elemental Equation         | Parameter
 | ------------- | ------------------ | -------------------------- | ---------
@@ -101,37 +101,37 @@ The following elements can be modeled as gyrators,
 
 #### Sources
 
-The final type of element are the ideal sources.
+The final type of element is the _ideal source_.
 Ideal sources provide (potentially arbitrary) external power to a system by specifying either its across-variable or through-variable.
 The former are called across-variable sources and the latter through-variable sources.
 
 ### Linear Graphs
 
-A linear graph is a diagram of the system using "nodes" connected by "branches"
+A linear graph is a diagram of a system that represents its topology via nodes and edges (lines).
 Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
-Branches are created for each element in the system, where power flows between the nodes.
-Branches are drawn as a line between two nodes with an arrow in the direction of the decreasing across-variable.
-A type elements always connect to a ground node in non-electrical systems.
+Edges represent discrete lumped-parameter elements in the system, and through these power flows between the nodes.
+An edge is drawn as a line between two nodes with an arrow specifying a sign assignment for that element (e.g. a voltage drop is positive in the direction of the arrow).
+A-type elements always connect to a ground node in non-electrical systems.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
 ### Normal Trees
 
-A normal tree can be constructed to find the system's primay and secondary variables.
-This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) branches from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
+A normal tree can be constructed to find the system's primay and secondary variables, defined below.
+This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) edges from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
 If multiple ground nodes are present in the linear graph, they should be counted as a single node.
 Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
-To construct the normal tree, select branches in the following order.
+To construct the normal tree, select edges in the following order.
 
 1. Across-variable sources
-2. A type elements
-3. Transformers and Gyrators (minimizing the number of T type elements in the normal tree)
-4. D type elements
-5. T type elements
+2. A-type elements
+3. Transformers and Gyrators (minimizing the number of T-type elements in the normal tree)
+4. D-type elements
+5. T-type elements
 
-For transformers, one branch must be selected.
-For gyrators, both or neither branches can be selected.
-The elements in the normal tree are termed normal tree branches, while the elements not in the normal tree are called normal tree links.
+For transformers, one edge must be selected.
+For gyrators, both or neither edges can be selected.
+The elements in the normal tree are termed _branches_, while the elements not in the normal tree are called _links_.
 
 ### Primary and Secondary Variables
 
@@ -151,13 +151,13 @@ In other words the secondary variables are,
 
 The state variables of the system are,
 
-* A type elements on normal tree branches and
-* T type elements on normal tree links.
+* A-type elements on normal tree branches and
+* T-type elements on normal tree links.
 
 ### Elemental Equations
 
-We define ![$B$](http://latex.codecogs.com/svg.latex?B) as the number of branches in the linear graph and ![$S$](http://latex.codecogs.com/svg.latex?S) as the number of sources.
-An elemental equation should be written for each of the ![$B-S$](http://latex.codecogs.com/svg.latex?B-S) non-source branches in the linear graph.
+We define ![$B$](http://latex.codecogs.com/svg.latex?B) as the number of edges in the linear graph and ![$S$](http://latex.codecogs.com/svg.latex?S) as the number of sources.
+An elemental equation should be written for each of the ![$B-S$](http://latex.codecogs.com/svg.latex?B-S) non-source edges in the linear graph.
 The primary variable must be written on the left hand side of each equation.
 
 ### Continuity Equations
@@ -199,7 +199,7 @@ To create the normal tree, first the voltage source is selected.
 
 ![Normal Tree](web/HTML/tutorial/tutorial3.svg)
 
-To avoid selecting T type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
+To avoid selecting T-type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
 
 ![Normal Tree](web/HTML/tutorial/tutorial4.svg)
 
