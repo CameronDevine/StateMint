@@ -107,18 +107,17 @@ The former are called across-variable sources and the latter through-variable so
 
 ### Linear Graphs
 
-Linear graph representations of systems use "nodes" and connecting "branches" to diagram a system.
+A linear graph is a diagram of the system using "nodes" connected by "branches"
 Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
 Branches are created for each element in the system, where power flows between the nodes.
 Branches are drawn as a line between two nodes with an arrow in the direction of the decreasing across-variable.
-In non-electrical systems, A type elements always connect to a ground node.
-Arrows on branches point in the direction of decreasing across-variable.
+A type elements always connect to a ground node in non-electrical systems.
 Arrows on transformers and gyrators always point towards ground.
 An example of a linear graph appears in the Example section of this tutorial.
 
 ### Normal Trees
 
-In order to find the primary and secondary variables, a normal tree can be constructed.
+A normal tree can be constructed to find the system's primay and secondary variables.
 This normal tree should consist of $N-1$ branches from the linear graph where $N$ is the number of nodes in the linear graph.
 If multiple ground nodes are present in the linear graph, they should be counted as a single node.
 Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
@@ -142,7 +141,7 @@ Primary variables are defined as,
 * Across-variables on normal tree branches and
 * Through-variables on normal tree links.
 
-For each element, the secondary variable is the non-primary variable.
+The secondary variable is the non-primary variable in each element.
 In other words the secondary variables are,
 
 * Across-variables on normal tree links
@@ -158,18 +157,23 @@ The state variables of the system are,
 ### Elemental Equations
 
 We define $B$ as the number of branches in the linear graph and $S$ as the number of sources.
-$B-S$ elemental equations should be written with the primary variable on the left hand side.
+An elemental equation should be written for each of the $B-S$ non-source branches in the linear graph.
+The primary variable must be written on the left hand side of each equation.
 
 ### Continuity Equations
 
-$N-1-S_A$ continuity equations should be found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
-For each equation the secondary through-variable should be placed on the left hand side, and the sum of the through-variable flowing through the contour determined.
+$N-1-S_A$ continuity equations should be found.
+These equations are found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
+Next, the sum of the through-variable flowing through the contour determined needs to be found.
+The secondary through-variable should be placed on the left hand side of the resulting equation.
+
 
 ### Compatibility Equations
 
-$B-N+1-S_T$ compatibility equations should be written with the secondary across-variable on the left side.
-To create these equations calculate the sum of the across-variables around the loop created when a normal tree link is added to the normal tree.
-Do this for each normal tree link.
+$B-N+1-S_T$ compatibility equations should be written.
+These equations most have the secondary across-variable on the left side.
+To create these equations, calculate the sum of the across-variables around the loop created when one normal tree link is added to the normal tree.
+An equation should be found by substituting each link into the normal tree.
 
 ## Example
 
