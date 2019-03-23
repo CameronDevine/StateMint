@@ -11,7 +11,7 @@ depends:
 	cp -r ../python/StateMint aws/lambda/
 
 zip:
-	cd aws/lambda; zip -r ../lambda.zip *
+	cd aws/lambda; zip -q -r ../lambda.zip *
 
 package: check
 	found="false"; \
