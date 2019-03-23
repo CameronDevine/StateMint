@@ -40,6 +40,7 @@ jobs:
       install:
         - pip install awscli;
           aws configure set region $AWS_DEFAULT_REGION;
+          cd web;
       script:
         - make trackingID=$TRACKING_ID;
           echo "statemint.stmartin.edu" > HTML/CNAME
