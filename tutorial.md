@@ -11,9 +11,9 @@ This method of finding a differential equation of a dynamic system works with mu
 ### System Types
 
 In each energy domain, a through-variable, ![$v$](http://latex.codecogs.com/svg.latex?v), and an across-variable, ![$f$](http://latex.codecogs.com/svg.latex?f), is defined.
-A through-variable is a variable that generally has the same value at each element terminal.
+A _through-variable_ is a variable that generally has the same value at each element terminal.
 It corresponds to a physical quantity that would be measured flowing through an element.
-An across-variable is a variable that generally has a different value at each element terminal.
+An _across-variable_ is a variable that generally has a different value at each element terminal.
 It corresponds to a physical quantity that would be measured across an element or relative to some reference.
 A list of common system types and their through-variables and across-variables can be found below.
 
@@ -32,7 +32,7 @@ Across energy domains, these elements can be grouped into three distinct-types.
 
 #### A-Type Elements
 
-A-type elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
+_A-type_ elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
 
 | System Type   | Element             | Elemental Equation         | Parameter
 | ------------- | ------------------- | -------------------------- | ---------
@@ -44,7 +44,7 @@ A-type elements are energy storage elements which relate the rate of change of t
 
 #### T-Type Elements
 
-T-type elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
+_T-type_ elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
 
 | System Type   | Element          | Elemental Equation                     | Parameter
 | ------------- | ---------------- | -------------------------------------- | ---------
@@ -55,7 +55,7 @@ T-type elements are energy storage elements which relate the rate of change of t
 
 #### D-Type Elements
 
-D-type elements are strictly dissipative with a linear relationship between through-variables and across-variables.
+_D-type_ elements are strictly dissipative with a linear relationship between through-variables and across-variables.
 
 | System Type   | Element            | Elemental Equation         | Parameter
 | ------------- | ------------------ | -------------------------- | ---------
@@ -68,7 +68,7 @@ D-type elements are strictly dissipative with a linear relationship between thro
 #### Transformers
 
 In dynamic systems, energy can flow between multiple domains.
-Transformers are one model for relating the through-variable and across-variable of two energy domains to each other,
+_Transformers_ are one model for relating the through-variable and across-variable of two energy domains to each other,
 
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
 
@@ -87,7 +87,7 @@ A few of these are listed below,
 
 #### Gyrators
 
-Gyrators are another tool used to model energy flow between domains.
+_Gyrators_ are another tool used to model energy flow between domains.
 This model relates the across-variable in one energy domain to the through-variable in the other,
 
 ![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D0%26GY%5C%5C-1/GY%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
@@ -107,7 +107,7 @@ The former are called across-variable sources and the latter through-variable so
 
 ### Linear Graphs
 
-A linear graph is a diagram of a system that represents its topology via nodes and edges (lines).
+A _linear graph_ is a diagram of a system that represents its topology via nodes and edges (lines).
 Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
 Edges represent discrete lumped-parameter elements in the system, and through these power flows between the nodes.
 An edge is drawn as a line between two nodes with an arrow specifying a sign assignment for that element (e.g. a voltage drop is positive in the direction of the arrow).
@@ -117,7 +117,7 @@ An example of a linear graph appears in the Example section of this tutorial.
 
 ### Normal Trees
 
-A normal tree can be constructed to find the system's primay and secondary variables, defined below.
+A _normal tree_ can be constructed to find the system's primay and secondary variables, defined below.
 This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) edges from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
 If multiple ground nodes are present in the linear graph, they should be counted as a single node.
 Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
@@ -136,12 +136,12 @@ The elements in the normal tree are termed _branches_, while the elements not in
 ### Primary and Secondary Variables
 
 Once the normal tree has been created it is trivial to determine the primary and secondary variables.
-Primary variables are defined as,
+_Primary variables_ are defined as,
 
 * Across-variables on normal tree branches and
 * Through-variables on normal tree links.
 
-The secondary variable is the non-primary variable in each element.
+The _secondary variable_ is the non-primary variable in each element.
 In other words the secondary variables are,
 
 * Across-variables on normal tree links
@@ -149,7 +149,7 @@ In other words the secondary variables are,
 
 ### State Variables
 
-The state variables of the system are,
+The _state variables_ of the system are,
 
 * A-type elements on normal tree branches and
 * T-type elements on normal tree links.
@@ -162,7 +162,7 @@ The primary variable must be written on the left hand side of each equation.
 
 ### Continuity Equations
 
-![$N-1-S_A$](http://latex.codecogs.com/svg.latex?N-1-S_A) continuity equations should be found.
+![$N-1-S_A$](http://latex.codecogs.com/svg.latex?N-1-S_A) _continuity equations_ should be found.
 These equations are found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
 Next, the sum of the through-variable flowing through the contour determined needs to be found.
 The secondary through-variable should be placed on the left hand side of the resulting equation.
@@ -170,7 +170,7 @@ The secondary through-variable should be placed on the left hand side of the res
 
 ### Compatibility Equations
 
-![$B-N+1-S_T$](http://latex.codecogs.com/svg.latex?B-N%2B1-S_T) compatibility equations should be written.
+![$B-N+1-S_T$](http://latex.codecogs.com/svg.latex?B-N%2B1-S_T) _compatibility equations_ should be written.
 These equations most have the secondary across-variable on the left side.
 To create these equations, calculate the sum of the across-variables around the loop created when one normal tree link is added to the normal tree.
 An equation should be found by substituting each link into the normal tree.
