@@ -63,7 +63,7 @@ examples = [{
 	"InVars": "vS",
 	"StVarElEqns": "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT",
 	"OtherElEqns": "fBS = BS * vBS,\nfBT = BT * vBT",
-	"Constraints": "fMB = fKS + fBS,nfMW = fKT + fBT - fKS - fBS,\nvKS = vMW - vMB,\nvKT = vS - vMW,\nvBS = vMW - vMB,\nvBT = vS - vMW",
+	"Constraints": "fMB = fKS + fBS,\nfMW = fKT + fBT - fKS - fBS,\nvKS = vMW - vMB,\nvKT = vS - vMW,\nvBS = vMW - vMB,\nvBT = vS - vMW",
 	"OutputVars": "vMB, vMW, fKS, fKT, fBS, fBT",
 	}, {
 	"InVars": "Fs",

@@ -215,7 +215,7 @@ function loadExample(num, scroll) {
 		document.getElementById("InVars").value = "vS";
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT";
 		document.getElementById("OtherElEqns").value = "fBS = BS * vBS,\nfBT = BT * vBT";
-		document.getElementById("Constraints").value = "fMB = fKS + fBS,nfMW = fKT + fBT - fKS - fBS,\nvKS = vMW - vMB,\nvKT = vS - vMW,\nvBS = vMW - vMB,\nvBT = vS - vMW";
+		document.getElementById("Constraints").value = "fMB = fKS + fBS,\nfMW = fKT + fBT - fKS - fBS,\nvKS = vMW - vMB,\nvKT = vS - vMW,\nvBS = vMW - vMB,\nvBT = vS - vMW";
 		document.getElementById("OutputVars").value = "vMB, vMW, fKS, fKT, fBS, fBT";
 		$('#exampleDesc').html('A model of the suspension system of one wheel of a car including tire elasticity, damping, and mass, suspension springs and shocks, and body mass.');
 	} else if (num == 2) {
@@ -231,7 +231,7 @@ function loadExample(num, scroll) {
 		document.getElementById("OtherElEqns").value = "Fd = cd * vd**2";
 		document.getElementById("Constraints").value = "Fm = Fp - Fr - Fd,\nvd = vm";
 		document.getElementById("OutputVars").value = "vm";
-		$('#exampleDesc').html('A model of an idealized car driving down a straight road including propulsive force, aerodynamic drag, rolling resistance, and car mass.');
+		$('#exampleDesc').html('A model of an idealized car driving down a straight road including propulsive force, nonlinear aerodynamic drag, constant rolling resistance, and car mass.');
 	}
 	$('#exampleImage').prop('src', 'examples/example' + num + '.svg');
 	insertImage('examples/example' + num + '.svg')
