@@ -93,7 +93,7 @@ example_data = [{
 example_descriptions = [
 	"A model of the suspension system of one wheel of a car including tire elasticity, damping, and mass, suspension springs and shocks, and body mass.",
 	"A model of a damped mass driven by a force source through a parallel linkage of a spring and a series combination of a damper and a spring.",
-	"A model of an idealized car driving down a straight road including propulsive force, aerodynamic drag, rolling resistance, and car mass."]
+	"A model of an idealized car driving down a straight road including propulsive force, nonlinear aerodynamic drag, constant rolling resistance, and car mass."]
 
 output_forms = {
 	'equation': {
