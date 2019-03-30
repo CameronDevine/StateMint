@@ -157,7 +157,7 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.find_element('id', 'page5').find_element('class name', 'btn').click()
 		self.driver.wait()
 		timeout = True
-		for i in range(int(10 / 0.2)):
+		for i in range(int(15 / 0.2)):
 			if self.driver.find_element('id', 'page6').is_displayed():
 				timeout = False
 				break
