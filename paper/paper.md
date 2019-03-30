@@ -40,11 +40,12 @@ Finally, the set of equations can be reduced to a system of first-order differen
 
 ## Statement of Need
 
-In our collective 7 years teaching system dynamics, our experience is that a student, manually reducing the set of equations, will often make some minor mistake in one of the last two steps.
-This is typically of a "book keeping" variety that, if it teaches the student anything, it is not system dynamics.
+In our experience,^[Collectively we have almost 30 years of experience teaching system dynamics.] a student manually reducing the set of equations, will often make some minor mistake during the tedious process of the last two steps above.
+This is typically of a "book keeping" variety that, if it teaches the student anything, is not system dynamics.
 Instead, the student can be easily discouraged and confused about where they have made their mistake.
-The software tools presented here will automate the algebraic reduction.
-These will allow students to focus on understanding the process of dynamic system modeling.
+Furthermore, the tedious nature of the reduction can dampen a student's desire to explore interesting problems.
+The software tools presented here will automate this algebraic reduction.
+This will allow students to focus on understanding the process of dynamic system modeling and to experience a wider breadth of problems, with minimal effort.
 
 ## Software Tools
 
