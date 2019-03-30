@@ -32,16 +32,21 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 # Introduction
 
 When deriving a system's state-space model&mdash;that is, the vector state (differential) equation and the vector output (algebraic) equation&mdash;one begins by forming scalar equations for each lumped-parameter element, describing its dynamics.
-Lumped-parameter elements, or more generally lumped-parameter modeling, uses the assumption that power enters and exits each element of the system in a finite number of ports, usually two.
+Lumped-parameter elements, or more generally lumped-parameter modeling, uses the assumption that power enters and exits each element of the system in a finite number of ports, usually one.
 The next step is to form a set of $N$ constraint equations that describe the topology of the system defined by the interconnection of the $N$ elements.
 A set of $2N$ differential and algebraic equations and $2N$ unknown variables result.
 If properly constructed (e.g. with the linear graph technique [@rowell1997] summarized in the [tutorial](https://github.com/CameronDevine/StateMint/blob/master/tutorial.md)), $N$ of the unknown variables can be immediately eliminated through direct substitution.
 Finally, the set of equations can be reduced to a system of first-order differential equations in state and input variables and their time-derivatives, alone.
-It is in these last two steps, especially the very last, that a student, manually reducing the set of equations, will often make some minor mistake.
+
+## Statement of Need
+
+In our collective 7 years teaching system dynamics, our experience is that a student, manually reducing the set of equations, will often make some minor mistake in one of the last two steps.
 This is typically of a "book keeping" variety that, if it teaches the student anything, it is not system dynamics.
 Instead, the student can be easily discouraged and confused about where they have made their mistake.
-Fortunately, the software tools presented here will automate the algebraic reduction.
+The software tools presented here will automate the algebraic reduction.
 These will allow students to focus on understanding the process of dynamic system modeling.
+
+## Software Tools
 
 Utilizing the advanced symbolic mathematics capabilities of Mathematica, a package was written to determine the dynamic system model.
 However, this requires students to install and learn (at least) the basics of Mathematica.
