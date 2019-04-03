@@ -33,7 +33,7 @@ jobs:
           PATH=$PATH:$(pwd);
           aws configure set region $AWS_DEFAULT_REGION;
       script: make all test stack=StateMint-test-$TRAVIS_JOB_ID;
-      after_script: make remove stack=StateMint-test-$TRAVIS_JOB_ID
+      after_script: make remove clean stack=StateMint-test-$TRAVIS_JOB_ID
     - stage: deploy
       if: branch = master
       python: 2.7
