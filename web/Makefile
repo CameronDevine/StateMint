@@ -16,13 +16,13 @@ zip:
 package: check
 	found="false"; \
 	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "$(stack)-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
+		if [ "$$line" == "$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
 			found="true"; \
 			break; \
 		fi; \
 	done; \
 	if [ "$$found" == "false" ]; then \
-		aws s3 mb s3://$(stack)-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4); \
+		aws s3 mb s3://$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4); \
 	fi
 	echo "$(shell \
 		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
@@ -30,7 +30,7 @@ package: check
 		export stack=$(stack); \
 		envsubst '$$account $$region $$stack' < aws/api-template.yml > aws/api.yml; \
 		envsubst '$$stack' < aws/StateMint-template.yml > aws/StateMint.yml;)"
-	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket $(stack)-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --output-template-file aws/package.yml
+	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket $$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --output-template-file aws/package.yml
 
 deploy: check
 	aws cloudformation deploy --stack-name $(stack) --template-file aws/package.yml --capabilities CAPABILITY_IAM
@@ -47,8 +47,8 @@ clean: check
 	rm -f aws/StateMint.yml
 	rm -rf HTML/assets/apiGateway-js-sdk
 	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "$(stack)-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
-			aws s3 rb s3://$(stack)-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --force; \
+		if [ "$$line" == "$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
+			aws s3 rb s3://$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --force; \
 			break; \
 		fi; \
 	done
