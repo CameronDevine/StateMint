@@ -31,7 +31,7 @@ StateMint includes a Mathematica package, a Python package, and a web interface 
 
 # Introduction
 
-When deriving a system's state-space model&mdash;that is, the vector state (differential) equation and the vector output (algebraic) equation&mdash;in the manner of Rowell and Wormley ([@rowell1997]; also see the [tutorial](https://github.com/CameronDevine/StateMint/blob/master/tutorial.md)), one begins by forming scalar equations for each lumped-parameter element, describing its dynamics; we call these "elemental equations."
+When deriving a system's state-space model&mdash;that is, the vector state (differential) equation and the vector output (algebraic) equation&mdash;in the manner of Rowell and Wormley^[This method is also described in the [tutorial](https://github.com/CameronDevine/StateMint/blob/master/tutorial.md).] [@rowell1997], one begins by forming scalar equations for each lumped-parameter element, describing its dynamics; we call these "elemental equations."
 We assume power enters and exits each element through a finite number of ports, usually one.
 Let the total number of ports in a given system be $N$, which is equal to the number of elemental equations.
 $N$ constraint equations that describe the topology of the system can be defined by the interconnection of the elements.
