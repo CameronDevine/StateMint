@@ -183,6 +183,17 @@
 					</button>
 				</div>
 			</form>
+			<div class="highlight-clean" id="inputButtons">
+				<div class="container">
+					<div class="buttons">
+						<a class="btn btn-primary" role="button" style="height:60px;" onclick="restart()">Start Over<i class="material-icons">fast_rewind</i></a>
+						<a class="btn btn-default" role="button" style="height:60px;" data-toggle="modal" data-target="#saveRef">Save<i class="material-icons">save</i></a>
+						<a class="btn btn-default" role="button" style="height:60px;" onclick="share()">Share<i class="material-icons">share</i></a>
+						<textarea style="display:none" id="shareArea"></textarea>
+						<button class="btn btn-default" type="button" style="height:60px;" onclick="download()">Download<i class="material-icons">file_download</i></button>
+					</div>
+				</div>
+			</div>
 		</section>
 		<div class="social-icons" id="page6button" style="padding-top:0;padding-bottom:0;display:none">
 			<a class="smooth" href="#page6"><i class="material-icons">keyboard_arrow_down</i></a>

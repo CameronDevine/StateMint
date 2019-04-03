@@ -34,6 +34,7 @@ function callback() {
 	$('#page6button').show();
 	$('#page6li').show();
 	$('#page6').show();
+	$('#inputButtons').hide();
 	setTimeout(function() {
 		$('#page4button').click();
 		setTimeout(function () {
@@ -183,6 +184,9 @@ function StateModel() {
 		}
 	};
 	console.log(aditionalParams)
+	$('#page6').hide();
+	$('#inputButtons').show();
+	$('#page6button').hide();
 	$('#LoadingPage').show();
 	$('#LoadingPageLink').click();
 	Client.stateMintPost(params, body, aditionalParams).then(function(result) {
