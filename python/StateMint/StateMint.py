@@ -5,17 +5,65 @@ This code can be installed by running `pip install StateMint`, or one of the oth
 '''
 
 import sympy
+from sympy.parsing.sympy_parser import parse_expr
 
 t, s = sympy.symbols('t s')
 dummy = sympy.symbols('dummy')
 
+names = [
+	'Eq',
+	'Function',
+	'Symbol',
+	'Integer',
+	'Float',
+	'sqrt',
+	'exp',
+	'log',
+	'cos',
+	'sin',
+	'tan',
+	'cot',
+	'sec',
+	'csc',
+	'sinc',
+	'asin',
+	'acos',
+	'atan',
+	'asec',
+	'acsc',
+	'atan2',
+	'sinh',
+	'cosh',
+	'tanh',
+	'coth',
+	'sech',
+	'csch',
+	'asinh',
+	'acosh',
+	'atanh',
+	'acoth',
+	'asech',
+	'acsch',
+	'I',
+	're',
+	'im',
+	'Abs',
+	'arg',
+	'conjugate',
+	'ceiling',
+	'floor',
+	'sign'
+]
+
+funcs = dict((name, getattr(sympy, name)) for name in names)
+
 def sympify_vec(data):
-	return [sympy.sympify(el + '(t)') for el in data]
+	return [parse_expr(el + '(t)', global_dict = funcs) for el in data]
 
 def sympify_eqs(data):
 	if len(data) == 0:
 		return []
-	return [sympy.sympify('Eq(' + el.replace("'", "(t).diff(t)").replace('=', ',') + ')') for el in data]
+	return [parse_expr('Eq(' + el.replace("'", "(t).diff(t)").replace('=', ',') + ')', global_dict = funcs) for el in data]
 
 def make_matrix(eqs, vars, D = False):
 	M = sympy.zeros(len(eqs), len(vars))
