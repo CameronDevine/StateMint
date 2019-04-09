@@ -3,6 +3,8 @@
 [![PyPI](https://img.shields.io/pypi/v/StateMint.svg)](https://pypi.org/project/StateMint/)
 [![License](https://img.shields.io/github/license/CameronDevine/StateMint.svg)](LICENSE)
 [![Code of Conduct](https://img.shields.io/badge/contributor%20covenant-v1.4-blue.svg)](CODE_OF_CONDUCT.md)
+[![status](http://jose.theoj.org/papers/7caec95b5db5c18d8a14cbc42fef7bb7/status.svg)](http://jose.theoj.org/papers/7caec95b5db5c18d8a14cbc42fef7bb7)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2633330.svg)](https://doi.org/10.5281/zenodo.2633330)
 
 StateMint is a set of tools to symbolically determine the differential equation describing the dynamics of a system.
 As inputs these tools take the elemental and constraint equations of a system.
