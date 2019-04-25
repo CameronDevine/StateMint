@@ -46,6 +46,16 @@ function createNew() {
 	$('#page3').hide();
 	$('#page4').hide();
 	$('#page2button').click();
+	jpeg = null;
+	document.getElementById("InVars").value = '';
+	document.getElementById("StVarElEqns").value = '';
+	document.getElementById("OtherElEqns").value = '';
+	document.getElementById("Constraints").value = '';
+	document.getElementById("OutputVars").value = '';
+	$('#systemImage').prop('src', '');
+	$('#page6').hide();
+	$('#inputButtons').show();
+	$('#page6button').hide();
 }
 
 function openExisting() {
