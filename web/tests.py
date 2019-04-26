@@ -154,7 +154,7 @@ class TestWebInterface(unittest.TestCase):
 		example = examples[num - 1]
 		for key in example:
 			self.assertEqual(self.driver.find_element('id', key).get_attribute('value'), example[key])
-		self.driver.find_element('id', 'page5').find_element('class name', 'btn').click()
+		self.driver.find_element('id', 'page5').find_element('class name', 'btn-primary').click()
 		self.driver.wait()
 		timeout = True
 		for i in range(int(15 / 0.2)):
@@ -545,7 +545,7 @@ class TestWebInterface(unittest.TestCase):
 		self.driver.wait()
 		self.assertDotSize(2)
 		self.assertScroll('page5')
-		self.driver.find_element('id', 'page5').find_element('class name', 'btn').click()
+		self.driver.find_element('id', 'page5').find_element('class name', 'btn-primary').click()
 		self.driver.wait(0.3)
 		self.assertTrue(self.driver.find_element('id', 'LoadingPage').is_displayed())
 		self.assertScroll('LoadingPage')
