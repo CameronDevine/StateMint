@@ -77,26 +77,25 @@
 		</div>
 		<div class="page" id="page2">
 			<div style="height: 15%"></div>
-				<section class="highlight-blue">
-					<div class="container">
-						<div class="intro">
-							<h2 class="text-center">Upload a photo</h2>
-								<div class="row">
-									<div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;">
-										<i align="center" class="material-icons" style="  font-size:80px;">photo</i>
-										<input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
-									</div>
-								</div>
-								<p class="text-center">Supported formats: .png .jpg </p>
-							</div>
-							<div class="buttons">
-								<a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a>
+			<section class="highlight-blue">
+				<div class="container">
+					<div class="intro">
+						<h2 class="text-center">Upload a photo</h2>
+						<div class="row">
+							<div class="col-lg-12 col-lg-offset-3 col-md-12" style="display:block;margin-left:auto;margin-right:auto;">
+								<i align="center" class="material-icons" style="  font-size:80px;">photo</i>
+								<input type="file" accept="image/*" style="display: none;" id="fileUploadHidden" onchange="addImage(event)"/>
 							</div>
 						</div>
-					</section>
-					<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
-						<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
+						<p class="text-center">Supported formats: .png .jpg </p>
+					</div>
+					<div class="buttons">
+						<a class="btn btn-primary" role="button" onclick="$('#fileUploadHidden').click()">Choose a photo</a>
+					</div>
 				</div>
+			</section>
+			<div class="social-icons" style="padding: 0; position: absolute; bottom: 20px; width: 100%; text-align: center;">
+				<a class="smooth" href="#page5" style="display: inline-block;"><i class="material-icons" style="color:rgb(4,4,4);">keyboard_arrow_down</i></a>
 			</div>
 		</div>
 		<div class="page" id="page3" style="display: none;">
@@ -185,7 +184,7 @@
 					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
 					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
 					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;">
-						<svg style="fill:white;transform:translate(0,2pt)" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M18 7h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2zM18 14h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z"/></svg>
+						<svg style="fill:white;transform:translate(0,2pt)" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M18 7h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2zM18 14h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z"></path></svg>
 						Calculate
 					</button>
 				</div>
@@ -319,7 +318,7 @@
 										</a>
 									</h4>
 								</div>
-								<div id="algebraRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="algebraHeading">
+								<div id="algebraRef" class="panel-collapse collapse" role="tabpanel" area-labelledby="algebraHeading">
 									<div class="panel-body">
 										<table class="table">
 											<thead>
@@ -358,20 +357,20 @@
 													<td>Raise <samp>a</samp> to the <samp>b</samp> power</td>
 												</tr>
 												<tr>
-													<td scope="row"><samp>sqrt(a)</td>
-													<td>The square root of <samp>a</td>
+													<td scope="row"><samp>sqrt(a)</samp></td>
+													<td>The square root of <samp>a</samp></td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>(a+b)*c</samp></td>
 													<td>Denote modifications to order of operations with parenthesis</td>
 												</tr>
 												<tr>
-													<td scope="row"><samp>exp(a)</td>
+													<td scope="row"><samp>exp(a)</samp></td>
 													<td>The natural number <var>e</var> raised to the power <samp>a</samp></td>
 												</tr>
 												<tr>
-													<td scope="row"><samp>log(a)</td>
-													<td>The natural logarithm of <samp>a</td>
+													<td scope="row"><samp>log(a)</samp></td>
+													<td>The natural logarithm of <samp>a</samp>s</td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>log(a, b)</samp></td>
@@ -390,7 +389,7 @@
 										</a>
 									</h4>
 								</div>
-								<div id="trigRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="trigHeading">
+								<div id="trigRef" class="panel-collapse collapse" role="tabpanel" area-labelledby="trigHeading">
 									<div class="panel-body">
 										<table class="table">
 											<thead>
@@ -402,7 +401,7 @@
 											<tbody style="font-weight:normal">
 												<tr>
 													<td scope="row"><samp>cos(a)</samp></td>
-													<td>The cosine of <samp>a</td>
+													<td>The cosine of <samp>a</samp></td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>sin(a)</samp></td>
@@ -517,7 +516,7 @@
 										</a>
 									</h4>
 								</div>
-								<div id="complexRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="complexHeading">
+								<div id="complexRef" class="panel-collapse collapse" role="tabpanel" area-labelledby="complexHeading">
 									<div class="panel-body">
 										<table class="table">
 											<thead>
@@ -564,7 +563,7 @@
 										</a>
 									</h4>
 								</div>
-								<div id="advancedRef" class="panel-collapse collapse" role=tabpanel" area-labelledby="advancedHeading">
+								<div id="advancedRef" class="panel-collapse collapse" role="tabpanel" area-labelledby="advancedHeading">
 									<div class="panel-body">
 										<table class="table">
 											<thead>
