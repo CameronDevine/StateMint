@@ -19,7 +19,7 @@ function pagination() {
 		if (nextPage - $('#imageContainer').height() <= scrolPos) {
 			$('#imageContainer').hide();
 		} else {
-			if ($('#systemImage').prop('src') != '') {
+			if ($('#systemImage').prop('src') != '' && $('#systemImage').prop('src') != window.location.href) {
 				$('#imageContainer').show();
 			}
 		}
