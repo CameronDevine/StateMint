@@ -162,7 +162,14 @@
 			</div>
 		</div>
 		<section class="contact-clean" style="background-color:rgb(254,255,255);padding-top:0;padding-bottom:0;min-height:100vh" id="page5">
-			<img style="position:fixed;top:10px;left:28px;display:none;max-width:30%;max-height:100%;z-index:1000;" id="systemImage"/>
+			<div style="position:fixed;top:10px;left:28px;width:30%;height:30%;z-index:1000;display:none;" onmouseover="$('#imageChange').show();" onmouseout="$('#imageChange').hide();" id="imageContainer">
+				<img style="position:absolute;max-width:100%;max-height:100%;left:50%;top:50%;transform:translate(-50%,-50%);" id="systemImage"/>
+				<div class="highlight-clean">
+					<div class="buttons">
+						<button class="btn btn-default" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:none;" id="imageChange" onclick="$('#fileUploadHidden').click()">Change Image</button>
+					</div>
+				</div>
+			</div>
 			<form method="post">
 				<h2 class="text-center">Enter system equations</h2>
 				<div>
