@@ -644,12 +644,13 @@
 						<h4 class="modal-title" id="saveRefTitle"><strong>Save</strong></h4>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form method="post">
 							<div class="form-group row">
-							<h4 class="col-sm-2" style="width:auto;padding-right:0">Name:</h4>
-							<div class="col-sm-10">
-							<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" class="form-control" id="saveName" placeholder="Project Name">
-							</div>
+								<h4 class="col-sm-2" style="width:auto;padding-right:0">Name:</h4>
+								<div class="col-sm-10">
+									<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" id="saveName" placeholder="Project Name">
+									<input type="text" style="display:none">
+								</div>
 							</div>
 						</form>
 						<div class="highlight-clean" style="padding:0">
