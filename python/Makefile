@@ -4,7 +4,8 @@ docs:
 	sphinx-build docs/ docs/build
 
 build:
-	python setup.py sdist bdist_wheel
+	python2 setup.py sdist bdist_wheel
+	python3 setup.py sdist bdist_wheel
 
 upload:
 	twine upload dist/*
