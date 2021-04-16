@@ -46,5 +46,5 @@ def handler(event, context):
 		estr = ""
 		for e in exc_info():
 			estr += str(e) + '\n'
-		print estr
+		print(estr)
 		return {"statusCode": 400, 'headers': {'Access-Control-Allow-Origin': '*'}, "body": "Failed"}

@@ -7,7 +7,7 @@ Resources:
     Properties:
       FunctionName: ${stack}
       Handler: StateMintLambda.handler
-      Runtime: python2.7
+      Runtime: python3.8
       CodeUri: lambda.zip
       Description: The Lambda function for StateMint.
       MemorySize: 768
