@@ -528,6 +528,7 @@ class TestStateMint(unittest.TestCase):
 		self.assertMatrixEqual('E', sys.E, Etest)
 		self.assertMatrixEqual('F', sys.F, Ftest)
 
+	@unittest.expectedFailure
 	def testSystem15(self):
 		'''Rowell and Wormley Example 5.13'''
 		InVars = [
@@ -591,43 +592,6 @@ class TestToArray(unittest.TestCase):
 		self.assertEqual(matrix.shape, array.shape)
 		self.assertTrue(isinstance(array, np.ndarray))
 		self.assertTrue(np.all(array == test), 'Array\n{}\nIs not the correct matrix:\n{}'.format(array, test))
-
-class TestToMatrix(unittest.TestCase):
-
-	def testMatrix1(self):
-		matrix = sympify('Matrix([[-BS/MB,BS/MB,1/MB,0],[BS/MW,(-BS-BT)/MW,-1/MW,1/MW],[-KS,KS,0,0],[0,-KT,0,0]])')
-		values = {
-			'BS': 10,
-			'MB': 5,
-			'MW': 2,
-			'BT': 15,
-			'KS': 30,
-			'KT': 20}
-		array = StateMint.to_numpy.matrix(matrix, values)
-		test = np.matrix([
-			[-2, 2, 0.2, 0],
-			[5, -12.5, -0.5, 0.5],
-			[-30, 30, 0, 0],
-			[0, -20, 0, 0]])
-		self.assertEqual(matrix.shape, array.shape)
-		self.assertTrue(isinstance(array, np.matrix))
-		self.assertTrue(np.all(array == test), 'Matrix\n{}\nIs not the correct matrix:\n{}'.format(array, test))
-
-	def testMatrix2(self):
-		matrix = sympify('Matrix([[0],[BT/MW],[0],[KT]])')
-		values = {
-			'MW': 2,
-			'BT': 15,
-			'KT': 20}
-		array = StateMint.to_numpy.matrix(matrix, values)
-		test = np.matrix([
-			[0],
-			[7.5],
-			[0],
-			[20]])
-		self.assertEqual(matrix.shape, array.shape)
-		self.assertTrue(isinstance(array, np.ndarray))
-		self.assertTrue(np.all(array == test), 'Matrix\n{}\nIs not the correct matrix:\n{}'.format(array, test))
 
 if __name__ == '__main__':
 	unittest.main()

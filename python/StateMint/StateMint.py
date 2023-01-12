@@ -240,7 +240,7 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars):
 	Bp = A * E + B
 	Dp = C * E + D
 
-	TF = sympy.Matrix([C * (s * sympy.eye(A.shape[0]) - A)**-1 * Bp + Dp + F * s]).T
+	TF = sympy.Matrix([C * (s * sympy.eye(A.shape[0]) - A).inv("LU") * Bp + Dp + F * s]).T
 
 	StVec = make_vec(StVars)
 	OutVec = make_vec(OutputVars)
