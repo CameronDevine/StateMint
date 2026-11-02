@@ -2,8 +2,9 @@
 // with Pyodide, so the web interface needs no server. It is a module worker
 // (Pyodide 314 no longer supports classic workers).
 //
-// Messages in:  {id, fields}  where fields maps InVars, StVarElEqns,
-//               OtherElEqns, Constraints and OutputVars to their text.
+// Messages in:  {id, fields, options}  where fields maps InVars,
+//               StVarElEqns, OtherElEqns, Constraints and OutputVars to
+//               their text, and options.tf asks for the transfer function.
 // Messages out: {type: 'status', status: 'loading' | 'ready' | 'failed', detail}
 //               {type: 'result', id, body}  (body is StateMint.web's dict,
 //               or {error: message})
@@ -60,7 +61,8 @@ self.onmessage = function(event) {
 	ready.then(function(web) {
 		var body;
 		try {
-			body = JSON.parse(web.solve_json(JSON.stringify(msg.fields)));
+			var tf = !!(msg.options && msg.options.tf);
+			body = JSON.parse(web.solve_json(JSON.stringify(msg.fields), tf));
 		} catch (err) {
 			body = {error: 'StateMint failed: ' + (err && err.message || err)};
 		}

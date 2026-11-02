@@ -524,7 +524,7 @@ def _transfer_function(A, Bp, C, Dp):
 	    H_ij = det([[sI - A, B'_j], [-C_i, D'_ij]]) / det(sI - A),
 
 	computed over polynomials in s whose coefficients are rational functions
-	of the parameters, then cancelled and factored. This is fast and keeps
+	of the parameters, then cancelled (and factored, up to four states). This is fast and keeps
 	every entry a single fraction; inverting sI - A symbolically is not.'''
 	n = A.shape[0]
 	rows, cols = C.shape[0], Bp.shape[1]
@@ -561,12 +561,16 @@ def _transfer_function(A, Bp, C, Dp):
 			num = det(sympy.Matrix.vstack(
 				sympy.Matrix.hstack(sI_A, Bp[:, j]),
 				sympy.Matrix.hstack(-C[i, :], Dp[i:i + 1, j:j + 1])))
-			H[i, j] = sympy.factor(sympy.cancel(num / den))
+			H[i, j] = sympy.cancel(num / den)
+	# Factoring makes small transfer functions readable but dominates the
+	# time for large ones, whose factors are long polynomials anyway.
+	if n <= 4:
+		H = H.applyfunc(sympy.factor)
 	return H
 
 
 def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars,
-		method='auto'):
+		method='auto', transfer_function=True):
 	r'''Find the differential equations of a dynamic system from elemental and
 	constraint equations.
 
@@ -597,6 +601,9 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars,
 			original StateMint method, which can handle equations nonlinear in
 			those variables); ``'auto'`` (the default) uses ``'linear'`` when
 			it applies and ``'substitution'`` otherwise.
+		transfer_function (bool): Whether to compute the transfer function
+			matrix `output.TF`. It is the slowest part for large systems;
+			with False, TF is None.
 
 	Returns:
 		output: The symbolically determined differential equation describing
@@ -778,7 +785,9 @@ def Solve(InVars, StVarElEqns, OtherElEqns, Constraints, OutputVars,
 		linear = all(sympy.cancel(r) == 0 or sympy.simplify(r) == 0
 			for r in residual)
 
-	TF = _transfer_function(A, Bp, C, Dp + F_ * s) if linear else None
+	TF = None
+	if linear and transfer_function:
+		TF = _transfer_function(A, Bp, C, Dp + F_ * s)
 
 	params = set()
 	for e in StateEqsFinal + OutputEqsFinal:

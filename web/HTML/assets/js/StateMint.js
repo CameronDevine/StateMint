@@ -62,8 +62,31 @@ function output(names, equations) {
 	$('#output').show();
 }
 
+function computeTF() {
+	output(["Transfer Function"], ["Computing the transfer function\u2026"]);
+	var fields = getData();
+	StateMintSolver.solve(fields, {tf: true}).then(function(result) {
+		if (result.error) {
+			showError(result.error);
+			return;
+		}
+		if (JSON.stringify(fields) == JSON.stringify(getData())) {
+			data = result;
+			if (last_form == 'TF') {
+				eqform('TF');
+			}
+		}
+	});
+}
+
 function eqform(type) {
 	last_form = type;
+	if (type == 'TF' && !data.Nonlinear && data.LaTeX && !('TF' in data.LaTeX)) {
+		$('#eqButtons :button').removeClass('btn-primary').addClass('btn-default');
+		$('#TF').removeClass('btn-default').addClass('btn-primary');
+		computeTF();
+		return;
+	}
 	$('#eqButtons :button').removeClass('btn-primary');
 	$('#eqButtons :button').addClass('btn-default');
 	$('#' + type).removeClass('btn-default');
@@ -197,7 +220,9 @@ function StateModel() {
 	$('#page6button').hide();
 	$('#LoadingPage').show();
 	$('#LoadingPageLink').click();
-	StateMintSolver.solve(getData()).then(function(result) {
+	// The transfer function is computed only when it is asked for: for a
+	// large system it takes far longer than the rest of the model.
+	StateMintSolver.solve(getData(), {tf: false}).then(function(result) {
 		if (result.error) {
 			showError(result.error);
 			return;

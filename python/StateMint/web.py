@@ -85,7 +85,7 @@ def format_model(model):
 	return body
 
 
-def solve_fields(fields):
+def solve_fields(fields, transfer_function=True):
 	'''Solve a system given the web interface's five text fields.
 
 	Args:
@@ -93,6 +93,8 @@ def solve_fields(fields):
 			field, in which entries are separated by new lines or by commas
 			outside parentheses. A JSON string of such a dict is accepted
 			too. Missing fields are taken as empty.
+		transfer_function (bool): Whether to compute the transfer function
+			(the slow part for large systems).
 
 	Returns:
 		dict: `format_model`'s result, or ``{'error': message}`` if the
@@ -102,7 +104,8 @@ def solve_fields(fields):
 		fields = json.loads(fields)
 	try:
 		lists = [split_entries(fields.get(name) or '') for name in FIELDS]
-		return format_model(Solve(*lists))
+		return format_model(Solve(*lists,
+			transfer_function=transfer_function))
 	except StateMintError as err:
 		return {'error': str(err)}
 	except Exception as err:  # a bug in StateMint or SymPy
@@ -111,7 +114,7 @@ def solve_fields(fields):
 				type(err).__name__, err)}
 
 
-def solve_json(text):
+def solve_json(text, transfer_function=True):
 	'''`solve_fields` with JSON in and JSON out, for calling from JavaScript.
 	'''
-	return json.dumps(solve_fields(text))
+	return json.dumps(solve_fields(text, bool(transfer_function)))

@@ -1,6 +1,6 @@
 // Main-thread client for the StateMint solver worker (assets/js/worker.js).
 //
-//   StateMintSolver.solve(fields) -> Promise of the result body
+//   StateMintSolver.solve(fields, {tf: bool}) -> Promise of the result body
 //   StateMintSolver.onstatus = function(status, detail) {...}
 //
 // The worker starts loading Pyodide and SymPy as soon as this file runs, so
@@ -60,7 +60,7 @@ var StateMintSolver = (function() {
 		startWorker();
 	}
 
-	api.solve = function(fields) {
+	api.solve = function(fields, options) {
 		return new Promise(function(resolve) {
 			var id = nextId++;
 			var timer = setTimeout(function() {
@@ -69,7 +69,7 @@ var StateMintSolver = (function() {
 					'or strongly nonlinear.');
 			}, TIMEOUT);
 			pending[id] = {resolve: resolve, timer: timer};
-			worker.postMessage({id: id, fields: fields});
+			worker.postMessage({id: id, fields: fields, options: options || {}});
 		});
 	};
 

@@ -63,3 +63,10 @@ def test_missing_fields():
 		'OutputVars': 'y'})
 	assert body['Python']['D'] == '[[k]]'
 	assert set(FIELDS) >= {'InVars', 'OutputVars'}
+
+
+def test_transfer_function_on_request():
+	body = solve_fields(EXAMPLE2, transfer_function=False)
+	assert 'TF' not in body['LaTeX'] and not body['Nonlinear']
+	body = solve_fields(EXAMPLE2)
+	assert 'TF' in body['LaTeX']
