@@ -338,30 +338,53 @@ function addEquations(data) {
 		document.getElementById("OutputVars").value = data.OutputVars;
 }
 
+function loadRnd(dataURL) {
+	jpeg = dataURL;
+	if (jpeg.slice(0, 13) == "data:;base64,") {
+		jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
+	} else if (jpeg.slice(0, 37) == "data:application/octet-stream;base64,") {
+		jpeg = "data:image/jpeg;base64," + jpeg.substring(37);
+	}
+	Exif = piexif.load(jpeg);
+	if (Exif.Exif['37500'] != 'blank') {
+		insertImage(jpeg);
+	}
+	addEquations(JSON.parse(Exif.Exif['37510']));
+	StateModel();
+}
+
+function readBlob(blob) {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		try {
+			loadRnd(e.target.result);
+		} catch (err) {
+			showError('This file is not a StateMint .rnd file (' + err + ').');
+		}
+	}
+	reader.readAsDataURL(blob);
+}
+
 function importData(event) {
 	var file = event.target.files[0];
 	if (file.name.split(".").slice(-1)[0] != "rnd" && !file.type.match('image/jpeg.*')) {
-		console.log("incorrect image type");
+		showError('Choose a StateMint .rnd file.');
 		return;
 	}
-	var reader = new FileReader();
-	reader.onload = function(e) {
-		jpeg = e.target.result;
-		if (jpeg.slice(0, 13) == "data:;base64,") {
-			jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
-		} else if (jpeg.slice(0, 37) == "data:application/octet-stream;base64,") {
-			jpeg = "data:image/jpeg;base64," + jpeg.substring(37);
+	readBlob(file);
+}
+
+// ?open=name opens systems/name.rnd, a system published with the site (the
+// System Dynamics notes link these).
+function openSystem(name) {
+	fetch('systems/' + name + '.rnd').then(function(resp) {
+		if (!resp.ok) {
+			throw new Error('there is no system named "' + name + '"');
 		}
-		Exif = piexif.load(jpeg);
-		console.log(Exif);
-		if (Exif.Exif['37500'] != 'blank') {
-			insertImage(jpeg);
-		}
-		var loadData = JSON.parse(Exif.Exif['37510']);
-		addEquations(loadData);
-		StateModel();
-	}
-	reader.readAsDataURL(file);
+		return resp.blob();
+	}).then(readBlob, function(err) {
+		showError('Could not open the system: ' + err.message);
+	});
 }
 
 function copyEq(num) {
@@ -513,7 +536,10 @@ function share() {
 }
 
 function loadFromURL() {
-	if (window.location.search.length > 1) {
+	var open = /^\?open=([A-Za-z0-9_-]+)$/.exec(window.location.search);
+	if (open) {
+		openSystem(open[1]);
+	} else if (window.location.search.length > 1) {
 		try {
 			addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
 		} catch (err) {
