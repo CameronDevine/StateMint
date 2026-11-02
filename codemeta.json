@@ -1,6 +1,6 @@
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-  "@type": "Code",
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
   "author": [
     {
       "@id": "http://orcid.org/0000-0002-6579-111X",
@@ -8,25 +8,39 @@
       "email": "camdev@uw.edu",
       "name": "Cameron Devine",
       "affiliation": "University of Washington"
-    },{
+    },
+    {
       "@type": "Person",
       "email": "garbini@uw.edu",
       "name": "Joseph L. Garbini",
       "affiliation": "University of Washington"
-    },{
+    },
+    {
       "@id": "http://orcid.org/0000-0002-5091-5175",
       "@type": "Person",
-      "email": "rpicone@stmartin.edu ",
+      "email": "rpicone@stmartin.edu",
       "name": "Rico A. R. Picone",
       "affiliation": [
         "Saint Martin's University",
-        "University of Washington"]
+        "University of Washington"
+      ]
     }
   ],
   "codeRepository": "https://github.com/CameronDevine/StateMint",
-  "description": "This library is used to take the elemental equations and constraint equations of a system and find a differential equation in a standard form. This script is a port from a Mathematica notebook with the same functionality but was ported to allow it to be run using an AWS Lambda function, allowing anyone to run the code without having Python/sympy or Mathematica installed.",
+  "description": "StateMint finds the state-space model of a lumped-parameter dynamic system from its elemental and constraint equations, following Rowell and Wormley's System Dynamics: An Introduction. It is a SymPy-based Python package with a web interface that runs the package in the browser (Pyodide), and an original Mathematica package.",
   "keywords": "algebra, system dynamics, calculator, computer algebra system, symbolic math",
-  "license": "BSD",
-  "title": "StateMint",
-  "version": "v2.1.1"
+  "license": "https://spdx.org/licenses/BSD-3-Clause",
+  "version": "v3.0.0.dev0",
+  "programmingLanguage": [
+    "Python",
+    "JavaScript",
+    "Wolfram Language"
+  ],
+  "softwareRequirements": [
+    "Python >= 3.10",
+    "SymPy >= 1.10"
+  ],
+  "referencePublication": "https://doi.org/10.21105/jose.00044",
+  "identifier": "https://doi.org/10.5281/zenodo.2633330",
+  "name": "StateMint"
 }
