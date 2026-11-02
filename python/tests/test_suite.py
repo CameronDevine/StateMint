@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import Matrix, pretty, simplify, sympify, zeros
 import StateMint
 import StateMint.to_numpy
 import numpy as np
@@ -528,7 +528,6 @@ class TestStateMint(unittest.TestCase):
 		self.assertMatrixEqual('E', sys.E, Etest)
 		self.assertMatrixEqual('F', sys.F, Ftest)
 
-	@unittest.expectedFailure
 	def testSystem15(self):
 		'''Rowell and Wormley Example 5.13'''
 		InVars = [

@@ -19,7 +19,7 @@ def array(data, values = {}):
 	'''
 	subs = {}
 	for val in values:
-		if val is str:
+		if isinstance(val, str):
 			subs[symbols(val)] = values[val]
 		else:
 			subs[val] = values[val]
