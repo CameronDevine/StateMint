@@ -448,7 +448,7 @@ The inductor is dependent, but no input derivative appears, so $E$ and $F$ are z
 ### Web Interface
 
 The web interface is by far the easiest method to perform this algebra,
-[statemint.stmartin.edu](https://statemint.stmartin.edu/?%7B%22InVars%22%3A%22Vs%22%2C%22StVarElEqns%22%3A%22TKr'%20%3D%20Kr*WKr%22%2C%22OtherElEqns%22%3A%22vR%20%3D%20R*iR%2C%5CnvL%20%3D%20L*iL'%2C%5Cni1%20%3D%20-T2%2FKv%2C%5CnW2%20%3D%20v1%2FKv%2C%5CnW3%20%3D%20-Q4%2FD%2C%5CnP4%20%3D%20T3%2FD%2C%5CnQRf%20%3D%20PRf%2FRf%22%2C%22Constraints%22%3A%22iL%20%3D%20i1%2C%5CniR%20%3D%20i1%2C%5CnT2%20%3D%20-TKr%2C%5CnT3%20%3D%20TKr%2C%5CnQ4%20%3D%20-QRf%2C%5Cnv1%20%3D%20Vs%20-%20vR%20-%20vL%2C%5CnWKr%20%3D%20W2%20-%20W3%2C%5CnPRf%20%3D%20P4%22%2C%22OutputVars%22%3A%22QRf%22%7D); this link opens it with the example's equations entered.
+[ricopic.one/statemint](https://ricopic.one/statemint/?open=tutorial); this link opens it with the example's equations entered.
 This interface allows the equations to be entered and the result found without the need to install software.
 The result can be shown as equations or as LaTeX, MATLAB, Mathematica or Python code.
 A system can be saved in the browser, or downloaded as an `.rnd` file and uploaded later.
