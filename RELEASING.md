@@ -22,5 +22,6 @@
    (`rsync -a --delete --exclude testdata web/build/ <homepage>/statemint/site/`),
    commit, and push `main` (pushing `main` deploys).
 3. statemint.stmartin.edu (GitHub Pages, StateMint/StateMint.github.io):
-   replace that repository's contents with `web/build/`, keeping its
-   `CNAME`, and push. The site no longer needs AWS.
+   `web/deploy-pages.sh` builds the site, replaces that repository's
+   contents with it (keeping its `CNAME`) and pushes; `--dry-run` stops
+   before the push. The site no longer needs AWS.
