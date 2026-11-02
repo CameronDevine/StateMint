@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="assets/js/tracking.js"></script>
-		<script type="text/javascript" async src="https://www.google-analytics.com/analytics.js"></script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>StateMint</title>
@@ -13,38 +11,24 @@
 		<link rel="stylesheet" href="assets/css/pagination.css">
 		<link rel="stylesheet" href="assets/css/page.css">
 		<link rel="stylesheet" href="assets/css/markdown.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
 		<link rel="stylesheet" href="assets/css/Highlight-Blue.css">
 		<link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-		<link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
 		<link rel="stylesheet" href="assets/css/Social-Icons.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/url-template/url-template.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
-		<script type="text/javascript" src="assets/apiGateway-js-sdk/apigClient.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/solver.js?v=@VERSION@" data-version="@VERSION@"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"></script>
-		<script type="text/javascript" src="assets/js/StateMint.js"></script>
+		<script type="text/javascript" src="assets/js/StateMint.js?v=@VERSION@"></script>
 		<script src="assets/js/piexif.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>
 		<script src="assets/js/scroll.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 		<script src="assets/js/bootstrap-notify.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<ul class="scrolling">
@@ -175,15 +159,15 @@
 				<h2 class="text-center">Enter system equations</h2>
 				<div>
 					<h4><strong>Input Variables:</strong></h4>
-					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of input variables."/>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="Fs" placeholder="vS" class="form-control" id="InVars" data-toggle="tooltip" data-placement="right" title="The input variables, one per line or separated by commas."/>
 					<h4><strong>State Variable Elemental Equations:</strong> </h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of state variable elemental equations with the primary variable on the left hand side. If you don't understand this, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="vMB' = 1/MB * fMB" class="form-control" id="StVarElEqns"  data-toggle="tooltip" data-placement="right" data-html="true" title="The state variable elemental equations, one per line, each solved for the derivative of its state variable, as in vm&#39; = Fm/m. If you don't understand this, why not look at the <a data-toggle='modal' data-target='#tutorialRef' onclick='tutorial()'>tutorial</a>."></textarea>
 					<h4><strong>Other Elemental Equations:</strong></h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="A comma seperated list of non-state variable elemental equations with the primary variable on the left hand side. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fBS = BS * vBS" class="form-control" id="OtherElEqns" data-toggle="tooltip" data-placement="right" data-html="true" title="The other elemental equations, one per line, each solved for its primary variable. Leave this empty if there are none. If you can't find the function you're looking for, why not look at the <a data-toggle='modal' data-target='#commandRef'>command reference</a>."></textarea>
 					<h4><strong>Constraints:</strong></h4>
-					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="A comma seperated list of continuity and compatibility equations with the secondary variable on the left hand side. Why not put each equation on its own line?"></textarea>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="fMB = fKS + fBS" class="form-control" id="Constraints"  data-toggle="tooltip" data-placement="right" title="The continuity and compatibility equations, one per line, each solved for a secondary variable."></textarea>
 					<h4><strong>Output Variables:</strong></h4>
-					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="A comma seperated list of output variables already present in the above equations."/>
+					<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="email" placeholder="vMB" class="form-control" id="OutputVars" data-toggle="tooltip" data-placement="right" title="The outputs: variables from the equations above, or expressions in them such as FK + FB."/>
 					<p class="help-block">Enter your equations, click <a data-toggle="modal" data-target="#commandRef">here</a> for syntax help, or <a data-toggle="modal" data-target="#tutorialRef" onclick="tutorial()">here</a> for a tutorial.</p>
 					<button class="btn btn-primary" type="button" onclick="StateModel()" style="width:100%;">
 						<svg style="fill:white;transform:translate(0,2pt)" version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M18 7h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2zM18 14h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z"></path></svg>
@@ -238,6 +222,9 @@
 					<button class="btn btn-default" type="button" id="eq" onclick="eqform('eq')" style="height:75px">$$f(x,u)$$</button>
 					<button class="btn btn-default" type="button" id="TF" onclick="eqform('TF')" style="height:75px">$$H(s)$$</button>
 				</div>
+			</div>
+			<div class="container">
+				<p class="text-center" id="params" style="display:none;margin-top:2em;"></p>
 			</div>
 			<div class="container" id="output" style="display:none;margin-top:3em;">
 				<div class="buttons">
@@ -356,7 +343,7 @@
 												</tr>
 												<tr>
 													<td scope="row"><samp>a**b</samp></td>
-													<td>Raise <samp>a</samp> to the <samp>b</samp> power</td>
+													<td>Raise <samp>a</samp> to the <samp>b</samp> power (<samp>a^b</samp> works too)</td>
 												</tr>
 												<tr>
 													<td scope="row"><samp>sqrt(a)</samp></td>
@@ -528,10 +515,7 @@
 												</tr>
 											</thead>
 											<tbody style="font-weight:normal">
-												<tr>
-													<td scope="row"><samp>I</samp></td>
-													<td>The imaginary number defined as <samp>sqrt(-1)</samp></td>
-												</tr>
+												
 												<tr>
 													<td scope="row"><samp>re(a)</samp></td>
 													<td>The real part of <samp>a</samp></td>
@@ -541,7 +525,7 @@
 													<td>The imaginary part of <samp>a</samp></td>
 												</tr>
 												<tr>
-													<td scope="row"><samp>Abs(a)</samp></td>
+													<td scope="row"><samp>abs(a)</samp>, <samp>Abs(a)</samp></td>
 													<td>The absolute value of <samp>a</samp></td>
 												</tr>
 												<tr>
@@ -587,36 +571,27 @@
 													<td scope="row"><samp>sign(a)</samp></td>
 													<td>The sign function of <samp>a</samp></td>
 												</tr>
+												<tr>
+													<td scope="row"><samp>Min(a, b)</samp>, <samp>Max(a, b)</samp></td>
+													<td>The smaller or larger of <samp>a</samp> and <samp>b</samp></td>
+												</tr>
+												<tr>
+													<td scope="row"><samp>Heaviside(a)</samp></td>
+													<td>The unit step of <samp>a</samp></td>
+												</tr>
 											</tbody>
 										</table>
 										<table class="table">
 											<thead>
 												<tr>
-													<th scope="col">Reserved Variables</th>
+													<th scope="col">Reserved name</th><th scope="col">Meaning</th>
 												</tr>
 											</thead>
 											<tbody style="font-weight:normal">
-												<tr>
-													<td scope="row"><samp>s</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>dummy</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>Eq</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>Function</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>Symbol</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>Integer</samp></td>
-												</tr>
-												<tr>
-													<td scope="row"><samp>Float</samp></td>
-												</tr>
+													<tr><td scope="row"><samp>t</samp></td><td>Time</td></tr>
+													<tr><td scope="row"><samp>s</samp></td><td>The Laplace variable</td></tr>
+													<tr><td scope="row"><samp>pi</samp></td><td>The constant &pi;</td></tr>
+													<tr><td scope="row"><samp>sin, sign, ...</samp></td><td>Function names (all of those above)</td></tr>
 											</tbody>
 										</table>
 									</div>
@@ -654,7 +629,7 @@
 							</div>
 						</form>
 						<div class="highlight-clean" style="padding:0">
-							<p style="text-align:left">This dialog will save this system as a cookie in your browser for up to 10 years.</p>
+							<p style="text-align:left">This saves the system in this browser. Use Download to keep a copy as a file.</p>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -710,6 +685,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="solverStatus" style="position:fixed;bottom:14px;left:14px;z-index:1000;padding:6px 10px;border-radius:3px;background:#eff1f4;color:#333;font-size:13px;"></div>
 		<div class="highlight-clean" style="padding:0;position:fixed;bottom:10px;right:10px;background-color:transparent">
 			<div class="buttons">
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#aboutRef">About</button>
@@ -731,7 +707,8 @@
 						<p>and</p>
 						<p><a href="http://ricopic.one" target="_blank">Rico A. R. Picone</a></p>
 						<br>
-						<p style="text-align:left">DOI: <a href="http://dx.doi.org/10.21105/jose.00044" target="_blank">10.21105/jose.00044</a></p>
+						<p style="text-align:left">DOI: <a href="https://doi.org/10.21105/jose.00044" target="_blank">10.21105/jose.00044</a></p>
+						<p style="text-align:left">StateMint 3.0 runs entirely in your browser, using <a href="https://pyodide.org" target="_blank">Pyodide</a> and <a href="https://www.sympy.org" target="_blank">SymPy</a>. Source: <a href="https://github.com/CameronDevine/StateMint" target="_blank">github.com/CameronDevine/StateMint</a>.</p>
 					</div>
 					<div class="modal-footer">
 						<div class="highlight-clean" style="padding:0">

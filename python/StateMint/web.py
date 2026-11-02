@@ -63,8 +63,8 @@ def format_model(model):
 
 	Returns:
 		dict: ``{'LaTeX': {...}, 'Matlab': {...}, 'Mathematica': {...},
-		'Python': {...}, 'Nonstandard': bool, 'Nonlinear': bool,
-		'Parameters': [...]}``, where each language maps the names of
+		'Python': {...}, 'Nonstandard': bool, 'NonzeroF': bool,
+		'Nonlinear': bool, 'Parameters': [...]}``, where each language maps the names of
 		`StateMint.output`'s members (A, B, ..., TF, StateEq, ...) to code.
 		MATLAB is omitted for nonlinear models, and TF for nonlinear ones.
 	'''
@@ -79,6 +79,7 @@ def format_model(model):
 		body[lang] = dict((key, _convert(lang, getattr(model, key)))
 			for key in keys if key not in _nocode[lang])
 	body['Nonstandard'] = bool(model.Nonstandard)
+	body['NonzeroF'] = any(f != 0 for f in model.F)
 	body['Nonlinear'] = not model.Linear
 	body['Parameters'] = [sympy.latex(p) for p in model.Parameters]
 	return body
