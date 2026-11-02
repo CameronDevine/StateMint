@@ -339,12 +339,10 @@ function addEquations(data) {
 }
 
 function loadRnd(dataURL) {
-	jpeg = dataURL;
-	if (jpeg.slice(0, 13) == "data:;base64,") {
-		jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
-	} else if (jpeg.slice(0, 37) == "data:application/octet-stream;base64,") {
-		jpeg = "data:image/jpeg;base64," + jpeg.substring(37);
-	}
+	// A .rnd file is a JPEG, but browsers and servers label it variously
+	// (no type, application/octet-stream, application/prs.nprend), and
+	// piexif only reads image/jpeg data URLs.
+	jpeg = "data:image/jpeg;base64," + dataURL.slice(dataURL.indexOf(',') + 1);
 	Exif = piexif.load(jpeg);
 	if (Exif.Exif['37500'] != 'blank') {
 		insertImage(jpeg);
