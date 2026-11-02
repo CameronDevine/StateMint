@@ -1,0 +1,81 @@
+name: Python package
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }}, SymPy ${{ matrix.sympy }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        sympy: ["latest"]
+        include:
+          - python: "3.10"
+            sympy: "1.10.1"
+          - python: "3.11"
+            sympy: "1.11.1"
+          - python: "3.12"
+            sympy: "1.12.1"
+          - python: "3.13"
+            sympy: "1.13.3"
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          allow-prereleases: true
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[test]"
+          if [ "${{ matrix.sympy }}" != "latest" ]; then python -m pip install "sympy==${{ matrix.sympy }}"; fi
+          python -c "import sympy; print('sympy', sympy.__version__)"
+      - name: Import without warnings
+        run: python -W error -c "import StateMint, StateMint.web, StateMint.to_numpy"
+      - name: Test
+        run: python -m pytest -q
+
+  build:
+    name: Build and check the distribution
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install build twine
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: python/dist/
+
+  docs:
+    name: Build the documentation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -e ".[docs]"
+      - run: sphinx-build -W --keep-going docs docs/build

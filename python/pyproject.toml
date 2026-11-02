@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "StateMint"
+dynamic = ["version"]
+description = "Find the state-space model of a lumped-parameter dynamic system from its elemental and constraint equations."
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.10"
+authors = [
+	{ name = "Cameron Devine", email = "camdev@uw.edu" },
+	{ name = "Joseph L. Garbini", email = "garbini@uw.edu" },
+	{ name = "Rico A. R. Picone" },
+]
+keywords = ["system dynamics", "state space", "linear graph", "bond graph", "symbolic", "sympy", "engineering education"]
+classifiers = [
+	"Development Status :: 5 - Production/Stable",
+	"Framework :: Jupyter",
+	"Intended Audience :: Education",
+	"Intended Audience :: Science/Research",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3 :: Only",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
+	"Programming Language :: Python :: 3.14",
+	"Topic :: Scientific/Engineering :: Mathematics",
+	"Topic :: Scientific/Engineering :: Physics",
+	"Topic :: Education",
+]
+dependencies = ["sympy>=1.10"]
+
+[project.optional-dependencies]
+numpy = ["numpy"]
+test = ["pytest", "numpy"]
+docs = ["sphinx>=7"]
+
+[project.urls]
+Homepage = "https://github.com/CameronDevine/StateMint"
+Documentation = "https://statemint.readthedocs.io/"
+Source = "https://github.com/CameronDevine/StateMint"
+Issues = "https://github.com/CameronDevine/StateMint/issues"
+Paper = "https://doi.org/10.21105/jose.00044"
+
+[tool.setuptools]
+packages = ["StateMint"]
+
+[tool.setuptools.dynamic]
+version = { attr = "StateMint.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
