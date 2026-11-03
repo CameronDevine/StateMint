@@ -29,6 +29,14 @@ function callback() {
 		$('#StateSpace').hide();
 		default_form = 'StateSpaceN';
 	}
+	if (data.Parameters && data.Parameters.length) {
+		$('#params').html('Parameters: ' + data.Parameters.map(function(p) {
+			return '$' + p + '$';
+		}).join(', ') + '. <span class="text-muted">(If one of these is ' +
+			'meant to be a variable, its equation is missing.)</span>').show();
+	} else {
+		$('#params').hide();
+	}
 	outlang("Equation");
 	eqform(default_form);
 	$('#page6button').show();
@@ -54,8 +62,31 @@ function output(names, equations) {
 	$('#output').show();
 }
 
+function computeTF() {
+	output(["Transfer Function"], ["Computing the transfer function\u2026"]);
+	var fields = getData();
+	StateMintSolver.solve(fields, {tf: true}).then(function(result) {
+		if (result.error) {
+			showError(result.error);
+			return;
+		}
+		if (JSON.stringify(fields) == JSON.stringify(getData())) {
+			data = result;
+			if (last_form == 'TF') {
+				eqform('TF');
+			}
+		}
+	});
+}
+
 function eqform(type) {
 	last_form = type;
+	if (type == 'TF' && !data.Nonlinear && data.LaTeX && !('TF' in data.LaTeX)) {
+		$('#eqButtons :button').removeClass('btn-primary').addClass('btn-default');
+		$('#TF').removeClass('btn-default').addClass('btn-primary');
+		computeTF();
+		return;
+	}
 	$('#eqButtons :button').removeClass('btn-primary');
 	$('#eqButtons :button').addClass('btn-default');
 	$('#' + type).removeClass('btn-default');
@@ -73,7 +104,8 @@ function eqform(type) {
 		} else if (type == "StateSpaceP") {
 			output(["State", "Output"], [
 				"$$\\dot{x}'=" + codes.A + "x'+" + codes.Bp + "u$$",
-				"$$y=" + codes.C + "x'+" + codes.Dp + "u$$"]);
+				"$$y=" + codes.C + "x'+" + codes.Dp + "u" +
+					(data.NonzeroF ? "+" + codes.F + "\\dot{u}" : "") + "$$"]);
 		} else if (type == "TF") {
 			output(["Transfer Function"], [
 				"$$H(s)=" + codes.TF + "$$"]);
@@ -88,6 +120,7 @@ function eqform(type) {
 				"$$y=" + codes.OutputVec + "$$"]);
 		}
 		typeset();
+		$('#params').show();
 	} else if (use_lang == "Mathematica") {
 		var codes = data.Mathematica;
 		if (type == "StateSpace") {
@@ -142,7 +175,8 @@ function eqform(type) {
 }
 
 function typeset() {
-	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"output"]);
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output"]);
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, "params"]);
 	}
 
 function outlang(type) {
@@ -169,52 +203,36 @@ function set_forms(type) {
 	}
 }
 
+function escapeHTML(text) {
+	return $('<div>').text(text).html();
+}
+
+function showError(text) {
+	$('#error').html(escapeHTML(text).replace(/\n/g, '<br>'));
+	$('#errorRef').modal();
+	$('#LoadingPage').hide();
+	$('#page3button').click();
+}
+
 function StateModel() {
-	console.log("submit");
-	var Client = apigClientFactory.newClient();
-	var params = {};
-	var body = {};
-	var aditionalParams = {
-		"queryParams": {
-	  		"InVars": document.getElementById("InVars").value,
-			"StVarElEqns": document.getElementById("StVarElEqns").value,
-			"OtherElEqns": document.getElementById("OtherElEqns").value,
-			"Constraints": document.getElementById("Constraints").value,
-			"OutputVars": document.getElementById("OutputVars").value
-		}
-	};
-	console.log(aditionalParams)
 	$('#page6').hide();
 	$('#inputButtons').show();
 	$('#page6button').hide();
 	$('#LoadingPage').show();
 	$('#LoadingPageLink').click();
-	Client.stateMintPost(params, body, aditionalParams).then(function(result) {
-		console.log(result);
-		data = result.data;
-		callback();
-	}, function(err) {
-		if (err.status == 400) {
-			error_text = "Unable to solve system. Please check input.";
-		} else if (err.status == 0) {
-			error_text = "Please check your internet connection.";
-		} else {
-			error_text = "Unknown error.";
+	// The transfer function is computed only when it is asked for: for a
+	// large system it takes far longer than the rest of the model.
+	StateMintSolver.solve(getData(), {tf: false}).then(function(result) {
+		if (result.error) {
+			showError(result.error);
+			return;
 		}
-		console.log(err);
-		$('#error').html(error_text);
-		$('#errorRef').modal();
-		$('#LoadingPage').hide();
-		$('#page3button').click();
+		data = result;
+		callback();
 	});
 }
 
 function loadExample(num, scroll) {
-	try {
-		if (trackingID) {
-			ga('send', 'pageview', '/example' + num);
-		}
-	} catch(err) {}
 	if (num == 1) {
 		document.getElementById("InVars").value = "vS";
 		document.getElementById("StVarElEqns").value = "vMB' = 1/MB * fMB,\nvMW' = 1/MW * fMW,\nfKS' = KS * vKS,\nfKT' = KT * vKT";
@@ -345,37 +363,64 @@ function addEquations(data) {
 		document.getElementById("OutputVars").value = data.OutputVars;
 }
 
+function loadRnd(dataURL) {
+	// A .rnd file is a JPEG, but browsers and servers label it variously
+	// (no type, application/octet-stream, application/prs.nprend), and
+	// piexif only reads image/jpeg data URLs.
+	jpeg = "data:image/jpeg;base64," + dataURL.slice(dataURL.indexOf(',') + 1);
+	Exif = piexif.load(jpeg);
+	if (Exif.Exif['37500'] != 'blank') {
+		insertImage(jpeg);
+	}
+	addEquations(JSON.parse(Exif.Exif['37510']));
+	StateModel();
+}
+
+function readBlob(blob) {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		try {
+			loadRnd(e.target.result);
+		} catch (err) {
+			showError('This file is not a StateMint .rnd file (' + err + ').');
+		}
+	}
+	reader.readAsDataURL(blob);
+}
+
 function importData(event) {
 	var file = event.target.files[0];
 	if (file.name.split(".").slice(-1)[0] != "rnd" && !file.type.match('image/jpeg.*')) {
-		console.log("incorrect image type");
+		showError('Choose a StateMint .rnd file.');
 		return;
 	}
-	var reader = new FileReader();
-	reader.onload = function(e) {
-		jpeg = e.target.result;
-		if (jpeg.slice(0, 13) == "data:;base64,") {
-			jpeg = "data:image/jpeg;base64," + jpeg.substring(13);
-		} else if (jpeg.slice(0, 37) == "data:application/octet-stream;base64,") {
-			jpeg = "data:image/jpeg;base64," + jpeg.substring(37);
+	readBlob(file);
+}
+
+// ?open=name opens systems/name.rnd, a system published with the site (the
+// System Dynamics notes link these).
+function openSystem(name) {
+	fetch('systems/' + name + '.rnd').then(function(resp) {
+		if (!resp.ok) {
+			throw new Error('there is no system named "' + name + '"');
 		}
-		Exif = piexif.load(jpeg);
-		console.log(Exif);
-		if (Exif.Exif['37500'] != 'blank') {
-			insertImage(jpeg);
-		}
-		var loadData = JSON.parse(Exif.Exif['37510']);
-		addEquations(loadData);
-		StateModel();
-	}
-	reader.readAsDataURL(file);
+		return resp.blob();
+	}).then(readBlob, function(err) {
+		showError('Could not open the system: ' + err.message);
+	});
 }
 
 function copyEq(num) {
-	$('#output textarea').eq(num).show();
-	$('#output textarea').eq(num).select();
-	document.execCommand('Copy');
-	$('#output textarea').eq(num).hide()
+	var text = $('#output textarea').eq(num).val();
+	if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(text).then(function() {
+			notify('Copied');
+		});
+	} else {
+		$('#output textarea').eq(num).show().select();
+		document.execCommand('Copy');
+		$('#output textarea').eq(num).hide();
+	}
 }
 
 function restart() {
@@ -387,19 +432,61 @@ function restart() {
 	window.location.reload();
 }
 
-function list_saved() {
-	template = '<tr><td style="vertical-align:middle"><h4><strong>{}</strong></h4></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">folder_open</i></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">delete_outline</i></td></tr>\n';
-	names = Object.keys(Cookies.get());
-	html = "";
-	for (i in names) {
-		if (names[i].slice(0, 5) == 'stmt_') {
-			html += template.replace('{}', names[i].slice(5));
+var SAVE_PREFIX = 'stmt_';
+
+function storage() {
+	try {
+		return window.localStorage;
+	} catch (err) {
+		return null;
+	}
+}
+
+function migrateCookies() {
+	var store = storage();
+	if (!store || typeof Cookies === 'undefined') {
+		return;
+	}
+	var cookies = Cookies.get();
+	Object.keys(cookies).forEach(function(name) {
+		if (name.slice(0, SAVE_PREFIX.length) == SAVE_PREFIX) {
+			try {
+				if (store.getItem(name) === null) {
+					store.setItem(name, cookies[name]);
+				}
+				Cookies.remove(name);
+			} catch (err) {}
+		}
+	});
+}
+
+function savedNames() {
+	var store = storage();
+	var names = [];
+	if (!store) {
+		return names;
+	}
+	for (var i = 0; i < store.length; i++) {
+		var key = store.key(i);
+		if (key.slice(0, SAVE_PREFIX.length) == SAVE_PREFIX) {
+			names.push(key.slice(SAVE_PREFIX.length));
 		}
 	}
-	if (html.length > 0) {
+	return names.sort();
+}
+
+function list_saved() {
+	var template = '<tr><td style="vertical-align:middle"><h4><strong></strong></h4></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">folder_open</i></td><td style="vertical-align:middle;width:40px"><i class="material-icons" style="font-size:36px">delete_outline</i></td></tr>';
+	var names = savedNames();
+	var body = $('#saved tbody').empty();
+	names.forEach(function(name) {
+		var row = $(template);
+		row.find('strong').text(name);
+		body.append(row);
+	});
+	if (names.length > 0) {
 		$('#saved').closest('.col-sm-6').show();
 		$('#fileUploadLink').parent().addClass('col-sm-6');
-		$('#saved tbody').html(html);
 	} else {
 		$('#saved').closest('.col-sm-6').hide()
 		$('#fileUploadLink').parent().removeClass('col-sm-6');
@@ -407,31 +494,38 @@ function list_saved() {
 }
 
 function save() {
-	Cookies.set('stmt_' + $('#saveName').val(), getData(), {expires: 365 * 10});
+	var store = storage();
+	var name = $('#saveName').val().trim();
+	if (!store || !name) {
+		return;
+	}
+	try {
+		store.setItem(SAVE_PREFIX + name, JSON.stringify(getData()));
+	} catch (err) {
+		showError('Could not save: ' + err);
+	}
 	list_saved();
 }
 
 function openClick(data) {
+	var store = storage();
+	if (!store) {
+		return;
+	}
 	if (!data.open) {
-		Cookies.remove('stmt_' + data.name);
+		store.removeItem(SAVE_PREFIX + data.name);
 		list_saved()
 	} else {
-		system = JSON.parse(Cookies.get('stmt_' + data.name));
+		var system = JSON.parse(store.getItem(SAVE_PREFIX + data.name));
 		addEquations(system);
 		$('#saveName').val(data.name);
 		StateModel();
 	}
 }
 
-function share() {
-	url = window.location.href + '?' + encodeURIComponent(JSON.stringify(getData()));
-	$('#shareArea').val(url);
-	$('#shareArea').show();
-	$('#shareArea').select();
-	document.execCommand('Copy');
-	$('#shareArea').hide();
+function notify(message) {
 	$.notify({
-		message: 'Link copied to clipboard'
+		message: message
 	},{
 		allow_dismiss: false,
 		placement: {
@@ -450,9 +544,30 @@ function share() {
 	});
 }
 
+function share() {
+	var url = location.origin + location.pathname + '?' +
+		encodeURIComponent(JSON.stringify(getData()));
+	if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(url).then(function() {
+			notify('Link copied to clipboard');
+		}, function() {
+			window.prompt('Copy this link:', url);
+		});
+	} else {
+		window.prompt('Copy this link:', url);
+	}
+}
+
 function loadFromURL() {
-	if (window.location.search.length > 0) {
-		addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
+	var open = /^\?open=([A-Za-z0-9_-]+)$/.exec(window.location.search);
+	if (open) {
+		openSystem(open[1]);
+	} else if (window.location.search.length > 1) {
+		try {
+			addEquations(JSON.parse(decodeURIComponent(window.location.search.slice(1))));
+		} catch (err) {
+			return;
+		}
 		StateModel();
 		$(window).load(function() {
 			$('#LoadingPageLink').click();
@@ -461,11 +576,6 @@ function loadFromURL() {
 }
 
 function tutorial() {
-	try {
-		if (trackingID) {
-			ga('send', 'pageview', '/tutorial');
-		}
-	} catch(err) {}
 	MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'tutorialRef']);
 }
 
@@ -483,10 +593,12 @@ function loadTutorial() {
 }
 
 $(document).ready(function() {
-	console.log('ready');
+	migrateCookies();
 	list_saved();
+	StateMintSolver.onstatus = solverStatus;
+	solverStatus(StateMintSolver.status, StateMintSolver.detail);
 	loadFromURL();
-	$('#saved').click(function() {
+	$('#saved').click(function(event) {
 		openClick({
 			name: $(event.target).closest('tr').find('strong').html(),
 			open: $(event.target).closest('td').index() != 2});
@@ -499,3 +611,14 @@ $(document).ready(function() {
 	});
 	loadTutorial();
 });
+
+function solverStatus(status, detail) {
+	var el = $('#solverStatus');
+	if (status == 'ready') {
+		el.text('Solver ready').fadeOut(2000);
+	} else if (status == 'failed') {
+		el.stop(true).show().text('The solver could not load: ' + detail);
+	} else {
+		el.stop(true).show().text('Loading the solver' + (detail ? ': ' + detail : '') + '…');
+	}
+}

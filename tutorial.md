@@ -1,179 +1,218 @@
+<!-- Generated from web/HTML/tutorial/tutorial.md by `make tutorial`; edit that file instead. -->
+
 # System Dynamics Tutorial
 
 The purpose of this tutorial is to give the necessary background information on how to use the StateMint software to those who have some experience with system dynamics but may need a refresher, or are not familiar with the linear graph method.
-To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley.
-Also available are course [notes](http://ricopic.one/dynamic_systems/) for a class at St. Martin's University taught by Prof. Rico Picone, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
+To learn more about this subject consider reading _System Dynamics: An Introduction_ by Rowell and Wormley, whose chapter 5 StateMint follows.
+Also available are the [System Dynamics](https://systems.ricopic.one/) course notes by Prof. Rico Picone of Saint Martin's University, whose notation this tutorial uses, along with [recorded](https://www.youtube.com/watch?v=Fd1C-abrpmg&index=22&list=PLtuwVtW88fOcFdJ9xOBn0T5ta_XPMKHKz) lectures.
+
+### Notation
+
+This tutorial uses the notation of the notes.
+The sans-serif $\mathsf{v}$ and $\mathsf{f}$ are a generalized across-variable and through-variable, distinct from a velocity $v$.
+Each variable carries its element's name as a subscript: $v_C$ and $i_C$ are the voltage across and the current through a capacitor $C$, and $T_{K_r}$ is the torque in a rotational spring $K_r$.
+$T$ is a torque in a rotational system and a temperature in a thermal one.
+
+StateMint reads plain text, so its variable names differ from the mathematics in two ways.
+
+* Names have no subscripts or Greek letters: write $v_C$ as `vC`, $T_J$ as `TJ`, $\Omega_J$ as `WJ`, and $K_r$ as `Kr`. The full rules are under Input Syntax, below.
+* A prime marks a time derivative: `vC'` is $dv_C/dt$.
 
 ## Background Information
 
-This method of finding a differential equation of a dynamic system works with multiple energy domains and any combination of these domains.
+This method of finding the state-space model of a dynamic system works within each energy domain and across any combination of them.
 
-### System Types
+### Energy Domains
 
-In each energy domain, a through-variable, ![$v$](http://latex.codecogs.com/svg.latex?v), and an across-variable, ![$f$](http://latex.codecogs.com/svg.latex?f), is defined.
-A _through-variable_ is a variable that generally has the same value at each element terminal.
-It corresponds to a physical quantity that would be measured flowing through an element.
-An _across-variable_ is a variable that generally has a different value at each element terminal.
-It corresponds to a physical quantity that would be measured across an element or relative to some reference.
-A list of common system types and their through-variables and across-variables can be found below.
+In each energy domain, an across-variable, $\mathsf{v}$, and a through-variable, $\mathsf{f}$, are defined.
+An _across-variable_ is the difference between its values at the two ends, or nodes, of an element.
+It is measured by an instrument connected across the element, as a voltmeter's two probes go on a resistor's two terminals.
+A _through-variable_ passes through an element, the same value entering one end and leaving the other.
+It is measured by an instrument placed in series with the element, as an ammeter is.
+Except in thermal systems, where the heat flow rate is itself a power, the product $\mathsf{f}\mathsf{v}$ is the power flowing into an element.
+The across-variables and through-variables of the common energy domains are listed below.
 
-| System Type   | Across-variables              | Through-variables      |
-| ------------- | ----------------------------- | ---------------------- |
-| Translational | Velocity, ![$v$](http://latex.codecogs.com/svg.latex?v)                 | Force, ![$F$](http://latex.codecogs.com/svg.latex?F)             |
-| Rotational    | Angular Velocity, ![$\Omega$](http://latex.codecogs.com/svg.latex?%5COmega)    | Torque, ![$\tau$](http://latex.codecogs.com/svg.latex?%5Ctau)         |
-| Electrical    | Voltage, ![$v$](http://latex.codecogs.com/svg.latex?v)                  | Current, ![$i$](http://latex.codecogs.com/svg.latex?i)           |
-| Fluid         | Pressure, ![$P$](http://latex.codecogs.com/svg.latex?P)                 | Flow Rate, ![$Q$](http://latex.codecogs.com/svg.latex?Q)         |
-| Thermal       | Temperature Differential, ![$T$](http://latex.codecogs.com/svg.latex?T) | Heat Flow Rate, ![$q$](http://latex.codecogs.com/svg.latex?q)    |
+| Energy Domain | Across-variable, $\mathsf{v}$ | Through-variable, $\mathsf{f}$ |
+| ------------- | ----------------------------- | ------------------------------ |
+| Translational | Velocity, $v$                 | Force, $F$                     |
+| Rotational    | Angular velocity, $\Omega$    | Torque, $T$                    |
+| Electronic    | Voltage, $v$                  | Current, $i$                   |
+| Fluid         | Pressure, $P$                 | Volumetric flow rate, $Q$      |
+| Thermal       | Temperature, $T$              | Heat flow rate, $q$            |
 
-### Elemental Equations
+### Element Types
 
-Within each energy domain, there are multiple element-types which can be used to model a system in that domain.
-Across energy domains, these elements can be grouped into three distinct-types.
+Within each energy domain, there are multiple elements which can be used to model a system in that domain.
+Across energy domains, the passive one-port elements can be grouped into three distinct types: two that store energy and one that dissipates it.
 
 #### A-Type Elements
 
-_A-type_ elements are energy storage elements which relate the rate of change of the across-variable to the through-variable of the element.
+_A-type_ elements are energy storage elements which store energy as a function of their across-variable.
+Their elemental equations relate the rate of change of the across-variable to the through-variable, $d\mathsf{v}/dt = \mathsf{f}/\mathsf{C}$, for a generalized capacitance $\mathsf{C}$.
 
-| System Type   | Element             | Elemental Equation         | Parameter
-| ------------- | ------------------- | -------------------------- | ---------
-| Translational | Mass                | ![$F=m\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?F%3Dm%5Cfrac%7Bdv%7D%7Bdt%7D)         | Mass, ![$m$](http://latex.codecogs.com/svg.latex?m)
-| Rotational    | Inertia             | ![$\tau=J\frac{d\Omega}{dt}$](http://latex.codecogs.com/svg.latex?%5Ctau%3DJ%5Cfrac%7Bd%5COmega%7D%7Bdt%7D) | Rotational Inertia, ![$J$](http://latex.codecogs.com/svg.latex?J)
-| Electrical    | Capacitor           | ![$i=C\frac{dv}{dt}$](http://latex.codecogs.com/svg.latex?i%3DC%5Cfrac%7Bdv%7D%7Bdt%7D)         | Capacitance, ![$C$](http://latex.codecogs.com/svg.latex?C)
-| Fluid         | Fluid Capacitor     | ![$Q=C_f\frac{dP}{dt}$](http://latex.codecogs.com/svg.latex?Q%3DC_f%5Cfrac%7BdP%7D%7Bdt%7D)       | Fluid Capacitance, ![$C_f$](http://latex.codecogs.com/svg.latex?C_f)
-| Thermal       | Thermal Capacitance | ![$q=C_t\frac{dT}{dt}$](http://latex.codecogs.com/svg.latex?q%3DC_t%5Cfrac%7BdT%7D%7Bdt%7D)       | Thermal Capacitance, ![$C_t$](http://latex.codecogs.com/svg.latex?C_t)
+| Energy Domain | Element           | Elemental Equation                 | Parameter
+| ------------- | ----------------- | ---------------------------------- | ---------
+| Translational | Mass              | $\frac{dv}{dt}=\frac{1}{m}F$       | Mass, $m$
+| Rotational    | Moment of inertia | $\frac{d\Omega}{dt}=\frac{1}{J}T$  | Moment of inertia, $J$
+| Electronic    | Capacitor         | $\frac{dv}{dt}=\frac{1}{C}i$       | Capacitance, $C$
+| Fluid         | Fluid capacitor   | $\frac{dP}{dt}=\frac{1}{C_f}Q$     | Fluid capacitance, $C_f$
+| Thermal       | Thermal capacitor | $\frac{dT}{dt}=\frac{1}{C_t}q$     | Thermal capacitance, $C_t$
 
 #### T-Type Elements
 
-_T-type_ elements are energy storage elements which relate the rate of change of the through-variable to the across-variable of the element.
+_T-type_ elements are energy storage elements which store energy as a function of their through-variable.
+Their elemental equations relate the rate of change of the through-variable to the across-variable, $d\mathsf{f}/dt = \mathsf{v}/\mathsf{L}$, for a generalized inductance $\mathsf{L}$.
+The thermal domain has no T-type element.
 
-| System Type   | Element          | Elemental Equation                     | Parameter
-| ------------- | ---------------- | -------------------------------------- | ---------
-| Translational | Spring           | ![$v=\frac{1}{K}\frac{dF}{dt}$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BK%7D%5Cfrac%7BdF%7D%7Bdt%7D)           | Spring Constant, ![$K$](http://latex.codecogs.com/svg.latex?K)
-| Rotational    | Torsional Spring | ![$\Omega=\frac{1}{k_r}\frac{d\tau}{dt}$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7Bk_r%7D%5Cfrac%7Bd%5Ctau%7D%7Bdt%7D) | Torsional Sprint Constant, ![$k_r$](http://latex.codecogs.com/svg.latex?k_r)
-| Electrical    | Inductor         | ![$v=L\frac{di}{dt}$](http://latex.codecogs.com/svg.latex?v%3DL%5Cfrac%7Bdi%7D%7Bdt%7D)                     | Inductance, ![$L$](http://latex.codecogs.com/svg.latex?L)
-| Fluid         | Inertance        | ![$P=I_f\frac{dQ}{dt}$](http://latex.codecogs.com/svg.latex?P%3DI_f%5Cfrac%7BdQ%7D%7Bdt%7D)                   | Fluid Inertance, ![$I_f$](http://latex.codecogs.com/svg.latex?I_f)
+| Energy Domain | Element           | Elemental Equation                 | Parameter
+| ------------- | ----------------- | ---------------------------------- | ---------
+| Translational | Spring            | $\frac{dF}{dt}=Kv$                 | Spring constant, $K$
+| Rotational    | Rotational spring | $\frac{dT}{dt}=K_r\Omega$          | Rotational spring constant, $K_r$
+| Electronic    | Inductor          | $\frac{di}{dt}=\frac{1}{L}v$       | Inductance, $L$
+| Fluid         | Inertance         | $\frac{dQ}{dt}=\frac{1}{I}P$       | Inertance, $I$
 
 #### D-Type Elements
 
-_D-type_ elements are strictly dissipative with a linear relationship between through-variables and across-variables.
+_D-type_ elements relate their through-variable and across-variable algebraically, $\mathsf{v} = \mathsf{R}\mathsf{f}$, for a generalized resistance $\mathsf{R}$.
+All but the thermal resistor dissipate energy; the thermal resistor only impedes its flow.
 
-| System Type   | Element            | Elemental Equation         | Parameter
-| ------------- | ------------------ | -------------------------- | ---------
-| Translational | Damper             | ![$v=\frac{1}{B}F$](http://latex.codecogs.com/svg.latex?v%3D%5Cfrac%7B1%7D%7BB%7DF)           | Viscous Damping Constant, ![$B$](http://latex.codecogs.com/svg.latex?B)
-| Rotational    | Rotational Damper  | ![$\Omega=\frac{1}{B_r}\tau$](http://latex.codecogs.com/svg.latex?%5COmega%3D%5Cfrac%7B1%7D%7BB_r%7D%5Ctau) | Rotational Viscous Damping Constant, ![$B_r$](http://latex.codecogs.com/svg.latex?B_r)
-| Electrical    | Resistor           | ![$v=Ri$](http://latex.codecogs.com/svg.latex?v%3DRi)                     | Resistance, ![$R$](http://latex.codecogs.com/svg.latex?R)
-| Fluid         | Fluid Resistance   | ![$P=R_fQ$](http://latex.codecogs.com/svg.latex?P%3DR_fQ)                   | Fluid Resistance, ![$R_f$](http://latex.codecogs.com/svg.latex?R_f)
-| Thermal       | Thermal Resistance | ![$T=R_tq$](http://latex.codecogs.com/svg.latex?T%3DR_tq)                   | Thermal Resistance, ![$R_t$](http://latex.codecogs.com/svg.latex?R_t)
+| Energy Domain | Element           | Elemental Equation                 | Parameter
+| ------------- | ----------------- | ---------------------------------- | ---------
+| Translational | Damper            | $F=Bv$                             | Damping constant, $B$
+| Rotational    | Rotational damper | $T=B_r\Omega$                      | Rotary damping constant, $B_r$
+| Electronic    | Resistor          | $v=Ri$                             | Resistance, $R$
+| Fluid         | Fluid resistor    | $Q=\frac{1}{R_f}P$                 | Fluid resistance, $R_f$
+| Thermal       | Thermal resistor  | $q=\frac{1}{R_t}T$                 | Thermal resistance, $R_t$
 
 #### Transformers
 
-In dynamic systems, energy can flow between multiple domains.
-_Transformers_ are one model for relating the through-variable and across-variable of two energy domains to each other,
+In dynamic systems, energy can flow between multiple domains, or change form within one.
+Two-port elements model this: each of their two ports has an across-variable and a through-variable, and the power into each port is taken as positive.
+An ideal (lossless) two-port element is either a transformer or a gyrator.
+A _transformer_ relates the across-variables of its two ports to each other, and likewise their through-variables, through the transformer ratio
 
-![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}TF&0\\0&-1/TF\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7DTF%260%5C%5C0%26-1/TF%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
+$$
+TF = \frac{\mathsf{v_1}}{\mathsf{v_2}} = -\frac{\mathsf{f_2}}{\mathsf{f_1}}.
+$$
 
-Here ![$TF$](http://latex.codecogs.com/svg.latex?TF) can be used in many different applications.
-A few of these are listed below,
+Its two elemental equations are $\mathsf{v_1} = TF\ \mathsf{v_2}$ and $\mathsf{f_1} = -\mathsf{f_2}/TF$, each rearranged as needed so that it is solved for a primary variable (defined below).
+A few elements modeled as transformers are listed below.
 
-| Element                | ![$TF$](http://latex.codecogs.com/svg.latex?TF)       | Parameter
-| ---------------------- | ---------- | ---------
-| Rack & Pinion          | ![$r$](http://latex.codecogs.com/svg.latex?r)        | Pinion Pitch Diameter, ![$r$](http://latex.codecogs.com/svg.latex?r)
-| Gear train             | ![$-r_2/r_1$](http://latex.codecogs.com/svg.latex?-r_2/r_1) | Gear Pitch Diameters, ![$r_1$](http://latex.codecogs.com/svg.latex?r_1) and ![$r_2$](http://latex.codecogs.com/svg.latex?r_2)
-| DC Motor               | ![$1/Kv$](http://latex.codecogs.com/svg.latex?1/Kv)     | Motor Velocity Constant ![$Kv$](http://latex.codecogs.com/svg.latex?Kv)
-| Lever                  | ![$-l_1/l_2$](http://latex.codecogs.com/svg.latex?-l_1/l_2) | Distance to Fulcrum, ![$l_1$](http://latex.codecogs.com/svg.latex?l_1) and ![$l_2$](http://latex.codecogs.com/svg.latex?l_2)
-| Belt Drive             | ![$r_2/r_1$](http://latex.codecogs.com/svg.latex?r_2/r_1)  | Pulley Pitch Diameters, ![$r_1$](http://latex.codecogs.com/svg.latex?r_1) and ![$r_2$](http://latex.codecogs.com/svg.latex?r_2)
-| Electrical transformer | ![$N_1/N_2$](http://latex.codecogs.com/svg.latex?N_1/N_2)  | Primary Coil Turns, ![$N_1$](http://latex.codecogs.com/svg.latex?N_1) and Secondary Coil Turns, ![$N_2$](http://latex.codecogs.com/svg.latex?N_2)
-| Fluid Transformer      | ![$A_2/A_1$](http://latex.codecogs.com/svg.latex?A_2/A_1)  | Fluid Transformer Areas, ![$A_1$](http://latex.codecogs.com/svg.latex?A_1) and ![$A_2$](http://latex.codecogs.com/svg.latex?A_2)
+| Element                | Port 1        | Port 2          | $TF$       | Parameter
+| ---------------------- | ------------- | --------------- | ---------- | ---------
+| Rack and pinion        | Rack          | Pinion          | $r$        | Pinion pitch radius, $r$
+| Gear train             | Gear 1        | Gear 2          | $-r_2/r_1$ | Gear pitch radii, $r_1$ and $r_2$
+| DC motor               | Electrical    | Rotational      | $K_v$      | Back-emf constant, $K_v$, equal to the torque constant $K_t$ in SI units
+| Lever                  | End 1         | End 2           | $-l_1/l_2$ | Distances from the fulcrum, $l_1$ and $l_2$
+| Belt drive             | Pulley 1      | Pulley 2        | $r_2/r_1$  | Pulley pitch radii, $r_1$ and $r_2$
+| Electrical transformer | Primary coil  | Secondary coil  | $N_1/N_2$  | Coil turns, $N_1$ and $N_2$
+| Fluid transformer      | Piston 1      | Piston 2        | $A_2/A_1$  | Piston areas, $A_1$ and $A_2$
 
 #### Gyrators
 
-_Gyrators_ are another tool used to model energy flow between domains.
-This model relates the across-variable in one energy domain to the through-variable in the other,
+A _gyrator_ relates the across-variable of each port to the through-variable of the other, through the gyrator modulus
 
-![$\left[\begin{array}{c}v_1\\f_1\end{array}\right]=\left[\begin{array}{cc}0&GY\\-1/GY&0\end{array}\right]\left[\begin{array}{c}v_2\\f_2\end{array}\right]$](http://latex.codecogs.com/svg.latex?%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_1%5C%5Cf_1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D0%26GY%5C%5C-1/GY%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dv_2%5C%5Cf_2%5Cend%7Barray%7D%5Cright%5D)
+$$
+GY = \frac{\mathsf{v_1}}{\mathsf{f_2}} = -\frac{\mathsf{v_2}}{\mathsf{f_1}}.
+$$
 
-The following elements can be modeled as gyrators,
+Its two elemental equations are $\mathsf{v_1} = GY\ \mathsf{f_2}$ and $\mathsf{v_2} = -GY\ \mathsf{f_1}$, again rearranged as needed.
+The following elements can be modeled as gyrators.
 
-| Element           | ![$GY$](http://latex.codecogs.com/svg.latex?GY)   | Parameter
-| ----------------- | ------ | ---------
-| Hydraulic Ram     | ![$-1/A$](http://latex.codecogs.com/svg.latex?-1/A) | Piston Area, ![$A$](http://latex.codecogs.com/svg.latex?A)
-| Displacement Pump | ![$-1/D$](http://latex.codecogs.com/svg.latex?-1/D) | Pump Displacement, ![$D$](http://latex.codecogs.com/svg.latex?D)
+| Element           | Port 1                 | Port 2           | $GY$   | Parameter
+| ----------------- | ---------------------- | ---------------- | ------ | ---------
+| Hydraulic ram     | Piston (translational) | Cylinder (fluid) | $-1/A$ | Piston area, $A$
+| Displacement pump | Shaft (rotational)     | Outlet (fluid)   | $-1/D$ | Pump displacement (volume per radian), $D$
+
+The sign of $TF$ or $GY$ depends on the positive direction chosen at each port, so check the signs in these tables against your own linear graph.
 
 #### Sources
 
 The final type of element is the _ideal source_.
-Ideal sources provide (potentially arbitrary) external power to a system by specifying either its across-variable or through-variable.
-The former are called across-variable sources and the latter through-variable sources.
+Ideal sources provide (potentially arbitrary) external power to a system by prescribing either their across-variable or their through-variable, independent of the system; the system determines the other variable.
+The former are called _across-variable sources_ (voltage, velocity, angular velocity, pressure and temperature sources) and the latter _through-variable sources_ (current, force, torque, flow rate and heat flow rate sources).
 
 ### Linear Graphs
 
-A _linear graph_ is a diagram of a system that represents its topology via nodes and edges (lines).
-Each node represents an independent across-variable value and is drawn as a dot, or a small circle.
-Edges represent discrete lumped-parameter elements in the system, and through these power flows between the nodes.
-An edge is drawn as a line between two nodes with an arrow specifying a sign assignment for that element (e.g. a voltage drop is positive in the direction of the arrow).
-A-type elements always connect to a ground node in non-electrical systems.
-Arrows on transformers and gyrators always point towards ground.
-An example of a linear graph appears in the Example section of this tutorial.
+A _linear graph_ is a diagram of a system that represents its topology with nodes and edges.
+Each _node_ is a point with its own across-variable value, such as a wire in a circuit or a point with its own velocity in a mechanical system, and is drawn as a dot.
+One node is the _reference node_, or _ground_, against which across-variables are measured.
+Each _edge_ represents one energy port of an element: a one-port element or a source is one edge, and a transformer or gyrator is two.
+An edge is drawn as a line between two nodes, with an arrow that assigns the signs of its variables.
+(Rowell and Wormley call an edge a _branch_; here, as in the notes, a branch is an edge of a normal tree.)
+
+On a passive element's edge, the across-variable drops in the direction of the arrow and the through-variable flows in the direction of the arrow, so $\mathsf{f}\mathsf{v}$ is the power into the element.
+Its arrow may be drawn either way: reversing it reverses the signs of both variables.
+A source's arrow is the source's own: the variable it prescribes follows the arrow and the other variable runs against it, so $\mathsf{f}\mathsf{v}$ is the power the source supplies.
+For mechanical systems, the notes' sign convention draws a coordinate arrow, points the arrow of each spring and damper along the axis against it, so that a positive force is tension, and points each mass's or inertia's arrow toward ground.
+A-type elements other than electrical capacitors always connect to a ground node.
+The edges of transformers and gyrators are usually drawn toward ground, as they are in the example below.
 
 ### Normal Trees
 
-A _normal tree_ can be constructed to find the system's primay and secondary variables, defined below.
-This normal tree should consist of ![$N-1$](http://latex.codecogs.com/svg.latex?N-1) edges from the linear graph where ![$N$](http://latex.codecogs.com/svg.latex?N) is the number of nodes in the linear graph.
-If multiple ground nodes are present in the linear graph, they should be counted as a single node.
-Since the normal tree must be a tree structure, no loops may be created when constructing the normal tree.
-To construct the normal tree, select edges in the following order.
+A _tree_ of a linear graph contains all of its nodes and as many of its edges as possible without forming a loop.
+It consists of $N-1$ edges, where $N$ is the number of nodes in the linear graph.
+If multiple ground nodes are present in the linear graph, as when transformers and gyrators join separate energy domains, they should be counted as a single node.
+The edges in the tree are termed _branches_, while the edges not in the tree are called _links_.
+A _normal tree_ is a tree whose branches are selected in the following order.
 
 1. Across-variable sources
-2. A-type elements
-3. Transformers and Gyrators (minimizing the number of T-type elements in the normal tree)
-4. D-type elements
-5. T-type elements
+2. As many A-type elements as possible
+3. Transformers and gyrators (minimizing the number of T-type elements in the normal tree)
+4. As many D-type elements as possible
+5. Only as many T-type elements as are needed to complete the tree
 
-For transformers, one edge must be selected.
-For gyrators, both or neither edges can be selected.
-The elements in the normal tree are termed _branches_, while the elements not in the normal tree are called _links_.
+For transformers, exactly one edge must be selected.
+For gyrators, either both edges or neither must be selected.
+If the across-variable sources cannot all be selected, or a through-variable source is needed to complete the tree, the sources violate compatibility or continuity, and the model is wrong.
 
 ### Primary and Secondary Variables
 
-Once the normal tree has been created it is trivial to determine the primary and secondary variables.
+Once the normal tree has been created, it is straightforward to determine the primary and secondary variables.
 _Primary variables_ are defined as,
 
-* Across-variables on normal tree branches and
-* Through-variables on normal tree links.
+* across-variables on branches and
+* through-variables on links.
 
-The _secondary variable_ is the non-primary variable in each element.
+The _secondary variable_ is the non-primary variable in each edge.
 In other words the secondary variables are,
 
-* Across-variables on normal tree links
-* Through-variables on normal tree branches
+* through-variables on branches and
+* across-variables on links.
 
 ### State Variables
 
 The _state variables_ of the system are,
 
-* A-type elements on normal tree branches and
-* T-type elements on normal tree links.
+* across-variables on A-type branches and
+* through-variables on T-type links.
+
+The system order is their number.
+An A-type link or a T-type branch is a _dependent energy storage element_: sources and other energy storage elements fix its variables, so it adds no state variable.
+StateMint handles dependent energy storage elements, including any derivatives of the inputs they bring into the model.
 
 ### Elemental Equations
 
-We define ![$B$](http://latex.codecogs.com/svg.latex?B) as the number of edges in the linear graph and ![$S$](http://latex.codecogs.com/svg.latex?S) as the number of sources.
-An elemental equation should be written for each of the ![$B-S$](http://latex.codecogs.com/svg.latex?B-S) non-source edges in the linear graph.
+We define $E$ as the number of edges in the linear graph and $S$ as the number of sources, $S_A$ of them across-variable sources and $S_T$ of them through-variable sources.
+An elemental equation should be written for each of the $E-S$ non-source edges in the linear graph, so a transformer or gyrator gets two.
 The primary variable must be written on the left hand side of each equation.
+For an independent energy storage element, that is the derivative of its state variable: $d\mathsf{v}/dt = \mathsf{f}/\mathsf{C}$ on an A-type branch and $d\mathsf{f}/dt = \mathsf{v}/\mathsf{L}$ on a T-type link.
+A D-type branch gets $\mathsf{v} = \mathsf{R}\mathsf{f}$ and a D-type link $\mathsf{f} = \mathsf{v}/\mathsf{R}$.
+A dependent element's equation contains a derivative of its secondary variable: $\mathsf{f} = \mathsf{C} d\mathsf{v}/dt$ on an A-type link and $\mathsf{v} = \mathsf{L} d\mathsf{f}/dt$ on a T-type branch.
 
 ### Continuity Equations
 
-![$N-1-S_A$](http://latex.codecogs.com/svg.latex?N-1-S_A) _continuity equations_ should be found.
-These equations are found by drawing a contour around any number of nodes which cuts through exactly one passive (non source) normal tree branch.
-Next, the sum of the through-variable flowing through the contour determined needs to be found.
-The secondary through-variable should be placed on the left hand side of the resulting equation.
-
+$N-1-S_A$ _continuity equations_ should be found, one for each passive (non-source) branch.
+Each is found by drawing a contour around any number of nodes that crosses that branch and no other branch.
+The through-variables flowing into the contour sum to zero: an edge whose arrow points into the contour contributes $+\mathsf{f}$ and one whose arrow points out contributes $-\mathsf{f}$, except that an across-variable source's through-variable flows against its arrow.
+The branch's secondary through-variable should be placed on the left hand side of the resulting equation.
 
 ### Compatibility Equations
 
-![$B-N+1-S_T$](http://latex.codecogs.com/svg.latex?B-N%2B1-S_T) _compatibility equations_ should be written.
-These equations most have the secondary across-variable on the left side.
-To create these equations, calculate the sum of the across-variables around the loop created when one normal tree link is added to the normal tree.
-An equation should be found by substituting each link into the normal tree.
+$E-N+1-S_T$ _compatibility equations_ should be written, one for each passive link.
+Adding the link to the normal tree closes exactly one loop.
+The across-variables around that loop sum to zero: an edge traversed in the direction of its arrow contributes $+\mathsf{v}$ and one traversed against its arrow contributes $-\mathsf{v}$, except that a through-variable source's across-variable drops against its arrow.
+The link's secondary across-variable should be placed on the left hand side of the resulting equation.
 
 ## Example
 
@@ -181,15 +220,19 @@ To show how this process works, we will work through the following example.
 
 ![Example System](web/HTML/tutorial/tutorial1.svg)
 
-This system is a voltage source which drives a motor with the given resistance and inductance.
-This motor in turn drives a pump through a drive shaft with the given stiffness.
-Finally the pump pushes water through a curved pipe of known resistance.
+This system is a voltage source $V_s$ which drives a DC motor with back-emf constant $K_v$ and winding resistance $R$ and inductance $L$.
+This motor in turn drives a displacement pump, with displacement $D$, through a drive shaft with rotational spring constant $K_r$.
+Finally the pump pushes water through a curved pipe with fluid resistance $R_f$.
+The output is the flow rate through the pipe, $Q_{R_f}$.
+(The figures label the shaft's spring constant $k_t$ and the flow rate $Q_R$.)
 
 ### Linear Graph
 
 This system can be distilled into the linear graph below.
-Here 1 is the electrical input to the motor, and 2 is rotational output.
-Similarly 3 is the rotational input to the pump, and 4 is the fluid output.
+Here 1 is the electrical input to the motor, and 2 is its rotational output.
+Similarly 3 is the rotational input to the pump, and 4 is its fluid output.
+The graph has three separate parts, each with its own ground; counting the grounds as a single node, it has $N=7$ nodes and $E=9$ edges, and its one source is an across-variable source, so $S=S_A=1$ and $S_T=0$.
+Taking the shaft's coordinate arrow to point from the pump toward the motor, the spring's arrow points against it, as the sign convention requires.
 
 ![Linear Graph](web/HTML/tutorial/tutorial2.svg)
 
@@ -199,15 +242,17 @@ To create the normal tree, first the voltage source is selected.
 
 ![Normal Tree](web/HTML/tutorial/tutorial3.svg)
 
-To avoid selecting T-type elements (the torsional spring and inductor), The right side of the transformer will be added to the normal tree.
+There are no A-type elements.
+Either side of the transformer leaves one T-type element in the normal tree: side 1 would force the rotational spring into it, and side 2 forces the inductor into it.
+The right side of the transformer, 2, will be added to the normal tree.
 
 ![Normal Tree](web/HTML/tutorial/tutorial4.svg)
 
-Also adding both sides of the gyrator means that adding the torsional spring would cause a loop to be created.
+Also adding both sides of the gyrator means that adding the rotational spring would cause a loop to be created, so it remains a link.
 
 ![Normal Tree](web/HTML/tutorial/tutorial6.svg)
 
-Next, the motor resistance is added.
+Next, the motor resistance is added; the pipe's resistance would close a loop with 4.
 
 ![Normal Tree](web/HTML/tutorial/tutorial7.svg)
 
@@ -215,93 +260,224 @@ Finally to complete the normal tree the motor inductance must be added.
 
 ![Normal Tree](web/HTML/tutorial/tutorial8.svg)
 
+The branches are $V_s$, $R$, $L$, 2, 3 and 4, and the links are 1, $K_r$ and $R_f$.
+The inductor is a T-type branch, so it is a dependent energy storage element: through the motor, the shaft's torque fixes its current.
+
 ### Primary Variables
 
 The following are primary variables determined using the logic above.
 
-![$V_s$](http://latex.codecogs.com/svg.latex?V_s),
-![$v_R$](http://latex.codecogs.com/svg.latex?v_R),
-![$v_L$](http://latex.codecogs.com/svg.latex?v_L),
-![$i_1$](http://latex.codecogs.com/svg.latex?i_1),
-![$\Omega_2$](http://latex.codecogs.com/svg.latex?%5COmega_2),
-![$\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k),
-![$\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_3),
-![$P_4$](http://latex.codecogs.com/svg.latex?P_4),
-![$Q_R$](http://latex.codecogs.com/svg.latex?Q_R)
+$V_s$,
+$v_R$,
+$v_L$,
+$i_1$,
+$\Omega_2$,
+$T_{K_r}$,
+$\Omega_3$,
+$P_4$,
+$Q_{R_f}$
 
 ### Secondary Variables
 
 Given the primary variables above, the following are easily determined to be secondary variables.
 
-![$i_s$](http://latex.codecogs.com/svg.latex?i_s),
-![$i_R$](http://latex.codecogs.com/svg.latex?i_R),
-![$i_L$](http://latex.codecogs.com/svg.latex?i_L),
-![$v_1$](http://latex.codecogs.com/svg.latex?v_1),
-![$\tau_2$](http://latex.codecogs.com/svg.latex?%5Ctau_2),
-![$\Omega_k$](http://latex.codecogs.com/svg.latex?%5COmega_k),
-![$\tau_3$](http://latex.codecogs.com/svg.latex?%5Ctau_3),
-![$Q_4$](http://latex.codecogs.com/svg.latex?Q_4),
-![$P_R$](http://latex.codecogs.com/svg.latex?P_R)
+$i_s$,
+$i_R$,
+$i_L$,
+$v_1$,
+$T_2$,
+$\Omega_{K_r}$,
+$T_3$,
+$Q_4$,
+$P_{R_f}$
 
 ### State Variables
 
-From the requirements the following can be found to be the only state variable.
+The rotational spring is the only T-type link and there are no A-type branches, so the only state variable is
 
-![$\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k)
+$T_{K_r}$
+
+and the system order is 1.
 
 ### Elemental Equations
 
-Based on the list of elemental equations, the following list of elemental equations can be generated.
+The $E-S=8$ elemental equations, each solved for its primary variable, are below.
+The motor's two come from $TF=K_v$ and the pump's two from $GY=-1/D$.
 
-* ![$v_R=Ri_R$](http://latex.codecogs.com/svg.latex?v_R%3DRi_R)
-* ![$v_L=Li_L'$](http://latex.codecogs.com/svg.latex?v_L%3DLi_L%27)
-* ![$i_1=-K_v\tau_2$](http://latex.codecogs.com/svg.latex?i_1%3D-K_v%5Ctau_2)
-* ![$\Omega_2=K_vv_1$](http://latex.codecogs.com/svg.latex?%5COmega_2%3DK_vv_1)
-* ![$\tau_k'=k_t\Omega_k$](http://latex.codecogs.com/svg.latex?%5Ctau_k%27%3Dk_t%5COmega_k)
-* ![$\Omega_3=\frac{Q_4}{-D}$](http://latex.codecogs.com/svg.latex?%5COmega_3%3D%5Cfrac%7BQ_4%7D%7B-D%7D)
-* ![$P_4=\frac{\tau_3}{D}$](http://latex.codecogs.com/svg.latex?P_4%3D%5Cfrac%7B%5Ctau_3%7D%7BD%7D)
-* ![$Q_R=\frac{P_R}{R_f}$](http://latex.codecogs.com/svg.latex?Q_R%3D%5Cfrac%7BP_R%7D%7BR_f%7D)
+* $v_R=Ri_R$
+* $v_L=L\frac{di_L}{dt}$
+* $i_1=-\frac{1}{K_v}T_2$
+* $\Omega_2=\frac{1}{K_v}v_1$
+* $\frac{dT_{K_r}}{dt}=K_r\Omega_{K_r}$
+* $\Omega_3=-\frac{1}{D}Q_4$
+* $P_4=\frac{1}{D}T_3$
+* $Q_{R_f}=\frac{1}{R_f}P_{R_f}$
 
 ### Continuity Equations
 
-To determine the continuity equations, the following contours can be drawn.
+To determine the $N-1-S_A=5$ continuity equations, the following contours can be drawn.
 
 ![Normal Tree](web/HTML/tutorial/tutorial9.svg)
 
 Using these contours, the equations below were constructed.
 
-* ![$i_L=i_1$](http://latex.codecogs.com/svg.latex?i_L%3Di_1)
-* ![$i_R=i_1$](http://latex.codecogs.com/svg.latex?i_R%3Di_1)
-* ![$\tau_2=-\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_2%3D-%5Ctau_k)
-* ![$\tau_3=\tau_k$](http://latex.codecogs.com/svg.latex?%5Ctau_3%3D%5Ctau_k)
-* ![$Q_4=Q_R$](http://latex.codecogs.com/svg.latex?Q_4%3DQ_R)
+* $i_L=i_1$
+* $i_R=i_1$
+* $T_2=-T_{K_r}$
+* $T_3=T_{K_r}$
+* $Q_4=-Q_{R_f}$
+
+At the pump's outlet node, the arrows of both 4 and the pipe point out of the contour, so $-Q_4-Q_{R_f}=0$.
 
 ### Compatibility Equations
 
-By adding each link into the normal tree the equations below were generated.
+By adding each of the $E-N+1-S_T=3$ links into the normal tree, the equations below were generated.
 
-* ![$v_1=V_s-v_R-v_L$](http://latex.codecogs.com/svg.latex?v_1%3DV_s-v_R-v_L)
-* ![$\Omega_k=\Omega_2-\Omega_3$](http://latex.codecogs.com/svg.latex?%5COmega_k%3D%5COmega_2-%5COmega_3)
-* ![$P_R=P_4$](http://latex.codecogs.com/svg.latex?P_R%3DP_4)
+* $v_1=V_s-v_R-v_L$
+* $\Omega_{K_r}=\Omega_2-\Omega_3$
+* $P_{R_f}=P_4$
 
 ## Using the Software
 
 Given the equations derived above, the state equation could be found by hand.
-However, one of the following tools can be used.
-These tools require the equations as derived above to be provided.
+StateMint does this algebra: it eliminates every variable that is neither a state variable nor an input.
+It cannot draw the linear graph, choose the normal tree, or catch a sign error in the equations; those steps remain yours.
+
+### Input Syntax
+
+StateMint takes five lists, named here as in the web interface.
+
+1. **Input Variables:** the variables the sources prescribe.
+2. **State Variable Elemental Equations:** one for each state variable, solved for the derivative of the state variable, which is written with a prime, e.g. `vm' = Fm/m`.
+3. **Other Elemental Equations:** the remaining elemental equations, each solved for its primary variable.
+4. **Constraints:** the continuity and compatibility equations, each solved for a secondary variable.
+5. **Output Variables:** variables, or expressions in the system's variables such as `FK + FB`.
+
+These rules apply in the web interface and the Python package.
+
+* In the web interface, entries are separated by new lines or by commas. A comma inside parentheses, as in `atan2(y, x)`, does not split an entry. Blank lines and trailing commas are ignored.
+* A list may be empty: a system with only energy storage elements has no other elemental equations.
+* Each equation has exactly one `=`, with the variable it is solved for on the left.
+* Names are letters, digits and underscores, starting with a letter, and are case-sensitive. Python keywords, such as `lambda`, `in` and `is`, and the function names below can't be names, and `t` (time) and `s` (the Laplace variable) are reserved. `I` is an ordinary name, not the imaginary unit, so it can be an inertance or a current.
+* Multiplication is written explicitly, as in `R*iR`, and `^` and `**` both mean a power.
+* The functions `sqrt`, `exp`, `log`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2`, `sinh`, `cosh`, `tanh`, `abs` (or `Abs`), `sign`, `Min`, `Max`, `floor`, `ceiling`, `re` and `im`, and the constant `pi`, are available, so nonlinear elements can be modeled.
+
+For the example, writing `W` for $\Omega$, the five lists are below.
+
+**Input Variables:**
+
+```
+Vs
+```
+
+**State Variable Elemental Equations:**
+
+```
+TKr' = Kr*WKr
+```
+
+**Other Elemental Equations:**
+
+```
+vR = R*iR
+vL = L*iL'
+i1 = -T2/Kv
+W2 = v1/Kv
+W3 = -Q4/D
+P4 = T3/D
+QRf = PRf/Rf
+```
+
+**Constraints:**
+
+```
+iL = i1
+iR = i1
+T2 = -TKr
+T3 = TKr
+Q4 = -QRf
+v1 = Vs - vR - vL
+WKr = W2 - W3
+PRf = P4
+```
+
+**Output Variables:**
+
+```
+QRf
+```
+
+### Results
+
+StateMint returns the state and output equations in the form
+
+$$
+\dot{x} = Ax + Bu + E\dot{u}
+$$
+
+$$
+y = Cx + Du + F\dot{u}
+$$
+
+where $x$, $u$ and $y$ are the state, input and output vectors.
+The matrices $E$ and $F$ weight derivatives of the inputs, which a dependent energy storage element can bring into the model.
+They are usually zero, leaving the standard form $\dot{x} = Ax + Bu$ and $y = Cx + Du$.
+When $E$ is not zero, the input derivative can be removed from the state equation by the change of state variable $x' = x - Eu$, which gives
+
+$$
+\dot{x}' = Ax' + B'u
+$$
+
+$$
+y = Cx' + D'u + F\dot{u}
+$$
+
+with $B' = AE + B$ and $D' = CE + D$ (Rowell and Wormley, section 5.4, and the notes' section on nonstandard state equations); StateMint gives these too.
+It also gives the transfer function matrix $H(s)$ and the state and output equations as $\dot{x} = f(x,u)$ and $y = h(x,u)$, the only form that describes a nonlinear system.
+
+For the example, StateMint finds the state equation $\frac{dT_{K_r}}{dt} = AT_{K_r} + BV_s$ with
+
+$$
+A = -\frac{K_r(D^2RR_f + K_v^2)}{D^2R_f(K_rL + K_v^2)}, \qquad B = \frac{K_rK_v}{K_rL + K_v^2}
+$$
+
+and the output equation $Q_{R_f} = T_{K_r}/(DR_f)$.
+$A$ is negative: the system is stable, as a motor turning a pump should be.
+The inductor is dependent, but no input derivative appears, so $E$ and $F$ are zero.
 
 ### Web Interface
 
 The web interface is by far the easiest method to perform this algebra,
-[statemint.stmartin.edu](http://statemint.stmartin.edu/?%7B%22InVars%22%3A%22Vs%22%2C%22StVarElEqns%22%3A%22tk'%20%3D%20kt%20*%20wk%22%2C%22OtherElEqns%22%3A%22vR%20%3D%20R%20*%20iR%2C%5CnvL%20%3D%20L%20*%20iL'%2C%5Cni1%20%3D%20-Kv%20*%20t2%2C%5Cnw2%20%3D%20Kv%20*%20v1%2C%5Cnw3%20%3D%20Q4%20%2F%20-D%2C%5CnP4%20%3D%20t3%20%2F%20D%2C%5CnQR%20%3D%20PR%20%2F%20Rf%22%2C%22Constraints%22%3A%22iL%20%3D%20i1%2C%5CniR%20%3D%20i1%2C%5Cnt2%20%3D%20-tk%2C%5Cnt3%20%3D%20tk%2C%5CnQ4%20%3D%20QR%2C%5Cnv1%20%3D%20Vs%20-%20vR%20-%20vL%2C%5Cnwk%20%3D%20w2%20-%20w3%2C%5CnPR%20%3D%20P4%22%2C%22OutputVars%22%3A%22QR%22%7D).
-This interface allow the equations to be entered and the result found without the need to install software.
+[ricopic.one/statemint](https://ricopic.one/statemint/?open=tutorial); this link opens it with the example's equations entered.
+This interface allows the equations to be entered and the result found without the need to install software.
+The result can be shown as equations or as LaTeX, MATLAB, Mathematica or Python code.
+A system can be saved in the browser, or downloaded as an `.rnd` file and uploaded later.
 
 ### Python
 
 The Python implementation of this software can also be used.
-An example continuing this tutorial is [provided](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb).
+Install it with `pip install StateMint`.
+Each of the five lists is a Python list of strings:
+
+```python
+import StateMint
+
+sol = StateMint.Solve(
+    ["Vs"],
+    ["TKr' = Kr*WKr"],
+    ["vR = R*iR", "vL = L*iL'", "i1 = -T2/Kv", "W2 = v1/Kv",
+     "W3 = -Q4/D", "P4 = T3/D", "QRf = PRf/Rf"],
+    ["iL = i1", "iR = i1", "T2 = -TKr", "T3 = TKr", "Q4 = -QRf",
+     "v1 = Vs - vR - vL", "WKr = W2 - W3", "PRf = P4"],
+    ["QRf"])
+print(sol.A, sol.B, sol.C, sol.D)
+```
+
+The result's matrices `A`, `B`, `C`, `D`, `E`, `F`, `Bp` ($B'$) and `Dp` ($D'$) are SymPy matrices.
+An example notebook is also [provided](https://github.com/CameronDevine/StateMint/blob/master/python/Example.ipynb).
 
 ### Mathematica
 
 Finally, the Mathematica package can be used.
+It takes the equations as Mathematica expressions, as its [README](https://github.com/CameronDevine/StateMint/blob/master/mathematica/README.md) describes.
 An example using Mathematica is also [provided](https://github.com/CameronDevine/StateMint/blob/master/mathematica/Example.nb).

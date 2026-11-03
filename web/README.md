@@ -1,21 +1,24 @@
 ## Web Interface
 
-[![Build Status](https://travis-ci.org/CameronDevine/StateMint.svg?branch=master)](https://travis-ci.org/CameronDevine/StateMint)
+The web interface lets students and others use StateMint without installing anything.
+It is running at [ricopic.one/statemint](https://ricopic.one/statemint/).
 
-To allow easy use the functionality in StateMint a web interface was created.
-This interface allows students and other to take advantage of this tool without the need to install Python or Mathematica.
-An example of this interface is running [here](statemint.stmartin.edu).
+### How it works
 
-### Usage
+The page is static. A module Web Worker ([assets/js/worker.js](HTML/assets/js/worker.js)) loads [Pyodide](https://pyodide.org) and SymPy from jsdelivr, writes the StateMint Python package into Pyodide's file system and calls `StateMint.web.solve_json`, which returns the model as LaTeX, MATLAB, Mathematica and Python.
+Nothing is sent to a server.
+The first visit downloads about 11 MB (cached afterwards); the solver is ready a few seconds after the page loads.
 
-This interface uses the Python StateMint [package](../python/README.md) in an AWS Lambda function to perform the symbolic mathematics.
-Equations can be entered in text boxes on the webpage, then the Lambda function is used to find the result which can be displayed in multiple forms for copying into Python, Mathematica, Matlab or LaTeX.
-These systems can also be saved or downloaded for later modification or use.
+Systems can be saved in the browser (localStorage), downloaded as `.rnd` files (a JPEG of the system's picture whose EXIF UserComment holds the five fields as JSON), or shared as links (`?` followed by the URL-encoded JSON).
 
-### Installation
+### Building
 
-To make copy of this interface, start our by creating an Amazon AWS account.
-Next, make sure Python's `pip` is installed.
-Finally run `make` in this directory.
-If not done previously this will prompt you to set up the AWS CLI, see [this link](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for details.
-When the command has completed successfully, copy the contents of the `HTML` directory to your favorite static web host.
+```
+make site
+```
+
+builds the site into `build/`: the contents of `HTML/` plus the package's `__init__.py`, `StateMint.py` and `web.py` under `assets/py/StateMint/`, cache-busted with the package version.
+`make serve` builds it and serves it at http://localhost:8000.
+To publish, copy `build/` to any static host; ricopic.one serves it from a Django app (`statemint/` in the homepage repository).
+
+Until version 3 the computation ran in an AWS Lambda function behind API Gateway; that code is in the history (`web/aws`, version 2.1.1).
