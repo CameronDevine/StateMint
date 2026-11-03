@@ -15,6 +15,9 @@ git clone -q "$repo" "$tmp/pages"
 cd "$tmp/pages"
 git ls-files -z | grep -zv '^CNAME$' | xargs -0 git rm -q
 rsync -a --exclude testdata "$here/build/" ./
+# Without .nojekyll, Pages runs Jekyll, which drops files whose names start
+# with an underscore: assets/py/StateMint/__init__.py among them.
+touch .nojekyll
 git add -A
 version="$(sed -n "s/^__version__ = '\(.*\)'/\1/p" "$here/../python/StateMint/__init__.py")"
 git commit -q -m "Deploy StateMint $version web interface ($(git -C "$here" rev-parse --short HEAD))"
