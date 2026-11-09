@@ -15,3 +15,15 @@ Because this package is available on PyPI the latest release can be easily insta
 
 Run the tests with `pip install -e ".[test]"` and `pytest` in this directory.
 `tests/test_notes_examples.py` checks every worked model in the [System Dynamics notes](https://systems.ricopic.one/).
+
+The Pyodide workflow runs `tests/test_suite.py` in Pyodide using Chromium on
+Ubuntu. To run locally:
+
+```sh
+pip install -e ".[browser-test]"
+python -m playwright install --with-deps chromium
+python tests/browser/run_suite.py
+```
+
+The runner downloads Pyodide 314.0.7, SymPy, and NumPy from the CDN
+and runs the checked-out Python sources, so it requires internet access.
