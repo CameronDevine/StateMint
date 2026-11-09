@@ -1,75 +1,28 @@
-SHELL := bash
-.PHONY: zip package deploy sdk clean remove test check tracking
+# The StateMint web interface is a static site: StateMint itself runs in the
+# browser with Pyodide (assets/js/worker.js), so there is no server to deploy.
+#
+#   make site    build the site into build/ (HTML/ plus the Python package)
+#   make serve   build it and serve it at http://localhost:8000
+#   make clean   remove build/
+#
+# Publish by copying build/ to any static host (GitHub Pages, a Django app's
+# static files, ...).
 
-trackingID = none
-stack = StateMint
+.PHONY: site serve clean
 
-all: depends zip package deploy sdk tracking
+PY := ../python/StateMint
+VERSION := $(shell sed -n "s/^__version__ = '\(.*\)'/\1/p" $(PY)/__init__.py)+$(shell git rev-parse --short HEAD)
 
-depends:
-	pip install --upgrade sympy mpmath -t aws/lambda/
-	cp -r ../python/StateMint aws/lambda/
+site:
+	rm -rf build
+	cp -R HTML build
+	mkdir -p build/assets/py/StateMint
+	cp $(PY)/__init__.py $(PY)/StateMint.py $(PY)/web.py build/assets/py/StateMint/
+	sed -i.bak 's/@VERSION@/$(VERSION)/g' build/index.html && rm build/index.html.bak
+	@echo "Built build/ (StateMint $(VERSION))"
 
-zip:
-	cd aws/lambda; zip -q -r ../lambda.zip *
+serve: site
+	cd build && python3 -m http.server 8000
 
-package: check
-	found="false"; \
-	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
-			found="true"; \
-			break; \
-		fi; \
-	done; \
-	if [ "$$found" == "false" ]; then \
-		aws s3 mb s3://$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4); \
-	fi
-	echo "$(shell \
-		export account=$$(aws sts get-caller-identity | grep Account | cut -d '"' -f 4); \
-		export region=`aws configure get region`; \
-		export stack=$(stack); \
-		envsubst '$$account $$region $$stack' < aws/api-template.yml > aws/api.yml; \
-		envsubst '$$stack' < aws/StateMint-template.yml > aws/StateMint.yml;)"
-	aws cloudformation package --template-file aws/StateMint.yml --s3-bucket $$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --output-template-file aws/package.yml
-
-deploy: check
-	aws cloudformation deploy --stack-name $(stack) --template-file aws/package.yml --capabilities CAPABILITY_IAM
-
-sdk: check
-	aws apigateway get-sdk --rest-api-id $$(aws cloudformation describe-stacks --stack-name $(stack) | grep OutputValue | cut -d '"' -f 4) --stage-name StateMint --sdk-type javascript HTML/assets/sdk.zip
-	cd HTML/assets/; unzip -o sdk.zip; rm sdk.zip; rm apiGateway-js-sdk/README.md
-
-clean: check
-	cd aws/lambda; ls | grep -v StateMintLambda.py | xargs rm -r
-	rm -f aws/lambda.zip
-	rm -f aws/package.yml
-	rm -f aws/api.yml
-	rm -f aws/StateMint.yml
-	rm -rf HTML/assets/apiGateway-js-sdk
-	for line in $$(aws s3 ls); do \
-		if [ "$$line" == "$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4)" ]; then \
-			aws s3 rb s3://$$(echo '$(stack)' | tr '[:upper:]' '[:lower:'])-$$(aws sts get-caller-identity | grep Account | cut -d \" -f 4) --force; \
-			break; \
-		fi; \
-	done
-
-remove: check
-	aws cloudformation delete-stack --stack-name $(stack)
-
-test:
-	sudo env "PATH=$$PATH" python tests.py $(tests)
-
-check:
-	if [ $$(which aws) == "" ]; then \
-		pip install awscli; \
-	fi
-	if ! aws sts get-caller-identity; then \
-		aws configure; \
-	fi
-
-tracking:
-	if [ $(trackingID) == "null" ]; then \
-		sed -i "1s/.*/trackingID = null;/" HTML/assets/js/tracking.js; \
-	elif [ $(trackingID) != "none" ]; then \
-		sed -i "1s/.*/trackingID = '$(trackingID)';/" HTML/assets/js/tracking.js; \
-	fi;
+clean:
+	rm -rf build

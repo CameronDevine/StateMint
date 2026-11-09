@@ -1,16 +1,16 @@
 .PHONY: version tutorial
 
+# Copy the web tutorial to the repository root, where GitHub renders its $...$
+# and $$...$$ math natively, pointing its figure paths at web/HTML/tutorial/.
 define prog
-from urllib import quote
 with open('web/HTML/tutorial/tutorial.md') as f: text = f.read()
-chunks = text.split('$$')
-chunks = ['![$${}$$](http://latex.codecogs.com/svg.latex?{})'.format(eqn, quote(eqn)) if i % 2 == 1 else chunks[i].replace('](tutorial/', '](web/HTML/tutorial/') for i, eqn in enumerate(chunks)]
-with open('tutorial.md', 'w') as f: f.write(''.join(chunks))
+note = '<!-- Generated from web/HTML/tutorial/tutorial.md by `make tutorial`; edit that file instead. -->\n\n'
+with open('tutorial.md', 'w') as f: f.write(note + text.replace('](tutorial/', '](web/HTML/tutorial/'))
 endef
 export prog
 
 tutorial:
-	python -c "import os;exec(os.environ['prog'])"
+	python3 -c "import os;exec(os.environ['prog'])"
 
 version:
 	if [ "$(old)" ] && [ "$(new)" ] && [ "$(message)" ]; then \
