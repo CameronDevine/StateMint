@@ -1,13 +1,13 @@
 name: Publish to PyPI
 
-# Publishes the Python package when a GitHub release is published. Uses PyPI
+# Publishes the Python package when a tag is pushed. Uses PyPI
 # trusted publishing (no API token): a PyPI owner of StateMint must first add
 # this repository and workflow as a trusted publisher, with environment
 # "pypi" (https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
 
 on:
-  release:
-    types: [published]
+  push:
+    tags: ["*"]
   workflow_dispatch:
 
 jobs:

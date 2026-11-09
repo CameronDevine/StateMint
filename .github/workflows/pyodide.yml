@@ -1,0 +1,30 @@
+name: Pyodide tests
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: System suite in Pyodide
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install test runner
+        run: python -m pip install -e ".[browser-test]"
+      - name: Install browser
+        run: python -m playwright install --with-deps chromium
+      - name: Run the system suite in Pyodide
+        run: python tests/browser/run_suite.py

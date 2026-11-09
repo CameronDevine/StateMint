@@ -37,7 +37,9 @@ dependencies = ["sympy>=1.10"]
 [project.optional-dependencies]
 numpy = ["numpy"]
 test = ["pytest", "numpy"]
+browser-test = ["playwright"]
 docs = ["sphinx>=7"]
+release = ["bump-my-version"]
 
 [project.urls]
 Homepage = "https://github.com/CameronDevine/StateMint"
