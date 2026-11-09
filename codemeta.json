@@ -30,7 +30,7 @@
   "description": "StateMint finds the state-space model of a lumped-parameter dynamic system from its elemental and constraint equations, following Rowell and Wormley's System Dynamics: An Introduction. It is a SymPy-based Python package with a web interface that runs the package in the browser (Pyodide), and an original Mathematica package.",
   "keywords": "algebra, system dynamics, calculator, computer algebra system, symbolic math",
   "license": "https://spdx.org/licenses/BSD-3-Clause",
-  "version": "v3.0.0.dev0",
+  "version": "v3.0.0",
   "programmingLanguage": [
     "Python",
     "JavaScript",
