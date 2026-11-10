@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.0 (unreleased)
+## 3.0.0 (2026-11-09)
 
 ### Python package
 - **Output expressions.** Outputs may be any expression in the system's
@@ -37,12 +37,18 @@
   (use `to_numpy.array`); `I` is no longer the imaginary unit.
 - Packaging with `pyproject.toml`; tests with pytest on GitHub Actions
   (Python 3.10-3.14, SymPy 1.10-latest); docs build on Read the Docs again.
-- Regression tests for 38 worked models in the System Dynamics notes.
+- Regression tests for 38 worked models in the System Dynamics notes. The
+  test suite also runs under Pyodide in CI, as the web interface runs it.
+- Releases: `bump-my-version` sets the version and tags it; pushing a
+  `vX.Y.Z` tag runs the tests and publishes to PyPI by trusted publishing.
 
 ### Web interface
 - **Runs in the browser.** Pyodide and SymPy run StateMint in a Web Worker,
   replacing the AWS API Gateway + Lambda (on the retired `python3.8` runtime).
-  The site is static and can be hosted anywhere.
+  The site is static and can be hosted anywhere; it is served at
+  https://statemint.stmartin.edu and https://ricopic.one/statemint/.
+- `?open=<name>` opens and solves a published system, e.g.
+  `?open=quadrilateral`.
 - Empty fields (HTTP 400 "Failed" before), trailing commas (#11) and the
   share button (#12) work; errors explain what is wrong.
 - Results list the model's parameters; the x' form shows the F term.
